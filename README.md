@@ -3,4 +3,5 @@ The Technical Fest website of Bengal Institute of Technology, for the year 2023.
 
 # Developers
 ## Front-End
-Priyankar
+Priyankar Sarkar
+Sruti Das
