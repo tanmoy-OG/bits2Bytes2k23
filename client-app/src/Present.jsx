@@ -9,7 +9,7 @@ export const Present = ({ duration }) => {
       </h1>
       <h1 className="text-4xl text-sky-600">PRESENTS</h1>
       <div className="flex justify-center">
-        <img src={bits2BytesLogo} alt="bits2Bytes2k23 Logo" className="w-1/4" />
+        <img src={bits2BytesLogo} alt="bits2Bytes2k23 Logo" className="w-1/4 logo-img" />
       </div>
       <Timer duration={duration} />
     </div>

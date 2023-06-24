@@ -14,7 +14,7 @@ function App() {
   }, []);
 
   return (
-    <div className="absolute top-0 left-0 w-full h-full">
+    <div className="absolute top-0 left-0 w-full h-full p-6">
       <Nav />
       <Present duration = {5*24*60*60*1000} />
       <About />
