@@ -26,7 +26,7 @@ export const Nav = () => {
     <nav className={`fixed top-0 left-0 w-full z-10 transition duration-5 ${isScrolled ? 'backdrop-blur-lg' : ''}`}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <a href="/" className="text-violet-300 text-xl font-bold">
+          <a href="/" className="text-violet-300 text-xl font-bold font-custom-sans">
             IMPULSE 2K23
           </a>
           <div className="-mr-2 flex md:hidden">

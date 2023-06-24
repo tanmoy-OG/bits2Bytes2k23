@@ -79,7 +79,10 @@ body {
 
 
 
-.font-custom {
-  font-family: 'Merriweather', sans-serif;
-  /* additional font styles if needed */
+.font-custom-sans {
+  font-family: 'Ysabeau Infant', sans-serif;
+}
+.font-custom-cursive{
+  font-family: 'Dancing Script', cursive;
+
 }
