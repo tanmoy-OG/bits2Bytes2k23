@@ -79,3 +79,7 @@ body {
 
 
 
+.font-custom {
+  font-family: 'Merriweather', sans-serif;
+  /* additional font styles if needed */
+}
