@@ -5,12 +5,14 @@ import "aos/dist/aos.css";
 import { Nav } from "./Nav";
 import { Present } from "./Present";
 import { About } from "./About";
+import { Gallery } from "./Gallery";
+import { Contact } from "./Contact";
 
 function App() {
   // const [count, setCount] = useState(0);
 
   useEffect(() => {
-    Aos.init({ duration: 1000 });
+    Aos.init({ duration: 1300 });
   }, []);
 
   return (
@@ -18,10 +20,10 @@ function App() {
       <Nav />
       <Present duration = {5*24*60*60*1000} />
       <About />
-      {/* <Conveynors />
-      <TechnicalTeam />
+      {/* <Conveynors />*/}
+      {/* <TechnicalTeam />*/}
       <Gallery />
-      <Contact /> */}
+      <Contact />
     </div>
   );
 }
