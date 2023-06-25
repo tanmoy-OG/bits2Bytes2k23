@@ -1,15 +1,15 @@
 export const About = () => {
   return (
-    <div className="flex flex-col pl-20 pr-20" id="about">
+    <div className="flex flex-col px-4 md:pl-20 md:pr-20" id="about">
       <div className="bg-neutral-800 h-80 w-full left-0 absolute mix-blend-overlay"></div>
       <h1
-        className="p-10 pb-5 text-5xl font-bold tracking-wider text-neutral-200"
-        data-aos="fade-up"
+        className="p-4 md:p-10 pb-5 text-4xl md:text-5xl font-bold tracking-wider text-neutral-200 font-custom-sans"
+        data-aos="fade-up "
       >
         ABOUT BITS2BYTES
       </h1>
       <p
-        className="pb-10 pl-20 pr-20 text-2xl leading-10 text-left text-neutral-300"
+        className="pb-4 md:pb-10 pl-4 md:pl-20 pr-4 md:pr-20 text-base md:text-2xl leading-8 md:leading-10 text-left text-neutral-300 font-custom-sans"
         data-aos="fade-right"
         data-aos-delay="1000"
       >

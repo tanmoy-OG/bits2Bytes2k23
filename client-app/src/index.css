@@ -75,3 +75,14 @@ button:focus-visible {
 body {
   background-color: #301E3C;
 }
+
+
+
+
+.font-custom-sans {
+  font-family: 'Ysabeau Infant', sans-serif;
+}
+.font-custom-cursive{
+  font-family: 'Dancing Script', cursive;
+
+}
