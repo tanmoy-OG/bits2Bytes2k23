@@ -74,8 +74,10 @@ button:focus-visible {
 
 body {
   background-color: #301E3C;
-  user-select: none;
 }
+
+
+
 
 .font-custom-sans {
   font-family: 'Ysabeau Infant', sans-serif;
