@@ -7,7 +7,8 @@ export default {
   theme: {
     extend: {},
     screens: {
-      'sm': '640px',
+
+      'sm': '599px',
       // => @media (min-width: 640px) { ... }
 
       'md': '768px',

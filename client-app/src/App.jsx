@@ -9,9 +9,13 @@ import { Gallery } from "./Homepage/Gallery";
 import { Convenors } from "./Homepage/Convenors";
 import { Secretary } from "./Homepage/Secretary";
 import { Contact } from "./Homepage/Contact";
+import { ViewGalleryImage } from "./Homepage/ViewGalleryImage";
 
 function App() {
-  // const [count, setCount] = useState(0);
+
+  const [childVisible, setChildVisible] = useState(false);
+  const [img, setImg] = useState();
+  const [tag, setTag] = useState(null);
 
   useEffect(() => {
     Aos.init({ duration: 1300 });
@@ -24,10 +28,11 @@ function App() {
       <About />
       {/* <Conveynors />*/}
       {/* <TechnicalTeam />*/}
-      <Gallery />
+      <Gallery setChildVisible={setChildVisible} setImg={setImg} setTag={setTag} />
       <Convenors />
       <Secretary />
       <Contact />
+      {childVisible && <ViewGalleryImage img={img} tag={tag} setChildVisible={setChildVisible} />}
     </div>
   );
 }
