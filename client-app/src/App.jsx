@@ -6,7 +6,9 @@ import { Nav } from "./Nav";
 import { Present } from "./Homepage/Present";
 import { About } from "./Homepage/About";
 import { Gallery } from "./Homepage/Gallery";
-import { Contact } from "./Contact";
+import { Convenors } from "./Homepage/Convenors";
+import { Secretary } from "./Homepage/Secretary";
+import { Contact } from "./Homepage/Contact";
 
 function App() {
   // const [count, setCount] = useState(0);
@@ -23,6 +25,8 @@ function App() {
       {/* <Conveynors />*/}
       {/* <TechnicalTeam />*/}
       <Gallery />
+      <Convenors />
+      <Secretary />
       <Contact />
     </div>
   );
