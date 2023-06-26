@@ -42,6 +42,18 @@
 }
 
 
+
+
+
+/* @media (max-width: 900px) {
+  .gallery-images {
+    display: grid;
+    grid-template-columns: auto auto;
+  }
+} */
+
+
+
 *{
   margin: 0;
   padding: 0;
