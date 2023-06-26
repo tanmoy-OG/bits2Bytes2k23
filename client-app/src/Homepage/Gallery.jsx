@@ -1,6 +1,6 @@
-import pic1 from "./assets/download.jpeg";
-import pic2 from "./assets/tree-736885_1280.jpg";
-import pic3 from "./assets/5616.webp";
+import pic1 from "../assets/download.jpeg";
+import pic2 from "../assets/tree-736885_1280.jpg";
+import pic3 from "../assets/5616.webp";
 
 export const Gallery = () => {
   return (

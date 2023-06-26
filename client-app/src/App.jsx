@@ -3,9 +3,9 @@ import './App.css'
 import Aos from "aos";
 import "aos/dist/aos.css";
 import { Nav } from "./Nav";
-import { Present } from "./Present";
-import { About } from "./About";
-import { Gallery } from "./Gallery";
+import { Present } from "./Homepage/Present";
+import { About } from "./Homepage/About";
+import { Gallery } from "./Homepage/Gallery";
 import { Contact } from "./Contact";
 
 function App() {
