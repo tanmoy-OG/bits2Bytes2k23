@@ -1,5 +1,5 @@
 import bits2BytesLogo from "./assets/bits2Bytes2k23Logo.png";
-import { Timer } from "./Timer";
+import { Timer } from "../Timer";
 
 export const Present = ({ duration }) => {
   return (
