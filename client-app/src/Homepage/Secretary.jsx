@@ -9,15 +9,15 @@ import {
 
 export const Secretary = () => {
   return (
-    <div className=" row h-fit mb-10 bg-blue-500/10">
+    <div className="p-3 pt-0 row h-fit mb-10 bg-blue-500/10">
       <h1
         className="p-4 md:p-10 pb-5 text-4xl md:text-5xl font-bold tracking-wider text-neutral-200 font-custom-sans"
         data-aos="fade-up "
       >
-        Secretary
+        SECRETARY
       </h1>
 
-      <div className="p-4 flex justify-center flex-wrap">
+      <div className="flex justify-center flex-wrap">
         <Card name={ "Debanjan Chakroborty" } designation={ "Technical Sacretary" }/>
         <Card name={ "Twishanu Aich Roy" } designation={ "Assistant Technical Sacretary" }/>
         <Card name={ "Aditya Roy" } designation={ "Assistant Technical Sacretary" }/>

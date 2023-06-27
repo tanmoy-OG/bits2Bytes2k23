@@ -41,19 +41,6 @@
   color: #888;
 }
 
-
-
-
-
-/* @media (max-width: 900px) {
-  .gallery-images {
-    display: grid;
-    grid-template-columns: auto auto;
-  }
-} */
-
-
-
 *{
   margin: 0;
   padding: 0;
@@ -85,10 +72,6 @@
     grid-column: span 2;
   }
   .grid-wrapper .tall{
-    grid-row: span 2;
-  }
-  .grid-wrapper .big{
-    grid-column: span 2;
     grid-row: span 2;
   }
 }
