@@ -4,6 +4,7 @@ export const EachGalleryItem = ({ img , tag, setChildVisible, setImg, setTag}) =
 
   const mydefault = "group overflow-hidden relative rounded rounded-md";
   const tall = "tall group overflow-hidden relative rounded rounded-md";
+  const big = "big group overflow-hidden relative rounded rounded-md";
   const wide = "wide group overflow-hidden relative rounded rounded-md";
   const [imageType, setImageType] = useState(mydefault);
 
@@ -12,9 +13,10 @@ export const EachGalleryItem = ({ img , tag, setChildVisible, setImg, setTag}) =
     if (choice !== 3) setImageType(mydefault);
     else
     {
-      const choice2 = parseInt(Math.random() * 4);
+      const choice2 = parseInt(Math.random() * 5);
       if(choice2 === 0 || choice2 === 1) setImageType(wide);
-      else if(choice2 === 2) setImageType(tall);
+      else if(choice2 === 2 || choice2 === 3) setImageType(big);
+      else setImageType(tall);
     }
   };
 
