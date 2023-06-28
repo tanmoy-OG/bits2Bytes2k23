@@ -1,5 +1,4 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faCoffee, faHippo } from "@fortawesome/free-solid-svg-icons";
 import {
   faTwitter,
   faLinkedinIn,
@@ -9,7 +8,7 @@ import {
 
 export const Secretary = () => {
   return (
-    <div className="p-3 pt-0 row h-fit mb-10 bg-blue-500/10">
+    <div className="p-3 pt-0 row h-fit bg-blue-500/10 backdrop-blur-lg ml-6 mr-6 mb-10">
       <h1
         className="p-4 md:p-10 pb-5 text-4xl md:text-5xl font-bold tracking-wider text-neutral-200 font-custom-sans"
         data-aos="fade-up"
@@ -30,7 +29,7 @@ export const Secretary = () => {
 
 const Card = (props) => {
   return (
-    <div className="bg-white rounded-xl transition-all w-72 m-4" data-aos="fade-up" data-aos-duration="3000">
+    <div className="bg-white rounded-xl transition-all w-72 m-4">
       <div className="flex p-10 pb-6 bg-blue-950 rounded-t-xl justify-center border-2">
         <img
           src="https://demo.epic-webdesign.com/tf-pacifico/v1/images/team1a.jpg"

@@ -1,12 +1,15 @@
 import { useEffect, useState } from "react";
 
 export const Timer = ({ duration }) => {
+
   const [time, setTime] = useState(duration);
+
   useEffect(() => {
     setTimeout(() => {
       setTime(time - 1000);
     }, 1000);
   }, [time]);
+
   const getTime = (milli) => {
     let totalSeconds = parseInt(Math.floor(milli / 1000));
     let totalMinutes = parseInt(Math.floor(totalSeconds / 60));
@@ -36,5 +39,6 @@ export const Timer = ({ duration }) => {
       </div>
     );
   };
+  
   return <div className="pb-10">{getTime(time)}</div>;
 };
