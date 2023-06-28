@@ -10,6 +10,7 @@ import { Convenors } from "./Homepage/Convenors";
 import { Secretary } from "./Homepage/Secretary";
 import { Contact } from "./Homepage/Contact";
 import { ViewGalleryImage } from "./Homepage/ViewGalleryImage";
+import { Crew } from "./Crew";
 
 function App() {
 
@@ -22,7 +23,7 @@ function App() {
   }, []);
 
   return (
-    <div className="absolute top-0 left-0 w-full h-full p-6">
+    <div className="absolute top-0 left-0 w-full h-fit">
       <Nav />
       <Present duration = {5*24*60*60*1000} />
       <About />
