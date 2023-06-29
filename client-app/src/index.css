@@ -76,7 +76,7 @@ body {
   background-color: black;
   user-select: none;
 }
-
+/* Fonts */
 .font-custom-sans {
   font-family: 'Ysabeau Infant', sans-serif;
 }
@@ -84,3 +84,4 @@ body {
   font-family: 'Dancing Script', cursive;
 
 }
+

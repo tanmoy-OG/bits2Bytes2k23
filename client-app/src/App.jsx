@@ -34,8 +34,10 @@ function App() {
       <Secretary />
       <Contact />
       {childVisible && <ViewGalleryImage img={img} tag={tag} setChildVisible={setChildVisible} />}
-    </div>
+     
+     </div>
   );
 }
+
 
 export default App
