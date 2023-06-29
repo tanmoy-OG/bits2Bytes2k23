@@ -1,6 +1,0 @@
-export const Crew = ()=>{
-    return(
-        <>
-        </>
-    );
-}

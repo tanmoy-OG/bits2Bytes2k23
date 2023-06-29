@@ -1,7 +1,7 @@
 import bits2BytesLogo from "../assets/bits2Bytes2k23Logo.png";
 import { Timer } from "../Timer";
 
-export const Present = ({ duration }) => {
+const Present = ({ duration }) => {
   return (
     <div className="relative flex flex-col space-y-5 ml-6 mr-6 mb-4">
       <h1 className="text-5xl font-semibold tracking-wide text-yellow-600">
@@ -15,3 +15,5 @@ export const Present = ({ duration }) => {
     </div>
   );
 };
+
+export default Present;
