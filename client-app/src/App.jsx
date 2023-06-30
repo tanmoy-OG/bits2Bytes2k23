@@ -29,14 +29,14 @@ function App() {
       {/* <Principal /> */}
       {/* <Present duration={5 * 24 * 60 * 60 * 1000} />
       <About /> */}
-      {/* <Conveynors />*/}
-      {/* <TechnicalTeam />*/}
+      
+      {/* <TechnicalTeam /> */}
       {/* <Gallery
         setChildVisible={setChildVisible}
         setImg={setImg}
         setTag={setTag}
-      /> */}
-      {/* <Convenors />
+      />
+      <Convenors />
       <Secretary />
       <Contact /> */}
       {/* {childVisible && (

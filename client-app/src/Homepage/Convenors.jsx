@@ -81,4 +81,3 @@ export const Convenors = () => {
   );
 };
 
-export default Convenors;

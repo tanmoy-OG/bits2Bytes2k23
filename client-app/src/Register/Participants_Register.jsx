@@ -2,8 +2,8 @@ import logo from '../assets/bits2Bytes2k23Logo.png'
 
 export const Participant_Registration = () => {
     return (
-      <div className="bg-black backdrop-blur-lg rounded-lg m-20 flex">
-        <div className="bg-blue-900  shadow-lg p-7 flex-1">
+      <div className="bg-black backdrop-blur-lg rounded-lg m-4 flex ">
+        <div className="bg-gradient-to-t from-blue-300 to-blue-950 shadow-lg p-7 flex-1">
           <h1
             className="text-4xl md:text-5xl font-bold tracking-wider text-neutral-200 font-custom-sans"
             data-aos="fade-up"
@@ -151,18 +151,26 @@ export const Participant_Registration = () => {
             </div>
             <button
               type="submit"
-              className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded mt-4"
+              className="bg-orange-700 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded mt-4"
             >
               Register
             </button>
+
+            {/* <button
+              type="submit"
+              className="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded mt-4"
+            >
+              Login
+            </button> */}
           </form>
           </div>
 
-          <div className="flex-1">
+
+        <div className="flex-1">
         <img
           src={logo}
           alt="Registration Image"
-          className="h-50 object-cover"
+          className="w-50 h-50  object-cover"
         />
       </div>
       </div>
