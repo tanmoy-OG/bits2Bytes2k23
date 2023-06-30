@@ -3,7 +3,7 @@ import "./App.css";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import { Nav } from "./Nav";
-// import { Present } from "./Homepage";
+import { Present } from "./Homepage";
 import { About } from "./Homepage";
 import { Gallery } from "./Homepage/Gallery";
 import { Convenors } from "./Homepage/Convenors";
@@ -25,7 +25,7 @@ function App() {
 
   return (
     <div className="absolute top-0 left-0 w-full h-fit">
-      <Nav />
+      {/* <Nav /> */}
       {/* <Principal /> */}
       {/* <Present duration = {5*24*60*60*1000} /> */}
       {/* <About /> */}

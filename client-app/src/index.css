@@ -76,11 +76,32 @@ body {
   background-color: black;
   user-select: none;
 }
-
+/* Fonts */
 .font-custom-sans {
   font-family: 'Ysabeau Infant', sans-serif;
 }
 .font-custom-cursive{
   font-family: 'Dancing Script', cursive;
 
+}
+
+
+.hover-rotate:hover {
+  animation: rotate 1s ;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.card {
+  background-image: url(/src/assets/tree-736885_1280.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center center;
 }
