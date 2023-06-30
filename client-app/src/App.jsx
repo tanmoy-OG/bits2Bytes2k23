@@ -3,13 +3,13 @@ import "./App.css";
 import Aos from "aos";
 import "aos/dist/aos.css";
 import { Nav } from "./Nav";
-import { Present } from "./Homepage";
+// import { Present } from "./Homepage";
 import { About } from "./Homepage";
 import { Gallery } from "./Homepage/Gallery";
 import { Convenors } from "./Homepage/Convenors";
 import { Secretary } from "./Homepage/Secretary";
 import { Contact } from "./Homepage/Contact";
-import { ViewGalleryImage } from "./Homepage/ViewGalleryImage";
+import ViewGalleryImage from "./Homepage/ViewGalleryImage";
 import { MainProfile } from "./Profile/MainProfile";
 import { Principal } from "./Principal";
 
@@ -34,7 +34,7 @@ function App() {
       {/* <Secretary /> */}
       {/* <Contact /> */}
       {/* {childVisible && <ViewGalleryImage img={img} tag={tag} setChildVisible={setChildVisible} />} */}
-      {/* <MainProfile profileType={"admin"} data={data} /> */}
+      <MainProfile profileType={"admin"} data={data} />
     </div>
   );
 }

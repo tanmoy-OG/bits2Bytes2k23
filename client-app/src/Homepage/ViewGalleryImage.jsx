@@ -1,4 +1,4 @@
-export const ViewGalleryImage = ({img, tag, setChildVisible}) => {
+const ViewGalleryImage = ({img, tag, setChildVisible}) => {
 
     return(
         <div className="fixed top-0 left-0 z-50 w-full h-full backdrop-blur-lg flex flex-col justify-center" onClick={()=>{setChildVisible(false)}}>
@@ -9,4 +9,6 @@ export const ViewGalleryImage = ({img, tag, setChildVisible}) => {
         </div>
     );
 }
+
+export default ViewGalleryImage;
 
