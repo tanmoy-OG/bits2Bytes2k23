@@ -1,4 +1,4 @@
-export const About = () => {
+const About = () => {
   return (
     <div className="flex flex-col px-4 md:pl-20 md:pr-20 bg-teal-500/10 backdrop-blur-lg overflow-hidden ml-6 mr-6 mb-10 rounded-2xl" id="about">
       <h1
@@ -14,3 +14,5 @@ export const About = () => {
     </div>
   );
 };
+
+export default About;
