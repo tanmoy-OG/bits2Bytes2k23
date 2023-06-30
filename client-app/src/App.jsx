@@ -12,6 +12,7 @@ import { Contact } from "./Homepage/Contact";
 import { ViewGalleryImage } from "./Homepage/ViewGalleryImage";
 import { Crew } from "./Crew";
 import { Principal } from "./Principal";
+import { Participant_Registration } from "./Register/Participants_Register";
 
 function App() {
   const [childVisible, setChildVisible] = useState(false);
@@ -24,40 +25,31 @@ function App() {
 
   return (
     <div className="absolute top-0 left-0 w-full h-fit">
-      <Nav />
+      {/* <Nav /> */}
       {/* <Principal /> */}
-      <Present duration={5 * 24 * 60 * 60 * 1000} />
-      <About />
+      {/* <Present duration={5 * 24 * 60 * 60 * 1000} />
+      <About /> */}
       {/* <Conveynors />*/}
       {/* <TechnicalTeam />*/}
-      <Gallery
+      {/* <Gallery
         setChildVisible={setChildVisible}
         setImg={setImg}
         setTag={setTag}
-      />
-      <Convenors />
+      /> */}
+      {/* <Convenors />
       <Secretary />
-      <Contact />
-<<<<<<< HEAD
-      {childVisible && <ViewGalleryImage img={img} tag={tag} setChildVisible={setChildVisible} />}
-     
-     </div>
-  );
-}
-
-
-export default App
-=======
-      {childVisible && (
+      <Contact /> */}
+      {/* {childVisible && (
         <ViewGalleryImage
           img={img}
           tag={tag}
           setChildVisible={setChildVisible}
         />
-      )}
+      )} */}
+
+      <Participant_Registration/>
     </div>
   );
 }
 
 export default App;
->>>>>>> upstream/main
