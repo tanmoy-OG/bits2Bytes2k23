@@ -12,6 +12,7 @@ import { Contact } from "./Homepage/Contact";
 import { ViewGalleryImage } from "./Homepage/ViewGalleryImage";
 import { MainProfile } from "./Profile/MainProfile";
 import { Principal } from "./Principal";
+import { Crew } from "./Crew";
 
 function App() {
   const [childVisible, setChildVisible] = useState(false);
@@ -28,12 +29,11 @@ function App() {
       <Nav />
       {/* <Principal /> */}
       {/* <Crew /> */}
-      {/* <TechnicalTeam />*/}
-      {/* <Present duration = {5*24*60*60*1000} /> */}
+      <Present duration = {5*24*60*60*1000} />
       {/* <About /> */}
       {/* <Gallery setChildVisible={setChildVisible} setImg={setImg} setTag={setTag} /> */}
-      {/* <Convenors /> */}
-      {/* <Secretary /> */}
+      <Convenors />
+      <Secretary />
       {/* <Contact /> */}
       {/* {childVisible && <ViewGalleryImage img={img} tag={tag} setChildVisible={setChildVisible} />} */}
       {/* <MainProfile profileType={"admin"} data={data} /> */}
