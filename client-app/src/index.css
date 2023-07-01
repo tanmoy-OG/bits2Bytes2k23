@@ -78,16 +78,16 @@ body {
 }
 
 .font-custom-sans {
-  font-family: 'Ysabeau Infant', sans-serif;
+  font-family: "Ysabeau Infant", sans-serif;
 }
-.font-custom-cursive{
-  font-family: 'Dancing Script', cursive;
-
+.font-custom-cursive {
+  font-family: "Dancing Script", cursive;
 }
 
 .card {
-  background-image: url(/src/assets/tree-736885_1280.jpg);
+  background-image: url(../public/Profile/tanmoy.jpg);
   background-repeat: no-repeat;
+  background-size: cover;
   background-attachment: fixed;
   background-position: center center;
 }

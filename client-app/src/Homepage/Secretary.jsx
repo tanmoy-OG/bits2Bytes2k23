@@ -11,11 +11,30 @@ export const Secretary = () => {
       </h1>
 
       <div className="flex justify-evenly flex-wrap pl-10 pr-10">
-        <Card name={ "Debanjan Chakroborty" } designation={ "Technical Sacretary" }/>
-        <Card name={ "Twishanu Aich Roy" } designation={ "Assistant Technical Sacretary" }/>
-        <Card name={ "Aditya Roy" } designation={ "Assistant Technical Sacretary" }/>
-        <Card name={ "Payel Halder" } designation={ "Assistant Technical Sacretary" }/>
-        <Card name={ "Annu Priya" } designation={ "Assistant Technical Sacretary" }/>
+        <Card
+          pic={"Profile/debanjan.jpg"}
+          name={"Debanjan Chakroborty"}
+          designation={"Technical Sacretary"}
+        />
+        <Card
+          name={"Twishanu Aich Roy"}
+          designation={"Assistant Technical Sacretary"}
+        />
+        <Card
+          name={"Aditya Roy"}
+          designation={"Assistant Technical Sacretary"}
+        />
+        <Card
+          name={"Payel Halder"}
+          designation={"Assistant Technical Sacretary"}
+          link={"https://www.linkedin.com/in/payel-halder"}
+          face={"https://www.facebook.com/payel.halder.5397"}
+          insta={"https://www.instagram.com/payel_halder7"}
+        />
+        <Card
+          name={"Annu Priya"}
+          designation={"Assistant Technical Sacretary"}
+        />
       </div>
     </div>
   );
