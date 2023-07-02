@@ -22,13 +22,13 @@ export const Crew = () => {
             insta={"https://www.instagram.com/tanmoy_og"}
           />
           <Card
+            pic={"./public/Profile/priyankar.jpg"}
             name={"Priyankar Sarkar"}
             designation={"Front End Dev and DevOps"}
-            git={"https://www.github.com/"}
-            link={"https://www.linkedin.com/in/"}
-            tweet={"https://twitter.com/"}
-            face={"https://www.facebook.com/"}
-            insta={"https://www.instagram.com/"}
+            git={"https://github.com/PriyankarSarkar"}
+            link={"https://www.linkedin.com/in/priyankar-sarkar"}
+            tweet={"https://twitter.com/Priyankar_twits"}
+            face={"https://www.facebook.com/priyankar.sarkar.33821"}
           />
           <Card name={"Sruti Das"} designation={"Front End Dev"} />
           <Card name={"Rishav Ghosh"} designation={"Back End Dev"} />
@@ -43,32 +43,28 @@ export const Crew = () => {
         </h1>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 grid-flow-row gap-2 md:gap-6 place-items-center pl-10 pr-10">
           <Card
+            pic={"./public/Profile/deepanjan.jpg"}
             name={"Deepanjan Sur"}
             designation={"Head Coordinaor"}
-            // git={"https://www.github.com/"}
-            // link={"https://www.linkedin.com/in/"}
-            // tweet={"https://twitter.com/"}
-            // face={"https://www.facebook.com/"}
-            // insta={"https://www.instagram.com/"}
+            git={"https://github.com/Deepanjan12"}
+            link={"https://www.linkedin.com/in/deepanjan-sur-372026217"}
+            tweet={"https://twitter.com/75_deepanjan"}
+            face={"https://www.facebook.com/deepanjan.sur.1"}
+            insta={"https://www.instagram.com/deepanjan2002"}
           />
           <Card
+            pic={"./public/Profile/chirantan.jpeg"}
             name={"Chorantan"}
             designation={"Coordinator"}
-            // git={"https://www.github.com/"}
-            // link={"https://www.linkedin.com/in/"}
-            // tweet={"https://twitter.com/"}
-            // face={"https://www.facebook.com/"}
-            // insta={"https://www.instagram.com/"}
+            git={"https://github.com/i-am-chirantan"}
+            link={"https://www.linkedin.com/in/chirantan-acharyya-5552a71ba"}
+            face={"https://www.facebook.com/chiru.84"}
+            insta={"https://www.instagram.com/the.lazy_coder"}
           />
           <Card
             pic={"./public/Profile/bd.jpeg"}
             name={"Bidisha Nag"}
             designation={"Coordinator"}
-            // git={"https://www.github.com/"}
-            // link={"https://www.linkedin.com/in/"}
-            // tweet={"https://twitter.com/"}
-            // face={"https://www.facebook.com/"}
-            // insta={"https://www.instagram.com/"}
             pin={"https://www.pinterest.com/ludicbitch"}
             snap={"https://www.snapchat.com/add/dinglingduck"}
           />
@@ -82,6 +78,7 @@ export const Crew = () => {
             insta={"https://www.instagram.com/dazzled____sweetie__"}
           />
           <Card
+            pic={"./public/Profile/jasmine.jpeg"}
             name={"Jasmine Khatoon"}
             designation={"Coordinator"}
             link={"https://www.linkedin.com/in/jasmine-khatoon-a47288271"}

@@ -29,7 +29,7 @@ function App() {
     <div className="absolute top-0 left-0 w-full h-fit">
       <Nav />
       {/* <Principal /> */}
-      {/* <Crew /> */}
+      <Crew />
       <Present duration={5 * 24 * 60 * 60 * 1000} />
       <About />
       <Carousel />
