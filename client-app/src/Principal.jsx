@@ -1,7 +1,10 @@
 import ReactPlayer from "react-player";
 export const Principal = () => {
   return (
-    <div className="mt-10 mb-10 ml-6 mr-6 p-10 pt-0 pb-12 bg-teal-500/10 backdrop-blur-lg rounded-2xl">
+    <div
+      className="mt-10 mb-10 ml-6 mr-6 p-10 pt-0 pb-12 bg-teal-500/10 backdrop-blur-lg rounded-2xl"
+      data-aos="fade-up"
+    >
       <h1
         className="p-4 md:p-10 pb-5 text-4xl md:text-5xl font-bold tracking-wider text-neutral-200 font-custom-sans"
         data-aos="fade-up"
@@ -15,7 +18,6 @@ export const Principal = () => {
         height="100%"
         controls={true}
         data-aos="fade-up"
-        data-aos-delay="200"
       />
     </div>
   );

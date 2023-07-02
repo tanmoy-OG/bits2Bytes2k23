@@ -30,7 +30,15 @@ export const Crew = () => {
             tweet={"https://twitter.com/Priyankar_twits"}
             face={"https://www.facebook.com/priyankar.sarkar.33821"}
           />
-          <Card name={"Sruti Das"} designation={"Front End Dev"} />
+          <Card
+            pic={"./public/Profile/sruti.jpg"}
+            name={"Sruti Das"}
+            designation={"Front End Dev"}
+            git={"https://github.com/srutiii"}
+            link={"https://www.linkedin.com/in/sruti-das-b4898926a"}
+            face={"https://www.facebook.com/profile.php?id=100023642574219"}
+            insta={"https://www.instagram.com/myself_sruti__"}
+          />
           <Card name={"Rishav Ghosh"} designation={"Back End Dev"} />
         </div>
       </div>
