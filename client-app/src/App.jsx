@@ -72,10 +72,6 @@ export default function App() {
           setChildVisible={setChildVisible}
         />
       )} */}
-      {/* <Convenors /> */}
-      {/* <Secretary /> */}
-      {/* <Contact /> */}
-      {/* <MainProfile profileType={"admin"} data={data} /> */}
     </div>
   );
 }
