@@ -1,21 +1,23 @@
-export const Button = (props) => {
-  return props.buttontype !== "cancel" ? (
+const Button = (props) => {
+  return props.buttonType !== "cancel" ? (
     <div
       onClick={() => {
-        props.function(props.buttontype);
+        props.function(props.buttonType);
       }}
       className="button"
     >
-      {props.buttontype}
+      {props.buttonType}
     </div>
   ) : (
     <div
       onClick={() => {
-        props.function(props.buttontype);
+        props.function(props.buttonType);
       }}
       className="button-red"
     >
-      {props.buttontype}
+      {props.buttonType}
     </div>
   );
 };
+
+export default Button;

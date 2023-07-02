@@ -1,8 +1,7 @@
-import pic1 from "../assets/download.jpeg";
+import pic1 from "../assets/5616.webp";
 import pic2 from "../assets/tree-736885_1280.jpg";
-import pic3 from "../assets/5616.webp";
-import pic4 from "../assets/lomba.jpg";
-import pic5 from "../assets/Landscape-Color.jpg";
+import pic3 from "../assets/lomba.jpg";
+import pic4 from "../assets/Landscape-Color.jpg";
 import { EachGalleryItem } from "./EachGalleryItem";
 
 export const Gallery = ({setChildVisible, setImg, setTag}) => {
@@ -18,13 +17,11 @@ export const Gallery = ({setChildVisible, setImg, setTag}) => {
         <EachGalleryItem img={pic1} tag={tag} setChildVisible={setChildVisible} setImg={setImg} setTag={setTag}/>
         <EachGalleryItem img={pic3} tag={tag} setChildVisible={setChildVisible} setImg={setImg} setTag={setTag}/>
         <EachGalleryItem img={pic2} tag={tag} setChildVisible={setChildVisible} setImg={setImg} setTag={setTag}/>
-        <EachGalleryItem img={pic5} tag={tag} setChildVisible={setChildVisible} setImg={setImg} setTag={setTag}/>
         <EachGalleryItem img={pic1} tag={tag} setChildVisible={setChildVisible} setImg={setImg} setTag={setTag}/>
         <EachGalleryItem img={pic2} tag={tag} setChildVisible={setChildVisible} setImg={setImg} setTag={setTag}/>
         <EachGalleryItem img={pic2} tag={tag} setChildVisible={setChildVisible} setImg={setImg} setTag={setTag}/>
         <EachGalleryItem img={pic4} tag={tag} setChildVisible={setChildVisible} setImg={setImg} setTag={setTag}/>
         <EachGalleryItem img={pic3} tag={tag} setChildVisible={setChildVisible} setImg={setImg} setTag={setTag}/>
-        <EachGalleryItem img={pic5} tag={tag} setChildVisible={setChildVisible} setImg={setImg} setTag={setTag}/>
         <EachGalleryItem img={pic1} tag={tag} setChildVisible={setChildVisible} setImg={setImg} setTag={setTag}/>
         <EachGalleryItem img={pic2} tag={tag} setChildVisible={setChildVisible} setImg={setImg} setTag={setTag}/>
         <EachGalleryItem img={pic4} tag={tag} setChildVisible={setChildVisible} setImg={setImg} setTag={setTag}/>

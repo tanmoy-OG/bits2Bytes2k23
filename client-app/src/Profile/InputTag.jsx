@@ -1,7 +1,7 @@
 export const InputTag = (props) => {
   return (
     <div className="flex flex-row justify-between items-start gap-8">
-      <h1 className="text-left text-sm md:text-lg font-bold tracking-wider text-neutral-200 font-custom-sans w-32 uppercase pt-1 md:pt-0">
+      <h1 className="text-left text-sm md:text-lg font-bold tracking-wider text-white font-custom-sans w-32 uppercase pt-1 md:pt-0">
         {props.heading}
       </h1>
 

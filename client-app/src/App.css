@@ -118,6 +118,8 @@
   cursor:pointer;
   font-weight:600;
   border-radius: 5px;
+  border-width:2px;
+  border-color: rgba(255, 255, 255, 0.145);
 }
 
 .button:after,.button-red:after, .active-button:after {

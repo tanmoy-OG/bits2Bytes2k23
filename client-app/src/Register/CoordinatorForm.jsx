@@ -1,5 +1,3 @@
-import logo from '../assets/bits2Bytes2k23Logo.png'
-
 const CoordinatorForm = () => {
     return (
       <div className="bg-black backdrop-blur-lg rounded-lg m-4 flex ">
