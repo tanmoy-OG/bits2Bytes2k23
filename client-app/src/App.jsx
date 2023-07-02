@@ -5,6 +5,7 @@ import "aos/dist/aos.css";
 import { Nav } from "./Nav";
 import { Present } from "./Homepage";
 import { About } from "./Homepage";
+import { Carousel } from "./Homepage/Carousel";
 import { Gallery } from "./Homepage/Gallery";
 import { Convenors } from "./Homepage/Convenors";
 import { Secretary } from "./Homepage/Secretary";
@@ -14,6 +15,7 @@ import { MainProfile } from "./Profile/MainProfile";
 import { Principal } from "./Principal";
 import AdminLogin from "./Register/AdminLogin";
 import ParticipantsForm from "./Register/ParticipantsForm";
+import { Crew } from "./Crew";
 
 function App() {
   const [childVisible, setChildVisible] = useState(false);
@@ -31,6 +33,7 @@ function App() {
       {/* <Principal /> */}
       {/* <Present duration = {5*24*60*60*1000} /> */}
       {/* <About /> */}
+      {/* <Carousel /> */}
       {/* <Gallery setChildVisible={setChildVisible} setImg={setImg} setTag={setTag} /> */}
       {/* <Convenors /> */}
       {/* <Secretary /> */}
