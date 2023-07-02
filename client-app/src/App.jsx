@@ -31,17 +31,26 @@ function App() {
     <div className="absolute top-0 left-0 w-full h-fit">
       <Nav />
       {/* <Principal /> */}
-      {/* <Present duration = {5*24*60*60*1000} /> */}
+      {/* <Crew /> */}
+      {/* <Present duration={5 * 24 * 60 * 60 * 1000} /> */}
       {/* <About /> */}
-      {/* <Carousel /> */}
-      {/* <Gallery setChildVisible={setChildVisible} setImg={setImg} setTag={setTag} /> */}
+      <Carousel />
+      {/* <Gallery
+        setChildVisible={setChildVisible}
+        setImg={setImg}
+        setTag={setTag}
+      /> */}
+      {/* {childVisible && (
+        <ViewGalleryImage
+          img={img}
+          tag={tag}
+          setChildVisible={setChildVisible}
+        />
+      )} */}
       {/* <Convenors /> */}
       {/* <Secretary /> */}
       {/* <Contact /> */}
-      {/* {childVisible && <ViewGalleryImage img={img} tag={tag} setChildVisible={setChildVisible} />} */}
-      <MainProfile profileType={"admin"} data={data} />
-      {/* <AdminLogin /> */}
-      {/* <ParticipantsForm /> */}
+      {/* <MainProfile profileType={"admin"} data={data} /> */}
     </div>
   );
 }
