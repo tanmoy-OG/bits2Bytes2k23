@@ -1,4 +1,3 @@
-import bits2BytesLogo from "../assets/bits2Bytes2k23Logo.png";
 import { Timer } from "../Timer";
 
 const Present = ({ duration }) => {
@@ -9,7 +8,7 @@ const Present = ({ duration }) => {
       </h1>
       <h1 className="text-4xl text-sky-500 font-custom-cursive">Presents</h1>
       <div className="flex justify-center">
-        <img src={bits2BytesLogo} alt="bits2Bytes2k23 Logo" className="w-1/4 logo-img hover-rotate hover:scale-100" />
+        <img src="logo.png" alt="bits2Bytes2k23 Logo" className="w-1/4 logo-img hover-rotate hover:scale-100" />
       </div>
       <Timer duration={duration} />
     </div>
