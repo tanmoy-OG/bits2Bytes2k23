@@ -1,6 +1,10 @@
 const Userlist = () => {
   return (
-    <div className="text-white">Userlist</div>
+    <div className="bg-white w-full">
+      <div className="">
+        
+      </div>
+    </div>
   )
 }
 

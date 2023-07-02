@@ -12,6 +12,8 @@ import { Contact } from "./Homepage/Contact";
 import ViewGalleryImage from "./Homepage/ViewGalleryImage";
 import { MainProfile } from "./Profile/MainProfile";
 import { Principal } from "./Principal";
+import AdminLogin from "./Register/AdminLogin";
+import ParticipantsForm from "./Register/ParticipantsForm";
 
 function App() {
   const [childVisible, setChildVisible] = useState(false);
@@ -35,6 +37,8 @@ function App() {
       {/* <Contact /> */}
       {/* {childVisible && <ViewGalleryImage img={img} tag={tag} setChildVisible={setChildVisible} />} */}
       <MainProfile profileType={"admin"} data={data} />
+      {/* <AdminLogin /> */}
+      {/* <ParticipantsForm /> */}
     </div>
   );
 }

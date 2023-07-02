@@ -1,6 +1,6 @@
 import logo from '../assets/bits2Bytes2k23Logo.png'
 
-export const Participant_Registration = () => {
+const AdminLogin = () => {
     return (
       <div className="bg-black backdrop-blur-lg rounded-lg m-4 flex ">
         <div className="bg-gradient-to-t from-blue-300 to-blue-950 shadow-lg p-7 flex-1">
@@ -142,3 +142,4 @@ export const Participant_Registration = () => {
     );
   };
   
+export default AdminLogin;
