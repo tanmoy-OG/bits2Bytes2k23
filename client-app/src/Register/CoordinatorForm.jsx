@@ -1,6 +1,4 @@
-import logo from '../assets/bits2Bytes2k23Logo.png'
-
-export const Participant_Registration = () => {
+const CoordinatorForm = () => {
     return (
       <div className="bg-black backdrop-blur-lg rounded-lg m-4 flex ">
         <div className="bg-gradient-to-t from-blue-300 to-blue-950 shadow-lg p-7 flex-1">
@@ -75,14 +73,14 @@ export const Participant_Registration = () => {
   
             <div className="input-block text-left p-3 font-semibold font-custom-sans">
               <label htmlFor="roll" className="input-label p-2 text-white ">
-                Secret Key
+                Event Name
               </label>
               <input
                 type="text"
                 autoComplete="off"
-                name="secret"
-                id="secret"
-                placeholder="Secret Key"
+                name="event"
+                id="event"
+                placeholder="Event Name"
                 className="input-field rounded-md p-1 w-full"
               />
             </div>
@@ -119,6 +117,7 @@ export const Participant_Registration = () => {
             </div>
 
            
+            
             <button
               type="submit"
               className="bg-orange-700 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded mt-4"
@@ -126,7 +125,7 @@ export const Participant_Registration = () => {
               Register
             </button>
 
-            
+          
           </form>
           </div>
 
@@ -141,4 +140,5 @@ export const Participant_Registration = () => {
       </div>
     );
   };
-  
+
+export default CoordinatorForm;

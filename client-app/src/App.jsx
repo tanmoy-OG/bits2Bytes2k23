@@ -10,9 +10,11 @@ import { Gallery } from "./Homepage/Gallery";
 import { Convenors } from "./Homepage/Convenors";
 import { Secretary } from "./Homepage/Secretary";
 import { Contact } from "./Homepage/Contact";
-import { ViewGalleryImage } from "./Homepage/ViewGalleryImage";
+import ViewGalleryImage from "./Homepage/ViewGalleryImage";
 import { MainProfile } from "./Profile/MainProfile";
 import { Principal } from "./Principal";
+import AdminLogin from "./Register/AdminLogin";
+import ParticipantsForm from "./Register/ParticipantsForm";
 import { Crew } from "./Crew";
 
 import "./App.css";
@@ -70,6 +72,10 @@ export default function App() {
           setChildVisible={setChildVisible}
         />
       )} */}
+      {/* <Convenors /> */}
+      {/* <Secretary /> */}
+      {/* <Contact /> */}
+      {/* <MainProfile profileType={"admin"} data={data} /> */}
     </div>
   );
 }
