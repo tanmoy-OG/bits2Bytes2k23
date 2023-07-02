@@ -7,12 +7,13 @@ import {
   faInstagram,
   faSnapchat,
 } from "@fortawesome/free-brands-svg-icons";
-import { FaSnapchatGhost } from "react-icons/fa";
+import { FaSnapchatGhost, FaPinterest } from "react-icons/fa";
 export const Card = (props) => {
   return (
     <div data-aos="fade-up" data-aos-duration="5000" className="flex">
       <div
-        className={`bg-[url("${props.pic}")] bg-no-repeat bg-cover bg-fixed bg-center flex flex-col justify-end bg-sky-950 rounded-xl h-96 w-64 mb-10 p-0 transition-all duration-500 hover:shadow-lg hover:shadow-blue-900 group`}
+        style={{backgroundImage: `url(${props.pic})`}}
+        className={` bg-no-repeat bg-cover bg-center flex flex-col justify-end bg-sky-950 rounded-xl h-96 w-64 mb-10 p-0 transition-all duration-500 hover:shadow-lg hover:shadow-blue-900 group`}
       >
         <div className="bg-black/30 overflow-hidden h-12 group-hover:h-48 group-hover:bg-black/80 transition-all duration-500 rounded-b-xl">
           <h3 className="m-2 text-neutral-200 text-lg font-semibold uppercase">
@@ -62,10 +63,18 @@ export const Card = (props) => {
               <FontAwesomeIcon icon={faInstagram} className=" text-3xl" />
             </a>
             <a
+              href={props.pin}
+              className={`${
+                props.pin ? "felx" : "hidden"
+              } ml-1 mr-1 h-10 w-10 p-0 pt-1 flex justify-center rounded-full text-2xl bg-white hover:transition-all hover:scale-110 hover:-translate-y-1 transition-all duration-500`}
+            >
+              <FaPinterest className="text-red-600 text-3xl" />
+            </a>
+            <a
               href={props.snap}
               className={`${
                 props.snap ? "felx" : "hidden"
-              } ml-1 mr-1 h-10 w-10 p-2 flex justify-center rounded-full text-2xl bg-yellow-400 hover:transition-all hover:scale-110 hover:-translate-y-1 transition-all duration-500`}
+              } ml-1 mr-1 h-10 w-10 p-2 flex justify-center rounded-full text-2xl bg-yellow-300 hover:transition-all hover:scale-110 hover:-translate-y-1 transition-all duration-500`}
             >
               <FaSnapchatGhost className=" -mr-3" />
               <FontAwesomeIcon

@@ -5,6 +5,7 @@ import "aos/dist/aos.css";
 import { Nav } from "./Nav";
 import { Present } from "./Homepage";
 import { About } from "./Homepage";
+import { Carousel } from "./Homepage/Carousel";
 import { Gallery } from "./Homepage/Gallery";
 import { Convenors } from "./Homepage/Convenors";
 import { Secretary } from "./Homepage/Secretary";
@@ -12,6 +13,7 @@ import { Contact } from "./Homepage/Contact";
 import { ViewGalleryImage } from "./Homepage/ViewGalleryImage";
 import { MainProfile } from "./Profile/MainProfile";
 import { Principal } from "./Principal";
+import { Crew } from "./Crew";
 
 function App() {
   const [childVisible, setChildVisible] = useState(false);
@@ -25,26 +27,27 @@ function App() {
 
   return (
     <div className="absolute top-0 left-0 w-full h-fit">
-      {/* <Nav /> */}
+      <Nav />
       {/* <Principal /> */}
-      <Crew />
+      {/* <Crew /> */}
       <Present duration={5 * 24 * 60 * 60 * 1000} />
       <About />
-      <Gallery
+      <Carousel />
+      {/* <Gallery
         setChildVisible={setChildVisible}
         setImg={setImg}
         setTag={setTag}
-      />
+      /> */}
       <Convenors />
       <Secretary />
       <Contact />
-      {childVisible && (
+      {/* {childVisible && (
         <ViewGalleryImage
           img={img}
           tag={tag}
           setChildVisible={setChildVisible}
         />
-      )}
+      )} */}
     </div>
   );
 }

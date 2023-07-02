@@ -25,6 +25,7 @@ export const Secretary = () => {
           designation={"Assistant Technical Sacretary"}
         />
         <Card
+          pic={"Profile/payel.jpg"}
           name={"Payel Halder"}
           designation={"Assistant Technical Sacretary"}
           link={"https://www.linkedin.com/in/payel-halder"}
