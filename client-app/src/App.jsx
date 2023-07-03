@@ -14,6 +14,10 @@ import { ViewGalleryImage } from "./Homepage/ViewGalleryImage";
 import { MainProfile } from "./Profile/MainProfile";
 import { Principal } from "./Principal";
 import { Crew } from "./Crew";
+import { Participant_Registration } from "./Register/Participants_Register";
+import { CoOrdinator_Registration } from "./Register/CoOrdinator_Register";
+
+
 
 function App() {
   const [childVisible, setChildVisible] = useState(false);
@@ -27,20 +31,20 @@ function App() {
 
   return (
     <div className="absolute top-0 left-0 w-full h-fit">
-      <Nav />
+      {/* <Nav /> */}
       {/* <Principal /> */}
-      <Crew />
+      {/* <Crew />
       <Present duration={5 * 24 * 60 * 60 * 1000} />
       <About />
-      <Carousel />
+      <Carousel /> */}
       {/* <Gallery
         setChildVisible={setChildVisible}
         setImg={setImg}
         setTag={setTag}
       /> */}
-      <Convenors />
+      {/* <Convenors />
       <Secretary />
-      <Contact />
+      <Contact /> */}
       {/* {childVisible && (
         <ViewGalleryImage
           img={img}
@@ -48,6 +52,10 @@ function App() {
           setChildVisible={setChildVisible}
         />
       )} */}
+
+      {/* <Participant_Registration/> */}
+
+      <CoOrdinator_Registration/>
     </div>
   );
 }
