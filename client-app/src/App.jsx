@@ -30,26 +30,26 @@ function App() {
   return (
     <div className="absolute top-0 left-0 w-full h-fit">
       <Nav />
-      {/* <Principal /> */}
-      {/* <Crew /> */}
-      {/* <Present duration={5 * 24 * 60 * 60 * 1000} /> */}
-      {/* <About /> */}
+      <Present duration={5 * 24 * 60 * 60 * 1000} />
+      <About />
+      <Principal />
+      <Crew />
       <Carousel />
-      {/* <Gallery
+      <Gallery
         setChildVisible={setChildVisible}
         setImg={setImg}
         setTag={setTag}
-      /> */}
-      {/* {childVisible && (
+      />
+      {childVisible && (
         <ViewGalleryImage
           img={img}
           tag={tag}
           setChildVisible={setChildVisible}
         />
-      )} */}
-      {/* <Convenors /> */}
-      {/* <Secretary /> */}
-      {/* <Contact /> */}
+      )}
+      <Convenors />
+      <Secretary />
+      <Contact />
       {/* <MainProfile profileType={"admin"} data={data} /> */}
     </div>
   );
