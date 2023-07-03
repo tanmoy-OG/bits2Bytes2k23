@@ -13,16 +13,15 @@ import { Contact } from "./Homepage/Contact";
 import ViewGalleryImage from "./Homepage/ViewGalleryImage";
 import { MainProfile } from "./Profile/MainProfile";
 import { Principal } from "./Principal";
-import AdminLogin from "./Register/AdminLogin";
-import ParticipantsForm from "./Register/ParticipantsForm";
 import { Crew } from "./Crew";
-import { Participant_Registration } from "./Register/Participants_Register";
-import { CoOrdinator_Registration } from "./Register/CoOrdinator_Register";
+import {  CoordinatorForm } from "./Register/CoordinatorForm";
 
 
 
 import "./App.css";
 import "aos/dist/aos.css";
+import { ParticipantsForm } from "./Register/ParticipantsForm";
+import { AdminForm } from "./Register/AdminForm";
 
 export default function App() {
   const [childVisible, setChildVisible] = useState(false);
@@ -92,9 +91,10 @@ export default function App() {
         />
       )} */}
 
-      {/* <Participant_Registration/> */}
 
-      <CoOrdinator_Registration/>
+      {/* <CoordinatorForm/> */}
+      {/* <ParticipantsForm/> */}
+      <AdminForm/>
     </div>
   );
-}
+  }
