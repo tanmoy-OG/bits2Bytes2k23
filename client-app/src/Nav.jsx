@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect } from "react";
 
 export const Nav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,18 +14,21 @@ export const Nav = () => {
       setIsScrolled(scrollTop > 0);
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
   return (
-    <nav className={`sticky top-0 w-full z-10 mb-10 bg-cust-color shadow-lg`}>
+    <nav className="sticky top-0 w-full z-50 mb-10 bg-cust-color shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <a href="/" className="text-violet-300 text-xl font-bold font-custom-sans">
+          <a
+            href="/"
+            className="text-violet-300 text-xl font-bold font-custom-sans"
+          >
             BITS2BYTES 2K23
           </a>
           <div className="-mr-2 flex 950px:hidden">
@@ -94,7 +97,7 @@ export const Nav = () => {
               CONTACT US
             </a>
             <a
-              href="./Login" 
+              href="./Login"
               className="text-violet-300 hover:translate-y-[-0.4em] px-3 py-2 font-medium transition-all duration-200 tracking-widest"
             >
               LOGIN/SIGNUP
@@ -135,7 +138,7 @@ export const Nav = () => {
               className="text-violet-300 hover:bg-violet-700/30 hover:shadow-sm block px-3 py-2 rounded-md text-base font-medium transition-all duration-200 tracking-widest"
             >
               LOGIN/SIGNUP
-              </a>
+            </a>
           </div>
         </div>
       )}

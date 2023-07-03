@@ -11,7 +11,7 @@ import { Convenors } from "./Homepage/Convenors";
 import { Secretary } from "./Homepage/Secretary";
 import { Contact } from "./Homepage/Contact";
 import ViewGalleryImage from "./Homepage/ViewGalleryImage";
-import { MainProfile } from "./Profile/MainProfile";
+import MainProfile from "./Profile/MainProfile";
 import { Principal } from "./Principal";
 import AdminLogin from "./Register/AdminLogin";
 import ParticipantsForm from "./Register/ParticipantsForm";
@@ -52,26 +52,27 @@ export default function App() {
       ></div>
       <Particle />
       <Nav />
-      <Present />
-      {/* <Principal />
-      <Crew />
-      <About />
-      <Carousel />
-      <Gallery
+      {/* <Present /> */}
+      {/* <Principal /> */}
+      {/* <Crew /> */}
+      {/* <About /> */}
+      {/* <Carousel /> */}
+      {/* <Gallery
         setChildVisible={setChildVisible}
         setImg={setImg}
         setTag={setTag}
-      />
-      <Convenors />
-      <Secretary />
-      <Contact />
-      {childVisible && (
+      /> */}
+      {/* <Convenors /> */}
+      {/* <Secretary /> */}
+      {/* <Contact /> */}
+      {/* {childVisible && (
         <ViewGalleryImage
           img={img}
           tag={tag}
           setChildVisible={setChildVisible}
         />
       )} */}
+      {/* <MainProfile type="admin" /> */}
     </div>
   );
 }

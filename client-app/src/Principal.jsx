@@ -2,7 +2,7 @@ import ReactPlayer from "react-player";
 export const Principal = () => {
   return (
     <div
-      className="mt-10 mb-10 ml-6 mr-6 p-10 pt-0 pb-12 bg-teal-500/10 backdrop-blur-lg rounded-2xl"
+      className="mt-10 mb-10 ml-6 mr-6 p-10 pt-0 pb-12 flex flex-col items-center bg-sky-500/10 backdrop-blur-sm rounded-2xl"
       data-aos="fade-up"
     >
       <h1
@@ -12,7 +12,7 @@ export const Principal = () => {
         PRINCIPAL'S MESSAGE
       </h1>
       <ReactPlayer
-        className="react-player fixed-bottom rounded-lg"
+        className="react-player fixed-bottom"
         url="Videos/PrincipalSpeech.mp4"
         width="100%"
         height="100%"
