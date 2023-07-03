@@ -1,10 +1,29 @@
-import {AdminProfile} from "./AdminProfile";
-import {UserProfile} from "./UserProfile";
+import Profile from "./ProfileStructure";
 
-export const MainProfile = (props) => {
+const MainProfile = (props) => {
+  if (props.type === "admin")
+    return (
+      <Profile
+        type={props.type}
+        fname="Samuel"
+        lname="jakson"
+        email="admindkufguidfgfgfdg@gmail.com"
+        phone="1234567890"
+      />
+    );
 
-    if(props.profileType === "admin") 
-        return (<AdminProfile name="Sam" email="abc@gmail.com" password="12345678" />);
+  return (
+    <Profile
+      type={props.type}
+      fname="Samuel"
+      lname="jakson"
+      roll="12100120001"
+      year="4th"
+      stream="ECE"
+      email="user@gmail.com"
+      phone="1234567890"
+    />
+  );
+};
 
-    return (<UserProfile />);
-}
+export default MainProfile;

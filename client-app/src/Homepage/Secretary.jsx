@@ -3,7 +3,7 @@ import { Card } from "../CardHome";
 export const Secretary = () => {
   return (
     <div
-      className="p-3 pt-0 pb-6 row h-fit bg-teal-500/10 backdrop-blur-lg ml-6 mr-6 mb-10 rounded-2xl"
+      className="p-3 pt-0 pb-6 row h-fit bg-sky-500/10 backdrop-blur-sm ml-6 mr-6 mb-10 rounded-2xl"
       data-aos="fade-up"
     >
       <h1
