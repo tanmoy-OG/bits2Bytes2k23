@@ -14,7 +14,7 @@ import ChooseForm from "./Pages/ChooseForm";
 import AdminSignup from "./Pages/AdminSignup";
 import ParticipantsSignup from "./Pages/ParticipantsSignup";
 // import CoordinatorForm from "./Register/CoordinatorForm";
-// import AdminLogin from "./Pages/AdminForm";
+import AdminLogin from "./Pages/AdminLogin.jsx";
 import ParticipantsLogin from "./Pages/ParticipantsLogin";
 import ErrorPage from "./Pages/ErrorPage";
 import "aos/dist/aos.css";
@@ -59,7 +59,7 @@ const App = () => {
       <Route path="/adminform" Component={AdminSignup} />
       <Route path="/participantform" Component={ParticipantsSignup} />
       <Route path="/participantlogin" Component={ParticipantsLogin} />
-      {/* <Route path="/adminlogin" Component={AdminLogin} /> */}
+      <Route path="/adminlogin" Component={AdminLogin} />
       {/* <Route path="/coordinatorform" Component={CoordinatorForm} /> */}
       <Route path="*" Component={ErrorPage} />
     </Routes>
