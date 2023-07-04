@@ -1,7 +1,6 @@
-import logo from '../../public/logo.png';
+import logo from '../assets/logo.png';
 import { useFormik } from 'formik';
-import { signupSchema } from './Registration';
-
+import formSchema from './FormSchema';
 
 const initialValues = {
   fname:"",
@@ -14,11 +13,11 @@ const initialValues = {
   
 
 }
-export const AdminForm = () => {
+const AdminForm = () => {
 
   const {values, errors,touched, handleBlur, handleChange, handleSubmit} = useFormik({
     initialValues:initialValues,
-    validationSchema: signupSchema,
+    validationSchema: formSchema,
     onSubmit:(values)=>{
       console.log(values);
     }
@@ -179,3 +178,5 @@ export const AdminForm = () => {
     </div>
   );
 };
+
+export default AdminForm;

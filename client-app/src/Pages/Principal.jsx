@@ -1,8 +1,8 @@
-import Nav from "../Nav";
-import Particle from "../Homepage/Particle";
-import { Contact } from "../Homepage/Contact";
 import ReactPlayer from "react-player";
-export const Principal = () => {
+import Nav from "../Components/Nav";
+import Contact from "../Components/Contact";
+import Particle from "../Components/Particle";
+const Principal = () => {
   return (
     <div className="absolute top-0 left-0 w-full h-fit">
       <Nav />
@@ -30,3 +30,5 @@ export const Principal = () => {
     </div>
   );
 };
+
+export default Principal;

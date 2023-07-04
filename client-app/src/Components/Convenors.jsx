@@ -1,9 +1,8 @@
-import React from 'react';
 import demo from '../assets/demo.jpg';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faTwitter, faLinkedinIn, faGithub, faInstagram } from "@fortawesome/free-brands-svg-icons";
 
-export const Convenors = () => {
+const Convenors = () => {
   const convenors = [
     {
       name: 'Tripti Majumdar',
@@ -91,3 +90,5 @@ export const Convenors = () => {
     </div>
   );
 };
+
+export default Convenors;

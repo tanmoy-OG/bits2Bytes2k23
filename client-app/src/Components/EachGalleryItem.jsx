@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-export const EachGalleryItem = ({ img , tag, setChildVisible, setImg, setTag}) => {
+const EachGalleryItem = ({ img , tag, setChildVisible, setImg, setTag}) => {
 
   const mydefault = "group overflow-hidden relative rounded rounded-md";
   const big = "big group overflow-hidden relative rounded rounded-md";
@@ -34,3 +34,4 @@ export const EachGalleryItem = ({ img , tag, setChildVisible, setImg, setTag}) =
   );
 };
 
+export default EachGalleryItem;

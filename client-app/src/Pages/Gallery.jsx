@@ -1,14 +1,13 @@
-import { useEffect, useState } from "react";
-import Nav from "../Nav";
-import Particle from "../Homepage/Particle";
-import { GalleryItems } from "../Homepage/GalleryItems";
-import ViewGalleryImage from "../Homepage/ViewGalleryImage";
+import { useState } from "react";
+import Nav from "../Components/Nav";
+import GalleryItems from "../Components/GalleryItems";
+import Particle from "../Components/Particle";
+import ViewGalleryImage from "../Components/ViewGalleryImage";
 
-export const Gallery = () => {
+const Gallery = () => {
   const [childVisible, setChildVisible] = useState(false);
   const [img, setImg] = useState();
   const [tag, setTag] = useState(null);
-  const data = "";
 
   return (
     <div className="absolute top-0 left-0 w-full h-fit">
@@ -29,3 +28,5 @@ export const Gallery = () => {
     </div>
   );
 };
+
+export default Gallery;

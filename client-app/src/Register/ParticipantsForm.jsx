@@ -1,6 +1,6 @@
-import logo from '../../public/logo.png';
 import { useFormik } from 'formik';
-import { signupSchema } from './Registration';
+import logo from '../assets/logo.png';
+import formSchema from './FormSchema';
 
 const initialValues = {
   fname:"",
@@ -16,11 +16,11 @@ const initialValues = {
 }
 
 
-export const ParticipantsForm = () => {
+const ParticipantsForm = () => {
 
   const {values, errors,touched, handleBlur, handleChange, handleSubmit} = useFormik({
     initialValues:initialValues,
-    validationSchema: signupSchema,
+    validationSchema: formSchema,
     onSubmit:(values)=>{
       console.log(values);
     }
@@ -216,3 +216,5 @@ export const ParticipantsForm = () => {
     </div>
   );
 };
+
+export default ParticipantsForm;

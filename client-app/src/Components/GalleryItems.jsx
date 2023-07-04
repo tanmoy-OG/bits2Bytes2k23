@@ -2,9 +2,9 @@ import pic1 from "../assets/5616.webp";
 import pic2 from "../assets/tree-736885_1280.jpg";
 import pic3 from "../assets/lomba.jpg";
 import pic4 from "../assets/Landscape-Color.jpg";
-import { EachGalleryItem } from "./EachGalleryItem";
+import EachGalleryItem from "./EachGalleryItem";
 
-export const GalleryItems = ({setChildVisible, setImg, setTag}) => {
+const GalleryItems = ({setChildVisible, setImg, setTag}) => {
   const tag = "IMAGE TAG";
 
   return (
@@ -32,4 +32,4 @@ export const GalleryItems = ({setChildVisible, setImg, setTag}) => {
   );
 };
 
-
+export default GalleryItems;

@@ -1,3 +1,4 @@
+import logo from "../assets/logo.png"; 
 const Present = () => {
   return (
     <div className="relative flex flex-col space-y-5 ml-6 mr-6 mb-10">
@@ -7,7 +8,7 @@ const Present = () => {
       <h1 className="text-4xl text-sky-500 font-custom-cursive">Presents</h1>
       <div className="flex justify-center">
         <img
-          src="logo.png"
+          src={logo}
           alt="bits2Bytes2k23 Logo"
           className=" w-96 logo-img -ml-28 -mr-4 z-10"
         />

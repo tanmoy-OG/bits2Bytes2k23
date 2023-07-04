@@ -1,6 +1,4 @@
-import React from 'react'
-
-function ErrorPage() {
+const ErrorPage = () => {
   return (
     <div className='bg-white'>
     <h1>Oops</h1>
@@ -8,4 +6,4 @@ function ErrorPage() {
   )
 }
 
-export default ErrorPage
+export default ErrorPage;

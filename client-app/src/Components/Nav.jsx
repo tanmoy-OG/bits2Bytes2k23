@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-export const Nav = () => {
+const Nav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -75,33 +75,39 @@ export const Nav = () => {
           <div className="hidden 950px:flex items-center">
             <Link
               to="/principal"
-              className="text-violet-300 hover:translate-y-[-0.4em] px-3 py-2 font-medium transition-all duration-200 tracking-widest"
+              className="text-violet-300 hover:translate-y-[-0.4em] px-3 py-2 font-medium transition-all duration-200 tracking-widest uppercase"
             >
               PRINCIPAL'S MESSAGE
             </Link>
             <Link
               to="/gallery"
-              className="text-violet-300 hover:translate-y-[-0.4em] px-3 py-2 font-medium transition-all duration-200 tracking-widest"
+              className="text-violet-300 hover:translate-y-[-0.4em] px-3 py-2 font-medium transition-all duration-200 tracking-widest uppercase"
             >
               GALLERY
             </Link>
             <Link
               to="/events"
-              className="text-violet-300 hover:translate-y-[-0.4em] px-3 py-2 font-medium transition-all duration-200 tracking-widest"
+              className="text-violet-300 hover:translate-y-[-0.4em] px-3 py-2 font-medium transition-all duration-200 tracking-widest uppercase"
             >
               EVENTS
             </Link>
             <Link
               to="/crew"
-              className="text-violet-300 hover:translate-y-[-0.4em] px-3 py-2 font-medium transition-all duration-200 tracking-widest"
+              className="text-violet-300 hover:translate-y-[-0.4em] px-3 py-2 font-medium transition-all duration-200 tracking-widest uppercase"
             >
               CREW
             </Link>
             <Link
               to="/form"
-              className="text-violet-300 hover:translate-y-[-0.4em] px-3 py-2 font-medium transition-all duration-200 tracking-widest"
+              className="text-violet-300 hover:translate-y-[-0.4em] px-3 py-2 font-medium transition-all duration-200 tracking-widest uppercase"
             >
               LOGIN/SIGNUP
+            </Link>
+            <Link
+              to="/adminprofile/details"
+              className="text-violet-300 hover:translate-y-[-0.4em] px-3 py-2 font-medium transition-all duration-200 tracking-widest uppercase"
+            >
+              PROFILE
             </Link>
           </div>
         </div>
@@ -112,34 +118,40 @@ export const Nav = () => {
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <Link
               to="/principal"
-              className="text-violet-300 hover:bg-violet-700/30 hover:shadow-sm block px-3 py-2 rounded-md text-base font-medium transition-all duration-200 tracking-widest"
+              className="text-violet-300 hover:bg-violet-700/30 hover:shadow-sm block px-3 py-2 rounded-md text-base font-medium transition-all duration-200 tracking-widest uppercase"
             >
               PRINCIPAL'S MESSAGE
             </Link>
             <Link
               to="/gallery"
-              className="text-violet-300 hover:translate-y-[-0.4em] px-3 py-2 font-medium transition-all duration-200 tracking-widest"
+              className="text-violet-300 hover:bg-violet-700/30 hover:shadow-sm block px-3 py-2 rounded-md text-base font-medium transition-all duration-200 tracking-widest uppercase"
             >
               GALLERY
             </Link>
-            <a
+            <Link
               to="/events"
-              className="text-violet-300 hover:bg-violet-700/30 hover:shadow-sm block px-3 py-2 rounded-md text-base font-medium transition-all duration-200 tracking-widest"
+              className="text-violet-300 hover:bg-violet-700/30 hover:shadow-sm block px-3 py-2 rounded-md text-base font-medium transition-all duration-200 tracking-widest uppercase"
             >
               EVENTS
-            </a>
-            <a
+            </Link>
+            <Link
               to="/crew"
-              className="text-violet-300 hover:bg-violet-700/30 hover:shadow-sm block px-3 py-2 rounded-md text-base font-medium transition-all duration-200 tracking-widest"
+              className="text-violet-300 hover:bg-violet-700/30 hover:shadow-sm block px-3 py-2 rounded-md text-base font-medium transition-all duration-200 tracking-widest uppercase"
             >
               CREW
-            </a>
-            <a
+            </Link>
+            <Link
               to="/form"
-              className="text-violet-300 hover:bg-violet-700/30 hover:shadow-sm block px-3 py-2 rounded-md text-base font-medium transition-all duration-200 tracking-widest"
+              className="text-violet-300 hover:bg-violet-700/30 hover:shadow-sm block px-3 py-2 rounded-md text-base font-medium transition-all duration-200 tracking-widest uppercase"
             >
               LOGIN/SIGNUP
-            </a>
+            </Link>
+            <Link
+              to="/adminprofile/details"
+              className="text-violet-300 hover:translate-y-[-0.4em] px-3 py-2 font-medium transition-all duration-200 tracking-widest uppercase"
+            >
+              PROFILE
+            </Link>
           </div>
         </div>
       )}

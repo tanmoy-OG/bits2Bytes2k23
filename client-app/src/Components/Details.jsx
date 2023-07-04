@@ -2,7 +2,7 @@ import { InputTag } from "./InputTag";
 import Button from "./Button";
 import { useState, useEffect } from "react";
 
-const ProfileDetails = (props) => {
+const Details = (props) => {
   const default_input_class =
     "bg-black/0 focus:outline-none text-white/70 tracking-widest pointer-events-none w-full pb-1 text-left sm:text-right";
   const final_input_class =
@@ -250,4 +250,4 @@ const ProfileDetails = (props) => {
   );
 };
 
-export default ProfileDetails;
+export default Details;

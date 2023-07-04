@@ -8,17 +8,16 @@ import {
   faSnapchat,
 } from "@fortawesome/free-brands-svg-icons";
 import { FaSnapchatGhost } from "react-icons/fa";
-export const Card = (props) => {
+const Card = (props) => {
   return (
     <div data-aos="fade-up" data-aos-duration="5000" className="flex">
       <div className="bg-teal-950 rounded-xl w-72 m-8 mb-10 p-0 pb-4 transition-all duration-500 hover:transition-all hover:duration-500 hover:bg-orange-800 shadow-lg shadow-black hover:p-4 hover:pb-8 group">
         <div className="flex pb-6 justify-center">
           <img
             src={`${props.pic}`}
-            className="w-full rounded-t-xl transition-all duration-500 ease-in-out group-hover:p-2 group-hover:rounded-full group-hover:border-neutral-400 group-hover:border-4"
+            className="w-full rounded-t-xl group-hover:p-2 group-hover:rounded-full group-hover:border-neutral-400 group-hover:border-4 transition-all duration-500"
             alt="pic"
           />
-          {/* p-1 rounded-full border-neutral-400 border-8 */}
         </div>
         <h3 className="m-2 text-neutral-200 text-lg font-semibold uppercase">
           {props.name}
@@ -83,3 +82,5 @@ export const Card = (props) => {
     </div>
   );
 };
+
+export default Card;

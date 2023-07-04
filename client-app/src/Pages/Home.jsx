@@ -1,28 +1,27 @@
-import React from "react";
-import Nav from "../Nav";
-import Present from "../Homepage/Present";
-import Particle from "../Homepage/Particle";
-import About from "../Homepage/About";
-import { Convenors } from "../Homepage/Convenors";
-import { Carousel } from "../Homepage/Carousel";
-import { Contact } from "../Homepage/Contact";
+import Nav from "../Components/Nav";
+import About from "../Components/About";
+import Carousel from "../Components/Carousel";
+import Contact from "../Components/Contact";
+import Convenors from "../Components/Convenors";
+import Secretary from "../Components/Secretary";
+import Present from "../Components/Present";
+import Particle from "../Components/Particle";
+import Vanta from "../Components/Vanta";
 
-function Home() {
+const Home = () => {
   return (
     <div className="absolute top-0 left-0 w-full h-fit">
-      <div
-        className=" absolute top-0 left-0 h-screen w-full -z-20"
-        id="vanta"
-      ></div>
+      <Vanta />
       <Nav />
-      <Present/>
+      <Present />
       <About />
       <Carousel />
       <Convenors />
+      <Secretary />
       <Contact />
       <Particle />
     </div>
   );
-}
+};
 
 export default Home;
