@@ -21,7 +21,7 @@ import { Route, Routes } from "react-router-dom";
 import Home from "./Pages/Home.jsx";
 import ChooseForm from "./Pages/ChooseForm";
 import ErrorPage from "./Pages/ErrorPage";
-import { LoginForm } from "./LoginParticipants";
+import { LoginForm } from "./Login/LoginParticipants";
 
 export default function App() {
   const [childVisible, setChildVisible] = useState(false);

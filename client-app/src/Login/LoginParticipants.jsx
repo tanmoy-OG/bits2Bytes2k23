@@ -1,9 +1,26 @@
 import logo from '../public/logo.png';
-
+import { useFormik } from 'formik';
+import { LoginSchema } from './Login';
 
 export const LoginForm = () => {
 
+
+  const initialValues = {
+   
+    roll:"",
+    password:"",
+   
+  }
+  
+    const {values, errors,touched, handleBlur, handleChange, handleSubmit} = useFormik({
+      initialValues:initialValues,
+      validationSchema: LoginSchema,
+      onSubmit:(values)=>{
+        console.log(values);
+      }
+    })
     return(
+
 
     <div className="bg-black backdrop-blur-lg rounded-lg m-10 flex flex-col md:flex-row">
       <div className="md:w-1/2 flex-1">
@@ -14,12 +31,17 @@ export const LoginForm = () => {
 
           <div className="m-2 w-16 h-1 inline-block bg-gradient-to-r from-orange-600 to-orange-300"></div>
 
-            <form>
+            <form onSubmit={handleSubmit}>
             <div className="input-block text-left p-5 font-semibold font-custom-san">
             <input type="number"
                 name="roll"
                 placeholder="Roll Number "
-                className="p-2 rounded-xl border w-full" />
+                className="p-2 rounded-xl border w-full" 
+                values={values.roll}
+                onChange={handleChange}
+                onBlur={handleBlur}/>
+            
+            {errors.roll && touched.roll ? <p className='form-error '>{errors.roll}</p> : null}
 
             </div>
             <div className="input-block text-left p-5 font-semibold font-custom-san">
@@ -27,7 +49,12 @@ export const LoginForm = () => {
             <input type="password"
                 name="password"
                 placeholder="Password"
-                className="p-2 rounded-xl border w-full" />
+                className="p-2 rounded-xl border w-full"
+                values={values.password}
+                onChange={handleChange}
+                onBlur={handleBlur} />
+            {errors.password && touched.password ? <p className='form-error '>{errors.password}</p> : null}
+
             </div>
             </form>
         <div className=" justify-between items-center mt-3">
