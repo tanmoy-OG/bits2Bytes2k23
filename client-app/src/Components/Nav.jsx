@@ -148,7 +148,7 @@ const Nav = () => {
             </Link>
             <Link
               to="/adminprofile/details"
-              className="text-violet-300 hover:translate-y-[-0.4em] px-3 py-2 font-medium transition-all duration-200 tracking-widest uppercase"
+              className="text-violet-300 hover:bg-violet-700/30 hover:shadow-sm block px-3 py-2 rounded-md text-base font-medium transition-all duration-200 tracking-widest uppercase"
             >
               PROFILE
             </Link>

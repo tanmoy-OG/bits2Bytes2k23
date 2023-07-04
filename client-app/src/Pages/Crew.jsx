@@ -1,6 +1,7 @@
 import { Card } from "../Components/Card";
 import Nav from "../Components/Nav";
 import Particle from "../Components/Particle";
+import Footer from "../Components/Footer";
 const Crew = () => {
   return (
     <div className="absolute top-0 left-0 w-full h-fit">
@@ -113,6 +114,7 @@ const Crew = () => {
           <Card name={"Akash"} designation={"Assisant Designer"} />
         </div>
       </div>
+      <Footer />
       <Particle />
     </div>
   );

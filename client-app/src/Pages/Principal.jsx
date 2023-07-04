@@ -1,6 +1,6 @@
 import ReactPlayer from "react-player";
 import Nav from "../Components/Nav";
-import Contact from "../Components/Contact";
+import Footer from "../Components/Footer";
 import Particle from "../Components/Particle";
 const Principal = () => {
   return (
@@ -25,7 +25,7 @@ const Principal = () => {
           data-aos="fade-up"
         />
       </div>
-      <Contact />
+      <Footer />
       <Particle />
     </div>
   );
