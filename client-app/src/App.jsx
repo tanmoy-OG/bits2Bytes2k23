@@ -19,8 +19,9 @@ import { Route, Routes } from "react-router-dom";
 
 //routing
 import Home from "./Pages/Home.jsx";
-import ChooseForm from "./Register/ChooseForm";
+import ChooseForm from "./Pages/ChooseForm";
 import ErrorPage from "./Pages/ErrorPage";
+import { LoginForm } from "./LoginParticipants";
 
 export default function App() {
   const [childVisible, setChildVisible] = useState(false);
@@ -69,6 +70,8 @@ export default function App() {
         <Route Component={ErrorPage} />
       </Routes>
       {/* <MainProfile type="admin" /> */}
+
+      {/* <LoginForm/> */}
     </div>
   );
 }
