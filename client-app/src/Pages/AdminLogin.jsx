@@ -3,6 +3,7 @@ import { useFormik } from "formik";
 import LoginSchema from "./LoginSchema";
 import Nav from "../Components/Nav";
 import Particle from "../Components/Particle";
+import { Link } from "react-router-dom";
 
 const AdminLogin = () => {
   const initialValues = {
@@ -67,7 +68,25 @@ const AdminLogin = () => {
             <div className=" justify-between items-center mt-3">
               <button className="py-2 px-5 border border-blue-500 rounded-xl hover:bg-blue-950 hover:text-white">
                 Login
+
               </button>
+              <div className="m-3 grid grid-cols-3 items-center text-blue-950">
+              <hr className="border-blue-950" />
+              <p className="text-center">OR</p>
+              <hr className="border-blue-950" />
+            </div>
+
+            <div className="flex justify-between items-center mt-3">
+              <p className="mt-3 text-xs flex justify-between items-center">
+                If not Registered..
+              </p>
+              <Link
+                to="/signup/admin"
+                className="py-2 px-5 border border-blue-500 rounded-xl hover:bg-blue-950 hover:text-white"
+              >
+                <button>Registration</button>
+              </Link>
+            </div>
             </div>
           </div>
         </div>
