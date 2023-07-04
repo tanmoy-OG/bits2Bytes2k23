@@ -45,17 +45,16 @@ export default function App() {
   }, []);
 
   return (
-    <div className="absolute top-0 left-0 w-full h-fit">
+    <div className="absolute bg-transparent top-0 left-0 w-full h-fit">
       <div
-        className=" absolute top-0 left-0 h-screen w-auto -z-20"
+        className="absolute top-0 left-0 h-screen w-full -z-20"
         id="vanta"
       ></div>
-      <Particle />
       <Nav />
       {/* <Present /> */}
+      {/* <About /> */}
       {/* <Principal /> */}
       {/* <Crew /> */}
-      {/* <About /> */}
       {/* <Carousel /> */}
       {/* <Gallery
         setChildVisible={setChildVisible}
@@ -73,6 +72,7 @@ export default function App() {
         />
       )} */}
       {/* <MainProfile type="admin" /> */}
+      <Particle />
     </div>
   );
 }
