@@ -84,7 +84,7 @@ const ParticipantsLogin = () => {
                 to="/signup/participant"
                 className="py-2 px-5 border border-blue-500 rounded-xl hover:bg-blue-950 hover:text-white"
               >
-                <button>Registration</button>
+                <button>Sign Up</button>
               </Link>
             </div>
           </div>
