@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export const Nav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -26,7 +26,10 @@ export const Nav = () => {
     <nav className="sticky top-0 w-full z-50 mb-10 bg-cust-color shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <Link href="/" className="text-violet-300 text-xl font-bold font-custom-sans">
+          <Link
+            to="/"
+            className="text-violet-300 text-xl font-bold font-custom-sans"
+          >
             BITS2BYTES 2K23
           </Link>
           <div className="-mr-2 flex 950px:hidden">
@@ -77,25 +80,25 @@ export const Nav = () => {
               PRINCIPAL'S MESSAGE
             </Link>
             <Link
-              href="/events"
+              to="/gallery"
+              className="text-violet-300 hover:translate-y-[-0.4em] px-3 py-2 font-medium transition-all duration-200 tracking-widest"
+            >
+              GALLERY
+            </Link>
+            <Link
+              to="/events"
               className="text-violet-300 hover:translate-y-[-0.4em] px-3 py-2 font-medium transition-all duration-200 tracking-widest"
             >
               EVENTS
             </Link>
             <Link
-              href="/crew"
+              to="/crew"
               className="text-violet-300 hover:translate-y-[-0.4em] px-3 py-2 font-medium transition-all duration-200 tracking-widest"
             >
               CREW
             </Link>
             <Link
-              href="/contact"
-              className="text-violet-300 hover:translate-y-[-0.4em] px-3 py-2 font-medium transition-all duration-200 tracking-widest"
-            >
-              CONTACT US
-            </Link>
-            <Link
-              href="/form" 
+              to="/form"
               className="text-violet-300 hover:translate-y-[-0.4em] px-3 py-2 font-medium transition-all duration-200 tracking-widest"
             >
               LOGIN/SIGNUP
@@ -113,26 +116,26 @@ export const Nav = () => {
             >
               PRINCIPAL'S MESSAGE
             </Link>
+            <Link
+              to="/gallery"
+              className="text-violet-300 hover:translate-y-[-0.4em] px-3 py-2 font-medium transition-all duration-200 tracking-widest"
+            >
+              GALLERY
+            </Link>
             <a
-              href="/events"
+              to="/events"
               className="text-violet-300 hover:bg-violet-700/30 hover:shadow-sm block px-3 py-2 rounded-md text-base font-medium transition-all duration-200 tracking-widest"
             >
               EVENTS
             </a>
             <a
-              href="/crew"
+              to="/crew"
               className="text-violet-300 hover:bg-violet-700/30 hover:shadow-sm block px-3 py-2 rounded-md text-base font-medium transition-all duration-200 tracking-widest"
             >
               CREW
             </a>
             <a
-              href="/you"
-              className="text-violet-300 hover:bg-violet-700/30 hover:shadow-sm block px-3 py-2 rounded-md text-base font-medium transition-all duration-200 tracking-widest"
-            >
-              CONTACT US
-            </a>
-            <a
-              href="/form"
+              to="/form"
               className="text-violet-300 hover:bg-violet-700/30 hover:shadow-sm block px-3 py-2 rounded-md text-base font-medium transition-all duration-200 tracking-widest"
             >
               LOGIN/SIGNUP

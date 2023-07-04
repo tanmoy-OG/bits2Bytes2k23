@@ -4,7 +4,7 @@ import pic3 from "../assets/lomba.jpg";
 import pic4 from "../assets/Landscape-Color.jpg";
 import { EachGalleryItem } from "./EachGalleryItem";
 
-export const Gallery = ({setChildVisible, setImg, setTag}) => {
+export const GalleryItems = ({setChildVisible, setImg, setTag}) => {
   const tag = "IMAGE TAG";
 
   return (

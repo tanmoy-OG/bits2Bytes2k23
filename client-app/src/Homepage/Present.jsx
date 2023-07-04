@@ -1,6 +1,6 @@
 const Present = () => {
   return (
-    <div className="relative flex flex-col space-y-5 ml-6 mr-6 mb-4">
+    <div className="relative flex flex-col space-y-5 ml-6 mr-6 mb-10">
       <h1 className="text-5xl font-semibold tracking-wide text-orange-400">
         BENGAL INSTITUTE OF TECHNOLOGY
       </h1>
