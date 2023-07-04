@@ -11,7 +11,7 @@ import { Convenors } from "./Homepage/Convenors";
 import { Secretary } from "./Homepage/Secretary";
 import { Contact } from "./Homepage/Contact";
 import ViewGalleryImage from "./Homepage/ViewGalleryImage";
-import { MainProfile } from "./Profile/MainProfile";
+import MainProfile from "./Profile/MainProfile";
 import { Principal } from "./Pages/Principal";
 import { Crew } from "./Crew";
 import {  CoordinatorForm } from "./Register/CoordinatorForm";
@@ -96,38 +96,31 @@ export default function App() {
       <Contact /> */}
       {/* {childVisible && (
       <div
-        className=" absolute top-0 left-0 h-screen w-full -z-20"
+        className=" absolute top-0 left-0 h-screen w-auto -z-20"
         id="vanta"
       ></div>
       <Particle />
       <Nav />
-      <Present />
-      {/* <Principal />
-      <Crew />
-      <About />
-      <Carousel />
-      <Gallery
+      {/* <Present /> */}
+      {/* <Principal /> */}
+      {/* <Crew /> */}
+      {/* <About /> */}
+      {/* <Carousel /> */}
+      {/* <Gallery
         setChildVisible={setChildVisible}
         setImg={setImg}
         setTag={setTag}
-      />
-      <Convenors />
-      <Secretary />
-      <Contact />
-      {childVisible && (
+      /> */}
+      {/* <Convenors /> */}
+      {/* <Secretary /> */}
+      {/* <Contact /> */}
+      {/* {childVisible && (
         <ViewGalleryImage
           img={img}
           tag={tag}
           setChildVisible={setChildVisible}
         />
       )} */}
-
-
-      {/* <CoordinatorForm/> */}
-      {/* <ParticipantsForm/> */}
-      {/* <AdminForm/> */}
-
-      {/* <Homepage/> */}
     </div>
   );
   }

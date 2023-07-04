@@ -132,7 +132,7 @@
   z-index: -2;
 }
 .button:after {
-  background-color: #301e3cce;
+  background-color: #301e3c;
 }
 .button-red:after {
   background-color: rgba(255, 0, 0, 0.592);

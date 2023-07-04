@@ -15,7 +15,7 @@ export const Card = (props) => {
         <div className="flex pb-6 justify-center">
           <img
             src={`${props.pic}`}
-            className=" w-full rounded-t-xl group-hover:p-2 group-hover:rounded-full group-hover:border-neutral-400 group-hover:border-4 transition-all"
+            className="w-full rounded-t-xl transition-all duration-500 ease-in-out group-hover:p-2 group-hover:rounded-full group-hover:border-neutral-400 group-hover:border-4"
             alt="pic"
           />
           {/* p-1 rounded-full border-neutral-400 border-8 */}

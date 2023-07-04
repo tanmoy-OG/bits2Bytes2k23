@@ -2,7 +2,7 @@ import { Card } from "./Card";
 export const Crew = () => {
   return (
     <>
-      <div className="p-3 pt-0 pb-6 row h-fit bg-sky-500/10 backdrop-blur-lg ml-6 mr-6 mb-10 rounded-2xl">
+      <div className="p-3 pt-0 pb-6 row h-fit bg-sky-500/10 backdrop-blur-sm ml-6 mr-6 mb-10 rounded-2xl">
         <h1
           className="p-4 md:p-10 pb-5 text-4xl md:text-5xl font-bold tracking-wider text-neutral-200 font-custom-sans"
           data-aos="fade-up"
@@ -42,7 +42,7 @@ export const Crew = () => {
           <Card name={"Rishav Ghosh"} designation={"Back End Dev"} />
         </div>
       </div>
-      <div className="p-4 pt-0 row h-fit bg-sky-500/10 backdrop-blur-lg ml-6 mr-6 mb-10 rounded-2xl">
+      <div className="p-4 pt-0 row h-fit bg-sky-500/10 backdrop-blur-sm ml-6 mr-6 mb-10 rounded-2xl">
         <h1
           className="p-4 md:p-10 pb-5 text-4xl md:text-5xl font-bold tracking-wider text-neutral-200 font-custom-sans"
           data-aos="fade-up"
@@ -96,7 +96,7 @@ export const Crew = () => {
           />
         </div>
       </div>
-      <div className="p-4 pt-0 row h-fit bg-sky-500/10 backdrop-blur-lg ml-6 mr-6 mb-10 rounded-2xl">
+      <div className="p-4 pt-0 row h-fit bg-sky-500/10 backdrop-blur-sm ml-6 mr-6 mb-10 rounded-2xl">
         <h1
           className="p-4 md:p-10 pb-5 text-4xl md:text-5xl font-bold tracking-wider text-neutral-200 font-custom-sans"
           data-aos="fade-up"
