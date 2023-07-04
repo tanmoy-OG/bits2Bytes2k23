@@ -1,4 +1,4 @@
-import logo from '../public/logo.png';
+import logo from '../assets/logo.png';
 import { useFormik } from 'formik';
 import LoginSchema from './LoginSchema';
 
