@@ -1,23 +1,23 @@
-import logo from '../../public/logo.png';
 import { useFormik } from 'formik';
-import { signupSchema } from './Registration';
-
+import logo from '../assets/logo.png';
+import formSchema from './FormSchema';
 
 const initialValues = {
   fname:"",
   lname:"",
   email:"",
   mobile:"",
+  secret_key:"",
   password:"",
   confirm_password:"",
   
 
 }
-export const CoordinatorForm = () => {
+const AdminSignup = () => {
 
   const {values, errors,touched, handleBlur, handleChange, handleSubmit} = useFormik({
     initialValues:initialValues,
-    validationSchema: signupSchema,
+    validationSchema: formSchema,
     onSubmit:(values)=>{
       console.log(values);
     }
@@ -97,6 +97,20 @@ export const CoordinatorForm = () => {
               />
               {errors.mobile && touched.mobile ? <p className='form-error '>{errors.mobile}</p> : null}
 
+            </div><div className="input-block text-left p-3 font-semibold font-custom-sans">
+              <input
+                type="tel"
+                autoComplete="off"
+                name="secret_key"
+                id="secret_key"
+                placeholder="Secret Key"
+                className="p-2 rounded-xl border"
+                values={values.mobile}
+                onChange={handleChange}
+                onBlur={handleBlur}
+              />
+              {errors.secret_key && touched.secret_key ? <p className='form-error '>{errors.secret_key}</p> : null}
+
             </div>
   
   
@@ -164,3 +178,5 @@ export const CoordinatorForm = () => {
     </div>
   );
 };
+
+export default AdminSignup;

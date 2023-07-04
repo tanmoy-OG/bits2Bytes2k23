@@ -3,7 +3,7 @@ import "swiper/css";
 import "swiper/css/effect-creative";
 import { Autoplay, EffectCreative } from "swiper";
 
-export const Carousel = () => {
+const Carousel = () => {
   return (
     <Swiper
       spaceBetween={1}
@@ -42,3 +42,5 @@ export const Carousel = () => {
     </Swiper>
   );
 };
+
+export default Carousel;

@@ -1,41 +1,42 @@
-import logo from '../../public/logo.png';
-import { useFormik } from 'formik';
-import { signupSchema } from './Registration';
+import { useFormik } from "formik";
+import logo from "../assets/logo.png";
+import formSchema from "./FormSchema";
 
 const initialValues = {
-  fname:"",
-  lname:"",
-  email:"",
-  mobile:"",
-  roll:"",
-  password:"",
-  confirm_password:"",
-  year:"",
-  stream:"",
+  fname: "",
+  lname: "",
+  email: "",
+  mobile: "",
+  roll: "",
+  password: "",
+  confirm_password: "",
+  year: "",
+  stream: "",
+};
 
-}
-
-
-export const ParticipantsForm = () => {
-
-  const {values, errors,touched, handleBlur, handleChange, handleSubmit} = useFormik({
-    initialValues:initialValues,
-    validationSchema: signupSchema,
-    onSubmit:(values)=>{
-      console.log(values);
-    }
-  })
+const ParticipantsSignup = () => {
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
+    useFormik({
+      initialValues: initialValues,
+      validationSchema: formSchema,
+      onSubmit: (values) => {
+        console.log(values);
+      },
+    });
 
   return (
     <div className="bg-black backdrop-blur-lg rounded-lg m-10 flex flex-col md:flex-row">
       <div className="md:w-1/2 flex-1">
         <div className="bg-gradient-to-t from-blue-300 to-blue-950 shadow-lg p-7">
-          <h1 className="text-4xl md:text-5xl font-bold tracking-wider text-neutral-200 font-custom-sans" data-aos="fade-up">
+          <h1
+            className="text-4xl md:text-5xl font-bold tracking-wider text-neutral-200 font-custom-sans"
+            data-aos="fade-up"
+          >
             Registration
           </h1>
-  
+
           <div className="m-2 w-16 h-1 inline-block bg-gradient-to-r from-orange-600 to-orange-300"></div>
-  
+
           <form onSubmit={handleSubmit}>
             <div className="flex">
               <div className="input-block text-left p-3 font-semibold font-custom-sans">
@@ -50,10 +51,11 @@ export const ParticipantsForm = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
-              {errors.fname && touched.fname ? <p className='form-error '>{errors.fname}</p> : null}
-
+                {errors.fname && touched.fname ? (
+                  <p className="form-error ">{errors.fname}</p>
+                ) : null}
               </div>
-  
+
               <div className="input-block text-left p-3 font-semibold font-custom-sans">
                 <input
                   type="text"
@@ -70,7 +72,7 @@ export const ParticipantsForm = () => {
 
               </div>
             </div>
-  
+
             <div className="input-block text-left p-3 font-semibold font-custom-sans">
               <input
                 type="email"
@@ -86,7 +88,7 @@ export const ParticipantsForm = () => {
               {errors.email && touched.email ? <p className='form-error '>{errors.email}</p> : null}
 
             </div>
-  
+
             <div className="input-block text-left p-3 font-semibold font-custom-sans">
               <input
                 type="tel"
@@ -102,7 +104,7 @@ export const ParticipantsForm = () => {
               {errors.mobile && touched.mobile ? <p className='form-error '>{errors.mobile}</p> : null}
 
             </div>
-  
+
             <div className="input-block text-left p-3 font-semibold font-custom-sans">
               <input
                 type="text"
@@ -118,7 +120,7 @@ export const ParticipantsForm = () => {
               {errors.roll && touched.roll ? <p className='form-error '>{errors.roll}</p> : null}
 
             </div>
-  
+
             <div className="flex">
               <div className="input-block text-left p-3 font-semibold font-custom-sans">
                 <input
@@ -135,7 +137,7 @@ export const ParticipantsForm = () => {
               {errors.password && touched.password ? <p className='form-error '>{errors.password}</p> : null}
 
               </div>
-  
+
               <div className="input-block text-left p-3 font-semibold font-custom-sans">
                 <input
                   type="password"
@@ -152,7 +154,7 @@ export const ParticipantsForm = () => {
 
               </div>
             </div>
-  
+
             <div className="flex">
               <div className="input-block text-left p-3 font-semibold font-custom-sans">
                 <input
@@ -169,7 +171,7 @@ export const ParticipantsForm = () => {
               {errors.year && touched.year ? <p className='form-error '>{errors.year}</p> : null}
 
               </div>
-  
+
               <div className="input-block text-left p-3 font-semibold font-custom-sans">
                 <input
                   type="text"
@@ -186,7 +188,7 @@ export const ParticipantsForm = () => {
 
               </div>
             </div>
-  
+
             <button
               type="submit"
               className="bg-orange-700 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded mt-4"
@@ -194,25 +196,33 @@ export const ParticipantsForm = () => {
               Register
             </button>
           </form>
-  
+
           <div className="m-3 grid grid-cols-3 items-center text-blue-950">
             <hr className="border-blue-950" />
             <p className="text-center">OR</p>
             <hr className="border-blue-950" />
           </div>
-  
+
           <div className="flex justify-between items-center mt-3">
-            <p className="mt-3 text-xs flex justify-between items-center">If already Registered..</p>
+            <p className="mt-3 text-xs flex justify-between items-center">
+              If already Registered..
+            </p>
             <button className="py-2 px-5 border border-blue-500 rounded-xl hover:bg-blue-950 hover:text-white">
               Login
             </button>
           </div>
         </div>
       </div>
-  
+
       <div className="md:block hidden w-1/2">
-        <img src={logo} alt="Registration Image" className="rounded-2xl h-full" />
+        <img
+          src={logo}
+          alt="Registration Image"
+          className="rounded-2xl h-full"
+        />
       </div>
     </div>
   );
 };
+
+export default ParticipantsSignup;

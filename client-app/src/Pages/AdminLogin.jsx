@@ -1,13 +1,12 @@
 import logo from '../public/logo.png';
 import { useFormik } from 'formik';
-import { LoginSchema } from './Login';
+import LoginSchema from './LoginSchema';
 
-export const LoginForm = () => {
-
+const AdminLogin = () => {
 
   const initialValues = {
    
-    roll:"",
+    email:"",
     password:"",
    
   }
@@ -33,15 +32,15 @@ export const LoginForm = () => {
 
             <form onSubmit={handleSubmit}>
             <div className="input-block text-left p-5 font-semibold font-custom-san">
-            <input type="number"
-                name="roll"
-                placeholder="Roll Number "
+            <input type="email"
+                name="email"
+                placeholder="Email"
                 className="p-2 rounded-xl border w-full" 
-                values={values.roll}
+                values={values.email}
                 onChange={handleChange}
                 onBlur={handleBlur}/>
             
-            {errors.roll && touched.roll ? <p className='form-error '>{errors.roll}</p> : null}
+            {errors.email && touched.email ? <p className='form-error '>{errors.email}</p> : null}
 
             </div>
             <div className="input-block text-left p-5 font-semibold font-custom-san">
@@ -72,3 +71,5 @@ export const LoginForm = () => {
         </div>
     )
 }
+
+export default AdminLogin;

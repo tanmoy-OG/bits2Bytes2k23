@@ -1,33 +1,29 @@
+import Aos from "aos";
 import { useEffect, useState } from "react";
 import NET from "vanta/src/vanta.net";
-import Aos from "aos";
-// import { About } from "./Homepage";
-import { Gallery } from "./Pages/Gallery";
-import { Events } from "./Pages/Events"
-import MainProfile from "./Profile/MainProfile";
-import { Principal } from "./Pages/Principal";
-import { Crew } from "./Crew";
-import { CoordinatorForm } from "./Register/CoordinatorForm";
-
-import "./App.css";
+import Home from "./Pages/Home.jsx";
+import Crew from "./Pages/Crew";
+import Events from "./Pages/Events";
+import Gallery from "./Pages/Gallery";
+import Principal from "./Pages/Principal";
+import AdminDetails from "./Pages/AdminDetails.jsx";
+import UserList from "./Pages/UserList.jsx";
+import UserDetails from "./Pages/UserDetails.jsx";
+import UserEvents from "./Pages/UserEvents.jsx";
+import ChooseForm from "./Pages/ChooseForm";
+import AdminSignup from "./Pages/AdminSignup";
+import ParticipantsSignup from "./Pages/ParticipantsSignup";
+// import CoordinatorForm from "./Register/CoordinatorForm";
+import AdminLogin from "./Pages/AdminLogin.jsx";
+import ParticipantsLogin from "./Pages/ParticipantsLogin";
+import ErrorPage from "./Pages/ErrorPage";
 import "aos/dist/aos.css";
-import { ParticipantsForm } from "./Register/ParticipantsForm";
-import { AdminForm } from "./Register/AdminForm";
+import "./App.css";
 
 // for Routing
 import { Route, Routes } from "react-router-dom";
 
-//routing
-import Home from "./Pages/Home.jsx";
-import ChooseForm from "./Pages/ChooseForm";
-import ErrorPage from "./Pages/ErrorPage";
-import { LoginForm } from "./Login/LoginParticipants";
-
-export default function App() {
-  const [childVisible, setChildVisible] = useState(false);
-  const [img, setImg] = useState();
-  const [tag, setTag] = useState(null);
-  const data = "";
+const App = () => {
 
   useEffect(() => {
     Aos.init({ duration: 1300 });
@@ -48,30 +44,26 @@ export default function App() {
   }, []);
 
   return (
-    <div className="absolute top-0 left-0 w-full h-fit">
-      <Routes>
-        {/* homepage */}
-        <Route path="/" Component={Home} />
-        <Route path="/principal" Component={Principal} />
-        <Route path="/gallery" Component={Gallery} />
-        <Route path="/events" Component={Events} />
-        <Route path="/form" Component={ChooseForm} />
-        <Route path="/crew" Component={Crew} />
-
-        {/* Forms */}
-
-        <Route path="/coordinator" Component={CoordinatorForm} />
-        <Route path="/admin" Component={AdminForm} />
-        <Route path="/participant" Component={ParticipantsForm} />
-
-        {/* <Route path='/events' Component={Event}/> */}
-
-        {/* Error Page */}
-        <Route Component={ErrorPage} />
-      </Routes>
-      {/* <MainProfile type="admin" /> */}
-
-      {/* <LoginForm/> */}
-    </div>
+    <Routes>
+      <Route path="/" Component={Home} />
+      <Route path="/principal" Component={Principal} />
+      <Route path="/events" Component={Events} />
+      <Route path="/gallery" Component={Gallery} />
+      <Route path="/events" Component={Events} />
+      <Route path="/crew" Component={Crew} />
+      <Route path="/adminprofile/details" Component={AdminDetails} />
+      <Route path="/adminprofile/userlist" Component={UserList} />
+      <Route path="/userprofile/details" Component={UserDetails} />
+      <Route path="/userprofile/myevents" Component={UserEvents} />
+      <Route path="/form" Component={ChooseForm} />
+      <Route path="/adminform" Component={AdminSignup} />
+      <Route path="/participantform" Component={ParticipantsSignup} />
+      <Route path="/participantlogin" Component={ParticipantsLogin} />
+      <Route path="/adminlogin" Component={AdminLogin} />
+      {/* <Route path="/coordinatorform" Component={CoordinatorForm} /> */}
+      <Route path="*" Component={ErrorPage} />
+    </Routes>
   );
-}
+};
+
+export default App;
