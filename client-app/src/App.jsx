@@ -55,11 +55,11 @@ const App = () => {
       <Route path="/adminprofile/userlist" Component={UserList} />
       <Route path="/userprofile/details" Component={UserDetails} />
       <Route path="/userprofile/myevents" Component={UserEvents} />
-      <Route path="/form" Component={ChooseForm} />
-      <Route path="/adminform" Component={AdminSignup} />
-      <Route path="/participantform" Component={ParticipantsSignup} />
-      <Route path="/participantlogin" Component={ParticipantsLogin} />
-      <Route path="/adminlogin" Component={AdminLogin} />
+      <Route path="/registration" Component={ChooseForm} />
+      <Route path="/signup/admin" Component={AdminSignup} />
+      <Route path="/signup/participant" Component={ParticipantsSignup} />
+      <Route path="/login/admin" Component={AdminLogin} />
+      <Route path="/login/participant" Component={ParticipantsLogin} />
       {/* <Route path="/coordinatorform" Component={CoordinatorForm} /> */}
       <Route path="*" Component={ErrorPage} />
     </Routes>
