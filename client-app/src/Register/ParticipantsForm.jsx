@@ -66,7 +66,7 @@ export const ParticipantsForm = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
-              {errors.lname && touched.lname ? <p className='form-error '>{errors.fname}</p> : null}
+              {errors.lname && touched.lname ? <p className='form-error '>{errors.lname}</p> : null}
 
               </div>
             </div>
@@ -83,7 +83,7 @@ export const ParticipantsForm = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-              {errors.email && touched.email ? <p className='form-error '>{errors.fname}</p> : null}
+              {errors.email && touched.email ? <p className='form-error '>{errors.email}</p> : null}
 
             </div>
   
@@ -99,7 +99,7 @@ export const ParticipantsForm = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-              {errors.mobile && touched.mobile ? <p className='form-error '>{errors.fname}</p> : null}
+              {errors.mobile && touched.mobile ? <p className='form-error '>{errors.mobile}</p> : null}
 
             </div>
   
@@ -115,7 +115,7 @@ export const ParticipantsForm = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-              {errors.roll && touched.roll ? <p className='form-error '>{errors.fname}</p> : null}
+              {errors.roll && touched.roll ? <p className='form-error '>{errors.roll}</p> : null}
 
             </div>
   
@@ -132,7 +132,7 @@ export const ParticipantsForm = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
-              {errors.password && touched.password ? <p className='form-error '>{errors.fname}</p> : null}
+              {errors.password && touched.password ? <p className='form-error '>{errors.password}</p> : null}
 
               </div>
   
@@ -148,7 +148,7 @@ export const ParticipantsForm = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
-              {errors.confirm_password && touched.confirm_password ? <p className='form-error '>{errors.fname}</p> : null}
+              {errors.confirm_password && touched.confirm_password ? <p className='form-error '>{errors.confirm_password}</p> : null}
 
               </div>
             </div>
@@ -166,7 +166,7 @@ export const ParticipantsForm = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
-              {errors.year && touched.year ? <p className='form-error '>{errors.fname}</p> : null}
+              {errors.year && touched.year ? <p className='form-error '>{errors.year}</p> : null}
 
               </div>
   
@@ -182,7 +182,7 @@ export const ParticipantsForm = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
-              {errors.stream && touched.stream ? <p className='form-error '>{errors.fname}</p> : null}
+              {errors.stream && touched.stream ? <p className='form-error '>{errors.stream}</p> : null}
 
               </div>
             </div>
