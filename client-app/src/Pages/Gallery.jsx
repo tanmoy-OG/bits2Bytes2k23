@@ -3,6 +3,7 @@ import Nav from "../Components/Nav";
 import GalleryItems from "../Components/GalleryItems";
 import Particle from "../Components/Particle";
 import ViewGalleryImage from "../Components/ViewGalleryImage";
+import Footer from "../Components/Footer";
 
 const Gallery = () => {
   const [childVisible, setChildVisible] = useState(false);
@@ -24,6 +25,7 @@ const Gallery = () => {
           setChildVisible={setChildVisible}
         />
       )}
+      <Footer />
       <Particle />
     </div>
   );
