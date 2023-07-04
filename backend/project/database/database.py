@@ -23,6 +23,9 @@ class User(db.Model):
     role_id=db.Column(db.Integer, nullable=False)
     year=db.Column(db.Integer, nullable=True)
     stream=db.Column(db.String(10), nullable=True)
+    participants=db.relationship('Participants',backref='parti',uselist=False,cascade='all,delete')
+    participants=db.relationship('Team_participate',backref='teamparti',uselist=False,cascade='all,delete')
+    participants=db.relationship('Winners',backref='win',uselist=False,cascade='all,delete')
 
 class Participants(db.Model):
     roll=db.Column(db.Integer, db.ForeignKey('user.roll'), primary_key=True, nullable=False) 
