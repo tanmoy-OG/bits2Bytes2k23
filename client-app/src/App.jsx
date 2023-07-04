@@ -10,10 +10,12 @@ import AdminDetails from "./Pages/AdminDetails.jsx";
 import UserList from "./Pages/UserList.jsx";
 import UserDetails from "./Pages/UserDetails.jsx";
 import UserEvents from "./Pages/UserEvents.jsx";
-import ChooseForm from "./Register/ChooseForm";
-import AdminForm from "./Register/AdminForm";
-import ParticipantsForm from "./Register/ParticipantsForm";
+import ChooseForm from "./Pages/ChooseForm";
+import AdminSignup from "./Pages/AdminSignup";
+import ParticipantsSignup from "./Pages/ParticipantsSignup";
 // import CoordinatorForm from "./Register/CoordinatorForm";
+// import AdminLogin from "./Pages/AdminForm";
+import ParticipantsLogin from "./Pages/ParticipantsLogin";
 import ErrorPage from "./Pages/ErrorPage";
 import "aos/dist/aos.css";
 import "./App.css";
@@ -21,7 +23,6 @@ import "./App.css";
 // for Routing
 import { Route, Routes } from "react-router-dom";
 
-//routing
 const App = () => {
 
   useEffect(() => {
@@ -55,8 +56,10 @@ const App = () => {
       <Route path="/userprofile/details" Component={UserDetails} />
       <Route path="/userprofile/myevents" Component={UserEvents} />
       <Route path="/form" Component={ChooseForm} />
-      <Route path="/adminform" Component={AdminForm} />
-      <Route path="/participantform" Component={ParticipantsForm} />
+      <Route path="/adminform" Component={AdminSignup} />
+      <Route path="/participantform" Component={ParticipantsSignup} />
+      <Route path="/participantlogin" Component={ParticipantsLogin} />
+      {/* <Route path="/adminlogin" Component={AdminLogin} /> */}
       {/* <Route path="/coordinatorform" Component={CoordinatorForm} /> */}
       <Route path="*" Component={ErrorPage} />
     </Routes>
