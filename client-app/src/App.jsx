@@ -47,7 +47,7 @@ export default function App() {
   return (
     <div className="absolute top-0 left-0 w-full h-fit">
       <div
-        className=" absolute top-0 left-0 h-screen w-full -z-20"
+        className=" absolute top-0 left-0 h-screen w-auto -z-20"
         id="vanta"
       ></div>
       <Particle />
