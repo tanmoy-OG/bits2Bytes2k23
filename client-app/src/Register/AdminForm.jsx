@@ -2,21 +2,19 @@ import logo from '../../public/logo.png';
 import { useFormik } from 'formik';
 import { signupSchema } from './Registration';
 
+
 const initialValues = {
   fname:"",
   lname:"",
   email:"",
   mobile:"",
-  roll:"",
+  secret_key:"",
   password:"",
   confirm_password:"",
-  year:"",
-  stream:"",
+  
 
 }
-
-
-export const ParticipantsForm = () => {
+export const AdminForm = () => {
 
   const {values, errors,touched, handleBlur, handleChange, handleSubmit} = useFormik({
     initialValues:initialValues,
@@ -27,6 +25,7 @@ export const ParticipantsForm = () => {
   })
 
   return (
+
     <div className="bg-black backdrop-blur-lg rounded-lg m-10 flex flex-col md:flex-row">
       <div className="md:w-1/2 flex-1">
         <div className="bg-gradient-to-t from-blue-300 to-blue-950 shadow-lg p-7">
@@ -51,9 +50,7 @@ export const ParticipantsForm = () => {
                   onBlur={handleBlur}
                 />
               {errors.fname && touched.fname ? <p className='form-error '>{errors.fname}</p> : null}
-
               </div>
-  
               <div className="input-block text-left p-3 font-semibold font-custom-sans">
                 <input
                   type="text"
@@ -66,10 +63,10 @@ export const ParticipantsForm = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
-              {errors.lname && touched.lname ? <p className='form-error '>{errors.fname}</p> : null}
+              {errors.lname && touched.lname ?<p className='form-error '>{errors.lname}</p> : null}
 
               </div>
-            </div>
+            </div> 
   
             <div className="input-block text-left p-3 font-semibold font-custom-sans">
               <input
@@ -83,7 +80,7 @@ export const ParticipantsForm = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-              {errors.email && touched.email ? <p className='form-error '>{errors.fname}</p> : null}
+              {errors.email && touched.email ? <p className='form-error '>{errors.email}</p>: null}
 
             </div>
   
@@ -99,25 +96,24 @@ export const ParticipantsForm = () => {
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-              {errors.mobile && touched.mobile ? <p className='form-error '>{errors.fname}</p> : null}
+              {errors.mobile && touched.mobile ? <p className='form-error '>{errors.mobile}</p> : null}
 
-            </div>
-  
-            <div className="input-block text-left p-3 font-semibold font-custom-sans">
+            </div><div className="input-block text-left p-3 font-semibold font-custom-sans">
               <input
-                type="text"
+                type="tel"
                 autoComplete="off"
-                name="roll"
-                id="roll"
-                placeholder="Roll Number"
+                name="secret_key"
+                id="secret_key"
+                placeholder="Secret Key"
                 className="p-2 rounded-xl border"
-                values={values.roll}
+                values={values.mobile}
                 onChange={handleChange}
                 onBlur={handleBlur}
               />
-              {errors.roll && touched.roll ? <p className='form-error '>{errors.fname}</p> : null}
+              {errors.secret_key && touched.secret_key ? <p className='form-error '>{errors.secret_key}</p> : null}
 
             </div>
+  
   
             <div className="flex">
               <div className="input-block text-left p-3 font-semibold font-custom-sans">
@@ -132,7 +128,7 @@ export const ParticipantsForm = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
-              {errors.password && touched.password ? <p className='form-error '>{errors.fname}</p> : null}
+              {errors.password && touched.password ?<p className='form-error '>{errors.password}</p> : null}
 
               </div>
   
@@ -148,45 +144,12 @@ export const ParticipantsForm = () => {
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
-              {errors.confirm_password && touched.confirm_password ? <p className='form-error '>{errors.fname}</p> : null}
+              {errors.confirm_password && touched.confirm_password ?<p className='form-error'>{errors.confirm_password}</p>:null}
 
               </div>
             </div>
   
-            <div className="flex">
-              <div className="input-block text-left p-3 font-semibold font-custom-sans">
-                <input
-                  type="text"
-                  autoComplete="off"
-                  name="year"
-                  id="year"
-                  placeholder="Year"
-                  className="p-2 rounded-xl border w-full"
-                  values={values.year}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                />
-              {errors.year && touched.year ? <p className='form-error '>{errors.fname}</p> : null}
-
-              </div>
-  
-              <div className="input-block text-left p-3 font-semibold font-custom-sans">
-                <input
-                  type="text"
-                  autoComplete="off"
-                  name="stream"
-                  id="stream"
-                  placeholder="Stream"
-                  className="p-2 rounded-xl border w-full"
-                  values={values.stream}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                />
-              {errors.stream && touched.stream ? <p className='form-error '>{errors.fname}</p> : null}
-
-              </div>
-            </div>
-  
+           
             <button
               type="submit"
               className="bg-orange-700 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded mt-4"
@@ -211,7 +174,7 @@ export const ParticipantsForm = () => {
       </div>
   
       <div className="md:block hidden w-1/2">
-        <img src={logo} alt="Registration Image" className="rounded-2xl h-full" />
+        <img src={logo} alt="Registration Image" className="rounded-2xl " />
       </div>
     </div>
   );

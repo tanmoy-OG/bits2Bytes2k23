@@ -1,4 +1,5 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 
 export const Nav = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -25,12 +26,9 @@ export const Nav = () => {
     <nav className="sticky top-0 w-full z-50 mb-10 bg-cust-color shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
-          <a
-            href="/"
-            className="text-violet-300 text-xl font-bold font-custom-sans"
-          >
+          <Link href="/" className="text-violet-300 text-xl font-bold font-custom-sans">
             BITS2BYTES 2K23
-          </a>
+          </Link>
           <div className="-mr-2 flex 950px:hidden">
             <button
               onClick={toggleMenu}
@@ -72,36 +70,36 @@ export const Nav = () => {
             </button>
           </div>
           <div className="hidden 950px:flex items-center">
-            <a
-              href="/"
+            <Link
+              to="/principal"
               className="text-violet-300 hover:translate-y-[-0.4em] px-3 py-2 font-medium transition-all duration-200 tracking-widest"
             >
               PRINCIPAL'S MESSAGE
-            </a>
-            <a
+            </Link>
+            <Link
               href="/events"
               className="text-violet-300 hover:translate-y-[-0.4em] px-3 py-2 font-medium transition-all duration-200 tracking-widest"
             >
               EVENTS
-            </a>
-            <a
+            </Link>
+            <Link
               href="/crew"
               className="text-violet-300 hover:translate-y-[-0.4em] px-3 py-2 font-medium transition-all duration-200 tracking-widest"
             >
               CREW
-            </a>
-            <a
+            </Link>
+            <Link
               href="/contact"
               className="text-violet-300 hover:translate-y-[-0.4em] px-3 py-2 font-medium transition-all duration-200 tracking-widest"
             >
               CONTACT US
-            </a>
-            <a
-              href="./Login"
+            </Link>
+            <Link
+              href="/form" 
               className="text-violet-300 hover:translate-y-[-0.4em] px-3 py-2 font-medium transition-all duration-200 tracking-widest"
             >
               LOGIN/SIGNUP
-            </a>
+            </Link>
           </div>
         </div>
       </div>
@@ -109,12 +107,12 @@ export const Nav = () => {
       {isMenuOpen && (
         <div className="shadow-lg 950px:hidden w-full absolute bg-cust-color">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
-            <a
-              href="/"
+            <Link
+              to="/principal"
               className="text-violet-300 hover:bg-violet-700/30 hover:shadow-sm block px-3 py-2 rounded-md text-base font-medium transition-all duration-200 tracking-widest"
             >
               PRINCIPAL'S MESSAGE
-            </a>
+            </Link>
             <a
               href="/events"
               className="text-violet-300 hover:bg-violet-700/30 hover:shadow-sm block px-3 py-2 rounded-md text-base font-medium transition-all duration-200 tracking-widest"
@@ -134,7 +132,7 @@ export const Nav = () => {
               CONTACT US
             </a>
             <a
-              href="./Login"
+              href="/form"
               className="text-violet-300 hover:bg-violet-700/30 hover:shadow-sm block px-3 py-2 rounded-md text-base font-medium transition-all duration-200 tracking-widest"
             >
               LOGIN/SIGNUP

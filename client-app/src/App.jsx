@@ -1,24 +1,26 @@
 import { useEffect, useState } from "react";
 import NET from "vanta/src/vanta.net";
 import Aos from "aos";
-import Particle from "./Homepage/Particle";
-import { Nav } from "./Nav";
-import { Present } from "./Homepage";
-import { About } from "./Homepage";
-import { Carousel } from "./Homepage/Carousel";
-import { Gallery } from "./Homepage/Gallery";
-import { Convenors } from "./Homepage/Convenors";
-import { Secretary } from "./Homepage/Secretary";
-import { Contact } from "./Homepage/Contact";
-import ViewGalleryImage from "./Homepage/ViewGalleryImage";
+// import { About } from "./Homepage";
+import { Gallery } from "./Pages/Gallery";
+import { Events } from "./Pages/Events"
 import MainProfile from "./Profile/MainProfile";
-import { Principal } from "./Principal";
-import AdminLogin from "./Register/AdminLogin";
-import ParticipantsForm from "./Register/ParticipantsForm";
+import { Principal } from "./Pages/Principal";
 import { Crew } from "./Crew";
+import { CoordinatorForm } from "./Register/CoordinatorForm";
 
 import "./App.css";
 import "aos/dist/aos.css";
+import { ParticipantsForm } from "./Register/ParticipantsForm";
+import { AdminForm } from "./Register/AdminForm";
+
+// for Routing
+import { Route, Routes } from "react-router-dom";
+
+//routing
+import Home from "./Pages/Home.jsx";
+import ChooseForm from "./Register/ChooseForm";
+import ErrorPage from "./Pages/ErrorPage";
 
 export default function App() {
   const [childVisible, setChildVisible] = useState(false);
@@ -45,34 +47,28 @@ export default function App() {
   }, []);
 
   return (
-    <div className="absolute bg-transparent top-0 left-0 w-full h-fit">
-      <div
-        className="absolute top-0 left-0 h-screen w-full -z-20"
-        id="vanta"
-      ></div>
-      <Nav />
-      {/* <Present /> */}
-      {/* <About /> */}
-      {/* <Principal /> */}
-      {/* <Crew /> */}
-      {/* <Carousel /> */}
-      {/* <Gallery
-        setChildVisible={setChildVisible}
-        setImg={setImg}
-        setTag={setTag}
-      /> */}
-      {/* <Convenors /> */}
-      {/* <Secretary /> */}
-      {/* <Contact /> */}
-      {/* {childVisible && (
-        <ViewGalleryImage
-          img={img}
-          tag={tag}
-          setChildVisible={setChildVisible}
-        />
-      )} */}
+    <div className="absolute top-0 left-0 w-full h-fit">
+      <Routes>
+        {/* homepage */}
+        <Route path="/" Component={Home} />
+        <Route path="/principal" Component={Principal} />
+        <Route path="/gallery" Component={Gallery} />
+        <Route path="/events" Component={Events} />
+        <Route path="/form" Component={ChooseForm} />
+        <Route path="/crew" Component={Crew} />
+
+        {/* Forms */}
+
+        <Route path="/coordinator" Component={CoordinatorForm} />
+        <Route path="/admin" Component={AdminForm} />
+        <Route path="/participant" Component={ParticipantsForm} />
+
+        {/* <Route path='/events' Component={Event}/> */}
+
+        {/* Error Page */}
+        <Route Component={ErrorPage} />
+      </Routes>
       {/* <MainProfile type="admin" /> */}
-      <Particle />
     </div>
   );
 }
