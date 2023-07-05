@@ -20,14 +20,14 @@ const UserDetails = (props) => {
 
         {/* details */}
         <Details
-          type={props.type}
-          fname={props.fname}
-          lname={props.lname}
-          roll={props.roll}
-          year={props.year}
-          stream={props.stream}
-          email={props.email}
-          phone={props.phone}
+          type="participant"
+          fname="Priyankar"
+          lname="Sarkar"
+          roll="12100120011"
+          year="3rd"
+          stream="CSE"
+          email="abc@gmail.com"
+          phone="9999999999"
         />
       </div>
       <Particle />

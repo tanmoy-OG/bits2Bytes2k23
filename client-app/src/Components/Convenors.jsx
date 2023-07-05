@@ -38,13 +38,13 @@ const Convenors = () => {
       >
         CONVENORS
       </h1>
-      <div className="flex flex-col md:flex-row md:flex-wrap items-center justify-between">
+      <div className="flex flex-col lg:flex-row items-center justify-between xl:px-28 2xl:px-40 pb-10">
         {convenors.map((convenor, index) => (
           <div
             key={index}
-            className="flex p-6 relative items-center justify-center "
+            className="aspect-square flex p-6 relative items-center justify-center"
           >
-            <div className="group h-96 w-96 [perspective:1000px]">
+            <div className="group h-56 w-56 sm:h-72 sm:w-72 md:h-80 md:w-80 lg:h-96 lg:w-96 [perspective:1000px]">
               <div className="relative h-full w-full rounded-xl shadow-xl transition-all duration-500 [transform-style:preserve-3d] group-hover:[transform:rotateY(180deg)]">
                 <div className="absolute insert-0">
                   <img
@@ -54,12 +54,12 @@ const Convenors = () => {
                   />
                 </div>
 
-                <div className="absolute inset-0 h-full w-full rounded-xl bg-black/80 px-12 text-center text-slate-200 [transform:rotateY(180deg)] [backface-visibility:hidden]">
-                  <div className="flex flex-col justify-center ml-4">
+                <div className="absolute inset-0 h-full w-full rounded-xl bg-black/80 px-12 pl-8 text-slate-200 [transform:rotateY(180deg)] [backface-visibility:hidden]">
+                  <div className="flex flex-col justify-center items-center ml-4">
                     <h3 className="m-2 text-neutral-500 text-lg md:text-xl font-semibold uppercase">
                       {convenor.name}
                     </h3>
-                    <div className="flex items-center justify-center">
+                    <div className="">
                       <div className="w-20 h-1 bg-gradient-to-r from-orange-600 to-orange-300"></div>
                     </div>
                     <p className="text-neutral-200 font-custom-cursive text-lg md:text-xl">
@@ -69,7 +69,7 @@ const Convenors = () => {
                     <p className="text-neutral-200 font-bold">
                       {convenor.contactNo}
                     </p>
-                    <div className="m-6 flex justify-center text-white">
+                    <div className="m-6 flex flex-row">
                       <a
                         href="#"
                         className="ml-1 mr-1 h-10 w-10 p-2 flex justify-center rounded-full text-2xl bg-slate-800 hover:transition-all hover:scale-110 hover:-translate-y-1 transition-all duration-500"

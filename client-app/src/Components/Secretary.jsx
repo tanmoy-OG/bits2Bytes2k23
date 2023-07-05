@@ -18,29 +18,29 @@ const Secretary = () => {
         <Card
           pic={"Profile/debanjan.jpg"}
           name={"Debanjan Chakroborty"}
-          designation={"Technical Sacretary"}
+          designation={"Technical Secretary"}
         />
         <Card
           name={"Twishanu Aich Roy"}
-          designation={"Assistant Technical Sacretary"}
+          designation={"Assistant Technical Secretary"}
         />
         <Card
           name={"Aditya Roy"}
-          designation={"Assistant Technical Sacretary"}
+          designation={"Assistant Technical Secretary"}
           link={"https://www.linkedin.com/in/aditya-kr-roy-361868218"}
           insta={"https://www.instagram.com/__aditya_____roy"}
         />
         <Card
           pic={"Profile/payel.jpg"}
           name={"Payel Halder"}
-          designation={"Assistant Technical Sacretary"}
+          designation={"Assistant Technical Secretary"}
           link={"https://www.linkedin.com/in/payel-halder"}
           face={"https://www.facebook.com/payel.halder.5397"}
           insta={"https://www.instagram.com/payel_halder7"}
         />
         <Card
           name={"Annu Priya"}
-          designation={"Assistant Technical Sacretary"}
+          designation={"Assistant Technical Secretary"}
         />
       </div>
     </div>
