@@ -26,18 +26,17 @@ const AdminSignup = () => {
 
   return (
     <div className="absolute top-0 left-0 w-full h-fit">
-      <Nav />
-      <div className="bg-black backdrop-blur-lg rounded-lg m-10 flex flex-col md:flex-row">
+      <Nav className="mb-0" />
+      <div className="bg-transparent backdrop-blur-sm rounded-lg h-full m-0 p-10 flex flex-col md:flex-row">
         <div className="md:w-1/2 flex-1">
-          <div className="bg-gradient-to-t from-blue-300 to-blue-950 shadow-lg p-7">
+          <div className="bg-gradient-to-t from-transparent via-blue-950/60 to-transparent shadow-lg p-7">
             <h1
-              className="text-4xl md:text-5xl font-bold tracking-wider text-neutral-200 font-custom-sans"
-              data-aos="fade-up"
+              className="text-4xl md:text-5xl font-bold tracking-wider text-neutral-200 font-custom-sans uppercase"
             >
               Registration
             </h1>
 
-            <div className="m-2 w-16 h-1 inline-block bg-gradient-to-r from-orange-600 to-orange-300"></div>
+            <div className="m-2 w-24 h-1 inline-block bg-gradient-to-r from-orange-600 to-orange-300"></div>
 
             <form onSubmit={handleSubmit}>
               <div className="flex">
@@ -48,13 +47,13 @@ const AdminSignup = () => {
                     name="fname"
                     id="fname"
                     placeholder="First Name"
-                    className="p-2 rounded-xl border w-full"
+                    className="p-2 rounded-md border w-full bg-black text-white"
                     values={values.fname}
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
                   {errors.fname && touched.fname ? (
-                    <p className="form-error ">{errors.fname}</p>
+                    <p className="form-error text-red-500">{errors.fname}</p>
                   ) : null}
                 </div>
                 <div className="input-block text-left p-3 font-semibold font-custom-sans">
@@ -64,13 +63,13 @@ const AdminSignup = () => {
                     name="lname"
                     id="lname"
                     placeholder="Last Name"
-                    className="p-2 rounded-xl border w-full"
+                    className="p-2 rounded-md border w-full bg-black text-white"
                     values={values.lname}
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
                   {errors.lname && touched.lname ? (
-                    <p className="form-error ">{errors.lname}</p>
+                    <p className="form-error text-red-500">{errors.lname}</p>
                   ) : null}
                 </div>
               </div>
@@ -82,13 +81,13 @@ const AdminSignup = () => {
                   name="email"
                   id="email"
                   placeholder="Email"
-                  className="p-2 rounded-xl border"
+                  className="p-2 rounded-md border bg-black text-white"
                   values={values.email}
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
                 {errors.email && touched.email ? (
-                  <p className="form-error ">{errors.email}</p>
+                  <p className="form-error text-red-500">{errors.email}</p>
                 ) : null}
               </div>
 
@@ -99,13 +98,13 @@ const AdminSignup = () => {
                   name="mobile"
                   id="mobile"
                   placeholder="Mobile"
-                  className="p-2 rounded-xl border"
+                  className="p-2 rounded-md border bg-black text-white"
                   values={values.mobile}
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
                 {errors.mobile && touched.mobile ? (
-                  <p className="form-error ">{errors.mobile}</p>
+                  <p className="form-error text-red-500">{errors.mobile}</p>
                 ) : null}
               </div>
               <div className="input-block text-left p-3 font-semibold font-custom-sans">
@@ -115,13 +114,13 @@ const AdminSignup = () => {
                   name="secret_key"
                   id="secret_key"
                   placeholder="Secret Key"
-                  className="p-2 rounded-xl border"
+                  className="p-2 rounded-md border bg-black text-white"
                   values={values.mobile}
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
                 {errors.secret_key && touched.secret_key ? (
-                  <p className="form-error ">{errors.secret_key}</p>
+                  <p className="form-error text-red-500">{errors.secret_key}</p>
                 ) : null}
               </div>
 
@@ -133,13 +132,13 @@ const AdminSignup = () => {
                     name="password"
                     id="password"
                     placeholder="Password"
-                    className="p-2 rounded-xl border w-full"
+                    className="p-2 rounded-md border w-full bg-black text-white"
                     values={values.password}
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
                   {errors.password && touched.password ? (
-                    <p className="form-error ">{errors.password}</p>
+                    <p className="form-error text-red-500">{errors.password}</p>
                   ) : null}
                 </div>
 
@@ -150,38 +149,38 @@ const AdminSignup = () => {
                     name="confirm_password"
                     id="confirm password"
                     placeholder="Confirm Password"
-                    className="p-2 rounded-xl border w-full"
+                    className="p-2 rounded-md border w-full bg-black text-white"
                     values={values.confirm_password}
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
                   {errors.confirm_password && touched.confirm_password ? (
-                    <p className="form-error">{errors.confirm_password}</p>
+                    <p className="form-error text-red-500">{errors.confirm_password}</p>
                   ) : null}
                 </div>
               </div>
 
               <button
                 type="submit"
-                className="bg-orange-700 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded mt-4"
+                className="hover:bg-orange-600 border border-orange-400 text-orange-400 hover:text-white font-bold py-2 px-4 rounded-lg mt-4"
               >
                 Register
               </button>
             </form>
 
-            <div className="m-3 grid grid-cols-3 items-center text-blue-950">
-              <hr className="border-blue-950" />
+            <div className="m-3 grid grid-cols-3 items-center text-blue-500">
+              <hr className="border-blue-500" />
               <p className="text-center">OR</p>
-              <hr className="border-blue-950" />
+              <hr className="border-blue-500" />
             </div>
 
             <div className="flex justify-between items-center mt-3">
-              <p className="mt-3 text-xs flex justify-between items-center">
+              <p className="mt-3 text-xs text-white flex justify-between items-center">
                 If already Registered..
               </p>
               <Link
                 to="/login/admin"
-                className="py-2 px-5 border border-blue-500 rounded-xl hover:bg-blue-950 hover:text-white"
+                className="py-2 px-5 border border-blue-500 rounded-xl hover:bg-blue-950 text-white"
               >
                 <button>Login</button>
               </Link>
