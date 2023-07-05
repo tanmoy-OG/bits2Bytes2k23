@@ -1,6 +1,5 @@
 import Aos from "aos";
 import { useEffect, useState } from "react";
-import NET from "vanta/src/vanta.net";
 import Home from "./Pages/Home.jsx";
 import Crew from "./Pages/Crew";
 import Events from "./Pages/Events";
@@ -24,23 +23,8 @@ import "./App.css";
 import { Route, Routes } from "react-router-dom";
 
 const App = () => {
-
   useEffect(() => {
     Aos.init({ duration: 1300 });
-    NET({
-      el: "#vanta",
-      mouseControls: true,
-      touchControls: true,
-      gyroControls: false,
-      minHeight: 200.0,
-      minWidth: 200.0,
-      scale: 1.0,
-      scaleMobile: 1.0,
-      color: 0xe708e,
-      backgroundColor: 0x0,
-      maxDistance: 1.0,
-      spacing: 12.0,
-    });
   }, []);
 
   return (
