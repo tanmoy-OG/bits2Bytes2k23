@@ -8,7 +8,7 @@ const GalleryItems = ({setChildVisible, setImg, setTag}) => {
   const tag = "IMAGE TAG";
 
   return (
-    <div className="p-6 pt-0 bg-sky-500/10 backdrop-blur-sm ml-6 mr-6 mb-10 rounded-2xl">
+    <div className="p-6 pt-0 bg-sky-500/10 backdrop-blur-sm ml-6 mr-6 mt-10 mb-10 rounded-2xl">
       <h1 className="p-4 md:p-10 md:pb-14 text-4xl md:text-5xl font-bold tracking-wider text-neutral-200 font-custom-sans">
         GALLERY
       </h1>

@@ -23,19 +23,21 @@ const Nav = () => {
   }, []);
 
   return (
-    <nav className="sticky top-0 w-full z-50 mb-10 bg-cust-color shadow-lg">
+    <nav className="sticky top-0 w-full z-50 mb-0 bg-sky-900 text-neutral-200 shadow-lg">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16">
           <Link
             to="/"
-            className="text-violet-300 text-xl font-bold font-custom-sans"
+            className="hover:text-orange-400 hover:shadow-sm text-xl font-bold font-custom-sans transition-all duration-200 tracking-widest uppercase"
           >
-            BITS2BYTES 2K23
+            <span className="text-2xl">B</span>ITS
+            <span className="text-orange-400 text-3xl">2</span>
+            <span className="text-2xl">B</span>YTES 2K23
           </Link>
           <div className="-mr-2 flex 950px:hidden">
             <button
               onClick={toggleMenu}
-              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-violet-700/30 focus:outline-none transition-all duration-200"
+              className="inline-flex items-center justify-center p-2 rounded-md text-gray-400 hover:text-white hover:bg-orange-400/60 focus:outline-none transition-all duration-200"
               aria-expanded={isMenuOpen}
             >
               <span className="sr-only">Open main menu</span>
@@ -75,37 +77,37 @@ const Nav = () => {
           <div className="hidden 950px:flex items-center">
             <Link
               to="/principal"
-              className="text-violet-300 hover:translate-y-[-0.4em] px-3 py-2 font-medium transition-all duration-200 tracking-widest uppercase"
+              className="hover:text-orange-400 hover:translate-y-[-0.4em] px-3 py-2 transition-all duration-200 tracking-widest uppercase"
             >
               PRINCIPAL'S MESSAGE
             </Link>
             <Link
               to="/gallery"
-              className="text-violet-300 hover:translate-y-[-0.4em] px-3 py-2 font-medium transition-all duration-200 tracking-widest uppercase"
+              className="hover:text-orange-400 hover:translate-y-[-0.4em] px-3 py-2 transition-all duration-200 tracking-widest uppercase"
             >
               GALLERY
             </Link>
             <Link
               to="/events"
-              className="text-violet-300 hover:translate-y-[-0.4em] px-3 py-2 font-medium transition-all duration-200 tracking-widest uppercase"
+              className="hover:text-orange-400 hover:translate-y-[-0.4em] px-3 py-2 transition-all duration-200 tracking-widest uppercase"
             >
               EVENTS
             </Link>
             <Link
               to="/crew"
-              className="text-violet-300 hover:translate-y-[-0.4em] px-3 py-2 font-medium transition-all duration-200 tracking-widest uppercase"
+              className="hover:text-orange-400 hover:translate-y-[-0.4em] px-3 py-2 transition-all duration-200 tracking-widest uppercase"
             >
               CREW
             </Link>
             <Link
               to="/registration"
-              className="text-violet-300 hover:translate-y-[-0.4em] px-3 py-2 font-medium transition-all duration-200 tracking-widest uppercase"
+              className="hover:text-orange-400 hover:translate-y-[-0.4em] px-3 py-2 transition-all duration-200 tracking-widest uppercase"
             >
               LOGIN/SIGNUP
             </Link>
             <Link
               to="/adminprofile/details"
-              className="text-violet-300 hover:translate-y-[-0.4em] px-3 py-2 font-medium transition-all duration-200 tracking-widest uppercase"
+              className="hover:text-orange-400 hover:translate-y-[-0.4em] px-3 py-2 transition-all duration-200 tracking-widest uppercase"
             >
               PROFILE
             </Link>
@@ -114,41 +116,41 @@ const Nav = () => {
       </div>
 
       {isMenuOpen && (
-        <div className="shadow-lg 950px:hidden w-full absolute bg-cust-color">
+        <div className="shadow-lg bg-sky-900 950px:hidden w-full absolute">
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <Link
               to="/principal"
-              className="text-violet-300 hover:bg-violet-700/30 hover:shadow-sm block px-3 py-2 rounded-md text-base font-medium transition-all duration-200 tracking-widest uppercase"
+              className="bg-orange-400/10 hover:bg-orange-400/60 hover:font-bold hover:shadow-sm block px-3 py-2 rounded-md text-base transition-all duration-200 tracking-widest uppercase"
             >
               PRINCIPAL'S MESSAGE
             </Link>
             <Link
               to="/gallery"
-              className="text-violet-300 hover:bg-violet-700/30 hover:shadow-sm block px-3 py-2 rounded-md text-base font-medium transition-all duration-200 tracking-widest uppercase"
+              className="bg-orange-400/10 hover:bg-orange-400/60 hover:font-bold hover:shadow-sm block px-3 py-2 rounded-md text-base transition-all duration-200 tracking-widest uppercase"
             >
               GALLERY
             </Link>
             <Link
               to="/events"
-              className="text-violet-300 hover:bg-violet-700/30 hover:shadow-sm block px-3 py-2 rounded-md text-base font-medium transition-all duration-200 tracking-widest uppercase"
+              className="bg-orange-400/10 hover:bg-orange-400/60 hover:font-bold hover:shadow-sm block px-3 py-2 rounded-md text-base transition-all duration-200 tracking-widest uppercase"
             >
               EVENTS
             </Link>
             <Link
               to="/crew"
-              className="text-violet-300 hover:bg-violet-700/30 hover:shadow-sm block px-3 py-2 rounded-md text-base font-medium transition-all duration-200 tracking-widest uppercase"
+              className="bg-orange-400/10 hover:bg-orange-400/60 hover:font-bold hover:shadow-sm block px-3 py-2 rounded-md text-base transition-all duration-200 tracking-widest uppercase"
             >
               CREW
             </Link>
             <Link
               to="/registration"
-              className="text-violet-300 hover:bg-violet-700/30 hover:shadow-sm block px-3 py-2 rounded-md text-base font-medium transition-all duration-200 tracking-widest uppercase"
+              className="bg-orange-400/10 hover:bg-orange-400/60 hover:font-bold hover:shadow-sm block px-3 py-2 rounded-md text-base transition-all duration-200 tracking-widest uppercase"
             >
               LOGIN/SIGNUP
             </Link>
             <Link
               to="/adminprofile/details"
-              className="text-violet-300 hover:bg-violet-700/30 hover:shadow-sm block px-3 py-2 rounded-md text-base font-medium transition-all duration-200 tracking-widest uppercase"
+              className="bg-orange-400/10 hover:bg-orange-400/60 hover:font-bold hover:shadow-sm block px-3 py-2 rounded-md text-base transition-all duration-200 tracking-widest uppercase"
             >
               PROFILE
             </Link>

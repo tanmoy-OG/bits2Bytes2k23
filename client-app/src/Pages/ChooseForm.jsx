@@ -4,17 +4,15 @@ import Particle from "../Components/Particle";
 
 const ChooseForm = () => {
   return (
-    <div className="absolute top-0 left-0 w-full h-fit">
+    <div className="absolute top-0 left-0 w-full h-full">
       <Nav />
-      <div className="bg-gray-600 p-5 mx-10 my-10">
+      <div className="flex flex-col bg-sky-500/10 backdrop-blur-sm m-10 p-2 rounded-xl">
         <Link
           to="/signup/admin"
-          className="font-bold p-4 font-custom-sans text-lg hover:text-blue-300"
+          className="font-bold m-2 p-4 font-custom-sans text-xl tracking-wide bg-blue-600/10 hover:bg-blue-500/20 text-white rounded-md"
         >
           Admin Registration Form
         </Link>
-
-        <hr className=" border border-black" />
 
         {/* <Link 
       to="/coordinator"
@@ -25,7 +23,7 @@ const ChooseForm = () => {
 
         <Link
           to="/signup/participant"
-          className="font-bold p-4 font-custom-sans text-lg hover:text-blue-300"
+          className="font-bold m-2 p-4 font-custom-sans text-xl tracking-wide bg-blue-600/10 hover:bg-blue-500/20 text-white rounded-md"
         >
           Participants Registration Form
         </Link>
