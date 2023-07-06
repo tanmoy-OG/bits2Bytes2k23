@@ -189,7 +189,11 @@ const AdminSignup = () => {
         </div>
 
         <div className="md:block hidden w-1/2">
-          <img src={logo} alt="Registration Image" className="rounded-2xl " />
+          <img
+            src={logo}
+            alt="Registration Image"
+            className="rounded-2xl h-fit"
+          />
         </div>
       </div>
       <Particle />
