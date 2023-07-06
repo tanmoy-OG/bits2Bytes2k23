@@ -11,7 +11,7 @@ import { FaSnapchatGhost } from "react-icons/fa";
 const Card = (props) => {
   return (
     <div data-aos="fade-up" data-aos-duration="5000" className="flex">
-      <div className="bg-sky-950 rounded-xl w-72 m-8 mb-10 p-0 pb-4 transition-all duration-500 hover:transition-all hover:duration-500 hover:bg-orange-800 shadow-lg shadow-black hover:p-4 hover:pb-8 group">
+      <div className="bg-sky-950 rounded-xl w-72 sm:m-8 sm:mb-10 p-0 pb-4 transition-all duration-500 hover:transition-all hover:duration-500 hover:bg-orange-800 shadow-lg shadow-black hover:p-4 hover:pb-8 scale-75 sm:scale-100 group">
         <div className="flex pb-6 justify-center">
           <img
             src={`${props.pic}`}
