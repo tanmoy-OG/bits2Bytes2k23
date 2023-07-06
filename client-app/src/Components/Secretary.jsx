@@ -19,12 +19,23 @@ const Secretary = () => {
           pic={"Profile/debanjan.jpg"}
           name={"Debanjan Chakroborty"}
           designation={"Technical Secretary"}
+          git={"https://github.com/Debanjan-Ironlegion"}
+          link={"https://www.linkedin.com/in/debanjan-chakraborty-44446820a"}
+          face={
+            "https://www.facebook.com/profile.php?id=100074922721896&mibextid=ZbWKwL"
+          }
+          insta={"https://instagram.com/d_c_2204"}
         />
         <Card
+          pic={"Profile/twish.jpeg"}
           name={"Twishanu Aich Roy"}
           designation={"Assistant Technical Secretary"}
+          link={"https://www.linkedin.com/in/twishanu-aich-roy-8b0768"}
+          face={"https://www.facebook.com/profile.php?id=100071482500085"}
+          insta={"https://www.instagram.com/twishanu_"}
         />
         <Card
+          pic={"Profile/aditya.jpeg"}
           name={"Aditya Roy"}
           designation={"Assistant Technical Secretary"}
           link={"https://www.linkedin.com/in/aditya-kr-roy-361868218"}

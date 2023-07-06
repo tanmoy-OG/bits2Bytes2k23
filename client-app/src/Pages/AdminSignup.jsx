@@ -30,13 +30,11 @@ const AdminSignup = () => {
       <div className="bg-transparent backdrop-blur-sm rounded-lg h-full m-0 p-10 flex flex-col md:flex-row">
         <div className="md:w-1/2 flex-1">
           <div className="bg-gradient-to-t from-transparent via-blue-950/60 to-transparent shadow-lg p-7">
-            <h1
-              className="text-4xl md:text-5xl font-bold tracking-wider text-neutral-200 font-custom-sans uppercase"
-            >
+            <h1 className="text-4xl md:text-5xl font-bold tracking-wider text-neutral-200 font-custom-sans uppercase">
               Registration
             </h1>
 
-            <div className="m-2 w-24 h-1 inline-block bg-gradient-to-r from-orange-600 to-orange-300"></div>
+            <div className="m-2 w-36 h-1 inline-block bg-gradient-to-r from-orange-600 to-orange-300"></div>
 
             <form onSubmit={handleSubmit}>
               <div className="flex">
@@ -47,7 +45,7 @@ const AdminSignup = () => {
                     name="fname"
                     id="fname"
                     placeholder="First Name"
-                    className="p-2 rounded-md border w-full bg-black text-white"
+                    className="p-2 rounded-md border border-neutral-500 w-full bg-black text-white"
                     values={values.fname}
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -63,7 +61,7 @@ const AdminSignup = () => {
                     name="lname"
                     id="lname"
                     placeholder="Last Name"
-                    className="p-2 rounded-md border w-full bg-black text-white"
+                    className="p-2 rounded-md border border-neutral-500 w-full bg-black text-white"
                     values={values.lname}
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -81,7 +79,7 @@ const AdminSignup = () => {
                   name="email"
                   id="email"
                   placeholder="Email"
-                  className="p-2 rounded-md border bg-black text-white"
+                  className="p-2 rounded-md border border-neutral-500 bg-black text-white"
                   values={values.email}
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -98,7 +96,7 @@ const AdminSignup = () => {
                   name="mobile"
                   id="mobile"
                   placeholder="Mobile"
-                  className="p-2 rounded-md border bg-black text-white"
+                  className="p-2 rounded-md border border-neutral-500 bg-black text-white"
                   values={values.mobile}
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -114,7 +112,7 @@ const AdminSignup = () => {
                   name="secret_key"
                   id="secret_key"
                   placeholder="Secret Key"
-                  className="p-2 rounded-md border bg-black text-white"
+                  className="p-2 rounded-md border border-neutral-500 bg-black text-white"
                   values={values.mobile}
                   onChange={handleChange}
                   onBlur={handleBlur}
@@ -132,7 +130,7 @@ const AdminSignup = () => {
                     name="password"
                     id="password"
                     placeholder="Password"
-                    className="p-2 rounded-md border w-full bg-black text-white"
+                    className="p-2 rounded-md border border-neutral-500 w-full bg-black text-white"
                     values={values.password}
                     onChange={handleChange}
                     onBlur={handleBlur}
@@ -149,13 +147,15 @@ const AdminSignup = () => {
                     name="confirm_password"
                     id="confirm password"
                     placeholder="Confirm Password"
-                    className="p-2 rounded-md border w-full bg-black text-white"
+                    className="p-2 rounded-md border border-neutral-500 w-full bg-black text-white"
                     values={values.confirm_password}
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
                   {errors.confirm_password && touched.confirm_password ? (
-                    <p className="form-error text-red-500">{errors.confirm_password}</p>
+                    <p className="form-error text-red-500">
+                      {errors.confirm_password}
+                    </p>
                   ) : null}
                 </div>
               </div>

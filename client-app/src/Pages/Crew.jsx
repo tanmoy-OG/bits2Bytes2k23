@@ -6,6 +6,89 @@ const Crew = () => {
   return (
     <div className="absolute top-0 left-0 w-full h-fit">
       <Nav page="crew" />
+      <div className="p-4 pt-0 row h-fit bg-sky-500/10 backdrop-blur-sm ml-6 mr-6 mb-10 rounded-2xl">
+        <h1
+          className="p-4 md:p-10 pb-5 text-4xl md:text-5xl font-bold tracking-wider text-neutral-200 font-custom-sans uppercase"
+          data-aos="fade-up"
+        >
+          Decoration Team
+        </h1>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 grid-flow-row gap-2 md:gap-6 place-items-center pl-10 pr-10">
+          <Card
+            pic={"./public/Profile/deepanjan.jpg"}
+            name={"Deepanjan Sur"}
+            designation={"Head Coordinaor"}
+            git={"https://github.com/Deepanjan12"}
+            link={"https://www.linkedin.com/in/deepanjan-sur-372026217"}
+            tweet={"https://twitter.com/75_deepanjan"}
+            face={"https://www.facebook.com/deepanjan.sur.1"}
+            insta={"https://www.instagram.com/deepanjan2002"}
+          />
+          <Card
+            pic={"./public/Profile/chirantan.jpeg"}
+            name={"Chorantan Acharyya"}
+            designation={"Coordinator"}
+            git={"https://github.com/i-am-chirantan"}
+            link={"https://www.linkedin.com/in/chirantan-acharyya-5552a71ba"}
+            face={"https://www.facebook.com/chiru.84"}
+            insta={"https://www.instagram.com/the.lazy_coder"}
+          />
+          <Card
+            pic={"./public/Profile/bd.jpeg"}
+            name={"Bidisha Nag"}
+            designation={"Coordinator"}
+            pin={"https://www.pinterest.com/ludicbitch"}
+            snap={"https://www.snapchat.com/add/dinglingduck"}
+          />
+          <Card
+            pic={"./public/Profile/elisha.jpeg"}
+            name={"Elisha Dutta"}
+            designation={"Coordinator"}
+            git={"https://www.github.com/ElishaDutta"}
+            link={"https://www.linkedin.com/in/elisha-duta-51904321a"}
+            face={"https://www.facebook.com/"}
+            insta={"https://www.instagram.com/dazzled____sweetie__"}
+          />
+          <Card
+            pic={"./public/Profile/jasmine.jpeg"}
+            name={"Jasmine Khatoon"}
+            designation={"Coordinator"}
+            link={"https://www.linkedin.com/in/jasmine-khatoon-a47288271"}
+            face={"https://www.facebook.com/"}
+            insta={"https://www.instagram.com/official_jasminekhatoon"}
+            snap={""}
+          />
+        </div>
+      </div>
+      <div className="p-4 pt-0 row h-fit bg-sky-500/10 backdrop-blur-sm ml-6 mr-6 mb-10 rounded-2xl">
+        <h1
+          className="p-4 md:p-10 pb-5 text-4xl md:text-5xl font-bold tracking-wider text-neutral-200 font-custom-sans uppercase"
+          data-aos="fade-up"
+        >
+          Design Team
+        </h1>
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 grid-flow-row gap-2 md:gap-6 place-items-center pl-10 pr-10">
+          <Card
+            pic={"./public/Profile/tanmoy.jpeg"}
+            name={"Tanmoy Choudhury"}
+            designation={"Head Coordinator"}
+            git={"https://www.github.com/tanmoy-OG"}
+            link={"https://www.linkedin.com/in/tanmoy-choudhury"}
+            tweet={"https://twitter.com/tanmoy_OG"}
+            face={"https://www.facebook.com/tanmoy.choudhury.12979"}
+            insta={"https://www.instagram.com/tanmoy_og"}
+          />
+          <Card
+            pic={"./public/Profile/sharmistha.jpeg"}
+            name={"Sharmistha Mondal"}
+            designation={"Coordinator"}
+            git={"https://github.com/sharmistha2002"}
+            link={"https://www.linkedin.com/in/sharmistha-mondal-315670214"}
+            face={"https://www.facebook.com/profile.php?id=100069608756882"}
+            insta={"https://www.instagram.com/sharmi_2807"}
+          />
+        </div>
+      </div>
       <div className="p-3 pt-0 pb-6 row h-fit bg-sky-500/10 backdrop-blur-sm ml-6 mr-6 mt-10 mb-10 rounded-2xl">
         <h1
           className="p-4 md:p-10 pb-5 text-4xl md:text-5xl font-bold tracking-wider text-neutral-200 font-custom-sans uppercase"
@@ -16,7 +99,7 @@ const Crew = () => {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 grid-flow-row gap-2 md:gap-8 place-items-center pl-10 pr-10">
           <Card
-            pic={"./public/Profile/tanmoy.jpg"}
+            pic={"./public/Profile/tanmoy.jpeg"}
             name={"Tanmoy Choudhury"}
             designation={"Front End Dev and DevOps"}
             git={"https://www.github.com/tanmoy-OG"}
@@ -44,74 +127,6 @@ const Crew = () => {
             insta={"https://www.instagram.com/myself_sruti__"}
           />
           <Card name={"Rishav Ghosh"} designation={"Back End Dev"} />
-        </div>
-      </div>
-      <div className="p-4 pt-0 row h-fit bg-sky-500/10 backdrop-blur-sm ml-6 mr-6 mb-10 rounded-2xl">
-        <h1
-          className="p-4 md:p-10 pb-5 text-4xl md:text-5xl font-bold tracking-wider text-neutral-200 font-custom-sans uppercase"
-          data-aos="fade-up"
-        >
-          Decoration Team
-        </h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 grid-flow-row gap-2 md:gap-6 place-items-center pl-10 pr-10">
-          <Card
-            pic={"./public/Profile/deepanjan.jpg"}
-            name={"Deepanjan Sur"}
-            designation={"Head Coordinaor"}
-            git={"https://github.com/Deepanjan12"}
-            link={"https://www.linkedin.com/in/deepanjan-sur-372026217"}
-            tweet={"https://twitter.com/75_deepanjan"}
-            face={"https://www.facebook.com/deepanjan.sur.1"}
-            insta={"https://www.instagram.com/deepanjan2002"}
-          />
-          <Card
-            pic={"./public/Profile/chirantan.jpeg"}
-            name={"Chorantan"}
-            designation={"Coordinator"}
-            git={"https://github.com/i-am-chirantan"}
-            link={"https://www.linkedin.com/in/chirantan-acharyya-5552a71ba"}
-            face={"https://www.facebook.com/chiru.84"}
-            insta={"https://www.instagram.com/the.lazy_coder"}
-          />
-          <Card
-            pic={"./public/Profile/bd.jpeg"}
-            name={"Bidisha Nag"}
-            designation={"Coordinator"}
-            pin={"https://www.pinterest.com/ludicbitch"}
-            snap={"https://www.snapchat.com/add/dinglingduck"}
-          />
-          <Card
-            pic={"./public/Profile/elisha.jpeg"}
-            name={"Elisha"}
-            designation={"Coordinator"}
-            git={"https://www.github.com/ElishaDutta"}
-            link={"https://www.linkedin.com/in/elisha-duta-51904321a"}
-            face={"https://www.facebook.com/"}
-            insta={"https://www.instagram.com/dazzled____sweetie__"}
-          />
-          <Card
-            pic={"./public/Profile/jasmine.jpeg"}
-            name={"Jasmine Khatoon"}
-            designation={"Coordinator"}
-            link={"https://www.linkedin.com/in/jasmine-khatoon-a47288271"}
-            face={"https://www.facebook.com/"}
-            insta={"https://www.instagram.com/official_jasminekhatoon"}
-            snap={""}
-          />
-        </div>
-      </div>
-      <div className="p-4 pt-0 row h-fit bg-sky-500/10 backdrop-blur-sm ml-6 mr-6 mb-10 rounded-2xl">
-        <h1
-          className="p-4 md:p-10 pb-5 text-4xl md:text-5xl font-bold tracking-wider text-neutral-200 font-custom-sans uppercase"
-          data-aos="fade-up"
-        >
-          Design Team
-        </h1>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 grid-flow-row gap-2 md:gap-6 place-items-center pl-10 pr-10">
-          <Card name={"Tanmoy Choudhury"} designation={"Design Lead"} />
-          <Card name={"Sharmistha Mondal"} designation={"Designer"} />
-          <Card name={"Sayak Mondal"} designation={"Assistant Designer"} />
-          <Card name={"Akash"} designation={"Assisant Designer"} />
         </div>
       </div>
       <Footer />
