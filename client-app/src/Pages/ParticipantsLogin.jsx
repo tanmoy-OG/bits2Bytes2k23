@@ -4,6 +4,7 @@ import LoginSchema from "./LoginSchema";
 import Nav from "../Components/Nav";
 import Particle from "../Components/Particle";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const ParticipantsLogin = () => {
   const initialValues = {
@@ -11,12 +12,38 @@ const ParticipantsLogin = () => {
     password: "",
   };
 
+  const [loginError, setLoginError] = useState("");
+
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues: initialValues,
       validationSchema: LoginSchema,
-      onSubmit: (values) => {
-        console.log(values);
+
+      onSubmit: async (values) => {
+        try {
+          const response = await fetch('http://127.0.0.1:4200/login/', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(values),
+          });
+
+          if (response.ok) {
+            // Successfull Login
+            const data = await response.json();
+            console.log(data);
+            console.log("Successfull");
+          } else {
+            // Login failed.
+            const errorData = await response.json();
+            setLoginError(errorData.message);
+            console.log("failed");
+          }
+        } catch (error) {
+          console.error("Error:", error);
+          setLoginError("An error occurred during login.");
+        }
       },
     });
   return (
@@ -38,7 +65,7 @@ const ParticipantsLogin = () => {
                   name="roll"
                   placeholder="Roll Number "
                   className="p-2 rounded-md border border-neutral-500 w-full bg-black text-white"
-                  values={values.roll}
+                  value={values.roll}
                   onChange={handleChange}
                   onBlur={handleBlur}
                 />
@@ -61,12 +88,17 @@ const ParticipantsLogin = () => {
                   <p className="form-error text-red-500">{errors.password}</p>
                 ) : null}
               </div>
+              <div className=" justify-between items-center mt-3">
+                <button 
+                type="submit"
+                className="py-2 px-5 border border-blue-500 rounded-xl hover:bg-blue-950 text-white">
+                  Login
+                </button>
+              </div>
             </form>
-            <div className=" justify-between items-center mt-3">
-              <button className="py-2 px-5 border border-blue-500 rounded-xl hover:bg-blue-950 text-white">
-                Login
-              </button>
-            </div>
+
+            {loginError && <p className="text-red-500">{loginError}</p>}
+
             <div className="m-3 grid grid-cols-3 items-center text-blue-500">
               <hr className="border-blue-500" />
               <p className="text-center">OR</p>

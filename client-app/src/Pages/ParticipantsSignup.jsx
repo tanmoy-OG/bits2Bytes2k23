@@ -4,6 +4,7 @@ import formSchema from "./FormSchema";
 import Nav from "../Components/Nav";
 import Particle from "../Components/Particle";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
 const initialValues = {
   fname: "",
@@ -18,12 +19,37 @@ const initialValues = {
 };
 
 const ParticipantsSignup = () => {
+
+  const [signupError, setSignupError] = useState("");
+
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues: initialValues,
       validationSchema: formSchema,
-      onSubmit: (values) => {
-        console.log(values);
+
+      onSubmit: async (values) => {
+        try {
+          const response = await fetch("http://127.0.0.1:4200/user_signup/", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify(values),
+          });
+
+          if (response.ok) {
+            // Registration successful, handle the response here
+            const data = await response.json();
+            console.log(data);
+          } else {
+            // Registration failed, handle the error
+            const errorData = await response.json();
+            setSignupError(errorData.message);
+          }
+        } catch (error) {
+          console.error("Error:", error);
+          setSignupError("An error occurred during registration.");
+        }
       },
     });
 
@@ -210,6 +236,8 @@ const ParticipantsSignup = () => {
                 Register
               </button>
             </form>
+
+            {signupError && <p className="text-red-500">{signupError}</p>}
 
             <div className="m-3 grid grid-cols-3 items-center text-blue-500">
               <hr className="border-blue-500" />
