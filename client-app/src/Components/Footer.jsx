@@ -7,11 +7,7 @@ const Footer = () => {
     <div className=" h-fit bg-sky-500/10 backdrop-blur-sm">
       <div className="flex justify-around w-full flex-col sm:flex-row gap-4 pl-5 pr-5 lg:pl-10 lg:pr-10 xl:pl-28 xl:pr-28">
         <div className="basis-1/3 text-neutral-200">
-          <h1
-            className="pt-10 pb-10 text-4xl md:text-5xl font-bold tracking-wider text-neutral-200 font-custom-sans uppercase flex  justify-center sm:justify-start"
-            data-aos="fade-up "
-            data-aos-duration="5000"
-          >
+          <h1 className="pt-10 pb-10 text-4xl md:text-5xl font-bold tracking-wider text-neutral-200 font-custom-sans uppercase flex  justify-center sm:justify-start">
             venue
           </h1>
           <div className="flex flex-col gap-8 pt-3 items-center sm:items-start sm:text-left">
@@ -44,11 +40,7 @@ const Footer = () => {
         </div>
         <div className="border-b border-spacing-1 border-white/20 mt-4 mb-4 sm:border-none sm:m-0"></div>
         <div className="basis-1/3 text-neutral-200">
-          <h1
-            className="sm:pt-10 pb-10 text-4xl md:text-5xl font-bold tracking-wider text-neutral-200 font-custom-sans uppercase flex justify-center sm:justify-end sm:text-right"
-            data-aos="fade-up"
-            data-aos-duration="5000"
-          >
+          <h1 className="sm:pt-10 pb-10 text-4xl md:text-5xl font-bold tracking-wider text-neutral-200 font-custom-sans uppercase flex justify-center sm:justify-end sm:text-right">
             contact us
           </h1>
           <div className="flex flex-col gap-3 sm:items-end sm:text-right">
