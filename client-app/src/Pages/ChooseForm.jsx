@@ -5,7 +5,7 @@ import Particle from "../Components/Particle";
 const ChooseForm = () => {
   return (
     <div className="absolute top-0 left-0 w-full h-full">
-      <Nav />
+      <Nav page="registration" />
       <div className="flex flex-col bg-sky-500/10 backdrop-blur-sm m-10 p-2 rounded-xl">
         <Link
           to="/signup/admin"

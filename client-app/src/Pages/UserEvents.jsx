@@ -1,4 +1,7 @@
 import { Link } from "react-router-dom";
+import Nav from "../Components/Nav";
+import SubNavButton from "../Components/SubNavButton";
+import Particle from "../Components/Particle";
 
 const UserEvents = () => {
   return (
@@ -13,8 +16,13 @@ const UserEvents = () => {
           <SubNavButton class="active-button" buttonType="my events" />
         </div>
 
-        {/* my events esction left */}
+        <div className="p-6 pt-4 bg-sky-500/10 backdrop-blur-sm w-3/4 m-6 md:w-2/4 max-w-2xl rounded-2xl flex flex-col gap-7 sm:gap-12">
+          <h1 className="p-4 md:p-10 text-4xl md:text-5xl font-bold tracking-wider text-neutral-200 font-custom-sans uppercase">
+            coming soon!
+          </h1>
+        </div>
       </div>
+
       <Particle />
     </div>
   );

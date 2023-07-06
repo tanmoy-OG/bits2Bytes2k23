@@ -21,7 +21,7 @@ const ParticipantsLogin = () => {
     });
   return (
     <div className="absolute top-0 left-0 w-full h-fit">
-      <Nav />
+      <Nav page="" />
       <div className="bg-black backdrop-blur-lg rounded-lg m-10 flex flex-col md:flex-row">
         <div className="md:w-1/2 flex-1">
           <div className="bg-gradient-to-t from-blue-300 to-blue-950 shadow-lg p-7">
@@ -84,7 +84,7 @@ const ParticipantsLogin = () => {
                 to="/signup/participant"
                 className="py-2 px-5 border border-blue-500 rounded-xl hover:bg-blue-950 hover:text-white"
               >
-                <button>Registration</button>
+                <button>Sign Up</button>
               </Link>
             </div>
           </div>

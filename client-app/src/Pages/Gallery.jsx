@@ -12,7 +12,7 @@ const Gallery = () => {
 
   return (
     <div className="absolute top-0 left-0 w-full h-fit">
-      <Nav />
+      <Nav page="gallery" />
       <GalleryItems
         setChildVisible={setChildVisible}
         setImg={setImg}

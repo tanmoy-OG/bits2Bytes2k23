@@ -2,7 +2,6 @@ import { useState } from "react";
 import Nav from "../Components/Nav";
 import Particle from "../Components/Particle";
 import SubNavButton from "../Components/SubNavButton";
-import Vanta from "../Components/Vanta";
 import EachUser from "../Components/EachUser";
 import download from "../assets/download-white.svg";
 import approve from "../assets/approve.svg";

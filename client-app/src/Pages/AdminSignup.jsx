@@ -26,7 +26,7 @@ const AdminSignup = () => {
 
   return (
     <div className="absolute top-0 left-0 w-full h-fit">
-      <Nav className="mb-0" />
+      <Nav page="" />
       <div className="bg-transparent backdrop-blur-sm rounded-lg h-full m-0 p-10 flex flex-col md:flex-row">
         <div className="md:w-1/2 flex-1">
           <div className="bg-gradient-to-t from-transparent via-blue-950/60 to-transparent shadow-lg p-7">

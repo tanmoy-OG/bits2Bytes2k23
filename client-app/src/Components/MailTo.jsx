@@ -9,7 +9,7 @@ const MailTo = ({ mailto, label }) => {
         e.preventDefault();
       }}
     >
-      {label}
+      <p className="pl-1 text-orange-400">{label}</p>
     </Link>
   );
 };
