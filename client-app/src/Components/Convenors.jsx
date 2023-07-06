@@ -1,7 +1,7 @@
 import demo from "../assets/demo.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
-  faTwitter,
+  faFacebookF,
   faLinkedinIn,
   faGithub,
   faInstagram,
@@ -14,14 +14,22 @@ const Convenors = () => {
       designation: "Lead Convenor",
       position: "Something",
       contactNo: "123",
-      profilePic: demo,
+      profilePic: "Profile/tripti.jpg",
+      git: "",
+      link: "https://www.linkedin.com/in/tripti-majumdar-084856107",
+      face: "",
+      insta: "",
     },
     {
       name: "Ajanta Patil",
       designation: "Co-Convenor",
       position: "Something",
       contactNo: "123",
-      profilePic: demo,
+      profilePic: "Profile/ajanta.jpg",
+      git: "",
+      link: "https://www.linkedin.com/in/ajanta-palit-90229a40",
+      face: "",
+      insta: "",
     },
     // Add more convenors as needed
   ];
@@ -71,25 +79,25 @@ const Convenors = () => {
                     </p>
                     <div className="m-6 flex flex-row">
                       <a
-                        href="#"
+                        href={convenor.git}
                         className="ml-1 mr-1 h-10 w-10 p-2 flex justify-center rounded-full text-2xl bg-slate-800 hover:transition-all hover:scale-110 hover:-translate-y-1 transition-all duration-500"
                       >
                         <FontAwesomeIcon icon={faGithub} />
                       </a>
                       <a
-                        href="#"
+                        href={convenor.link}
                         className="ml-1 mr-1 h-10 w-10 p-2 flex justify-center rounded-full text-2xl bg-sky-700 hover:transition-all hover:scale-110 hover:-translate-y-1 transition-all duration-500"
                       >
                         <FontAwesomeIcon icon={faLinkedinIn} />
                       </a>
                       <a
-                        href="#"
+                        href={convenor.tweet}
                         className="ml-1 mr-1 h-10 w-10 p-2 flex justify-center rounded-full text-2xl bg-sky-500 hover:transition-all hover:scale-110 hover:-translate-y-1 transition-all duration-500"
                       >
-                        <FontAwesomeIcon icon={faTwitter} />
+                        <FontAwesomeIcon icon={faFacebookF} />
                       </a>
                       <a
-                        href="#"
+                        href={convenor.insta}
                         className="ml-1 mr-1 h-10 w-10 p-2 flex justify-center rounded-full text-2xl bg-rose-600 hover:transition-all hover:scale-110 hover:-translate-y-1 transition-all duration-500"
                       >
                         <FontAwesomeIcon icon={faInstagram} />
