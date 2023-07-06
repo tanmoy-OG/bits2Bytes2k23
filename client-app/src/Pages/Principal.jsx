@@ -5,7 +5,7 @@ import Particle from "../Components/Particle";
 const Principal = () => {
   return (
     <div className="absolute top-0 left-0 w-full h-fit">
-      <Nav />
+      <Nav page="principal" />
       <div
         className="mt-10 mb-10 ml-6 mr-6 p-10 pt-0 pb-12 flex flex-col items-center bg-sky-500/10 backdrop-blur-sm rounded-2xl"
         data-aos="fade-up"
