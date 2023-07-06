@@ -8,7 +8,7 @@ const FormSchema = Yup.object({
     roll:Yup.number().required("Field cannot be empty"),
     password:Yup.string().min(8).required("Field cannot be empty"),
     confirm_password:Yup.string().required("Field cannot be empty").oneOf([Yup.ref('password'),null], "Password must match"),
-    year:Yup.number().max(1).required("Field cannot be empty"),
+    year:Yup.number().required("Field cannot be empty"),
     stream:Yup.string().required("Field cannot be empty"),
     secret_key:Yup.string().required("Field cannot be empty")    
 })
