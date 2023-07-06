@@ -172,3 +172,28 @@
     width: 40%;
   }
 }
+
+/* hover-underline-animation */
+.hover-underline,.active-page {
+  position: relative;
+}
+.hover-underline:after,.active-page:after {
+  background: none repeat scroll 0 0 transparent;
+  bottom: 0;
+  content: "";
+  display: block;
+  height: 2px;
+  left: 50%;
+  position: absolute;
+  background: #fb923c;
+  transition: width 0.3s ease 0s, left 0.3s ease 0s;
+  width: 0;
+}
+.hover-underline:hover:after { 
+  width: 100%; 
+  left: 0; 
+}
+.active-page:after{
+  width:100%;
+  left: 0;
+}

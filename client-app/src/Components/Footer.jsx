@@ -89,30 +89,37 @@ const Footer = () => {
         </div>
       </div>
       <div className="w-full bg-black/30 py-2 text-neutral-400 tracking-wide mt-6">
-        <h1>
+        <h1 className="text-sm p-1">
           {" "}
           Made with &#10084; by{" "}
           <a
             href="https://www.linkedin.com/in/tanmoy-choudhury/"
-            className="hover:text-red-500 transition-all duration-200"
+            target="_blank"
+            className="hover:text-orange-400 transition-all duration-300"
           >
             Tanmoy Choudhury
           </a>
           ,{" "}
           <a
             href="https://www.linkedin.com/in/sruti-das-b4898926a/"
-            className="hover:text-red-500 transition-all duration-200"
+            target="_blank"
+            className="hover:text-orange-400 transition-all duration-300"
           >
             Sruti Das
           </a>
           ,{" "}
-          <a href="" className="hover:text-red-500 transition-all duration-200">
+          <a
+            href=""
+            target="_blank"
+            className="hover:text-orange-400 transition-all duration-300"
+          >
             Rishav Ghosh
           </a>{" "}
           and{" "}
           <a
             href="https://www.linkedin.com/in/priyankar-sarkar/"
-            className="hover:text-red-500 transition-all duration-200"
+            target="_blank"
+            className="hover:text-orange-400 transition-all duration-300"
           >
             Priyankar Sarkar
           </a>

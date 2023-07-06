@@ -5,8 +5,8 @@ import Footer from "../Components/Footer";
 const Crew = () => {
   return (
     <div className="absolute top-0 left-0 w-full h-fit">
-      <Nav />
-      <div className="p-3 pt-0 pb-6 row h-fit bg-sky-500/10 backdrop-blur-sm ml-6 mr-6 mb-10 rounded-2xl">
+      <Nav page="crew" />
+      <div className="p-3 pt-0 pb-6 row h-fit bg-sky-500/10 backdrop-blur-sm ml-6 mr-6 mt-10 mb-10 rounded-2xl">
         <h1
           className="p-4 md:p-10 pb-5 text-4xl md:text-5xl font-bold tracking-wider text-neutral-200 font-custom-sans uppercase"
           data-aos="fade-up"

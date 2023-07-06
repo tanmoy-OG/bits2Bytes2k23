@@ -1,7 +1,7 @@
 import logo from "../assets/logo.png"; 
 const Present = () => {
   return (
-    <div className="relative flex flex-col space-y-5 ml-6 mr-6 mb-10">
+    <div className="relative flex flex-col space-y-5 ml-6 mr-6 mt-10 mb-10">
       <h1 className="text-4xl sm:text-5xl font-semibold tracking-wide text-orange-400">
         BENGAL INSTITUTE OF TECHNOLOGY
       </h1>
