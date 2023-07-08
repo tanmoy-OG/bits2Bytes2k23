@@ -6,6 +6,7 @@ import Particle from "../Components/Particle";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
+
 const ParticipantsLogin = () => {
   const initialValues = {
     roll: "",
@@ -19,33 +20,65 @@ const ParticipantsLogin = () => {
       initialValues: initialValues,
       validationSchema: LoginSchema,
 
-      onSubmit: async (values) => {
-        try {
-          const response = await fetch('http://127.0.0.1:4200/login/', {
-            method: 'POST',
-            headers: {
-              'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(values),
-          });
+      // onSubmit: async (values) => {
+      //   // console.log("hello");
+      //   try {
+      //     const response = await fetch('http://127.0.0.1:5000/login/', {
+      //       method: 'POST',
+      //       headers: {
+      //         'Content-Type': 'application/json',
+      //       },
+      //       body: JSON.stringify(values),
+      //     });
 
-          if (response.ok) {
-            // Successfull Login
-            const data = await response.json();
-            console.log(data);
-            console.log("Successfull");
-          } else {
-            // Login failed.
-            const errorData = await response.json();
-            setLoginError(errorData.message);
-            console.log("failed");
-          }
-        } catch (error) {
-          console.error("Error:", error);
-          setLoginError("An error occurred during login.");
-        }
-      },
+      //     if (response.ok) {
+      //       // Successfull Login
+      //       const data = await response.json();
+      //       console.log(data);
+      //       console.log("Successfull");
+      //     } else {
+      //       // Login failed.
+      //       const errorData = await response.json();
+      //       setLoginError(errorData.message);
+      //       console.log("failed");
+      //     }
+      //   } catch (error) {
+      //     console.error("Error:", error);
+      //     setLoginError("An error occurred during login.");
+      //   }
+      // },
     });
+
+    const submit = async(e)=>{
+      e.preventDefault();
+      try {
+        // console.log("hello");
+        console.log(values);
+        const response = await fetch(`http://127.0.0.1:5000/login/`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(values),
+        });
+
+        if (response.ok) {
+          // Successfull Login
+          const data = await response.json();
+          console.log(data);
+          console.log("Successfull");
+        } else {
+          // Login failed.
+          const errorData = await response.json();
+          setLoginError(errorData.message);
+          console.log("failed");
+        }
+      } catch (error) {
+        console.error("Error:", error);
+        setLoginError("An error occurred during login.");
+      }
+    }
+    
   return (
     <div className="absolute top-0 left-0 w-full h-fit">
       <Nav page="" />
@@ -58,7 +91,7 @@ const ParticipantsLogin = () => {
 
             <div className="m-2 w-36 h-1 inline-block bg-gradient-to-r from-orange-600 to-orange-300"></div>
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={submit}>
               <div className="input-block text-left p-5 font-semibold font-custom-san">
                 <input
                   type="number"
@@ -89,11 +122,11 @@ const ParticipantsLogin = () => {
                 ) : null}
               </div>
               <div className=" justify-between items-center mt-3">
-                <button 
+                <input 
                 type="submit"
-                className="py-2 px-5 border border-blue-500 rounded-xl hover:bg-blue-950 text-white">
-                  Login
-                </button>
+                className="py-2 px-5 border border-blue-500 rounded-xl hover:bg-blue-950 text-white"/>
+                
+                {/* </input> */}
               </div>
             </form>
 

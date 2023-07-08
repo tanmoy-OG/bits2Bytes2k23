@@ -1,3 +1,4 @@
+
 import Aos from "aos";
 import { useEffect, useState } from "react";
 import Home from "./Pages/Home.jsx";
@@ -19,6 +20,8 @@ import ErrorPage from "./Pages/ErrorPage";
 import "aos/dist/aos.css";
 import "./App.css";
 
+
+// const env=require('dotenv').config();
 // for Routing
 import { Route, Routes } from "react-router-dom";
 

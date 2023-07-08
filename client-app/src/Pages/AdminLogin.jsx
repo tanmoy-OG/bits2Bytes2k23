@@ -15,10 +15,41 @@ const AdminLogin = () => {
     useFormik({
       initialValues: initialValues,
       validationSchema: LoginSchema,
-      onSubmit: (values) => {
-        console.log(values);
-      },
+      // onSubmit: (values) => {
+      //   console.log(values);
+      // },
     });
+    
+    
+    const Submit = async(e)=>{
+      e.preventDefault();
+      try {
+        console.log(values);
+        const response = await fetch(`http://127.0.0.1:5000/login/`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(values),
+        });
+
+        if (response.ok) {
+          // Successfull Login
+          const data = await response.json();
+          console.log(data);
+          console.log("Successfull");
+        } else {
+          // Login failed.
+          const errorData = await response.json();
+          setLoginError(errorData.message);
+          console.log("failed");
+        }
+      } catch (error) {
+        console.error("Error:", error);
+        setLoginError("An error occurred during login.");
+      }
+    }
+
   return (
     <div className="absolute top-0 left-0 w-full h-fit">
       <Nav page="" />
@@ -31,7 +62,7 @@ const AdminLogin = () => {
 
             <div className="m-2 w-36 h-1 inline-block bg-gradient-to-r from-orange-600 to-orange-300"></div>
 
-            <form onSubmit={handleSubmit}>
+            <form onSubmit={Submit}>
               <div className="input-block text-left p-5 font-semibold font-custom-san">
                 <input
                   type="email"
