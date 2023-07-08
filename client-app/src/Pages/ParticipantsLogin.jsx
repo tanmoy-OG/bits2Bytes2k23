@@ -5,6 +5,9 @@ import Nav from "../Components/Nav";
 import Particle from "../Components/Particle";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 
 
 const ParticipantsLogin = () => {
@@ -49,6 +52,14 @@ const ParticipantsLogin = () => {
       // },
     });
 
+    const check = async(data)=>{
+      if("error" in data ){
+        // toast(data.error)
+        return true;
+      }
+      return false;
+    }
+
     const submit = async(e)=>{
       e.preventDefault();
       try {
@@ -65,8 +76,23 @@ const ParticipantsLogin = () => {
         if (response.ok) {
           // Successfull Login
           const data = await response.json();
-          console.log(data);
-          console.log("Successfull");
+          // console.log(data
+          if(check(data)){
+              
+            // console.log(data);
+              toast.error(data.error,{
+                position:"top-center",
+                theme:"colored",})
+              }
+          
+        
+            else{
+
+              toast.success(data.successfull)
+            }
+          // console.log("Successfull");
+
+          
         } else {
           // Login failed.
           const errorData = await response.json();
@@ -74,7 +100,10 @@ const ParticipantsLogin = () => {
           console.log("failed");
         }
       } catch (error) {
-        console.error("Error:", error);
+        toast.error("Unsucessfull",{
+          position:"top-center",
+          theme:"colored",
+        })
         setLoginError("An error occurred during login.");
       }
     }
@@ -122,11 +151,11 @@ const ParticipantsLogin = () => {
                 ) : null}
               </div>
               <div className=" justify-between items-center mt-3">
-                <input 
+                <button 
                 type="submit"
-                className="py-2 px-5 border border-blue-500 rounded-xl hover:bg-blue-950 text-white"/>
-                
-                {/* </input> */}
+                className="py-2 px-5 border border-blue-500 rounded-xl hover:bg-blue-950 text-white">
+                Login
+                </button>
               </div>
             </form>
 
@@ -159,6 +188,7 @@ const ParticipantsLogin = () => {
           />
         </div>
       </div>
+      <ToastContainer/>
       <Particle />
     </div>
   );
