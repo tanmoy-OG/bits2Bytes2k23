@@ -171,7 +171,7 @@ const Details = (props) => {
   };
 
   return (
-    <div className="p-6 pt-4 bg-sky-500/10 backdrop-blur-sm w-3/4 m-6 md:w-2/4 max-w-2xl rounded-2xl flex flex-col gap-7 sm:gap-12">
+    <div className="p-6 pt-4 m-6 bg-sky-500/10 backdrop-blur-sm w-3/4 md:w-2/4 max-w-2xl rounded-2xl flex flex-col gap-7 sm:gap-12">
       <h1 className="text-3xl md:text-5xl font-bold tracking-wider text-white font-custom-sans uppercase">
         {props.type === "admin" ? "admin profile" : "profile"}
       </h1>
