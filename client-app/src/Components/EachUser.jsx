@@ -16,7 +16,7 @@ const EachUser = (props) => {
   };
 
   return (
-    <div className="w-full bg-blue-600/10 rounded-md flex flex-col transition-all duration-200">
+    <div className="w-full bg-blue-600/10 hover:bg-blue-500/20 rounded-md flex flex-col transition-all duration-200">
       {/* user overview */}
       <div
         className="user-overview flex flex-row gap-3 p-1"
