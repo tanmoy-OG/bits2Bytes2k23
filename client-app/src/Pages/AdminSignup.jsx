@@ -4,6 +4,8 @@ import formSchema from "./FormSchema";
 import Nav from "../Components/Nav";
 import Particle from "../Components/Particle";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const initialValues = {
   fname: "",
@@ -24,6 +26,13 @@ const AdminSignup = () => {
       // },
     });
 
+    const check = async(data)=>{
+      if("error" in data ){
+        // toast(data.error)
+        return true;
+      }
+      return false;
+    }
 
     const Submit = async(e)=>{
       e.preventDefault();
@@ -41,14 +50,34 @@ const AdminSignup = () => {
             if (response.ok) {
               // Registration successful, handle the response here
               const data = await response.json();
-              console.log(data);
+              if(check(data)){
+              
+              // console.log(data);
+                toast.error(data.error,{
+                  position:"top-center",
+                  theme:"colored",})
+                }
+              else{
+                toast.success(data.successfull<{
+                  position:"top-center",
+                  theme:"coloured"
+                })
+              }
             } else {
               // Registration failed, handle the error
               const errorData = await response.json();
               setSignupError(errorData.message);
+              toast.error("Unsuccessfull",{
+                position:"top-center",
+                theme:"colored",
+              })
             }
           } catch (error) {
             console.error("Error:", error);
+            toast.error("Something went wrong",{
+              position:"top-center",
+              theme:"colored",
+            })
             setSignupError("An error occurred during registration.");
           }
   
@@ -225,6 +254,7 @@ const AdminSignup = () => {
           />
         </div>
       </div>
+      <ToastContainer/>
       <Particle />
     </div>
   );

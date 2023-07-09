@@ -4,6 +4,8 @@ import LoginSchema from "./LoginSchema";
 import Nav from "../Components/Nav";
 import Particle from "../Components/Particle";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const AdminLogin = () => {
   const initialValues = {
@@ -20,6 +22,13 @@ const AdminLogin = () => {
       // },
     });
     
+    const check = async(data)=>{
+      if("error" in data ){
+        // toast(data.error)
+        return true;
+      }
+      return false;
+    }
     
     const Submit = async(e)=>{
       e.preventDefault();
@@ -37,15 +46,36 @@ const AdminLogin = () => {
           // Successfull Login
           const data = await response.json();
           console.log(data);
-          console.log("Successfull");
+          // console.log("Successfull");
+          if(check(data)){
+              
+            // console.log(data);
+              toast.error(data.error,{
+                position:"top-center",
+                theme:"colored",})
+          }
+          else{
+
+              toast.success(data.successfull,{
+                position:"top-center",
+                theme:"colored",})
+            }
         } else {
           // Login failed.
           const errorData = await response.json();
           setLoginError(errorData.message);
-          console.log("failed");
+          // console.log("failed");
+          toast.error("Unsuccessfull",{
+            position:"top-center",
+            theme:"coloured"
+          })
         }
       } catch (error) {
         console.error("Error:", error);
+        toast.error("Something went wrong",{
+          position:"top-center",
+          theme:"colored",
+        })
         setLoginError("An error occurred during login.");
       }
     }
@@ -125,6 +155,7 @@ const AdminLogin = () => {
           />
         </div>
       </div>
+      <ToastContainer/>
       <Particle />
     </div>
   );

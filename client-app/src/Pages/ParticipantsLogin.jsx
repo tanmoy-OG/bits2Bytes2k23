@@ -52,6 +52,7 @@ const ParticipantsLogin = () => {
       // },
     });
 
+    //to check error in the data.
     const check = async(data)=>{
       if("error" in data ){
         // toast(data.error)
@@ -60,6 +61,7 @@ const ParticipantsLogin = () => {
       return false;
     }
 
+    //to fetch
     const submit = async(e)=>{
       e.preventDefault();
       try {
@@ -83,12 +85,12 @@ const ParticipantsLogin = () => {
               toast.error(data.error,{
                 position:"top-center",
                 theme:"colored",})
-              }
-          
-        
-            else{
+          }
+          else{
 
-              toast.success(data.successfull)
+              toast.success(data.successfull,{
+                position:"top-center",
+                theme:"colored",})
             }
           // console.log("Successfull");
 
@@ -98,6 +100,10 @@ const ParticipantsLogin = () => {
           const errorData = await response.json();
           setLoginError(errorData.message);
           console.log("failed");
+          toast.error("Unsuccessfull",{
+            position:"top-center",
+            theme:"colored",}
+          )
         }
       } catch (error) {
         toast.error("Unsucessfull",{

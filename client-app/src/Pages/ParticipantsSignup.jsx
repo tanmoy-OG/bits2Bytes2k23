@@ -24,38 +24,14 @@ const initialValues = {
 const ParticipantsSignup = () => {
 
   const [signupError, setSignupError] = useState("");
+  const [isRegistered, setIsRegistered] = useState(false);
+
 
   
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } = 
     useFormik({
       initialValues: initialValues,
       validationSchema: formSchema,
-
-      // onSubmit: async (values) => {
-      //   console.log('hello');
-      //   try {
-      //     const response = await fetch("http://127.0.0.1:5000/user_signup/", {
-      //       method: "POST",
-      //       headers: {
-      //         "Content-Type": "application/json",
-      //       },
-      //       body: JSON.stringify(values),
-      //     });
-
-      //     if (response.ok) {
-      //       // Registration successful, handle the response here
-      //       const data = await response.json();
-      //       console.log(data);
-      //     } else {
-      //       // Registration failed, handle the error
-      //       const errorData = await response.json();
-      //       setSignupError(errorData.message);
-      //     }
-      //   } catch (error) {
-      //     console.error("Error:", error);
-      //     setSignupError("An error occurred during registration.");
-      //   }
-      // },
     });
     
     const check = async(data)=>{
@@ -91,11 +67,12 @@ const ParticipantsSignup = () => {
                   position:"top-center",
                   theme:"colored",})
                 }
-            
-          
               else{
-  
-                toast.success(data.successfull)
+                toast.success(data.successfull<{
+                  position:"top-center",
+                  theme:"coloured"
+                })
+                setIsRegistered(true); 
               }
             
             }
@@ -120,6 +97,12 @@ const ParticipantsSignup = () => {
     }
   
   return (
+    <>
+
+       {isRegistered ? (
+         <OtpPage /> // Render the OTP page component
+       ) : (
+         
     <div className="absolute top-0 left-0 w-full h-fit">
       <Nav page="" />
       <div className="bg-transparent backdrop-blur-sm rounded-lg h-full m-0 p-10 flex flex-col md:flex-row">
@@ -296,6 +279,7 @@ const ParticipantsSignup = () => {
               </div>
 
               <button
+               
                 type="submit"
                 className="hover:bg-orange-600 border border-orange-400 text-orange-400 hover:text-white font-bold py-2 px-4 rounded-lg mt-4"
               >
@@ -336,6 +320,9 @@ const ParticipantsSignup = () => {
       <ToastContainer/>
       <Particle />
     </div>
+       )}
+    </>
+
   );
 };
 
