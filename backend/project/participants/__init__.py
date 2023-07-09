@@ -1,1 +1,0 @@
-__all__=['forget_password','login','participate_event','sign_up','veiw_crews','veiw_events','veiw_winers']
