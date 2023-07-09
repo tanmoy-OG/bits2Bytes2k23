@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+
 const OTPPage = () => {
   const [otp, setOTP] = useState('');
   const [error, setError] = useState('');
@@ -39,6 +40,7 @@ const OTPPage = () => {
       </form>
       {error && <p>{error}</p>}
     </div>
+    
   );
 };
 

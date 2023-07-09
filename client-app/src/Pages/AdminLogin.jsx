@@ -22,13 +22,16 @@ const AdminLogin = () => {
       // },
     });
     
-    const check = async(data)=>{
-      if("error" in data ){
-        // toast(data.error)
+    const check = (data) => {
+      if ("error" in data) {
+        toast.error(data.error, {
+          position: "top-center",
+          theme: "colored",
+        });
         return true;
       }
       return false;
-    }
+    };
     
     const Submit = async(e)=>{
       e.preventDefault();
@@ -46,20 +49,15 @@ const AdminLogin = () => {
           // Successfull Login
           const data = await response.json();
           console.log(data);
-          // console.log("Successfull");
-          if(check(data)){
-              
-            // console.log(data);
-              toast.error(data.error,{
-                position:"top-center",
-                theme:"colored",})
+          if (check(data)) {
+            setSignupError("");
+          } else {
+            toast.success(data.successfull, {
+              position: "top-center",
+              theme: "colored",
+            });
+            
           }
-          else{
-
-              toast.success(data.successfull,{
-                position:"top-center",
-                theme:"colored",})
-            }
         } else {
           // Login failed.
           const errorData = await response.json();

@@ -6,6 +6,8 @@ import Particle from "../Components/Particle";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import OTPPage from "./Otp";
+
 
 const initialValues = {
   fname: "",
@@ -26,17 +28,23 @@ const AdminSignup = () => {
       // },
     });
 
-    const check = async(data)=>{
-      if("error" in data ){
-        // toast(data.error)
+const check = (data) => {
+      if ("error" in data) {
+        toast.error(data.error, {
+          position: "top-center",
+          theme: "colored",
+        });
         return true;
       }
       return false;
-    }
+    };
+    
 
     const Submit = async(e)=>{
       e.preventDefault();
-      console.log(values);
+      // console.log(values);
+      const { fname, lname, email,mobile,secret_key,password } = values; 
+      const data_values = { fname, lname, email,mobile,secret_key,password }
 
           try {
             const response = await fetch("http://127.0.0.1:5000/user_signup/", {
@@ -44,26 +52,25 @@ const AdminSignup = () => {
               headers: {
                 "Content-Type": "application/json",
               },
-              body: JSON.stringify(values),
+              body: JSON.stringify(data_values),
             });
 
             if (response.ok) {
               // Registration successful, handle the response here
               const data = await response.json();
-              if(check(data)){
               
-              // console.log(data);
-                toast.error(data.error,{
-                  position:"top-center",
-                  theme:"colored",})
+                if (check(data)) {
+                  setSignupError("");
+                } else {
+                  toast.success(data.successfull, {
+                    position: "top-center",
+                    theme: "colored",
+                  });
+                  
+                  setIsRegistered(true);
                 }
-              else{
-                toast.success(data.successfull<{
-                  position:"top-center",
-                  theme:"coloured"
-                })
               }
-            } else {
+             else {
               // Registration failed, handle the error
               const errorData = await response.json();
               setSignupError(errorData.message);
@@ -72,6 +79,7 @@ const AdminSignup = () => {
                 theme:"colored",
               })
             }
+          
           } catch (error) {
             console.error("Error:", error);
             toast.error("Something went wrong",{
@@ -83,6 +91,11 @@ const AdminSignup = () => {
   
     }
   return (
+    <>
+
+       {isRegistered ? (
+         <OTPPage /> // Render the OTP page component
+       ) : (
     <div className="absolute top-0 left-0 w-full h-fit">
       <Nav page="" />
       <div className="bg-transparent backdrop-blur-sm rounded-lg h-full m-0 p-10 flex flex-col md:flex-row">
@@ -257,6 +270,8 @@ const AdminSignup = () => {
       <ToastContainer/>
       <Particle />
     </div>
+       )}
+  </>
   );
 };
 

@@ -48,7 +48,7 @@ const App = () => {
       <Route path="/signup/participant" Component={ParticipantsSignup} />
       <Route path="/login/admin" Component={AdminLogin} />
       <Route path="/login/participant" Component={ParticipantsLogin} />
-      <Route path="/signup/participants/otp" Component={OTPPage}/>
+      {/* <Route path="/signup/participants/otp" Component={OTPPage}/> */}
       {/* <Route path="/coordinatorform" Component={CoordinatorForm} /> */}
       <Route path="*" Component={ErrorPage} />
     </Routes>

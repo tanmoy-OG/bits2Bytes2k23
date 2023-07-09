@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import React , { useState } from "react";
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import OTPPage from "./Otp";
 
 
 const initialValues = {
@@ -32,47 +33,46 @@ const ParticipantsSignup = () => {
     useFormik({
       initialValues: initialValues,
       validationSchema: formSchema,
+      
     });
     
-    const check = async(data)=>{
-      if("error" in data ){
-        // toast(data.error)
+    const check = (data) => {
+      if ("error" in data) {
+        toast.error(data.error, {
+          position: "top-center",
+          theme: "colored",
+        });
         return true;
       }
       return false;
-    }
+    };
 
     const Submit = async(e)=>{
       e.preventDefault();
-      console.log(values);
-      // console.log('hello');
+      const { fname, lname, email,mobile,roll, password, year, stream } = values; 
+      const data_values = {fname,lname,email,mobile, roll,password,year,stream}
+      console.log(data_values);
           try {
-            // console.log("hellooo2");
-            // fetch("http://127.0.0.1:5000/user_signup/")
             const response = await fetch("http://127.0.0.1:5000/user_signup/", {
               method: "POST",
               headers: {
                 "Content-Type": "application/json",
               },
-              body: JSON.stringify(values),
+              body: JSON.stringify(data_values),
             });
 
             if (response.ok) {
               // Registration successful, handle the response here
               const data = await response.json();
-              if(check(data)){
-              
-              // console.log(data);
-                toast.error(data.error,{
-                  position:"top-center",
-                  theme:"colored",})
-                }
-              else{
-                toast.success(data.successfull<{
-                  position:"top-center",
-                  theme:"coloured"
-                })
-                setIsRegistered(true); 
+              if (check(data)) {
+                setSignupError("");
+              } else {
+                toast.success(data.successfull, {
+                  position: "top-center",
+                  theme: "colored",
+                });
+                
+                setIsRegistered(true);
               }
             
             }
@@ -83,14 +83,14 @@ const ParticipantsSignup = () => {
               toast.error("Unsuccessfull",{
                 position:"top-center",
                 theme:"colored",
-              })
+              });
             }
           } catch (error) {
             console.error("Error:", error);
             toast.error("Something went wrong",{
               position:"top-center",
               theme:"colored",
-            })
+            });
             setSignupError("An error occurred during registration.");
           }
   
@@ -100,7 +100,7 @@ const ParticipantsSignup = () => {
     <>
 
        {isRegistered ? (
-         <OtpPage /> // Render the OTP page component
+         <OTPPage /> // Render the OTP page component
        ) : (
          
     <div className="absolute top-0 left-0 w-full h-fit">
