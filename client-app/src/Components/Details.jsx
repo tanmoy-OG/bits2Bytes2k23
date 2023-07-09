@@ -18,46 +18,54 @@ const Details = (props) => {
   const [email, setEmail] = useState(props.email);
   const [phone, setPhone] = useState(props.phone);
 
-  const [storeFname, setStoreFname] = useState("");
-  const [storeLname, setStoreLname] = useState("");
-  const [storeRoll, setStoreRoll] = useState("");
-  const [storeYear, setStoreYear] = useState("");
-  const [storeStream, setStoreStream] = useState("");
-  const [storeEmail, setStoreEmail] = useState("");
-  const [storePhone, setStorePhone] = useState("");
+  const [storeFname, setStoreFname] = useState(props.fname);
+  const [storeLname, setStoreLname] = useState(props.lname);
+  const [storeYear, setStoreYear] = useState(props.year);
+  const [storeStream, setStoreStream] = useState(props.stream);
+  const [storePhone, setStorePhone] = useState(props.phone);
 
   const [fnameError, setFnameError] = useState(false);
   const [lnameError, setLnameError] = useState(false);
-  const [rollError, setRollError] = useState(false);
   const [yearError, setYearError] = useState(false);
   const [streamError, setStreamError] = useState(false);
-  const [emailError, setEmailError] = useState(false);
   const [phoneError, setPhoneError] = useState(false);
 
   const [effectTrigger, setEffectTrigger] = useState(false);
+  // const sleep = (ms = 0) => new Promise((resolve) => setTimeout(resolve, ms));
 
   useEffect(() => {
     const tempVal =
       fnameError ||
       lnameError ||
-      rollError ||
       yearError ||
       streamError ||
-      emailError ||
       phoneError;
 
-    if (tempVal) return;
-    setInputClass(default_input_class);
-    setVisible(true);
+    if (!tempVal) {
+      if (
+        storeFname === fname &&
+        storeLname === lname &&
+        storeYear === year &&
+        storeStream === stream &&
+        storePhone === phone
+      )
+        return;
+      else updateProfile({ fname, lname, roll, year, stream, phone });
+      setInputClass(default_input_class);
+      setVisible(true);
+    }
   }, [effectTrigger]);
+
+  const updateProfile = (obj) => {
+    console.log(obj);
+    
+  };
 
   const formInvalid = () => {
     const tempFname = fname.trim();
     const tempLname = lname.trim();
-    let tempRoll = "";
     let tempYear = "";
     let tempStream = "";
-    const tempEmail = email.trim();
     const tempPhone = phone.trim();
 
     // fname check
@@ -79,18 +87,8 @@ const Details = (props) => {
     else setLnameError(false);
 
     if (props.type === "participant") {
-      tempRoll = roll.trim();
       tempYear = year.trim();
       tempStream = stream.trim();
-
-      // roll check
-      if (
-        tempRoll === "" ||
-        tempRoll.length !== 11 ||
-        !/^\d+$/.test(tempRoll)
-      )
-        setRollError(true);
-      else setRollError(false);
 
       // year check
       if (
@@ -110,11 +108,6 @@ const Details = (props) => {
       else setStreamError(false);
     }
 
-    // email check
-    if (tempEmail === "" || !/^[\w\.-]+@[\w\.-]+\.\w+$/.test(tempEmail))
-      setEmailError(true);
-    else setEmailError(false);
-
     // phone check
     if (tempPhone.length !== 10 || !/^\d+$/.test(tempPhone))
       setPhoneError(true);
@@ -123,11 +116,9 @@ const Details = (props) => {
     setFname(tempFname);
     setLname(tempLname);
     if (props.type === "participant") {
-      setRoll(tempRoll);
       setYear(tempYear);
       setStream(tempStream);
     }
-    setEmail(tempEmail);
     setPhone(tempPhone);
     setEffectTrigger(!effectTrigger);
   };
@@ -137,41 +128,39 @@ const Details = (props) => {
       setStoreFname(fname);
       setStoreLname(lname);
       if (props.type === "participant") {
-        setStoreRoll(roll);
         setStoreYear(year);
         setStoreStream(stream);
       }
-      setStoreEmail(email);
       setStorePhone(phone);
       setInputClass(final_input_class);
       setVisible(false);
     } else if (val === "cancel") {
       setFname(storeFname);
       setLname(storeLname);
-      setEmail(storeEmail);
       setPhone(storePhone);
       setFnameError(false);
       setLnameError(false);
-      setEmailError(false);
       setPhoneError(false);
       if (props.type === "participant") {
-        setRoll(storeRoll);
         setYear(storeYear);
         setStream(storeStream);
-        setRollError(false);
         setYearError(false);
         setStreamError(false);
       }
 
       setInputClass(default_input_class);
       setVisible(true);
-    } else if (val === "save") {
-      formInvalid();
     }
   };
 
   return (
-    <div className="p-6 pt-4 m-6 bg-sky-500/10 backdrop-blur-sm w-3/4 md:w-2/4 max-w-2xl rounded-2xl flex flex-col gap-7 sm:gap-12">
+    <form
+      className="p-6 pt-4 m-6 bg-sky-500/10 backdrop-blur-sm w-3/4 md:w-2/4 max-w-2xl rounded-2xl flex flex-col gap-7 sm:gap-12"
+      onSubmit={(e) => {
+        e.preventDefault();
+        formInvalid();
+      }}
+    >
       <h1 className="text-3xl md:text-5xl font-bold tracking-wider text-white font-custom-sans uppercase">
         {props.type === "admin" ? "admin profile" : "profile"}
       </h1>
@@ -197,10 +186,7 @@ const Details = (props) => {
           <InputTag
             heading="roll number"
             data={roll}
-            inputclass={inputclass}
-            changeVal={setRoll}
-            errshow={rollError}
-            errmsg="Enter a valid university roll number."
+            inputclass={default_input_class}
           />
           <InputTag
             heading="year"
@@ -223,10 +209,7 @@ const Details = (props) => {
       <InputTag
         heading="email"
         data={email}
-        inputclass={inputclass}
-        changeVal={setEmail}
-        errshow={emailError}
-        errmsg="Enter a valid email address."
+        inputclass={default_input_class}
       />
       <InputTag
         heading="phone number"
@@ -241,12 +224,12 @@ const Details = (props) => {
         {visible && <Button function={changeInputClass} buttonType="edit" />}
         {!visible && (
           <div className="w-full flex flex-wrap justify-center gap-x-20 gap-y-5">
-            <Button function={changeInputClass} buttonType="save" />
+            <Button buttonType="save" />
             <Button function={changeInputClass} buttonType="cancel" />
           </div>
         )}
       </div>
-    </div>
+    </form>
   );
 };
 
