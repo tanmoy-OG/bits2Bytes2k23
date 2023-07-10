@@ -9,15 +9,15 @@ import "react-toastify/dist/ReactToastify.css";
 import OTPPage from "./Otp";
 
 const initialValues = {
-  fname: "",
-  lname: "",
-  email: "",
-  mobile: "",
-  roll: "",
-  password: "",
-  confirm_password: "",
-  year: "",
-  stream: "",
+  fname: "Tanmoy",
+  lname: "Choudhury",
+  email: "arthurfleck1620@gmail.com",
+  mobile: "8240106882",
+  roll: "12100120038",
+  password: "12191219",
+  confirm_password: "12191219",
+  year: "4",
+  stream: "CSE",
 };
 
 const ParticipantsSignup = () => {
@@ -59,34 +59,42 @@ const ParticipantsSignup = () => {
     try {
       const response = await fetch("http://127.0.0.1:5000/user_signup/", {
         method: "POST",
+        // mode: "cors", //cors
         headers: {
           "Content-Type": "application/json",
+          // "Access-Control-Allow-Origin": "*",
         },
         body: JSON.stringify(data_values),
-      });
+      }); //.then((response) => {
+      //   console.log(response);
+      // });
 
-      if (response.ok) {
-        // Registration successful, handle the response here
-        const data = await response.json();
-        if (check(data)) {
-          setSignupError("");
-        } else {
-          toast.success(data.successfull, {
-            position: "top-center",
-            theme: "colored",
-          });
+      console.log(response);
+      const data = await response.json();
+      console.log(data);
 
-          setIsRegistered(true);
-        }
-      } else {
-        // Registration failed, handle the error
-        const errorData = await response.json();
-        setSignupError(errorData.message);
-        toast.error("Unsuccessfull", {
-          position: "top-center",
-          theme: "colored",
-        });
-      }
+      // if (response.ok) {
+      //   // Registration successful, handle the response here
+      //   const data = await response.json();
+      //   if (check(data)) {
+      //     setSignupError("");
+      //   } else {
+      //     toast.success(data.successfull, {
+      //       position: "top-center",
+      //       theme: "colored",
+      //     });
+
+      //     setIsRegistered(true);
+      //   }
+      // } else {
+      //   // Registration failed, handle the error
+      //   const errorData = await response.json();
+      //   setSignupError(errorData.message);
+      //   toast.error("Unsuccessfull", {
+      //     position: "top-center",
+      //     theme: "colored",
+      //   });
+      // }
     } catch (error) {
       console.error("Error:", error);
       toast.error("Something went wrong", {
