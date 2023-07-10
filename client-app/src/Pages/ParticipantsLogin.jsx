@@ -1,4 +1,3 @@
-import logo from "../assets/logo.png";
 import { useFormik } from "formik";
 import LoginSchema from "./LoginSchema";
 import Nav from "../Components/Nav";

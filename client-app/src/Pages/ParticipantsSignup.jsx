@@ -1,5 +1,4 @@
 import { useFormik } from "formik";
-import logo from "../assets/logo.png";
 import formSchema from "./FormSchema";
 import Nav from "../Components/Nav";
 import Particle from "../Components/Particle";

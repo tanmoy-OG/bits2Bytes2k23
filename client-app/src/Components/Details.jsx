@@ -12,10 +12,10 @@ const Details = (props) => {
 
   const [fname, setFname] = useState(props.fname);
   const [lname, setLname] = useState(props.lname);
-  const [roll, setRoll] = useState(props.roll);
+  const roll = props.roll;
   const [year, setYear] = useState(props.year);
   const [stream, setStream] = useState(props.stream);
-  const [email, setEmail] = useState(props.email);
+  const email = props.email;
   const [phone, setPhone] = useState(props.phone);
 
   const [storeFname, setStoreFname] = useState(props.fname);
@@ -50,15 +50,37 @@ const Details = (props) => {
         storePhone === phone
       )
         return;
-      else updateProfile({ fname, lname, roll, year, stream, phone });
+      updateProfile({ fname, lname, roll, year, stream, phone });
       setInputClass(default_input_class);
       setVisible(true);
     }
   }, [effectTrigger]);
 
-  const updateProfile = (obj) => {
-    console.log(obj);
-    
+  const updateProfile = async(obj) => {
+    try {
+      const response = await fetch("http://127.0.0.1:5000/update_profile/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(obj),
+      });
+
+      if (response.ok) {
+        // Successfull Login
+        const data = await response.json();
+        console.log(data);
+        console.log("Successfull");
+      } else {
+        // Login failed.
+        const errorData = await response.json();
+        // setLoginError(errorData.message);
+        console.log("failed");
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      // setLoginError("An error occurred during login.");
+    }
   };
 
   const formInvalid = () => {
