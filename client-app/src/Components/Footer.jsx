@@ -58,11 +58,36 @@ const Footer = () => {
                 mailto="mailto:palit.ajanta@gmail.com"
               />
             </p>
-            <p>Debanjan Chakraborty (TS) : 7603047115</p>
-            <p>Twishanu Aich Roy (ATS) : 9330023390</p>
-            <p>Aditya Kr. Roy (ATS) : 9123868196</p>
-            <p>Payel Halder (ATS) : 8617440953</p>
-            <p>Annu Priya (ATS) : 7258050204</p>
+            <p>
+              Debanjan Chakraborty (TS) :{" "}
+              <a className="text-orange-400 whitespace-nowrap" href="tel:7603047115">
+                76030 47115
+              </a>
+            </p>
+            <p>
+              Twishanu Aich Roy (ATS) :{" "}
+              <a className="text-orange-400 whitespace-nowrap" href="tel:9330023390">
+                93300 23390
+              </a>
+            </p>
+            <p>
+              Aditya Kr. Roy (ATS) :{" "}
+              <a className="text-orange-400 whitespace-nowrap" href="tel:9123868196">
+                91238 68196
+              </a>
+            </p>
+            <p>
+              Payel Halder (ATS) :{" "}
+              <a className="text-orange-400 whitespace-nowrap" href="tel:8617440953">
+                86174 40953
+              </a>
+            </p>
+            <p>
+              Annu Priya (ATS) :{" "}
+              <a className="text-orange-400 whitespace-nowrap" href="tel:7258050204">
+                72580 50204
+              </a>
+            </p>
             <div className="flex justify-center gap-4 pt-2">
               <a
                 href="https://www.facebook.com/bits2bytes.bit?mibextid=ZbWKwL"
