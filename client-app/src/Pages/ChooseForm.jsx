@@ -9,7 +9,7 @@ const ChooseForm = () => {
       <div className="flex flex-col bg-sky-500/10 backdrop-blur-sm m-10 p-2 rounded-xl">
         <Link
           to="/signup/admin"
-          className="font-bold m-2 p-4 font-custom-sans text-xl tracking-wide bg-blue-600/10 hover:bg-blue-500/20 text-white rounded-md"
+          className="font-bold m-2 p-4 font-custom-sans text-xl tracking-wide bg-blue-600/10 hover:bg-blue-500/20 text-white rounded-md transition-all duration-200"
         >
           Admin Registration Form
         </Link>
@@ -23,7 +23,7 @@ const ChooseForm = () => {
 
         <Link
           to="/signup/participant"
-          className="font-bold m-2 p-4 font-custom-sans text-xl tracking-wide bg-blue-600/10 hover:bg-blue-500/20 text-white rounded-md"
+          className="font-bold m-2 p-4 font-custom-sans text-xl tracking-wide bg-blue-600/10 hover:bg-blue-500/20 text-white rounded-md transition-all duration-200"
         >
           Participants Registration Form
         </Link>

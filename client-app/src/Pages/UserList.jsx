@@ -13,8 +13,8 @@ const UserList = (props) => {
 
   return (
     <div className="absolute top-0 left-0 w-full h-fit">
-      <Nav />
-      <div className="flex flex-col justify-center items-center w-full h-full gap-4 mt-10">
+      <Nav page="profile" />
+      <div className="flex flex-col justify-center items-center w-full h-full gap-4 mt-10 px-6 pb-10">
         {/* profile navbar */}
         <div className="w-full pl-6 pr-6 flex flex-wrap sm:flex-nowrap justify-evenly items-center gap-4">
           <Link to="/adminprofile/details" className="button">
@@ -26,7 +26,7 @@ const UserList = (props) => {
         {/* details */}
         <div className="w-full p-6 bg-transparent">
           <div className="bg-sky-500/10 backdrop-blur-sm rounded-md text-white relative w-full h-full flex flex-col">
-            <div className="list-nav flex flex-row border-b border-spacing-1 backdrop-blur-lg border-white/20 gap-2 p-2 justify-center items-center">
+            <div className="list-nav flex flex-row border-b border-spacing-1 border-white/20 gap-2 p-2 justify-center items-center">
               {current && (
                 <div className="p-1 uppercase w-full text-left font-bold tracking-widest border-r border-white/20 border-spacing-1 text-green-400">
                   current
