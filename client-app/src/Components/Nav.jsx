@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 
-const Nav = ({page}) => {
+
+const Nav = ({ page }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
 
@@ -76,37 +77,61 @@ const Nav = ({page}) => {
           <div className="hidden 950px:flex items-center gap-2 group">
             <Link
               to="/principal"
-              className={(page === "principal")? "active-page px-3 py-2 tracking-widest uppercase" : "hover:text-orange-400 px-3 py-2 transition-all duration-300 tracking-widest uppercase hover-underline"}
+              className={
+                page === "principal"
+                  ? "active-page px-3 py-2 tracking-widest uppercase"
+                  : "hover:text-orange-400 px-3 py-2 transition-all duration-300 tracking-widest uppercase hover-underline"
+              }
             >
               PRINCIPAL'S MESSAGE
             </Link>
             <Link
               to="/gallery"
-              className={(page === "gallery")? "active-page px-3 py-2 tracking-widest uppercase" : "hover:text-orange-400 px-3 py-2 transition-all duration-300 tracking-widest uppercase hover-underline"}
+              className={
+                page === "gallery"
+                  ? "active-page px-3 py-2 tracking-widest uppercase"
+                  : "hover:text-orange-400 px-3 py-2 transition-all duration-300 tracking-widest uppercase hover-underline"
+              }
             >
               GALLERY
             </Link>
             <Link
               to="/events"
-              className={(page === "events")? "active-page px-3 py-2 tracking-widest uppercase" : "hover:text-orange-400 px-3 py-2 transition-all duration-300 tracking-widest uppercase hover-underline"}
+              className={
+                page === "events"
+                  ? "active-page px-3 py-2 tracking-widest uppercase"
+                  : "hover:text-orange-400 px-3 py-2 transition-all duration-300 tracking-widest uppercase hover-underline"
+              }
             >
               EVENTS
             </Link>
             <Link
               to="/crew"
-              className={(page === "crew")? "active-page px-3 py-2 tracking-widest uppercase" : "hover:text-orange-400 px-3 py-2 transition-all duration-300 tracking-widest uppercase hover-underline"}
+              className={
+                page === "crew"
+                  ? "active-page px-3 py-2 tracking-widest uppercase"
+                  : "hover:text-orange-400 px-3 py-2 transition-all duration-300 tracking-widest uppercase hover-underline"
+              }
             >
               CREW
             </Link>
             <Link
               to="/registration"
-              className={(page === "registration")? "active-page px-3 py-2 tracking-widest uppercase" : "hover:text-orange-400 px-3 py-2 transition-all duration-300 tracking-widest uppercase hover-underline"}
+              className={
+                page === "registration"
+                  ? "active-page px-3 py-2 tracking-widest uppercase"
+                  : "hover:text-orange-400 px-3 py-2 transition-all duration-300 tracking-widest uppercase hover-underline"
+              }
             >
               LOGIN/SIGNUP
             </Link>
             <Link
               to="/adminprofile/details"
-              className={(page === "profile")? "active-page px-3 py-2 tracking-widest uppercase" : "hover:text-orange-400 px-3 py-2 transition-all duration-300 tracking-widest uppercase hover-underline"}
+              className={
+                page === "profile"
+                  ? "active-page px-3 py-2 tracking-widest uppercase"
+                  : "hover:text-orange-400 px-3 py-2 transition-all duration-300 tracking-widest uppercase hover-underline"
+              }
             >
               PROFILE
             </Link>
@@ -119,37 +144,61 @@ const Nav = ({page}) => {
           <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
             <Link
               to="/principal"
-              className={(page === "principal")? "bg-orange-400/60 font-bold shadow-sm block px-3 py-2 rounded-md text-base transition-all duration-200 tracking-widest uppercase" : " hover:bg-orange-400/60 hover:font-bold hover:shadow-sm block px-3 py-2 rounded-md text-base transition-all duration-200 tracking-widest uppercase"}
+              className={
+                page === "principal"
+                  ? "bg-orange-400/60 font-bold shadow-sm block px-3 py-2 rounded-md text-base transition-all duration-200 tracking-widest uppercase"
+                  : " hover:bg-orange-400/60 hover:font-bold hover:shadow-sm block px-3 py-2 rounded-md text-base transition-all duration-200 tracking-widest uppercase"
+              }
             >
               PRINCIPAL'S MESSAGE
             </Link>
             <Link
               to="/gallery"
-              className={(page === "gallery")? "bg-orange-400/60 font-bold shadow-sm block px-3 py-2 rounded-md text-base transition-all duration-200 tracking-widest uppercase" : " hover:bg-orange-400/60 hover:font-bold hover:shadow-sm block px-3 py-2 rounded-md text-base transition-all duration-200 tracking-widest uppercase"}
+              className={
+                page === "gallery"
+                  ? "bg-orange-400/60 font-bold shadow-sm block px-3 py-2 rounded-md text-base transition-all duration-200 tracking-widest uppercase"
+                  : " hover:bg-orange-400/60 hover:font-bold hover:shadow-sm block px-3 py-2 rounded-md text-base transition-all duration-200 tracking-widest uppercase"
+              }
             >
               GALLERY
             </Link>
             <Link
               to="/events"
-              className={(page === "events")? "bg-orange-400/60 font-bold shadow-sm block px-3 py-2 rounded-md text-base transition-all duration-200 tracking-widest uppercase" : " hover:bg-orange-400/60 hover:font-bold hover:shadow-sm block px-3 py-2 rounded-md text-base transition-all duration-200 tracking-widest uppercase"}
+              className={
+                page === "events"
+                  ? "bg-orange-400/60 font-bold shadow-sm block px-3 py-2 rounded-md text-base transition-all duration-200 tracking-widest uppercase"
+                  : " hover:bg-orange-400/60 hover:font-bold hover:shadow-sm block px-3 py-2 rounded-md text-base transition-all duration-200 tracking-widest uppercase"
+              }
             >
               EVENTS
             </Link>
             <Link
               to="/crew"
-              className={(page === "crew")? "bg-orange-400/60 font-bold shadow-sm block px-3 py-2 rounded-md text-base transition-all duration-200 tracking-widest uppercase" : " hover:bg-orange-400/60 hover:font-bold hover:shadow-sm block px-3 py-2 rounded-md text-base transition-all duration-200 tracking-widest uppercase"}
+              className={
+                page === "crew"
+                  ? "bg-orange-400/60 font-bold shadow-sm block px-3 py-2 rounded-md text-base transition-all duration-200 tracking-widest uppercase"
+                  : " hover:bg-orange-400/60 hover:font-bold hover:shadow-sm block px-3 py-2 rounded-md text-base transition-all duration-200 tracking-widest uppercase"
+              }
             >
               CREW
             </Link>
             <Link
               to="/registration"
-              className={(page === "registration")? "bg-orange-400/60 font-bold shadow-sm block px-3 py-2 rounded-md text-base transition-all duration-200 tracking-widest uppercase" : " hover:bg-orange-400/60 hover:font-bold hover:shadow-sm block px-3 py-2 rounded-md text-base transition-all duration-200 tracking-widest uppercase"}
+              className={
+                page === "registration"
+                  ? "bg-orange-400/60 font-bold shadow-sm block px-3 py-2 rounded-md text-base transition-all duration-200 tracking-widest uppercase"
+                  : " hover:bg-orange-400/60 hover:font-bold hover:shadow-sm block px-3 py-2 rounded-md text-base transition-all duration-200 tracking-widest uppercase"
+              }
             >
               LOGIN/SIGNUP
             </Link>
             <Link
               to="/adminprofile/details"
-              className={(page === "profile")? "bg-orange-400/60 font-bold shadow-sm block px-3 py-2 rounded-md text-base transition-all duration-200 tracking-widest uppercase" : " hover:bg-orange-400/60 hover:font-bold hover:shadow-sm block px-3 py-2 rounded-md text-base transition-all duration-200 tracking-widest uppercase"}
+              className={
+                page === "profile"
+                  ? "bg-orange-400/60 font-bold shadow-sm block px-3 py-2 rounded-md text-base transition-all duration-200 tracking-widest uppercase"
+                  : " hover:bg-orange-400/60 hover:font-bold hover:shadow-sm block px-3 py-2 rounded-md text-base transition-all duration-200 tracking-widest uppercase"
+              }
             >
               PROFILE
             </Link>
