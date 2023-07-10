@@ -104,7 +104,7 @@
 }
 
 /* profile sub nav buttons */
-.button, .button-red, .active-button {
+.button, .button-red, .active-button, .button-green {
   padding: .75rem 1.25rem;
   color: #fff;
   text-transform: uppercase;
@@ -118,11 +118,9 @@
   cursor:pointer;
   font-weight:600;
   border-radius: 5px;
-  border-width:2px;
-  border-color: rgba(255, 255, 255, 0.145);
 }
 
-.button:after,.button-red:after, .active-button:after {
+.button:after,.button-red:after, .active-button:after, .button-green:after {
   content: '';
   position: absolute;
   bottom: 0;
@@ -132,16 +130,19 @@
   z-index: -2;
 }
 .button:after {
-  background-color: #301e3c;
+  background-color: #0ea4e920;
 }
 .button-red:after {
   background-color: rgba(255, 0, 0, 0.592);
 }
 .active-button:after{
-  background-color: green;
+  background-color: #fb923c;
 }
-
-.button:before,.button-red:before, .active-button:before {
+.button-green:after{
+  background-color: #00563B;
+}
+ 
+.button:before,.button-red:before, .active-button:before, .button-green:before {
   content: '';
   position: absolute;
   bottom: 0;
@@ -152,23 +153,26 @@
   z-index: -1;
 }
 .button:before {
-  background-color: #c3b5fd96;
+  background-color: #0c4a6e;
 }
 .button-red:before {
   background-color: red;
+}
+.button-green:before{
+  background-color: #87A96B;
 }
 
 .button:hover,.button-red:hover {
   color: #fff;
 }
 
-.button:hover:before,.button-red:hover:before {
+.button:hover:before,.button-red:hover:before, .button-green:hover:before {
   width: 100%;
 }
 
 @media(min-width: 599px)
 {
-  .button,.button-red,.active-button{
+  .button,.button-red,.active-button, .button-green{
     width: 40%;
   }
 }
