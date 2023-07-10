@@ -7,7 +7,7 @@ import ScrollTop from './Components/ScrollTop.jsx';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <BrowserRouter>
-    <ScrollTop />
-    <App />
-  </BrowserRouter>,
+      <ScrollTop />
+      <App />
+    </BrowserRouter>
 )

@@ -26,10 +26,9 @@ const ParticipantsSignup = () => {
 
   const [signupError, setSignupError] = useState("");
   const [isRegistered, setIsRegistered] = useState(false);
+  const [otp, setOtp] = useState("");
 
-
-  
-  const { values, errors, touched, handleBlur, handleChange, handleSubmit } = 
+  const { values, errors, touched, handleBlur, handleChange } = 
     useFormik({
       initialValues: initialValues,
       validationSchema: formSchema,
@@ -52,29 +51,34 @@ const ParticipantsSignup = () => {
       const { fname, lname, email,mobile,roll, password, year, stream } = values; 
       const data_values = {fname,lname,email,mobile, roll,password,year,stream}
       console.log(data_values);
+
           try {
             const response = await fetch("http://127.0.0.1:5000/user_signup/", {
               method: "POST",
               headers: {
-                "Content-Type": "application/json",
+                // "Content-Type": "application/json",
               },
               body: JSON.stringify(data_values),
-            });
-
+            })
             if (response.ok) {
               // Registration successful, handle the response here
+
               const data = await response.json();
+              const headers = response.headers;
+              console.log(headers)
+              const contentType = headers.get("Content-Type");
+              console.log(contentType);
+
               if (check(data)) {
                 setSignupError("");
               } else {
-                toast.success(data.successfull, {
+                toast.success(data.successful, {
                   position: "top-center",
                   theme: "colored",
                 });
-                
+                setOtp(data.otp);
                 setIsRegistered(true);
-              }
-            
+              }   
             }
              else {
               // Registration failed, handle the error
@@ -100,7 +104,7 @@ const ParticipantsSignup = () => {
     <>
 
        {isRegistered ? (
-         <OTPPage /> // Render the OTP page component
+         <OTPPage otp={otp}/> // Render the OTP page component
        ) : (
          
     <div className="absolute top-0 left-0 w-full h-fit">
@@ -320,7 +324,7 @@ const ParticipantsSignup = () => {
       <ToastContainer/>
       <Particle />
     </div>
-       )}
+        )} 
     </>
 
   );
