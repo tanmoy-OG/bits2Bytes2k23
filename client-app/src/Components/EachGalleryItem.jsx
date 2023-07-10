@@ -1,5 +1,6 @@
 import { useState } from "react";
 
+
 const EachGalleryItem = ({ img , tag, setChildVisible, setImg, setTag}) => {
 
   const mydefault = "group overflow-hidden relative rounded rounded-md";

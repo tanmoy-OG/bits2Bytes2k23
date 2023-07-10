@@ -1,3 +1,4 @@
+
 import Aos from "aos";
 import { useEffect, useState } from "react";
 import Home from "./Pages/Home.jsx";
@@ -18,7 +19,10 @@ import ParticipantsLogin from "./Pages/ParticipantsLogin";
 import ErrorPage from "./Pages/ErrorPage";
 import "aos/dist/aos.css";
 import "./App.css";
+import OTPPage from "./Pages/Otp.jsx";
 
+
+// const env=require('dotenv').config();
 // for Routing
 import { Route, Routes } from "react-router-dom";
 
@@ -44,6 +48,7 @@ const App = () => {
       <Route path="/signup/participant" Component={ParticipantsSignup} />
       <Route path="/login/admin" Component={AdminLogin} />
       <Route path="/login/participant" Component={ParticipantsLogin} />
+      {/* <Route path="/signup/participants/otp" Component={OTPPage}/> */}
       {/* <Route path="/coordinatorform" Component={CoordinatorForm} /> */}
       <Route path="*" Component={ErrorPage} />
     </Routes>

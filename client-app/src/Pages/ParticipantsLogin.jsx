@@ -4,6 +4,8 @@ import Nav from "../Components/Nav";
 import Particle from "../Components/Particle";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const ParticipantsLogin = () => {
   const initialValues = {
@@ -27,24 +29,95 @@ const ParticipantsLogin = () => {
             },
             body: JSON.stringify(values),
           });
+      // onSubmit: async (values) => {
+      //   // console.log("hello");
+      //   try {
+      //     const response = await fetch('http://127.0.0.1:5000/login/', {
+      //       method: 'POST',
+      //       headers: {
+      //         'Content-Type': 'application/json',
+      //       },
+      //       body: JSON.stringify(values),
+      //     });
 
-          if (response.ok) {
-            // Successfull Login
-            const data = await response.json();
-            console.log(data);
-            console.log("Successfull");
-          } else {
-            // Login failed.
-            const errorData = await response.json();
-            setLoginError(errorData.message);
-            console.log("failed");
-          }
-        } catch (error) {
-          console.error("Error:", error);
-          setLoginError("An error occurred during login.");
-        }
-      },
+      //     if (response.ok) {
+      //       // Successfull Login
+      //       const data = await response.json();
+      //       console.log(data);
+      //       console.log("Successfull");
+      //     } else {
+      //       // Login failed.
+      //       const errorData = await response.json();
+      //       setLoginError(errorData.message);
+      //       console.log("failed");
+      //     }
+      //   } catch (error) {
+      //     console.error("Error:", error);
+      //     setLoginError("An error occurred during login.");
+      //   }
+        }catch(error){};
+      }
     });
+
+  //to check error in the data.
+  const check = async (data) => {
+    if ("error" in data) {
+      // toast(data.error)
+      return true;
+    }
+    return false;
+  };
+
+  //to fetch
+  const submit = async (e) => {
+    e.preventDefault();
+    try {
+      // console.log("hello");
+      console.log(values);
+      const response = await fetch(`http://127.0.0.1:5000/login/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
+
+      if (response.ok) {
+        // Successfull Login
+        const data = await response.json();
+        // console.log(data
+        if (check(data)) {
+          // console.log(data);
+          toast.error(data.error, {
+            position: "top-center",
+            theme: "colored",
+          });
+        } else {
+          toast.success(data.successfull, {
+            position: "top-center",
+            theme: "colored",
+          });
+        }
+        // console.log("Successfull");
+      } else {
+        // Login failed.
+        const errorData = await response.json();
+        setLoginError(errorData.message);
+        console.log("failed");
+        toast.error("Unsuccessfull", {
+          position: "top-center",
+          theme: "colored",
+        });
+      }
+    } catch (error) {
+      toast.error("Unsucessfull", {
+        position: "top-center",
+        theme: "colored",
+      });
+      setLoginError("An error occurred during login.");
+    }
+  };
+
   return (
     <div className="absolute top-0 left-0 w-full h-fit">
       <Nav page="registration" />
@@ -54,7 +127,10 @@ const ParticipantsLogin = () => {
             Login
           </h1>
 
-          <form onSubmit={handleSubmit} className="flex flex-col items-center justify-center h-fit gap-3">
+          <form
+            onSubmit={handleSubmit}
+            className="flex flex-col items-center justify-center h-fit gap-3"
+          >
             <div className="input-block text-left p-3 font-semibold font-custom-sans flex flex-col justify-center w-full">
               <input
                 type="number"
@@ -67,7 +143,9 @@ const ParticipantsLogin = () => {
               />
 
               {errors.roll && touched.roll ? (
-                <p className="form-error text-red-500 tracking-widest">{errors.roll}</p>
+                <p className="form-error text-red-500 tracking-widest">
+                  {errors.roll}
+                </p>
               ) : null}
             </div>
             <div className="input-block text-left p-3 font-semibold font-custom-sans flex flex-col justify-center w-full">
@@ -81,7 +159,9 @@ const ParticipantsLogin = () => {
                 onBlur={handleBlur}
               />
               {errors.password && touched.password ? (
-                <p className="form-error text-red-500 tracking-widest">{errors.password}</p>
+                <p className="form-error text-red-500 tracking-widest">
+                  {errors.password}
+                </p>
               ) : null}
             </div>
             {/* submit */}
@@ -90,7 +170,9 @@ const ParticipantsLogin = () => {
             </button>
           </form>
 
-          {loginError && <p className="text-red-500 tracking-widest">{loginError}</p>}
+          {loginError && (
+            <p className="text-red-500 tracking-widest">{loginError}</p>
+          )}
 
           {/* or */}
           <div className="m-3 grid grid-cols-3 items-center text-white/20 my-10">
@@ -110,6 +192,7 @@ const ParticipantsLogin = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
       <Particle />
     </div>
   );

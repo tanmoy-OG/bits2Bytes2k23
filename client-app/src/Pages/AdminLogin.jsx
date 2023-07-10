@@ -3,6 +3,8 @@ import LoginSchema from "./LoginSchema";
 import Nav from "../Components/Nav";
 import Particle from "../Components/Particle";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const AdminLogin = () => {
   const initialValues = {
@@ -14,10 +16,66 @@ const AdminLogin = () => {
     useFormik({
       initialValues: initialValues,
       validationSchema: LoginSchema,
-      onSubmit: (values) => {
-        console.log(values);
-      },
+      // onSubmit: (values) => {
+      //   console.log(values);
+      // },
     });
+
+  const check = (data) => {
+    if ("error" in data) {
+      toast.error(data.error, {
+        position: "top-center",
+        theme: "colored",
+      });
+      return true;
+    }
+    return false;
+  };
+
+  const Submit = async (e) => {
+    e.preventDefault();
+    try {
+      console.log(values);
+      const response = await fetch(`http://127.0.0.1:5000/login/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(values),
+      });
+
+      if (response.ok) {
+        // Successfull Login
+        const data = await response.json();
+        console.log(data);
+        if (check(data)) {
+          setSignupError("");
+        } else {
+          toast.success(data.successfull, {
+            position: "top-center",
+            theme: "colored",
+          });
+        }
+      } else {
+        // Login failed.
+        const errorData = await response.json();
+        setLoginError(errorData.message);
+        // console.log("failed");
+        toast.error("Unsuccessfull", {
+          position: "top-center",
+          theme: "coloured",
+        });
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      toast.error("Something went wrong", {
+        position: "top-center",
+        theme: "colored",
+      });
+      setLoginError("An error occurred during login.");
+    }
+  };
+
   return (
     <div className="absolute top-0 left-0 w-full h-fit">
       <Nav page="registration" />
@@ -91,6 +149,7 @@ const AdminLogin = () => {
           </div>
         </div>
       </div>
+      <ToastContainer />
       <Particle />
     </div>
   );
