@@ -23,6 +23,7 @@ const initialValues = {
 const ParticipantsSignup = () => {
   const [signupError, setSignupError] = useState("");
   const [isRegistered, setIsRegistered] = useState(false);
+
   const [otp, setOtp] = useState("");
 
   const { values, errors, touched, handleBlur, handleChange } = 
@@ -47,6 +48,8 @@ const ParticipantsSignup = () => {
       const { fname, lname, email,mobile,roll, password, year, stream } = values; 
       const data_values = {fname,lname,email,mobile, roll,password,year,stream}
       console.log(data_values);
+      
+    
           try {
             const response = await fetch("http://127.0.0.1:5000/user_signup/", {
               method: "POST",
@@ -54,19 +57,25 @@ const ParticipantsSignup = () => {
                 "Content-Type": "application/json",
               },
               body: JSON.stringify(data_values),
-            });
-
+            })
             if (response.ok) {
               // Registration successful, handle the response here
+              
               const data = await response.json();
+
+              // console.log(data);
+              const headers = await data.headers;
+             
               if (check(data)) {
                 setSignupError("");
               } else {
-                toast.success(data.successfull, {
+                toast.success(data.successful, {
                   position: "top-center",
                   theme: "colored",
                 });
-                
+
+                // console.log(data.verification);
+                setOtp(data.verification);
                 setIsRegistered(true);
               }
             
@@ -81,7 +90,6 @@ const ParticipantsSignup = () => {
               });
             }
           } catch (error) {
-            console.error("Error:", error);
             toast.error("Something went wrong",{
               position:"top-center",
               theme:"colored",
@@ -95,7 +103,7 @@ const ParticipantsSignup = () => {
     <>
 
        {isRegistered ? (
-         <OTPPage /> // Render the OTP page component
+         <OTPPage otp={otp}/> // Render the OTP page component
        ) : (
          
     <div className="absolute top-0 left-0 w-full h-fit">
@@ -110,7 +118,7 @@ const ParticipantsSignup = () => {
             </h1>
 
               <form
-                onSubmit={handleSubmit}
+                onSubmit={Submit}
                 className="flex flex-col items-center justify-center h-fit gap-3"
               >
                 <div className="flex justify-between w-full">

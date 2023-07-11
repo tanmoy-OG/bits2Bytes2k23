@@ -2,12 +2,16 @@ import React, { useState } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useFormik } from 'formik';
+import OTPPage from "./Otp";
+ 
 
 const initialValues = {
-  otp_value: '',
+  roll: '',
+  password: '',
+  confirmPassword: '',
 };
 
-const OTPPage = ({ otp }) => {
+const ForgotPassword = () => {
   const [error, setError] = useState('');
   const [isSuccess, setIsSuccess] = useState(false);
 
@@ -17,64 +21,86 @@ const OTPPage = ({ otp }) => {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
-    console.log(otp);
-    console.log(values.otp_value);
-  
+
     try {
-      const response = await fetch('http://localhost:5000/otp_verify/', {
+      if (values.password !== values.confirmPassword) {
+        toast.error('Passwords do not match');
+        return;
+      }
+
+      const response = await fetch('http://localhost:5000/forget_password/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
-          'verification': otp,
         },
         body: JSON.stringify({
-          otp: values.otp_value,
+          roll: values.roll,
+          password: values.password,
         }),
       });
-  
+
       const data = await response.json();
-  
-      if (data.success) {
-        console.log('OTP is valid');
+      console.log(data);
+
+      if (response.ok) {
         toast.success(data.successful);
         setError('');
         setIsSuccess(true);
       } else {
         toast.error(data.error);
-        setError('Invalid OTP');
+        setError('Error resetting password');
       }
     } catch (error) {
       console.log(error);
-      toast.error('Error verifying OTP');
-      setError('Error verifying OTP');
+      toast.error('Error resetting password');
+      setError('Error resetting password');
     }
   };
-  
 
   return (
     <>
       {isSuccess ? (
-        <Login />
+        <OTPPage/>
       ) : (
         <div className="container mx-auto px-4 py-8">
-          <h2 className="text-2xl font-semibold mb-4 text-blue-500">Enter OTP</h2>
+          <h2 className="text-2xl font-semibold mb-4 text-blue-500">Forgot Password</h2>
 
           <form onSubmit={handleSubmit} className="flex flex-col max-w-sm mx-auto">
             <input
               type="text"
-              name="otp_value"
-              id="otp_value"
-              value={values.otp_value}
-              placeholder="Enter OTP"
+              name="roll"
+              id="roll"
+              value={values.roll}
+              placeholder="Enter your roll number"
               onChange={handleChange}
               className="border border-gray-300 rounded px-4 py-2 mb-4"
             />
+
+            <input
+              type="password"
+              name="password"
+              id="password"
+              value={values.password}
+              placeholder="Enter new password"
+              onChange={handleChange}
+              className="border border-gray-300 rounded px-4 py-2 mb-4"
+            />
+
+            <input
+              type="password"
+              name="confirmPassword"
+              id="confirmPassword"
+              value={values.confirmPassword}
+              placeholder="Confirm new password"
+              onChange={handleChange}
+              className="border border-gray-300 rounded px-4 py-2 mb-4"
+            />
+
             <button
               type="submit"
               className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
             >
-              Submit
+              Reset Password
             </button>
           </form>
 
@@ -87,4 +113,4 @@ const OTPPage = ({ otp }) => {
   );
 };
 
-export default OTPPage;
+export default ForgotPassword;
