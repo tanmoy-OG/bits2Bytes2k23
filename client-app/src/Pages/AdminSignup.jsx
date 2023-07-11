@@ -6,8 +6,7 @@ import Particle from "../Components/Particle";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import OTPPage from "./Otp";
-
+import Otp from "./Otp";
 
 const initialValues = {
   fname: "",
@@ -19,7 +18,7 @@ const initialValues = {
   confirm_password: "",
 };
 const AdminSignup = () => {
-  const [signupError, setSignupError] = useState("");
+  // const [signupError, setSignupError] = useState("");
   const [isRegistered, setIsRegistered] = useState(false);
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
@@ -91,14 +90,14 @@ const AdminSignup = () => {
   return (
     <>
       {isRegistered ? (
-        <OTPPage /> // Render the OTP page component
+        <Otp /> // Render the OTP page component
       ) : (
         <div className="absolute top-0 left-0 w-full h-fit">
           <Nav page="registration" />
           <div className="bg-transparent h-full w-full flex justify-center py-10 px-6">
             <div className="w-full sm:w-2/3 md:w-1/2 rounded-lg bg-sky-500/10 p-6 backdrop-blur-sm relative">
               <h1 className="w-full text-2xl md:text-3xl lg:text-4xl font-bold tracking-widest text-neutral-200 font-custom-sans uppercase mb-5">
-                admin registration
+                admin signup
               </h1>
 
               <form
