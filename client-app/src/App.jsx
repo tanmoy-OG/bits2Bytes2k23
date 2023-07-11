@@ -25,6 +25,7 @@ import OTPPage from "./Pages/Otp.jsx";
 // const env=require('dotenv').config();
 // for Routing
 import { Route, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 
 const App = () => {
   useEffect(() => {

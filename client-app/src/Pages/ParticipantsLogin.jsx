@@ -7,66 +7,32 @@ import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
+const initialValues = {
+  roll: "",
+  password: "",
+};
 const ParticipantsLogin = () => {
-  const initialValues = {
-    roll: "",
-    password: "",
-  };
 
   const [loginError, setLoginError] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues: initialValues,
       validationSchema: LoginSchema,
+    })
 
-      onSubmit: async (values) => {
-        try {
-          const response = await fetch("http://127.0.0.1:4200/login/", {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify(values),
-          });
-      // onSubmit: async (values) => {
-      //   // console.log("hello");
-      //   try {
-      //     const response = await fetch('http://127.0.0.1:5000/login/', {
-      //       method: 'POST',
-      //       headers: {
-      //         'Content-Type': 'application/json',
-      //       },
-      //       body: JSON.stringify(values),
-      //     });
-
-      //     if (response.ok) {
-      //       // Successfull Login
-      //       const data = await response.json();
-      //       console.log(data);
-      //       console.log("Successfull");
-      //     } else {
-      //       // Login failed.
-      //       const errorData = await response.json();
-      //       setLoginError(errorData.message);
-      //       console.log("failed");
-      //     }
-      //   } catch (error) {
-      //     console.error("Error:", error);
-      //     setLoginError("An error occurred during login.");
-      //   }
-        }catch(error){};
+    const check = (data) => {
+      if ("error" in data) {
+        toast.error(data.error, {
+          position: "top-center",
+          theme: "colored",
+        });
+        return true;
       }
-    });
-
-  //to check error in the data.
-  const check = async (data) => {
-    if ("error" in data) {
-      // toast(data.error)
-      return true;
-    }
-    return false;
-  };
+      return false;
+    };
+ 
 
   //to fetch
   const submit = async (e) => {
@@ -79,7 +45,10 @@ const ParticipantsLogin = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(values),
+        body: JSON.stringify({
+          roll : values.roll,
+          password : values.password
+        }),
       });
 
       if (response.ok) {
@@ -97,6 +66,7 @@ const ParticipantsLogin = () => {
             position: "top-center",
             theme: "colored",
           });
+          setIsLoggedIn(true);
         }
         // console.log("Successfull");
       } else {
@@ -104,13 +74,13 @@ const ParticipantsLogin = () => {
         const errorData = await response.json();
         setLoginError(errorData.message);
         console.log("failed");
-        toast.error("Unsuccessfull", {
+        toast.error(data.error, {
           position: "top-center",
           theme: "colored",
         });
       }
     } catch (error) {
-      toast.error("Unsucessfull", {
+      toast.error("Something Went wrong", {
         position: "top-center",
         theme: "colored",
       });
@@ -119,6 +89,11 @@ const ParticipantsLogin = () => {
   };
 
   return (
+    <>
+    {isLoggedIn ? (
+        <Homepage />
+      ) : (
+    
     <div className="absolute top-0 left-0 w-full h-fit">
       <Nav page="registration" />
       <div className="bg-transparent h-full w-full flex justify-center py-10 px-6">
@@ -128,7 +103,7 @@ const ParticipantsLogin = () => {
           </h1>
 
           <form
-            onSubmit={handleSubmit}
+            onSubmit={submit}
             className="flex flex-col items-center justify-center h-fit gap-3"
           >
             <div className="input-block text-left p-3 font-semibold font-custom-sans flex flex-col justify-center w-full">
@@ -195,6 +170,8 @@ const ParticipantsLogin = () => {
       <ToastContainer />
       <Particle />
     </div>
+      )}
+    </>
   );
 };
 
