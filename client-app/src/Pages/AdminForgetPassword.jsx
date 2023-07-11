@@ -6,12 +6,12 @@ import OTPPage from "./Otp";
  
 
 const initialValues = {
-  roll: '',
+  email: '',
   password: '',
   confirmPassword: '',
 };
 
-const ParticipantForgotPassword = () => {
+const AdminForgotPassword = () => {
   const [error, setError] = useState('');
   const [isSuccess, setIsSuccess] = useState(false);
 
@@ -34,7 +34,7 @@ const ParticipantForgotPassword = () => {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          roll: values.roll,
+          email: values.email,
           password: values.password,
         }),
       });
@@ -68,10 +68,10 @@ const ParticipantForgotPassword = () => {
           <form onSubmit={handleSubmit} className="flex flex-col max-w-sm mx-auto">
             <input
               type="text"
-              name="roll"
-              id="roll"
-              value={values.roll}
-              placeholder="Enter your roll number"
+              name="email"
+              id="email"
+              value={values.email}
+              placeholder="Enter your email"
               onChange={handleChange}
               className="border border-gray-300 rounded px-4 py-2 mb-4"
             />
@@ -113,4 +113,4 @@ const ParticipantForgotPassword = () => {
   );
 };
 
-export default ParticipantForgotPassword;
+export default AdminForgotPassword;
