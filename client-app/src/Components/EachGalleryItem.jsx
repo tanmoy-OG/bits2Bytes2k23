@@ -27,7 +27,7 @@ const EachGalleryItem = ({ img, tag, setChildVisible, setImg, setTag }) => {
       <img
         src={img}
         alt=""
-        className="w-full h-full object-cover grayscale opacity-50 hover:opacity-100 group-hover:scale-110 group-hover:grayscale-0 transition-all duration-500"
+        className="w-full h-full object-cover grayscale opacity-70 hover:opacity-100 group-hover:scale-110 group-hover:grayscale-0 transition-all duration-500"
       />
       <div className="absolute bottom-0 z-40 opacity-0 group-hover:opacity-100 w-full h-10 md:text-2xl font-bold tracking-wider text-white font-custom-sans flex items-center pl-2 pr-2 transition-all duration-500">
         <p className="w-full truncate overflow-hidden text-left uppercase text-lg">
