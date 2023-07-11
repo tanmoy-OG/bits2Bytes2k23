@@ -94,7 +94,7 @@ const AdminSignup = () => {
           <div className="bg-transparent h-full w-full flex justify-center py-10 px-6">
             <div className="w-full sm:w-2/3 md:w-1/2 rounded-lg bg-sky-500/10 p-6 backdrop-blur-sm relative">
               <h1 className="w-full text-2xl md:text-3xl lg:text-4xl font-bold tracking-widest text-neutral-200 font-custom-sans uppercase mb-5">
-                admin registration
+                admin signup
               </h1>
 
               <form

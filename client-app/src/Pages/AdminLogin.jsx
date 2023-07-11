@@ -123,10 +123,16 @@ const AdminLogin = () => {
                   {errors.password}
                 </p>
               ) : null}
+              <Link
+                to="/admin/resetpassword"
+                className="forgot-pass text-left tracking-widest pt-1 hover:underline w-fit"
+              >
+                Forgot Password?
+              </Link>
             </div>
 
             {/* submit */}
-            <button type="submit" className="button-green uppercase mt-5">
+            <button type="submit" className="button-green uppercase">
               Login
             </button>
           </form>

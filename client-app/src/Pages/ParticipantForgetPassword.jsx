@@ -4,7 +4,6 @@ import 'react-toastify/dist/ReactToastify.css';
 import { useFormik } from 'formik';
 import OTPPage from "./Otp";
  
-
 const initialValues = {
   roll: '',
   password: '',

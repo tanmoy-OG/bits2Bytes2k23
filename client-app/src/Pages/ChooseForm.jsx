@@ -14,15 +14,8 @@ const ChooseForm = () => {
           Admin Registration Form
         </Link>
 
-        {/* <Link 
-      to="/coordinator"
-      className='font-bold p-4 font-custom-sans text-lg hover:text-blue-300'>
-        Coordinators Registration Form
-      </Link>
-      <hr className=' border border-black'/> */}
-
         <Link
-          to="/signup/participant"
+          to="/signup/user"
           className="font-bold m-2 p-4 font-custom-sans text-xl tracking-wide bg-blue-600/10 hover:bg-blue-500/20 text-white rounded-md transition-all duration-200"
         >
           Participants Registration Form

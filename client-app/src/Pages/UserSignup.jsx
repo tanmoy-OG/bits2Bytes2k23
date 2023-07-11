@@ -20,17 +20,16 @@ const initialValues = {
   stream: "CSE",
 };
 
-const ParticipantsSignup = () => {
+const UserSignup = () => {
   const [signupError, setSignupError] = useState("");
   const [isRegistered, setIsRegistered] = useState(false);
 
   const [otp, setOtp] = useState("");
 
-  const { values, errors, touched, handleBlur, handleChange } = 
-    useFormik({
-      initialValues: initialValues,
-      validationSchema: formSchema,
-    });
+  const { values, errors, touched, handleBlur, handleChange } = useFormik({
+    initialValues: initialValues,
+    validationSchema: formSchema,
+  });
 
   const check = (data) => {
     if ("error" in data) {
@@ -43,79 +42,81 @@ const ParticipantsSignup = () => {
     return false;
   };
 
-    const Submit = async(e)=>{
-      e.preventDefault();
-      const { fname, lname, email,mobile,roll, password, year, stream } = values; 
-      const data_values = {fname,lname,email,mobile, roll,password,year,stream}
-      console.log(data_values);
-      
-    
-          try {
-            const response = await fetch("http://127.0.0.1:5000/user_signup/", {
-              method: "POST",
-              headers: {
-                "Content-Type": "application/json",
-              },
-              body: JSON.stringify(data_values),
-            })
-            if (response.ok) {
-              // Registration successful, handle the response here
-              
-              const data = await response.json();
+  const Submit = async (e) => {
+    e.preventDefault();
+    const { fname, lname, email, mobile, roll, password, year, stream } =
+      values;
+    const data_values = {
+      fname,
+      lname,
+      email,
+      mobile,
+      roll,
+      password,
+      year,
+      stream,
+    };
+    console.log(data_values);
 
-              // console.log(data);
-              const headers = await data.headers;
-             
-              if (check(data)) {
-                setSignupError("");
-              } else {
-                toast.success(data.successful, {
-                  position: "top-center",
-                  theme: "colored",
-                });
+    try {
+      const response = await fetch("http://127.0.0.1:5000/user_signup/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(data_values),
+      });
+      if (response.ok) {
+        // Registration successful, handle the response here
 
-                // console.log(data.verification);
-                setOtp(data.verification);
-                setIsRegistered(true);
-              }
-            
-            }
-             else {
-              // Registration failed, handle the error
-              const errorData = await response.json();
-              setSignupError(errorData.message);
-              toast.error("Unsuccessfull",{
-                position:"top-center",
-                theme:"colored",
-              });
-            }
-          } catch (error) {
-            toast.error("Something went wrong",{
-              position:"top-center",
-              theme:"colored",
-            });
-            setSignupError("An error occurred during registration.");
-          }
-  
+        const data = await response.json();
+
+        // console.log(data);
+        const headers = await data.headers;
+
+        if (check(data)) {
+          setSignupError("");
+        } else {
+          toast.success(data.successful, {
+            position: "top-center",
+            theme: "colored",
+          });
+
+          // console.log(data.verification);
+          setOtp(data.verification);
+          setIsRegistered(true);
+        }
+      } else {
+        // Registration failed, handle the error
+        const errorData = await response.json();
+        setSignupError(errorData.message);
+        toast.error("Unsuccessfull", {
+          position: "top-center",
+          theme: "colored",
+        });
+      }
+    } catch (error) {
+      toast.error("Something went wrong", {
+        position: "top-center",
+        theme: "colored",
+      });
+      setSignupError("An error occurred during registration.");
     }
-  
+  };
+
   return (
     <>
-
-       {isRegistered ? (
-         <OTPPage otp={otp}/> // Render the OTP page component
-       ) : (
-         
-    <div className="absolute top-0 left-0 w-full h-fit">
-      <Nav page="" />
-      <div className="bg-transparent backdrop-blur-sm rounded-lg h-full m-0 p-10 flex flex-col md:flex-row">
-        <div className="md:w-1/2 flex-1">
-          <div className="bg-gradient-to-t from-transparent via-blue-950/60 to-transparent shadow-lg p-7">
-            <h1
-              className="text-4xl md:text-5xl font-bold tracking-wider text-neutral-200 font-custom-sans uppercase"
-            >
-              Registration
-            </h1>
+      {isRegistered ? (
+        // Render the OTP page component
+        <OTPPage otp={otp} />
+      ) : (
+        <div className="absolute top-0 left-0 w-full h-fit">
+          <Nav page="registration" />
+          <div className="bg-transparent h-full w-full flex justify-center py-10 px-6">
+            <div className="w-full sm:w-2/3 md:w-1/2 rounded-lg bg-sky-500/10 p-6 backdrop-blur-sm relative">
+              <h1 className="w-full text-2xl md:text-3xl lg:text-4xl font-bold tracking-widest text-neutral-200 font-custom-sans uppercase mb-5">
+                User signup
+              </h1>
 
               <form
                 onSubmit={Submit}
@@ -318,7 +319,7 @@ const ParticipantsSignup = () => {
                 <p className="text-xs text-white flex justify-between items-center uppercase tracking-widest">
                   If already Registered..
                 </p>
-                <Link to="/login/participant" className="button">
+                <Link to="/login/user" className="button">
                   <button className="uppercase">Login</button>
                 </Link>
               </div>
@@ -327,10 +328,9 @@ const ParticipantsSignup = () => {
           <ToastContainer />
           <Particle />
         </div>
-      </div>
-       )}
+      )}
     </>
   );
 };
 
-export default ParticipantsSignup;
+export default UserSignup;
