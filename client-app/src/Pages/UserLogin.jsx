@@ -135,7 +135,10 @@ const UserLogin = () => {
                       {errors.password}
                     </p>
                   ) : null}
-                  <Link to="/user/resetpassword" className="forgot-pass text-left tracking-widest pt-1 hover:underline w-fit">
+                  <Link
+                    to="/user/resetpassword"
+                    className="forgot-pass text-left tracking-widest pt-1 hover:underline w-fit"
+                  >
                     Forgot Password?
                   </Link>
                 </div>

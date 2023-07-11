@@ -48,9 +48,9 @@ const App = () => {
       <Route path="/signup/user" Component={UserSignup} />
       <Route path="/login/admin" Component={AdminLogin} />
       <Route path="/login/user" Component={UserLogin} />
-      <Route path="/otp" Component={Otp}/>
       <Route path="/admin/resetpassword" Component={AdminForgetPass}/>
       <Route path="/user/resetpassword" Component={UserForgetPass}/>
+      <Route path="/otp" Component={Otp}/>
       <Route path="*" Component={ErrorPage} />
     </Routes>
   );

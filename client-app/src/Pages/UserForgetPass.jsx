@@ -77,7 +77,7 @@ const UserForgetPass = () => {
               >
                 <div className="input-block text-left p-3 font-semibold font-custom-sans flex flex-col justify-center w-full">
                   <input
-                    type="text"
+                    type="number"
                     name="roll"
                     id="roll"
                     value={values.roll}
@@ -115,8 +115,6 @@ const UserForgetPass = () => {
                   Submit
                 </button>
               </form>
-
-              {/* {error && <p className="text-red-500 mt-2">{error}</p>} */}
             </div>
           </div>
           <ToastContainer />

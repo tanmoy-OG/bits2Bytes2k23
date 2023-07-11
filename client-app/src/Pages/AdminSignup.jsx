@@ -1,11 +1,12 @@
 import { useFormik } from "formik";
 import formSchema from "./FormSchema";
+import React, { useState } from "react";
 import Nav from "../Components/Nav";
 import Particle from "../Components/Particle";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import OTPPage from "./Otp";
+import Otp from "./Otp";
 
 const initialValues = {
   fname: "",
@@ -17,6 +18,8 @@ const initialValues = {
   confirm_password: "",
 };
 const AdminSignup = () => {
+  // const [signupError, setSignupError] = useState("");
+  const [isRegistered, setIsRegistered] = useState(false);
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues: initialValues,
@@ -87,7 +90,7 @@ const AdminSignup = () => {
   return (
     <>
       {isRegistered ? (
-        <OTPPage /> // Render the OTP page component
+        <Otp /> // Render the OTP page component
       ) : (
         <div className="absolute top-0 left-0 w-full h-fit">
           <Nav page="registration" />
@@ -98,7 +101,7 @@ const AdminSignup = () => {
               </h1>
 
               <form
-                onSubmit={handleSubmit}
+                onSubmit={Submit}
                 className="flex flex-col items-center justify-center h-fit gap-3"
               >
                 {/* name */}

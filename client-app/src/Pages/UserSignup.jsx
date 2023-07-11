@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import formSchema from "./FormSchema";
+import FormSchema from "./FormSchema";
 import Nav from "../Components/Nav";
 import Particle from "../Components/Particle";
 import { Link } from "react-router-dom";
@@ -28,7 +28,7 @@ const UserSignup = () => {
 
   const { values, errors, touched, handleBlur, handleChange } = useFormik({
     initialValues: initialValues,
-    validationSchema: formSchema,
+    validationSchema: FormSchema,
   });
 
   const check = (data) => {
