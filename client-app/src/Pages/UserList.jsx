@@ -3,9 +3,6 @@ import Nav from "../Components/Nav";
 import Particle from "../Components/Particle";
 import SubNavButton from "../Components/SubNavButton";
 import EachUser from "../Components/EachUser";
-import download from "../assets/download-white.svg";
-import approve from "../assets/approve.svg";
-import ban from "../assets/ban.svg";
 import { Link } from "react-router-dom";
 
 const UserList = (props) => {
@@ -39,7 +36,7 @@ const UserList = (props) => {
               )}
 
               <div className="hover:bg-white/20 cursor-pointer transition-all duration-300 flex justify-center items-center p-2 rounded-md">
-                <img src={download} alt="" />
+                <img src="/Icons/download.svg" alt="" />
               </div>
 
               {current && (
@@ -49,7 +46,7 @@ const UserList = (props) => {
                     setCurrent(false);
                   }}
                 >
-                  <img src={ban} alt="" />
+                  <img src="/Icons/ban.svg" alt="" />
                 </div>
               )}
               {!current && (
@@ -59,7 +56,7 @@ const UserList = (props) => {
                     setCurrent(true);
                   }}
                 >
-                  <img src={approve} alt="" />
+                  <img src="/Icons/approve.svg" alt="" />
                 </div>
               )}
             </div>

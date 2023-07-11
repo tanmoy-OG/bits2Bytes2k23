@@ -132,7 +132,7 @@ const Footer = () => {
           >
             Rishav Ghosh
           </a>{" "}
-          and{" "}
+          &{" "}
           <a
             href="https://www.linkedin.com/in/priyankar-sarkar/"
             target="_blank"

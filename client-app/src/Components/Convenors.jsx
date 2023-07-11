@@ -1,4 +1,3 @@
-import demo from "../assets/demo.jpg";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import {
   faFacebookF,
