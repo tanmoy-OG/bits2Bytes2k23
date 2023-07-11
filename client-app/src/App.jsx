@@ -5,6 +5,7 @@ import "./App.css";
 import Home from "./Pages/Home.jsx";
 import Crew from "./Pages/Crew";
 import Events from "./Pages/Events";
+import EachEvents from "./Pages/EachEvents.jsx";
 import Gallery from "./Pages/Gallery";
 import Principal from "./Pages/Principal";
 import AdminDetails from "./Pages/AdminDetails.jsx";
@@ -26,7 +27,7 @@ import Otp from "./Pages/Otp";
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 
-const App = () => {
+const App = (name) => {
   useEffect(() => {
     Aos.init({ duration: 1300 });
   }, []);
@@ -38,6 +39,7 @@ const App = () => {
       <Route path="/events" Component={Events} />
       <Route path="/gallery" Component={Gallery} />
       <Route path="/events" Component={Events} />
+      <Route path="/events/details" Component={EachEvents} />
       <Route path="/crew" Component={Crew} />
       <Route path="/adminprofile/details" Component={AdminDetails} />
       <Route path="/adminprofile/userlist" Component={UserList} />
