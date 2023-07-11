@@ -9,6 +9,7 @@ import "react-toastify/dist/ReactToastify.css";
 import AdminOTPPage from "./AdminOtp";
 
 import Otp from "./Otp";
+import OTPPage from "./Otp";
 
 const initialValues = {
   fname: "",
@@ -97,7 +98,7 @@ const AdminSignup = () => {
     <>
       {isRegistered ? (
         // <AdminOTPPage otp={otp} /> // Render the OTP page component
-        <Otp otp={otp}/> // Render the OTP page component
+        <OTPPage otp={otp}/> // Render the OTP page component
       ) : (
         <div className="absolute top-0 left-0 w-full h-fit">
           <Nav page="registration" />

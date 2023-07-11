@@ -3,7 +3,6 @@ import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useFormik } from 'formik';
 import Home from './Home';
-import { useState } from "react";
 import Particle from "../Components/Particle";
 
 const initialValues = {
@@ -108,11 +107,11 @@ const OTPPage = ({ otp }) => {
       //     setIsSuccess(true);
       //   }
         
-      if (data.success) {
+      if (response.ok) {
         console.log("OTP is valid");
         toast.success(data.successful);
         setError("");
-        // setIsSuccess(true);
+        setIsSuccess(true);
       } else {
         toast.error(data.error);
         setError("Invalid OTP");
@@ -167,11 +166,11 @@ const OTPPage = ({ otp }) => {
 
           {error && <p className="text-red-500 mt-2">{error}</p>}
 
-          <div className="flex justify-between items-center flex-col gap-6 pt-10">
+          {/* <div className="flex justify-between items-center flex-col gap-6 pt-10">
             <button className="button uppercase tracking-widest">
               RESEND OTP
             </button>
-          </div>
+          </div> */}
         </div>
       </div>
       <ToastContainer />
