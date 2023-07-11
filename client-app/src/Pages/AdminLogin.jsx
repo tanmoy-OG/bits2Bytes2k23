@@ -5,20 +5,25 @@ import Particle from "../Components/Particle";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { useState } from "react";
+import OTPPage from "./Otp";
+
 
 const AdminLogin = () => {
+  const [loginError, setLoginError] = useState("");
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [otp, setOtp] = useState("");
+
   const initialValues = {
     email: "",
     password: "",
   };
 
-  const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
+  const { values, errors, touched, handleBlur, handleChange } =
     useFormik({
       initialValues: initialValues,
       validationSchema: LoginSchema,
-      // onSubmit: (values) => {
-      //   console.log(values);
-      // },
+     
     });
 
   const check = (data) => {
@@ -41,7 +46,10 @@ const AdminLogin = () => {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify(values),
+        body: JSON.stringify({
+          email:values.email,
+          password:values.password
+        }),
       });
 
       if (response.ok) {
@@ -49,12 +57,18 @@ const AdminLogin = () => {
         const data = await response.json();
         console.log(data);
         if (check(data)) {
-          setSignupError("");
+          toast.error(data.error, {
+            position: "top-center",
+            theme: "colored",
+          });
         } else {
+          console.log("successfull");
           toast.success(data.successfull, {
             position: "top-center",
             theme: "colored",
           });
+          setOtp(data.verification);
+          setIsLoggedIn(true);
         }
       } else {
         // Login failed.
@@ -77,6 +91,10 @@ const AdminLogin = () => {
   };
 
   return (
+     <>
+    {isLoggedIn ? (
+        <OTPPage otp={otp} />
+      ) : (
     <div className="absolute top-0 left-0 w-full h-fit">
       <Nav page="registration" />
       <div className="bg-transparent h-full w-full flex justify-center py-10 px-6">
@@ -86,7 +104,7 @@ const AdminLogin = () => {
           </h1>
 
           <form
-            onSubmit={handleSubmit}
+            onSubmit={Submit}
             className="flex flex-col items-center justify-center h-fit gap-3"
           >
             {/* email */}
@@ -158,6 +176,8 @@ const AdminLogin = () => {
       <ToastContainer />
       <Particle />
     </div>
+      )}
+      </>
   );
 };
 

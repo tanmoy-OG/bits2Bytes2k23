@@ -7,6 +7,7 @@ import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import OTPPage from "./Otp";
+import AdminOTPPage from "./AdminOtp";
 
 
 const initialValues = {
@@ -21,6 +22,8 @@ const initialValues = {
 const AdminSignup = () => {
   const [signupError, setSignupError] = useState("");
   const [isRegistered, setIsRegistered] = useState(false);
+  const [otp, setOtp] = useState("");
+
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues: initialValues,
@@ -41,6 +44,7 @@ const AdminSignup = () => {
     return false;
   };
 
+  
   const Submit = async (e) => {
     e.preventDefault();
     // console.log(values);
@@ -59,15 +63,16 @@ const AdminSignup = () => {
       if (response.ok) {
         // Registration successful, handle the response here
         const data = await response.json();
-
+        console.log(data_values);
         if (check(data)) {
-          setSignupError("");
+          // setSignupError("");
+          console.log('Errorrr!!!!!');
         } else {
           toast.success(data.successfull, {
             position: "top-center",
             theme: "colored",
           });
-
+          setOtp(data.verification);
           setIsRegistered(true);
         }
       } else {
@@ -91,7 +96,7 @@ const AdminSignup = () => {
   return (
     <>
       {isRegistered ? (
-        <OTPPage /> // Render the OTP page component
+        <AdminOTPPage otp={otp} /> // Render the OTP page component
       ) : (
         <div className="absolute top-0 left-0 w-full h-fit">
           <Nav page="registration" />

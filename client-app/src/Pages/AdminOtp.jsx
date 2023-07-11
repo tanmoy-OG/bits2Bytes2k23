@@ -2,20 +2,26 @@ import React, { useState, useEffect } from 'react';
 import { ToastContainer, toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 import { useFormik } from 'formik';
-import Home from './Home';
+
+import AdminLogin from './AdminLogin';
 // import { Link } from 'react-router-dom';
 
 const initialValues = {
   otp_value: '',
 };
 
-const OTPPage = ({ otp }) => {
+const AdminOTPPage = ({ otp }) => {
   const [error, setError] = useState('');
   const [isSuccess, setIsSuccess] = useState(false);
   const [timer, setTimer] = useState(20);
   const [isTimerActive, setIsTimerActive] = useState(false);
 
- 
+//   const auth_check = (data) =>{
+//     if("Authorization" in data){
+//       <Home/>
+//     }
+//     return false
+//   }
   //Resend otp..
   useEffect(() => {
     let countdown;
@@ -66,23 +72,12 @@ const OTPPage = ({ otp }) => {
   };
 
   //otp fetch and check...
-  const { values, handleChange } = useFormik({
+  const { values, handleChange, handleSubmit } = useFormik({
     initialValues: initialValues,
   });
-
-  const check = (data) => {
-    if ("error" in data) {
-      toast.error(data.error, {
-        position: "top-center",
-        theme: "colored",
-      });
-      return true;
-    }
-    return false;
-  };
   
-  const submit = async (e) => {
-    e.preventDefault()
+  const Submit = async (values) => {
+    console.log(values.otp_value);
     try {
       const response = await fetch('http://127.0.0.1:5000/otp_verify/', {
         method: 'POST',
@@ -98,22 +93,10 @@ const OTPPage = ({ otp }) => {
       const data = await response.json();
 
       if (response.ok) {
-
-        if (check(data)) {
-          // console.log(data);
-          toast.error(data.error, {
-            position: "top-center",
-            theme: "colored",
-          });
-        } else {
-          toast.success(data.successfull, {
-            position: "top-center",
-            theme: "colored",
-          });
-          // setOtp(data.verification);
-          setIsSuccess(true);
-        }
-        
+        console.log("Successfull");
+        toast.success(data.successful);
+        // setError('');
+        setIsSuccess(true);
       } else {
         toast.error(data.error);
         setError('Invalid OTP');
@@ -124,16 +107,15 @@ const OTPPage = ({ otp }) => {
       setError('Error verifying OTP');
     }
   }
-
   return (
     <>
-      {isSuccess ? (
-        <Home />
+      {isSuccess? (
+        <AdminLogin />
       ) : (
         <div className="container mx-auto px-4 py-8">
           <h2 className="text-2xl font-semibold mb-4 text-blue-500">Enter OTP</h2>
 
-          <form onSubmit={submit} className="flex flex-col max-w-sm mx-auto">
+          <form onSubmit={Submit} className="flex flex-col max-w-sm mx-auto">
             <input
               type="text"
               name="otp_value"
@@ -168,4 +150,4 @@ const OTPPage = ({ otp }) => {
   );
 };
 
-export default OTPPage;
+export default AdminOTPPage;

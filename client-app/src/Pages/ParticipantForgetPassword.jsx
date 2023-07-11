@@ -14,7 +14,8 @@ const initialValues = {
 const ParticipantForgotPassword = () => {
   const [error, setError] = useState('');
   const [isSuccess, setIsSuccess] = useState(false);
-
+  const [otp, setOtp] = useState("");
+  
   const { values, handleChange } = useFormik({
     initialValues: initialValues,
   });
@@ -28,7 +29,7 @@ const ParticipantForgotPassword = () => {
         return;
       }
 
-      const response = await fetch('http://localhost:5000/forget_password/', {
+      const response = await fetch('http://127.0.0.1:5000/forget_password/', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -45,6 +46,7 @@ const ParticipantForgotPassword = () => {
       if (response.ok) {
         toast.success(data.successful);
         setError('');
+        setOtp(data.verification);
         setIsSuccess(true);
       } else {
         toast.error(data.error);
@@ -60,7 +62,7 @@ const ParticipantForgotPassword = () => {
   return (
     <>
       {isSuccess ? (
-        <OTPPage/>
+        <OTPPage otp={otp}/>
       ) : (
         <div className="container mx-auto px-4 py-8">
           <h2 className="text-2xl font-semibold mb-4 text-blue-500">Forgot Password</h2>
