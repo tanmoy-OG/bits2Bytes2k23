@@ -165,6 +165,12 @@ const ParticipantsLogin = () => {
               <button className="uppercase tracking-widest">Sign Up</button>
             </Link>
           </div>
+          <div className="flex justify-between items-center flex-col gap-6 p-2">
+            
+            <Link to="/forgotpassword" className="button">
+              <button className="uppercase tracking-widest">Forgot Password</button>
+            </Link>
+          </div>
         </div>
       </div>
       <ToastContainer />

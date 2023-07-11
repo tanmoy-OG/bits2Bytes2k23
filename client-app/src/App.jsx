@@ -20,6 +20,9 @@ import ErrorPage from "./Pages/ErrorPage";
 import "aos/dist/aos.css";
 import "./App.css";
 import OTPPage from "./Pages/Otp.jsx";
+import ParticipantForgotPassword from "./Pages/ParticipantForgetPassword.jsx";
+import AdminForgotPassword from "./Pages/AdminForgetPassword.jsx";
+
 
 
 // const env=require('dotenv').config();
@@ -49,6 +52,8 @@ const App = () => {
       <Route path="/signup/participant" Component={ParticipantsSignup} />
       <Route path="/login/admin" Component={AdminLogin} />
       <Route path="/login/participant" Component={ParticipantsLogin} />
+      <Route path="/forgotpassword" Component={ParticipantForgotPassword}/>
+      <Route path="/adminforgotpassword" Component={AdminForgotPassword}/>
       {/* <Route path="/signup/participants/otp" Component={OTPPage}/> */}
       {/* <Route path="/coordinatorform" Component={CoordinatorForm} /> */}
       <Route path="*" Component={ErrorPage} />
