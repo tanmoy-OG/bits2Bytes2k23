@@ -6,7 +6,10 @@ import Particle from "../Components/Particle";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import AdminOTPPage from "./AdminOtp";
+
 import Otp from "./Otp";
+import OTPPage from "./Otp";
 
 const initialValues = {
   fname: "",
@@ -20,6 +23,8 @@ const initialValues = {
 const AdminSignup = () => {
   // const [signupError, setSignupError] = useState("");
   const [isRegistered, setIsRegistered] = useState(false);
+  const [otp, setOtp] = useState("");
+
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
       initialValues: initialValues,
@@ -40,12 +45,13 @@ const AdminSignup = () => {
     return false;
   };
 
+  
   const Submit = async (e) => {
     e.preventDefault();
     // console.log(values);
     const { fname, lname, email, mobile, secret_key, password } = values;
     const data_values = { fname, lname, email, mobile, secret_key, password };
-
+    console.log(data_values)
     try {
       const response = await fetch("http://127.0.0.1:5000/user_signup/", {
         method: "POST",
@@ -58,15 +64,16 @@ const AdminSignup = () => {
       if (response.ok) {
         // Registration successful, handle the response here
         const data = await response.json();
-
+        console.log(data_values);
         if (check(data)) {
-          setSignupError("");
+          // setSignupError("");
+          console.log('Errorrr!!!!!');
         } else {
           toast.success(data.successfull, {
             position: "top-center",
             theme: "colored",
           });
-
+          setOtp(data.verification);
           setIsRegistered(true);
         }
       } else {
@@ -90,7 +97,8 @@ const AdminSignup = () => {
   return (
     <>
       {isRegistered ? (
-        <Otp /> // Render the OTP page component
+        // <AdminOTPPage otp={otp} /> // Render the OTP page component
+        <OTPPage otp={otp}/> // Render the OTP page component
       ) : (
         <div className="absolute top-0 left-0 w-full h-fit">
           <Nav page="registration" />

@@ -6,14 +6,18 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import OTPPage from "./Otp";
 
-const initialValues = {
-  roll: "",
-  password: "",
-};
+
 const UserLogin = () => {
   const [loginError, setLoginError] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [otp, setOtp] = useState("");
+  
+  const initialValues = {
+    roll: "",
+    password: "",
+  };
 
   const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
     useFormik({
@@ -64,6 +68,7 @@ const UserLogin = () => {
             position: "top-center",
             theme: "colored",
           });
+          setOtp(data.verification);
           setIsLoggedIn(true);
         }
         // console.log("Successfull");
@@ -89,7 +94,7 @@ const UserLogin = () => {
   return (
     <>
       {isLoggedIn ? (
-        <Homepage />
+        <OTPPage otp={otp}/>
       ) : (
         <div className="absolute top-0 left-0 w-full h-fit">
           <Nav page="registration" />
