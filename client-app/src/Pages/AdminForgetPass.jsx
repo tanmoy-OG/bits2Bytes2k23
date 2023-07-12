@@ -6,15 +6,17 @@ import Otp from "./Otp";
 import Particle from "../Components/Particle";
 import Nav from "../Components/Nav";
 
-const initialValues = {
-  email: "",
-  password: "",
-  confirmPassword: "",
-};
 
 const AdminForgotPass = () => {
   const [error, setError] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
+  const [otp, setOtp] = useState("");
+
+  const initialValues = {
+    email: "",
+    password: "",
+    confirmPassword: "",
+  };
 
   const { values, handleChange } = useFormik({
     initialValues: initialValues,
@@ -29,7 +31,7 @@ const AdminForgotPass = () => {
         return;
       }
 
-      const response = await fetch("http://localhost:5000/forget_password/", {
+      const response = await fetch("http://127.0.0.1:5000/forget_password/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -46,6 +48,7 @@ const AdminForgotPass = () => {
       if (response.ok) {
         toast.success(data.successful);
         setError("");
+        setOtp(data.verification);
         setIsSuccess(true);
       } else {
         toast.error(data.error);
@@ -61,7 +64,7 @@ const AdminForgotPass = () => {
   return (
     <>
       {isSuccess ? (
-        <Otp />
+        <Otp otp={otp}/>
       ) : (
         <div className="absolute top-0 left-0 w-full h-full">
           <Nav />
