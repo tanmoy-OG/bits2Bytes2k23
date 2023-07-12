@@ -51,7 +51,7 @@ const AdminSignup = () => {
     // console.log(values);
     const { fname, lname, email, mobile, secret_key, password } = values;
     const data_values = { fname, lname, email, mobile, secret_key, password };
-
+    console.log(data_values)
     try {
       const response = await fetch("http://127.0.0.1:5000/user_signup/", {
         method: "POST",

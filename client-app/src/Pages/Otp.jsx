@@ -81,7 +81,7 @@ const OTPPage = ({ otp }) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          verification: otp,
+          "verification": otp,
         },
         body: JSON.stringify({
           otp: values.otp_value,
@@ -154,14 +154,16 @@ const OTPPage = ({ otp }) => {
             <button type="submit" className="button-green uppercase mt-5">
               Submit
             </button>
+            <div className="flex justify-between items-center flex-col gap-6 pt-10">
             <button
               type="button"
-              className="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded"
+              className="button uppercase tracking-widest"
               onClick={handleResendOTP}
               disabled={isTimerActive}
             >
               {isTimerActive ? `Resend OTP (${timer}s)` : 'Resend OTP'}
             </button>
+            </div> 
           </form>
 
           {error && <p className="text-red-500 mt-2">{error}</p>}
