@@ -62,8 +62,13 @@ const Events = () => {
   return (
     <div className="absolute top-0 left-0 w-full h-fit">
       <Nav page="events" />
-      <div className="grid grid-cols-3 gap-16 place-items-center p-6 bg-sky-500/10 backdrop-blur-sm m-10 ml-6 mr-6 px-16 rounded-2xl">
-        <Event list={list} />
+      <div className="p-6 pt-0 bg-sky-500/10 backdrop-blur-sm m-10 ml-6 mr-6 px-16 rounded-2xl">
+        <h1 className="p-4 md:p-10 md:pb-14 text-4xl md:text-5xl font-bold tracking-wider text-neutral-200 font-custom-sans uppercase">
+          EVENTS
+        </h1>
+        <div className="grid grid-cols-3 gap-16 place-items-center">
+          <Event list={list} />
+        </div>
       </div>
       <Footer />
       <Particle />
