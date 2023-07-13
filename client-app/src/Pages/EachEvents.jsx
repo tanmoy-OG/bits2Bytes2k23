@@ -15,7 +15,7 @@ const EachEvents = () => {
   return (
     <div className="absolute top-0 left-0 w-full h-fit">
       <Nav page="events" />
-      <div className=" p-4 pt-0 text-white bg-sky-500/10 backdrop-blur-sm m-10 ml-6 mr-6 px-16 rounded-2xl">
+      <div className=" m-10 ml-6 mr-6 p-6 pt-0 lg:px-12 text-white bg-sky-500/10 backdrop-blur-sm rounded-2xl">
         <h1
           className="p-4 md:p-10 pb-2 md:pb-2 text-4xl md:text-5xl font-bold tracking-wider text-neutral-200 font-custom-sans uppercase"
           data-aos="fade-up"
@@ -26,14 +26,14 @@ const EachEvents = () => {
           <p>{state.date}</p>
           <p>{state.time}</p>
         </div>
-        <div className="flex flex-shrink gap-10">
+        <div className="flex flex-col md:flex-row flex-shrink gap-10">
           <div className="basis-1/2 flex flex-col gap-10">
             <div className="">
               <img className="rounded-lg" src={state.pic} alt="not found" />
             </div>
             <p className=" text-justify">{state.about}</p>
             <p className=" text-left">{state.rules}</p>
-            <button className="p-2 w-1/3 lg:w-1/4 mx-auto rounded-md bg-orange-400 uppercase">
+            <button className=" md:mb-10 h-10 w-1/2 sm:w-1/3 lg:w-1/4 mx-auto rounded-md bg-orange-400 uppercase">
               Register
             </button>
           </div>
@@ -46,19 +46,19 @@ const EachEvents = () => {
                 <img src="/Icons/download.svg" alt="" />
               </div>
             </div>
-            <div className="m-2 mt-0 p-2 border-b border-spacing-1 border-white/20">
+            <div className="sm:m-2 my-2 sm:p-2 pb-2 border-b border-spacing-1 border-white/20">
               <div className="w-full bg-blue-600/10 p-1 rounded-md">
                 <div className="group flex flex-row gap-3">
-                  <div className="text-sm w-1/2 sm:w-1/3 text-left tracking-widest p-1 uppercase font-bold whitespace-nowrap">
+                  <div className="text-sm w-1/3 text-left tracking-widest p-1 uppercase font-bold whitespace-nowrap">
                     Rank
                   </div>
-                  <div className="text-sm w-1/4 sm:w-1/2 text-left tracking-widest p-1 overflow-hidden text-ellipsis uppercase font-bold whitespace-nowrap">
+                  <div className="text-sm w-1/2 text-left tracking-widest p-1 overflow-hidden text-ellipsis uppercase font-bold whitespace-nowrap">
                     Name
                   </div>
                 </div>
               </div>
             </div>
-            <div className="flex flex-col gap-3 p-4 pt-2">
+            <div className="flex flex-col gap-3 sm:p-4 pt-2">
               <EachLeaderboard list={list} />
             </div>
           </div>
