@@ -33,7 +33,13 @@ const EachEvents = () => {
             </div>
             <p className=" text-justify">{state.about}</p>
             <p className=" text-left">{state.rules}</p>
-            <button className=" md:mb-10 h-10 w-1/2 sm:w-1/3 lg:w-1/4 mx-auto rounded-md bg-orange-400 uppercase">
+            {/* <button className=" md:mb-10 h-10 w-1/2 sm:w-1/3 lg:w-1/4 mx-auto rounded-md bg-orange-400 uppercase">
+              Register
+            </button> */}
+            <button
+              type="submit"
+              className="button-green mb-4 md:mb-10 md:w-1/2 sm:w-1/3 lg:w-1/3 mx-auto tracking-widest uppercase"
+            >
               Register
             </button>
           </div>

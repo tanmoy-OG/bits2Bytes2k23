@@ -6,7 +6,7 @@ import Nav from "../Components/Nav";
 import Footer from "../Components/Footer";
 import Particle from "../Components/Particle";
 const Events = () => {
-  const [addEvent, eventState] = useState(false);
+  const [addEvent, setAddEvent] = useState(false);
   let list = [
     {
       name: "Envision",
@@ -73,10 +73,19 @@ const Events = () => {
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-10 lg:gap-16 place-items-center">
             <Event list={list} />
           </div>
-          <button
+          {/* <button
             className="mt-10 mb-4 md:mt-14 md:mb-10 h-10 w-1/3 lg:w-1/4 mx-auto rounded-md bg-orange-400 uppercase"
             onClick={() => {
-              eventState(true);
+              setAddEvent(true);
+            }}
+          >
+            Add Event
+          </button> */}
+          <button
+            type="submit"
+            className="button mt-10 mb-4 md:mt-14 md:mb-10 w-3/4 sm:w-1/3 lg:w-1/4 mx-auto tracking-widest uppercase"
+            onClick={() => {
+              setAddEvent(true);
             }}
           >
             Add Event
@@ -88,7 +97,7 @@ const Events = () => {
           <h1 className="p-4 md:p-10 md:pb-14 text-4xl md:text-5xl font-bold tracking-wider text-neutral-200 font-custom-sans uppercase">
             ADD EVENT
           </h1>
-          <AddEvent />
+          <AddEvent setAddEvent={setAddEvent} />
           {/* <Button function={eventState(false)} buttonType="cancel" /> */}
         </div>
       )}
@@ -129,7 +138,7 @@ const Event = (props) => {
   return display;
 };
 
-const AddEvent = () => {
+const AddEvent = (props) => {
   return (
     <form
       // onSubmit={submit}
@@ -182,8 +191,11 @@ etc.`}
       </div>
 
       {/* submit */}
-      <button type="submit" className="button-green uppercase">
+      <button type="submit" className="mb-2 button-green uppercase">
         Submit
+      </button>
+      <button onClick={()=>{props.setAddEvent(false)}} type="submit" className="button-red uppercase">
+        Cancel
       </button>
     </form>
   );
