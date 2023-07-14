@@ -15,9 +15,10 @@ const UserDetails = () => {
   const [type, setType] = useState("");
   const [token, setToken] = useState("");
   const [cookies, setCookie, removeCookie] = useCookies(["token"]);
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   const fetchData = (token) => {
-    fetch("http://127.0.0.1:5000/view_profile/", {
+    fetch(`${apiUrl}/view_profile/`, {
       method: "POST",
       mode: "cors",
       headers: {
@@ -54,7 +55,7 @@ const UserDetails = () => {
   };
 
   const fetchType = (token) => {
-    fetch("http://127.0.0.1:5000/user_type/", {
+    fetch(`${apiUrl}/user_type/`, {
       method: "POST",
       mode: "cors",
       headers: {

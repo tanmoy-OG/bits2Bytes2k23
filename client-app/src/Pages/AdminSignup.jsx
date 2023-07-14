@@ -11,15 +11,16 @@ import { useFormik } from "formik";
 const AdminSignup = () => {
   const [isRegistered, setIsRegistered] = useState(false);
   const [otpToken, setOtpToken] = useState("");
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   const initialValues = {
-    fname: "",
-    lname: "",
-    email: "",
-    mobile: "",
-    secret_key: "",
-    password: "",
-    confirm_password: "",
+    fname: "Shibam",
+    lname: "Saha",
+    email: "s4shibam@gmail.com",
+    mobile: "9999999999",
+    secret_key: "20232023",
+    password: "2222222222",
+    confirm_password: "2222222222",
   };
 
   const checkError = (data) => {
@@ -32,7 +33,8 @@ const AdminSignup = () => {
       initialValues,
       validationSchema: AdminSignupSchema,
       onSubmit: (values, action) => {
-        fetch("http://127.0.0.1:5000/user_signup/", {
+
+        fetch(`${apiUrl}/user_signup/`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -49,10 +51,11 @@ const AdminSignup = () => {
           .then((response) => response.json())
           .then((data) => {
             if (checkError(data)) {
-              // toast.error(data.error, {
-              //   position: "top-center",
-              //   theme: "colored",
-              // });
+              toast.error(data.error, {
+                position: "top-center",
+                theme: "colored",
+              });
+              console.log("if");
             } else {
               // toast.success(data.successful, {
               //   position: "top-center",
@@ -61,6 +64,7 @@ const AdminSignup = () => {
               action.resetForm();
               setOtpToken(data.verification);
               setIsRegistered(true);
+              console.log("else");
             }
           })
           .catch((error) => {

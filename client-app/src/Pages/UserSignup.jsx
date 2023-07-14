@@ -11,6 +11,7 @@ import OTPPage from "./Otp";
 const UserSignup = () => {
   const [isRegistered, setIsRegistered] = useState(false);
   const [otpToken, setOtpToken] = useState("");
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   const initialValues = {
     fname: "",
@@ -34,7 +35,7 @@ const UserSignup = () => {
       initialValues: initialValues,
       validationSchema: UserSignupSchema,
       onSubmit: (values, action) => {
-        fetch("http://127.0.0.1:5000/user_signup/", {
+        fetch(`${apiUrl}/user_signup/`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

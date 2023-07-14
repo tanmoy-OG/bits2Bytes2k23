@@ -5,8 +5,7 @@ import SubNavButton from "../Components/SubNavButton";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 import { useCookies } from "react-cookie";
 
 const AdminDetails = () => {
@@ -15,9 +14,10 @@ const AdminDetails = () => {
   const [type, setType] = useState("");
   const [token, setToken] = useState("");
   const [cookies, setCookie, removeCookie] = useCookies(["token"]);
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   const fetchData = (token) => {
-    fetch("http://127.0.0.1:5000/view_profile/", {
+    fetch(`${apiUrl}/view_profile/`, {
       method: "POST",
       mode: "cors",
       headers: {
@@ -37,11 +37,7 @@ const AdminDetails = () => {
         }
       })
       .then((data) => {
-        // toast.success("Data fetched successfully", {
-        //   position: toast.POSITION.TOP_RIGHT,
-        //   autoClose: 3000,
-        //   hideProgressBar: true,
-        // });
+        toast.success("Data fetched successfully");
         setData(data);
       })
       .catch((error) => {
@@ -54,7 +50,7 @@ const AdminDetails = () => {
   };
 
   const fetchType = (token) => {
-    fetch("http://127.0.0.1:5000/user_type/", {
+    fetch(`${apiUrl}/user_type/`, {
       method: "POST",
       mode: "cors",
       headers: {

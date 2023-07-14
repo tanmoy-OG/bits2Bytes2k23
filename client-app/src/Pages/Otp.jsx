@@ -3,16 +3,16 @@ import "react-toastify/dist/ReactToastify.css";
 import { useFormik } from "formik";
 import Particle from "../Components/Particle";
 import { useNavigate } from "react-router-dom";
-import { useCookies } from 'react-cookie';
+import { useCookies } from "react-cookie";
 
 const initialValues = {
   otp_value: "",
 };
 
 const OTPPage = ({ otpToken, otpPageType }) => {
-
-  const [cookies, setCookie] = useCookies(['token']);
+  const [cookies, setCookie] = useCookies(["token"]);
   const navigate = useNavigate();
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   const checkError = (data) => {
     if ("error" in data) return true;
@@ -22,13 +22,13 @@ const OTPPage = ({ otpToken, otpPageType }) => {
   const { values, handleChange, handleSubmit } = useFormik({
     initialValues,
     onSubmit: (values) => {
-      fetch("http://localhost:5000/otp_verify/", {
+      fetch(`${apiUrl}/otp_verify/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "verification": otpToken,
+          verification: otpToken,
         },
-        body: JSON.stringify({otp: values.otp_value}),
+        body: JSON.stringify({ otp: values.otp_value }),
       })
         .then((response) => response.json())
         .then((data) => {
@@ -59,7 +59,7 @@ const OTPPage = ({ otpToken, otpPageType }) => {
               otpPageType === "user-login"
             ) {
               // set token cookie
-              setCookie('token', data.authorization, { path: '/' });
+              setCookie("token", data.authorization, { path: "/" });
               navigate("/");
             }
           }
@@ -75,11 +75,11 @@ const OTPPage = ({ otpToken, otpPageType }) => {
   });
 
   const handleResendOTP = () => {
-    fetch("http://127.0.0.1:5000/resend_otp/", {
+    fetch(`${apiUrl}/resend_otp/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "verification": JSON.stringify(otpToken),
+        verification: JSON.stringify(otpToken),
       },
     })
       .then((response) => response.json())
@@ -147,4 +147,3 @@ const OTPPage = ({ otpToken, otpPageType }) => {
 };
 
 export default OTPPage;
-

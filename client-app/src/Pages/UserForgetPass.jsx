@@ -10,6 +10,7 @@ import UserForgetSchema from "../Components/UserForgetSchema";
 const UserForgetPass = () => {
   const [isSuccess, setIsSuccess] = useState(false);
   const [otpToken, setOtpToken] = useState("");
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   const initialValues = {
     roll: "",
@@ -26,8 +27,9 @@ const UserForgetPass = () => {
     useFormik({
       initialValues,
       validationSchema: UserForgetSchema,
+
       onSubmit: (values, action) => {
-        fetch("http://127.0.0.1:5000/forget_password/", {
+        fetch(`${apiUrl}/forget_password/`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

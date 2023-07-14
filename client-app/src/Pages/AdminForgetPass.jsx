@@ -10,6 +10,7 @@ import AdminForgetSchema from "../Components/AdminForgetSchema";
 const AdminForgetPass = () => {
   const [isSuccess, setIsSuccess] = useState(false);
   const [otpToken, setOtpToken] = useState("");
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   const initialValues = {
     email: "",
@@ -26,7 +27,7 @@ const AdminForgetPass = () => {
     initialValues,
     validationSchema: AdminForgetSchema,
     onSubmit: (values, action) => {
-      fetch("http://127.0.0.1:5000/forget_password/", {
+      fetch(`${apiUrl}/forget_password/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

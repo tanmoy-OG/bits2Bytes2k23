@@ -17,9 +17,10 @@ const UserList = () => {
   const [current, setCurrent] = useState(true);
   const navigate = useNavigate();
   const [cookies] = useCookies(["token"]);
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   const fetchCurrentData = (token) => {
-    fetch("http://127.0.0.1:5000/all_user/", {
+    fetch(`${apiUrl}/all_user/`, {
       method: "POST",
       mode: "cors",
       headers: {

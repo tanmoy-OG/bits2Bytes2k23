@@ -7,10 +7,11 @@ import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import OTPPage from "./Otp";
- 
+
 const UserLogin = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [otpToken, setOtpToken] = useState("");
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   const initialValues = {
     roll: "",
@@ -27,7 +28,7 @@ const UserLogin = () => {
       initialValues: initialValues,
       validationSchema: UserLoginSchema,
       onSubmit: (values, action) => {
-        fetch(`http://127.0.0.1:5000/login/`, {
+        fetch(`${apiUrl}/login/`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

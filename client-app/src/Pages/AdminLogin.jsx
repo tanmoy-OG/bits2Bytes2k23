@@ -11,6 +11,7 @@ import OTPPage from "./Otp";
 const AdminLogin = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [otpToken, setOtpToken] = useState("");
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   const initialValues = {
     email: "",
@@ -27,7 +28,7 @@ const AdminLogin = () => {
       initialValues: initialValues,
       validationSchema: AdminLoginSchema,
       onSubmit: (values, action) => {
-        fetch(`http://127.0.0.1:5000/login/`, {
+        fetch(`${apiUrl}/login/`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
