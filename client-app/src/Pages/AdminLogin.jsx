@@ -17,8 +17,8 @@ const AdminLogin = () => {
   const apiUrl = import.meta.env.VITE_API_URL;
 
   const initialValues = {
-    email: "kennedyleon3000@gmail.com",
-    password: "3333333333",
+    email: "",
+    password: "",
   };
 
   const checkError = (data) => {
@@ -46,7 +46,7 @@ const AdminLogin = () => {
             if (checkError(data)) {
               toast.error(data.error);
             } else {
-              toast.success(data.successfull);
+              toast.success(data.successful);
               action.resetForm();
               setOtpToken(data.verification);
               setIsLoggedIn(true);

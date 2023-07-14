@@ -31,11 +31,10 @@ const UserList = () => {
         if (response.ok) {
           return response.json();
         } else {
-          toast.error("Error fetching data");
+          toast.error("Error fetching current userlist!");
         }
       })
       .then((data) => {
-        toast.success("Data fetched successfully");
         setCurrentList(data);
       })
       .catch((error) => {
@@ -56,11 +55,10 @@ const UserList = () => {
         if (response.ok) {
           return response.json();
         } else {
-          toast.error("Error fetching data");
+          toast.error("Error fetching deleted userlist!");
         }
       })
       .then((data) => {
-        toast.success("Data fetched successfully");
         setCurrentList(data);
       })
       .catch((error) => {
@@ -81,13 +79,12 @@ const UserList = () => {
         if (response.ok) {
           return response.json();
         } else {
-          toast.error("Error receiving type");
+          toast.error("Error receiving user type");
         }
       })
-      .then((responseData) => {
-        toast.success("Data fetched successfully");
-        if ("error" in responseData) setType("logged-out");
-        else setType(responseData.user);
+      .then((data) => {
+        if ("error" in data) setType("logged-out");
+        else setType(data.user);
       })
       .catch((error) => {
         toast.error(error);
@@ -105,8 +102,6 @@ const UserList = () => {
 
   useEffect(() => {
     if (type === "") return;
-
-    console.log(type);
     if (type !== "admin") navigate("/404_DATA_NOT_FOUND");
     else {
       fetchCurrentData(token);

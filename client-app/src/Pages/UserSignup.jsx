@@ -88,7 +88,7 @@ const UserSignup = () => {
                 onSubmit={handleSubmit}
                 className="flex flex-col items-center justify-center h-fit gap-3"
               >
-                <div className="flex justify-between w-full">
+                <div className="flex justify-between w-full flex-col sm:flex-row gap-3 sm:gap-0">
                   <div className="input-block text-left p-3 font-semibold font-custom-sans w-full">
                     <input
                       type="text"
@@ -188,7 +188,7 @@ const UserSignup = () => {
                   ) : null}
                 </div>
 
-                <div className="flex justify-between w-full flex-col sm:flex-row">
+                <div className="flex justify-between w-full flex-col sm:flex-row gap-3 sm:gap-0">
                   {/* password */}
                   <div className="input-block text-left p-3 font-semibold font-custom-sans w-full">
                     <div className="w-full h-fit flex flex-row rounded-md bg-black/50 pr-3">

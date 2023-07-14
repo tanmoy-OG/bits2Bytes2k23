@@ -4,8 +4,7 @@ import Nav from "../Components/Nav";
 import Particle from "../Components/Particle";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 import OTPPage from "./Otp";
 import see from "../../public/Icons/see.svg";
 import unsee from "../../public/Icons/unsee.svg";
@@ -159,7 +158,6 @@ const UserLogin = () => {
               </div>
             </div>
           </div>
-          <ToastContainer />
           <Particle />
         </div>
       )}

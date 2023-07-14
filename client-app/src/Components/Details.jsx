@@ -1,6 +1,7 @@
 import { InputTag } from "./InputTag";
 import Button from "./Button";
 import { useState, useEffect } from "react";
+import { toast } from "react-toastify";
 
 const Details = ({
   type,
@@ -53,7 +54,7 @@ const Details = ({
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "authorization": token,
+        authorization: token,
       },
       body: JSON.stringify({
         fname: data.fname,
@@ -65,34 +66,15 @@ const Details = ({
         if (response.ok) {
           return response.json();
         } else {
-          // toast.error("An error occurred!", {
-          //   position: toast.POSITION.TOP_RIGHT,
-          //   autoClose: 3000,
-          //   hideProgressBar: true,
-          // });
+          toast.error("An error occurred!");
         }
       })
       .then((data) => {
-        if (checkError(data)) {
-          // toast.error(data.error, {
-          //   position: toast.POSITION.TOP_RIGHT,
-          //   autoClose: 3000,
-          //   hideProgressBar: true,
-          // });
-        } else {
-          // toast.success(data.successful, {
-          //   position: toast.POSITION.TOP_RIGHT,
-          //   autoClose: 3000,
-          //   hideProgressBar: true,
-          // });
-        }
+        if (checkError(data)) toast.error(data.error);
+        else toast.success(data.successful);
       })
       .catch((error) => {
-        // toast.error(error, {
-        //   position: toast.POSITION.TOP_RIGHT,
-        //   autoClose: 3000,
-        //   hideProgressBar: true,
-        // });
+        toast.error(error);
       });
   };
 
@@ -102,7 +84,7 @@ const Details = ({
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "authorization": token,
+        authorization: token,
       },
       body: JSON.stringify({
         fname: data.fname,
@@ -116,35 +98,18 @@ const Details = ({
         if (response.ok) {
           return response.json();
         } else {
-          // toast.error("An error occurred!", {
-          //   position: toast.POSITION.TOP_RIGHT,
-          //   autoClose: 3000,
-          //   hideProgressBar: true,
-          // });
+          toast.error("An error occurred!");
         }
       })
       .then((data) => {
         if (checkError(data)) {
-          // toast.error(data.error, {
-          //   position: toast.POSITION.TOP_RIGHT,
-          //   autoClose: 3000,
-          //   hideProgressBar: true,
-          // });
+          toast.error(data.error);
         } else {
-          // toast.success(data.successful, {
-          //   position: toast.POSITION.TOP_RIGHT,
-          //   autoClose: 3000,
-          //   hideProgressBar: true,
-          // });
+          toast.success(data.successful);
         }
       })
       .catch((error) => {
-        // console.error(error);
-        // toast.error("An error occurred!", {
-        //   position: toast.POSITION.TOP_RIGHT,
-        //   autoClose: 3000,
-        //   hideProgressBar: true,
-        // });
+        toast.error("An error occurred!");
       });
   };
 
@@ -175,7 +140,7 @@ const Details = ({
     else setLnameError(false);
 
     if (type === "participant") {
-      tempYear = parseInt((""+year).trim());
+      tempYear = parseInt(("" + year).trim());
       tempStream = stream.trim();
 
       // year check
@@ -257,7 +222,8 @@ const Details = ({
       )
         return;
       if (type === "admin") postAdminData({ fname, lname, phone });
-      else if (type === "participant") postUserData({ fname, lname, year, stream, phone });
+      else if (type === "participant")
+        postUserData({ fname, lname, year, stream, phone });
       setInputClass(default_input_class);
       setVisible(true);
     }
