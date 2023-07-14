@@ -47,12 +47,12 @@ const App = () => {
         <Route path="/user/resetpassword" Component={UserForgetPass} />
 
         {/* authorized routes */}
-        <Route path="/events" Component={Events} />
-        <Route path="/events/details" Component={EachEvents} />
+        {/* <Route path="/events" Component={Events} /> */}
+        {/* <Route path="/events/details" Component={EachEvents} /> */}
         <Route path="/adminprofile/details" Component={AdminDetails} />
         <Route path="/adminprofile/userlist" Component={UserList} />
         <Route path="/userprofile/details" Component={UserDetails} />
-        <Route path="/userprofile/myevents" Component={UserEvents} />
+        {/* <Route path="/userprofile/myevents" Component={UserEvents} /> */}
       </Routes>
       <ToastContainer
         position="top-right"
