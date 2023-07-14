@@ -194,7 +194,13 @@ etc.`}
       <button type="submit" className="mb-2 button-green uppercase">
         Submit
       </button>
-      <button onClick={()=>{props.setAddEvent(false)}} type="submit" className="button-red uppercase">
+      <button
+        onClick={() => {
+          props.setAddEvent(false);
+        }}
+        type="submit"
+        className="button-red uppercase"
+      >
         Cancel
       </button>
     </form>
