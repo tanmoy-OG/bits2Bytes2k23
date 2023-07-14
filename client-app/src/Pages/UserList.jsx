@@ -6,6 +6,8 @@ import EachUser from "../Components/EachUser";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 const UserList = () => {
   const [token, setToken] = useState("");
@@ -29,27 +31,27 @@ const UserList = () => {
         if (response.ok) {
           return response.json();
         } else {
-          toast.error("Error fetching data", {
-            position: toast.POSITION.TOP_RIGHT,
-            autoClose: 3000,
-            hideProgressBar: true,
-          });
+          // toast.error("Error fetching data", {
+          //   position: toast.POSITION.TOP_RIGHT,
+          //   autoClose: 3000,
+          //   hideProgressBar: true,
+          // });
         }
       })
       .then((data) => {
-        toast.success("Data fetched successfully", {
-          position: toast.POSITION.TOP_RIGHT,
-          autoClose: 3000,
-          hideProgressBar: true,
-        });
+        // toast.success("Data fetched successfully", {
+        //   position: toast.POSITION.TOP_RIGHT,
+        //   autoClose: 3000,
+        //   hideProgressBar: true,
+        // });
         setCurrentList(data);
       })
       .catch((error) => {
-        toast.error(error, {
-          position: toast.POSITION.TOP_RIGHT,
-          autoClose: 3000,
-          hideProgressBar: true,
-        });
+        // toast.error(error, {
+        //   position: toast.POSITION.TOP_RIGHT,
+        //   autoClose: 3000,
+        //   hideProgressBar: true,
+        // });
       });
   };
 
@@ -66,27 +68,27 @@ const UserList = () => {
         if (response.ok) {
           return response.json();
         } else {
-          toast.error("Error fetching data", {
-            position: toast.POSITION.TOP_RIGHT,
-            autoClose: 3000,
-            hideProgressBar: true,
-          });
+          // toast.error("Error fetching data", {
+          //   position: toast.POSITION.TOP_RIGHT,
+          //   autoClose: 3000,
+          //   hideProgressBar: true,
+          // });
         }
       })
       .then((data) => {
-        toast.success("Data fetched successfully", {
-          position: toast.POSITION.TOP_RIGHT,
-          autoClose: 3000,
-          hideProgressBar: true,
-        });
+        // toast.success("Data fetched successfully", {
+        //   position: toast.POSITION.TOP_RIGHT,
+        //   autoClose: 3000,
+        //   hideProgressBar: true,
+        // });
         setCurrentList(data);
       })
       .catch((error) => {
-        toast.error(error, {
-          position: toast.POSITION.TOP_RIGHT,
-          autoClose: 3000,
-          hideProgressBar: true,
-        });
+        // toast.error(error, {
+        //   position: toast.POSITION.TOP_RIGHT,
+        //   autoClose: 3000,
+        //   hideProgressBar: true,
+        // });
       });
   };
 
@@ -103,34 +105,30 @@ const UserList = () => {
         if (response.ok) {
           return response.json();
         } else {
-          toast.error("Error receiving type", {
-            position: toast.POSITION.TOP_RIGHT,
-            autoClose: 3000,
-            hideProgressBar: true,
-          });
+          // toast.error("Error receiving type", {
+          //   position: toast.POSITION.TOP_RIGHT,
+          //   autoClose: 3000,
+          // });
         }
       })
       .then((responseData) => {
-        console.log(responseData);
-        toast.success("Data fetched successfully", {
-          position: toast.POSITION.TOP_RIGHT,
-          autoClose: 3000,
-          hideProgressBar: true,
-        });
+        // console.log(responseData);
+        // toast.success("Data fetched successfully", {
+        //   position: toast.POSITION.TOP_RIGHT,
+        //   autoClose: 3000,
+        // });
         if ("error" in responseData) setType("logged-out");
         else setType(responseData.user);
       })
       .catch((error) => {
-        toast.error(error, {
-          position: toast.POSITION.TOP_RIGHT,
-          autoClose: 3000,
-          hideProgressBar: true,
-        });
+        // toast.error(error, {
+        //   position: toast.POSITION.TOP_RIGHT,
+        //   autoClose: 3000,
+        // });
       });
   };
 
   useEffect(() => {
-    setToken("");
     setToken(cookies.token);
   });
 
@@ -142,7 +140,8 @@ const UserList = () => {
   useEffect(() => {
     if (type === "") return;
 
-    if (type !== "admin") navigate("/*");
+    console.log(type);
+    if (type !== "admin") navigate("/404_DATA_NOT_FOUND");
     else {
       fetchCurrentData(token);
     }

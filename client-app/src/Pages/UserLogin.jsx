@@ -7,10 +7,10 @@ import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import OTPPage from "./Otp";
-
+ 
 const UserLogin = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [otp, setOtp] = useState("");
+  const [otpToken, setOtpToken] = useState("");
 
   const initialValues = {
     roll: "",
@@ -32,34 +32,31 @@ const UserLogin = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({
-            roll: values.roll,
-            password: values.password,
-          }),
+          body: JSON.stringify({ roll: values.roll, password: values.password }),
         })
           .then((response) => response.json())
           .then((data) => {
             if (checkError(data)) {
-              toast.error(data.error, {
-                position: "top-center",
-                theme: "colored",
-              });
+              // toast.error(data.error, {
+              //   position: "top-center",
+              //   theme: "colored",
+              // });
             } else {
-              toast.success(data.successful, {
-                position: "top-center",
-                theme: "colored",
-              });
+              // toast.success(data.successful, {
+              //   position: "top-center",
+              //   theme: "colored",
+              // });
               action.resetForm();
-              setOtp(data.verification);
+              setOtpToken(data.verification);
               setIsLoggedIn(true);
             }
           })
           .catch((error) => {
-            console.log(error);
-            toast.error("Unsuccessful", {
-              position: "top-center",
-              theme: "colored",
-            });
+            // console.log(error);
+            // toast.error("Unsuccessful", {
+            //   position: "top-center",
+            //   theme: "colored",
+            // });
           });
       },
     });
@@ -67,7 +64,7 @@ const UserLogin = () => {
   return (
     <>
       {isLoggedIn ? (
-        <OTPPage otp={otp} otpPageType="user-login" />
+        <OTPPage otpToken={otpToken} otpPageType="user-login" />
       ) : (
         <div className="absolute top-0 left-0 w-full h-fit">
           <Nav />

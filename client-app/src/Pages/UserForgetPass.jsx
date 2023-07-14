@@ -2,71 +2,69 @@ import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useFormik } from "formik";
-import Otp from "../Pages/Otp";
+import Otp from "./Otp";
 import Particle from "../Components/Particle";
 import Nav from "../Components/Nav";
 import UserForgetSchema from "../Components/UserForgetSchema";
 
-const initialValues = {
-  roll: "",
-  password: "",
-  confirmPassword: "",
-};
-
 const UserForgetPass = () => {
   const [isSuccess, setIsSuccess] = useState(false);
-  const [otp, setOtp] = useState("");
+  const [otpToken, setOtpToken] = useState("");
+
+  const initialValues = {
+    roll: "",
+    password: "",
+    confirmPassword: "",
+  };
 
   const checkError = (data) => {
     if ("error" in data) return true;
     return false;
   };
 
-  const { values, handleChange, handleSubmit } = useFormik({
-    initialValues: initialValues,
-    validationSchema: UserForgetSchema,
-    onSubmit: (values, action) => {
-      fetch("http://127.0.0.1:5000/forget_password/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          roll: values.roll,
-          password: values.password,
-        }),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          if (checkError(data)) {
-            toast.error(data.error, {
-              position: "top-center",
-              theme: "colored",
-            });
-          } else {
-            toast.success(data.successful, {
-              position: "top-center",
-              theme: "colored",
-            });
-            action.resetForm();
-            setOtp(data.verification);
-            setIsSuccess(true);
-          }
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
+    useFormik({
+      initialValues,
+      validationSchema: UserForgetSchema,
+      onSubmit: (values, action) => {
+        fetch("http://127.0.0.1:5000/forget_password/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ roll: values.roll, password: values.password }),
         })
-        .catch((error) => {
-          console.log(error);
-          toast.error("Error resetting password", {
-            position: "top-center",
-            theme: "colored",
+          .then((response) => response.json())
+          .then((data) => {
+            if (checkError(data)) {
+              // toast.error(data.error, {
+              //   position: "top-center",
+              //   theme: "colored",
+              // });
+            } else {
+              // toast.success(data.successful, {
+              //   position: "top-center",
+              //   theme: "colored",
+              // });
+              action.resetForm();
+              setOtpToken(data.verification);
+              setIsSuccess(true);
+            }
+          })
+          .catch((error) => {
+            // console.log(error);
+            // toast.error("Error resetting password", {
+            //   position: "top-center",
+            //   theme: "colored",
+            // });
           });
-        });
-    },
-  });
+      },
+    });
 
   return (
     <>
       {isSuccess ? (
-        <Otp otp={otp} otpPageType="user-forget-pass" />
+        <Otp otpToken={otpToken} otpPageType="user-forget-pass" />
       ) : (
         <div className="absolute top-0 left-0 w-full h-full">
           <Nav />
@@ -88,8 +86,14 @@ const UserForgetPass = () => {
                     value={values.roll}
                     placeholder="Enter your roll number"
                     onChange={handleChange}
+                    onBlur={handleBlur}
                     className="p-2 rounded-md bg-black/50 text-white focus:outline-none tracking-widest w-full"
                   />
+                  {errors.roll && touched.roll ? (
+                    <p className="form-error text-red-500 tracking-widest">
+                      {errors.roll}
+                    </p>
+                  ) : null}
                 </div>
 
                 <div className="input-block text-left p-3 font-semibold font-custom-sans flex flex-col justify-center w-full">
@@ -100,8 +104,14 @@ const UserForgetPass = () => {
                     value={values.password}
                     placeholder="Enter new password"
                     onChange={handleChange}
+                    onBlur={handleBlur}
                     className="p-2 rounded-md bg-black/50 text-white focus:outline-none tracking-widest w-full"
                   />
+                  {errors.password && touched.password ? (
+                    <p className="form-error text-red-500 tracking-widest">
+                      {errors.password}
+                    </p>
+                  ) : null}
                 </div>
 
                 <div className="input-block text-left p-3 font-semibold font-custom-sans flex flex-col justify-center w-full">
@@ -112,8 +122,14 @@ const UserForgetPass = () => {
                     value={values.confirmPassword}
                     placeholder="Confirm new password"
                     onChange={handleChange}
+                    onBlur={handleBlur}
                     className="p-2 rounded-md bg-black/50 text-white focus:outline-none tracking-widest w-full"
                   />
+                  {errors.confirmPassword && touched.confirmPassword ? (
+                    <p className="form-error text-red-500 tracking-widest">
+                      {errors.confirmPassword}
+                    </p>
+                  ) : null}
                 </div>
 
                 <button type="submit" className="button-green uppercase">

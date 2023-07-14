@@ -22,7 +22,7 @@ import UserForgetPass from "./Pages/UserForgetPass";
 import ErrorPage from "./Pages/ErrorPage";
 import { Route, Routes } from "react-router-dom";
 
-const App = (name) => {
+const App = () => {
   useEffect(() => {
     Aos.init({ duration: 1300 });
   }, []);

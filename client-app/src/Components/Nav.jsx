@@ -2,7 +2,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import { useCookies } from "react-cookie"; // importing use cookie hook
+import { useCookies } from "react-cookie";
 
 const Nav = ({ page }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -20,36 +20,32 @@ const Nav = ({ page }) => {
       mode: "cors",
       headers: {
         "Content-Type": "application/json",
-        "authorization": token,
+        authorization: token,
       },
     })
       .then((response) => {
         if (response.ok) {
           return response.json();
         } else {
-          toast.error("Error receiving type", {
-            position: toast.POSITION.TOP_RIGHT,
-            autoClose: 3000,
-            hideProgressBar: true,
-          });
+          // toast.error("Error receiving type", {
+          //   position: toast.POSITION.TOP_RIGHT,
+          //   autoClose: 3000,
+          // });
         }
       })
-      .then((responseData) => {
-        console.log(responseData);
-        toast.success("Data fetched successfully", {
-          position: toast.POSITION.TOP_RIGHT,
-          autoClose: 3000,
-          hideProgressBar: true,
-        });
-        if("error" in responseData) setType("logged-out");
-        else setType(responseData.user);
+      .then((data) => {
+        // toast.success("Data fetched successfully", {
+        //   position: toast.POSITION.TOP_RIGHT,
+        //   autoClose: 3000,
+        // });
+        if ("error" in data) setType("logged-out");
+        else setType(data.user);
       })
       .catch((error) => {
-        toast.error(error, {
-          position: toast.POSITION.TOP_RIGHT,
-          autoClose: 3000,
-          hideProgressBar: true,
-        });
+        // toast.error(error, {
+        //   position: toast.POSITION.TOP_RIGHT,
+        //   autoClose: 3000,
+        // });
       });
   };
 
@@ -155,43 +151,24 @@ const Nav = ({ page }) => {
               CREW
             </Link>
 
-            {type === "logged-out" && (
-              <Link
-                to="/registration"
-                className={
-                  page === "registration"
-                    ? "active-page px-3 py-2 tracking-widest uppercase"
-                    : "hover:text-orange-400 px-3 py-2 transition-all duration-300 tracking-widest uppercase hover-underline"
-                }
-              >
-                LOGIN/SIGNUP
-              </Link>
-            )}
-
-            {type === "admin" && (
-              <Link
-                to="/adminprofile/details"
-                className={
-                  page === "profile"
-                    ? "active-page px-3 py-2 tracking-widest uppercase"
-                    : "hover:text-orange-400 px-3 py-2 transition-all duration-300 tracking-widest uppercase hover-underline"
-                }
-              >
-                PROFILE
-              </Link>
-            )}
-            {type === "participant" && (
-              <Link
-                to="/userprofile/details"
-                className={
-                  page === "profile"
-                    ? "active-page px-3 py-2 tracking-widest uppercase"
-                    : "hover:text-orange-400 px-3 py-2 transition-all duration-300 tracking-widest uppercase hover-underline"
-                }
-              >
-                PROFILE
-              </Link>
-            )}
+            <Link
+              to={
+                type === "logged-out"
+                  ? "/registration"
+                  : type === "admin"
+                  ? "/adminprofile/details"
+                  : "/userprofile/details"
+              }
+              className={
+                page === "registration" || page === "profile"
+                  ? "active-page px-3 py-2 tracking-widest uppercase"
+                  : "hover:text-orange-400 px-3 py-2 transition-all duration-300 tracking-widest uppercase hover-underline"
+              }
+            >
+              {type === "admin" || type === "participant"
+                ? "PROFILE"
+                : "LOGIN/SIGNUP"}
+            </Link>
           </div>
         </div>
       </div>

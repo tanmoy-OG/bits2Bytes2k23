@@ -7,7 +7,7 @@ import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import { useCookies } from "react-cookie"; // importing use cookie hook
+import { useCookies } from "react-cookie";
 
 const UserDetails = () => {
   const navigate = useNavigate();
@@ -17,7 +17,7 @@ const UserDetails = () => {
   const [cookies, setCookie, removeCookie] = useCookies(["token"]);
 
   const fetchData = (token) => {
-    fetch("", {
+    fetch("http://127.0.0.1:5000/view_profile/", {
       method: "POST",
       mode: "cors",
       headers: {
@@ -29,27 +29,27 @@ const UserDetails = () => {
         if (response.ok) {
           return response.json();
         } else {
-          toast.error("Error fetching data", {
-            position: toast.POSITION.TOP_RIGHT,
-            autoClose: 3000,
-            hideProgressBar: true,
-          });
+          // toast.error("Error fetching data", {
+          //   position: toast.POSITION.TOP_RIGHT,
+          //   autoClose: 3000,
+          //   hideProgressBar: true,
+          // });
         }
       })
-      .then((responseData) => {
-        toast.success("Data fetched successfully", {
-          position: toast.POSITION.TOP_RIGHT,
-          autoClose: 3000,
-          hideProgressBar: true,
-        });
-        return responseData;
+      .then((data) => {
+        // toast.success("Data fetched successfully", {
+        //   position: toast.POSITION.TOP_RIGHT,
+        //   autoClose: 3000,
+        //   hideProgressBar: true,
+        // });
+        setData(data);
       })
       .catch((error) => {
-        toast.error(error, {
-          position: toast.POSITION.TOP_RIGHT,
-          autoClose: 3000,
-          hideProgressBar: true,
-        });
+        // toast.error(error, {
+        //   position: toast.POSITION.TOP_RIGHT,
+        //   autoClose: 3000,
+        //   hideProgressBar: true,
+        // });
       });
   };
 
@@ -63,40 +63,39 @@ const UserDetails = () => {
       },
     })
       .then((response) => {
-        console.log(response.user);
         if (response.ok) {
           return response.json();
         } else {
-          toast.error("Error receiving type", {
-            position: toast.POSITION.TOP_RIGHT,
-            autoClose: 3000,
-            hideProgressBar: true,
-          });
+          // toast.error("Error receiving type", {
+          //   position: toast.POSITION.TOP_RIGHT,
+          //   autoClose: 3000,
+          //   hideProgressBar: true,
+          // });
         }
       })
-      .then((responseData) => {
-        toast.success("Data fetched successfully", {
-          position: toast.POSITION.TOP_RIGHT,
-          autoClose: 3000,
-          hideProgressBar: true,
-        });
-        return responseData.user;
+      .then((data) => {
+        // toast.success("Data fetched successfully", {
+        //   position: toast.POSITION.TOP_RIGHT,
+        //   autoClose: 3000,
+        //   hideProgressBar: true,
+        // });
+        if ("error" in data) setType("logged-out");
+        else setType(data.user);
       })
       .catch((error) => {
-        toast.error(error, {
-          position: toast.POSITION.TOP_RIGHT,
-          autoClose: 3000,
-          hideProgressBar: true,
-        });
-        return "different";
+        // toast.error(error, {
+        //   position: toast.POSITION.TOP_RIGHT,
+        //   autoClose: 3000,
+        //   hideProgressBar: true,
+        // });
       });
   };
 
-  const logout = ()=>{
-    removeCookie('token', {path: "/"});
-    setType("");
+  const logout = () => {
+    removeCookie("token", { path: "/" });
+    // setType("");
     navigate("/");
-  }
+  };
 
   useEffect(() => {
     setToken(cookies.token);
@@ -104,16 +103,13 @@ const UserDetails = () => {
 
   useEffect(() => {
     if (token === "") return;
-    setType(fetchType(JSON.stringify(token)));
+    fetchType(token);
   }, [token]);
 
   useEffect(() => {
     if (type === "") return;
-
-    if (type !== "user") navigate("*");
-    else {
-      setData(fetchData(JSON.stringify(token)));
-    }
+    if (type !== "participant") navigate("/404_DATA_NOT_FOUND");
+    else fetchData(token);
   }, [type]);
 
   return (
@@ -141,7 +137,9 @@ const UserDetails = () => {
           initialPhone={data.mobile}
         />
 
-        <div onClick={logout} className="button-red">logout</div>
+        <div onClick={logout} className="button-red">
+          logout
+        </div>
       </div>
       <Particle />
       <ToastContainer />

@@ -3,7 +3,7 @@ import UserSignupSchema from "../Components/UserSignupSchema";
 import Nav from "../Components/Nav";
 import Particle from "../Components/Particle";
 import { Link } from "react-router-dom";
-import React, { useState } from "react";
+import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import OTPPage from "./Otp";
@@ -13,15 +13,15 @@ const UserSignup = () => {
   const [otpToken, setOtpToken] = useState("");
 
   const initialValues = {
-    fname: "Tanmoy",
-    lname: "Choudhury",
-    email: "arthurfleck1620@gmail.com",
-    mobile: "8240106882",
-    roll: "12100120038",
-    password: "12191219",
-    confirm_password: "12191219",
-    year: "4",
-    stream: "CSE",
+    fname: "",
+    lname: "",
+    email: "",
+    mobile: "",
+    roll: "",
+    password: "",
+    confirm_password: "",
+    year: "",
+    stream: "",
   };
 
   const checkError = (data) => {
@@ -53,26 +53,26 @@ const UserSignup = () => {
           .then((response) => response.json())
           .then((data) => {
             if (checkError(data)) {
-              toast.error(data.error, {
-                position: "top-center",
-                theme: "colored",
-              });
+              // toast.error(data.error, {
+              //   position: "top-center",
+              //   theme: "colored",
+              // });
             } else {
-              toast.success(data.successful, {
-                position: "top-center",
-                theme: "colored",
-              });
+              // toast.success(data.successful, {
+              //   position: "top-center",
+              //   theme: "colored",
+              // });
               action.resetForm();
               setOtpToken(data.verification);
               setIsRegistered(true);
             }
           })
           .catch((error) => {
-            console.log(error);
-            toast.error("Unsuccessful", {
-              position: "top-center",
-              theme: "colored",
-            });
+            // console.log(error);
+            // toast.error("Unsuccessful", {
+            //   position: "top-center",
+            //   theme: "colored",
+            // });
           });
       },
     });
@@ -80,7 +80,6 @@ const UserSignup = () => {
   return (
     <>
       {isRegistered ? (
-        // Render the OTP page component
         <OTPPage otpToken={otpToken} otpPageType="user-signup" />
       ) : (
         <div className="absolute top-0 left-0 w-full h-fit">

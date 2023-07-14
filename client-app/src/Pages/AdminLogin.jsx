@@ -36,28 +36,27 @@ const AdminLogin = () => {
         })
           .then((response) => response.json())
           .then((data) => {
-            console.log(data);
             if (checkError(data)) {
-              toast.error(data.error, {
-                position: "top-center",
-                theme: "colored",
-              });
+              // toast.error(data.error, {
+              //   position: "top-center",
+              //   theme: "colored",
+              // });
             } else {
-              toast.success(data.successfull, {
-                position: "top-center",
-                theme: "colored",
-              });
+              // toast.success(data.successfull, {
+              //   position: "top-center",
+              //   theme: "colored",
+              // });
               action.resetForm();
               setOtpToken(data.verification);
               setIsLoggedIn(true);
             }
           })
           .catch((error) => {
-            console.log(error);
-            toast.error("Unsuccessful", {
-              position: "top-center",
-              theme: "colored",
-            });
+            // console.log(error);
+            // toast.error("Unsuccessful", {
+            //   position: "top-center",
+            //   theme: "colored",
+            // });
           });
       },
     });

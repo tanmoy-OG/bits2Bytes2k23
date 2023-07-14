@@ -36,26 +36,26 @@ const AdminForgetPass = () => {
         .then((response) => response.json())
         .then((data) => {
           if (checkError(data)) {
-            toast.error(data.error, {
-              position: "top-center",
-              theme: "colored",
-            });
+            // toast.error(data.error, {
+            //   position: "top-center",
+            //   theme: "colored",
+            // });
           } else {
-            toast.success(data.successful, {
-              position: "top-center",
-              theme: "colored",
-            });
+            // toast.success(data.successful, {
+            //   position: "top-center",
+            //   theme: "colored",
+            // });
             action.resetForm();
             setOtpToken(data.verification);
             setIsSuccess(true);
           }
         })
         .catch((error) => {
-          console.log(error);
-          toast.error("Error resetting password", {
-            position: "top-center",
-            theme: "colored",
-          });
+          // console.log(error);
+          // toast.error("Error resetting password", {
+          //   position: "top-center",
+          //   theme: "colored",
+          // });
         });
     },
   });
@@ -74,7 +74,7 @@ const AdminForgetPass = () => {
               </h2>
 
               <form
-                onSubmit={handleSubmit}
+                onSubmit={handleSubmit} 
                 className="flex flex-col items-center justify-center h-fit gap-3"
               >
                 <div className="input-block text-left p-3 font-semibold font-custom-sans flex flex-col justify-center w-full">

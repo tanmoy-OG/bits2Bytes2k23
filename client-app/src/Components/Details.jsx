@@ -1,8 +1,6 @@
 import { InputTag } from "./InputTag";
 import Button from "./Button";
 import { useState, useEffect } from "react";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
 
 const Details = ({
   type,
@@ -55,7 +53,7 @@ const Details = ({
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        authorization: token,
+        "authorization": token,
       },
       body: JSON.stringify({
         fname: data.fname,
@@ -67,72 +65,86 @@ const Details = ({
         if (response.ok) {
           return response.json();
         } else {
-          toast.error("An error occurred!", {
-            position: toast.POSITION.TOP_RIGHT,
-            autoClose: 3000,
-            hideProgressBar: true,
-          });
+          // toast.error("An error occurred!", {
+          //   position: toast.POSITION.TOP_RIGHT,
+          //   autoClose: 3000,
+          //   hideProgressBar: true,
+          // });
         }
       })
       .then((data) => {
         if (checkError(data)) {
-          toast.error(responseData.error, {
-            position: toast.POSITION.TOP_RIGHT,
-            autoClose: 3000,
-            hideProgressBar: true,
-          });
+          // toast.error(data.error, {
+          //   position: toast.POSITION.TOP_RIGHT,
+          //   autoClose: 3000,
+          //   hideProgressBar: true,
+          // });
         } else {
-          toast.success(responseData.successful, {
-            position: toast.POSITION.TOP_RIGHT,
-            autoClose: 3000,
-            hideProgressBar: true,
-          });
+          // toast.success(data.successful, {
+          //   position: toast.POSITION.TOP_RIGHT,
+          //   autoClose: 3000,
+          //   hideProgressBar: true,
+          // });
         }
       })
       .catch((error) => {
-        toast.error(error, {
-          position: toast.POSITION.TOP_RIGHT,
-          autoClose: 3000,
-          hideProgressBar: true,
-        });
+        // toast.error(error, {
+        //   position: toast.POSITION.TOP_RIGHT,
+        //   autoClose: 3000,
+        //   hideProgressBar: true,
+        // });
       });
   };
 
   // update user data to the database
   const postUserData = (data) => {
-    fetch("api-url", {
+    fetch("http://127.0.0.1:5000/update_profile/", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "authorization": token,
       },
-      body: JSON.stringify(data),
+      body: JSON.stringify({
+        fname: data.fname,
+        lname: data.lname,
+        year: data.year,
+        stream: data.stream,
+        mobile: data.phone,
+      }),
     })
       .then((response) => {
         if (response.ok) {
           return response.json();
         } else {
-          toast.error("An error occurred!", {
-            position: toast.POSITION.TOP_RIGHT,
-            autoClose: 3000,
-            hideProgressBar: true,
-          });
+          // toast.error("An error occurred!", {
+          //   position: toast.POSITION.TOP_RIGHT,
+          //   autoClose: 3000,
+          //   hideProgressBar: true,
+          // });
         }
       })
-      .then((responseData) => {
-        console.log(responseData);
-        toast.error("Data received successfully", {
-          position: toast.POSITION.TOP_RIGHT,
-          autoClose: 3000, // Close the toast after 3000 milliseconds (3 seconds)
-          hideProgressBar: true, // Hide the progress bar
-        });
+      .then((data) => {
+        if (checkError(data)) {
+          // toast.error(data.error, {
+          //   position: toast.POSITION.TOP_RIGHT,
+          //   autoClose: 3000,
+          //   hideProgressBar: true,
+          // });
+        } else {
+          // toast.success(data.successful, {
+          //   position: toast.POSITION.TOP_RIGHT,
+          //   autoClose: 3000,
+          //   hideProgressBar: true,
+          // });
+        }
       })
       .catch((error) => {
-        console.error(error);
-        toast.error("An error occurred!", {
-          position: toast.POSITION.TOP_RIGHT,
-          autoClose: 3000, // Close the toast after 3000 milliseconds (3 seconds)
-          hideProgressBar: true, // Hide the progress bar
-        });
+        // console.error(error);
+        // toast.error("An error occurred!", {
+        //   position: toast.POSITION.TOP_RIGHT,
+        //   autoClose: 3000,
+        //   hideProgressBar: true,
+        // });
       });
   };
 
@@ -163,7 +175,7 @@ const Details = ({
     else setLnameError(false);
 
     if (type === "participant") {
-      tempYear = year.trim();
+      tempYear = parseInt((""+year).trim());
       tempStream = stream.trim();
 
       // year check
@@ -245,8 +257,7 @@ const Details = ({
       )
         return;
       if (type === "admin") postAdminData({ fname, lname, phone });
-      else if (type === "user")
-        postUserData({ fname, lname, year, stream, phone });
+      else if (type === "participant") postUserData({ fname, lname, year, stream, phone });
       setInputClass(default_input_class);
       setVisible(true);
     }
