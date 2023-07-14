@@ -6,8 +6,7 @@ import EachUser from "../Components/EachUser";
 import { Link } from "react-router-dom";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 
 const UserList = () => {
   const [token, setToken] = useState("");
@@ -25,34 +24,22 @@ const UserList = () => {
       mode: "cors",
       headers: {
         "Content-Type": "application/json",
-        authorization: token,
+        "authorization": token,
       },
     })
       .then((response) => {
         if (response.ok) {
           return response.json();
         } else {
-          // toast.error("Error fetching data", {
-          //   position: toast.POSITION.TOP_RIGHT,
-          //   autoClose: 3000,
-          //   hideProgressBar: true,
-          // });
+          toast.error("Error fetching data");
         }
       })
       .then((data) => {
-        // toast.success("Data fetched successfully", {
-        //   position: toast.POSITION.TOP_RIGHT,
-        //   autoClose: 3000,
-        //   hideProgressBar: true,
-        // });
+        toast.success("Data fetched successfully");
         setCurrentList(data);
       })
       .catch((error) => {
-        // toast.error(error, {
-        //   position: toast.POSITION.TOP_RIGHT,
-        //   autoClose: 3000,
-        //   hideProgressBar: true,
-        // });
+        toast.error(error);
       });
   };
 
@@ -69,27 +56,15 @@ const UserList = () => {
         if (response.ok) {
           return response.json();
         } else {
-          // toast.error("Error fetching data", {
-          //   position: toast.POSITION.TOP_RIGHT,
-          //   autoClose: 3000,
-          //   hideProgressBar: true,
-          // });
+          toast.error("Error fetching data");
         }
       })
       .then((data) => {
-        // toast.success("Data fetched successfully", {
-        //   position: toast.POSITION.TOP_RIGHT,
-        //   autoClose: 3000,
-        //   hideProgressBar: true,
-        // });
+        toast.success("Data fetched successfully");
         setCurrentList(data);
       })
       .catch((error) => {
-        // toast.error(error, {
-        //   position: toast.POSITION.TOP_RIGHT,
-        //   autoClose: 3000,
-        //   hideProgressBar: true,
-        // });
+        toast.error(error);
       });
   };
 
@@ -99,33 +74,23 @@ const UserList = () => {
       mode: "cors",
       headers: {
         "Content-Type": "application/json",
-        authorization: token,
+        "authorization": token,
       },
     })
       .then((response) => {
         if (response.ok) {
           return response.json();
         } else {
-          // toast.error("Error receiving type", {
-          //   position: toast.POSITION.TOP_RIGHT,
-          //   autoClose: 3000,
-          // });
+          toast.error("Error receiving type");
         }
       })
       .then((responseData) => {
-        // console.log(responseData);
-        // toast.success("Data fetched successfully", {
-        //   position: toast.POSITION.TOP_RIGHT,
-        //   autoClose: 3000,
-        // });
+        toast.success("Data fetched successfully");
         if ("error" in responseData) setType("logged-out");
         else setType(responseData.user);
       })
       .catch((error) => {
-        // toast.error(error, {
-        //   position: toast.POSITION.TOP_RIGHT,
-        //   autoClose: 3000,
-        // });
+        toast.error(error);
       });
   };
 

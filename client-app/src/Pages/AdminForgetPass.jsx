@@ -6,10 +6,14 @@ import Otp from "./Otp";
 import Particle from "../Components/Particle";
 import Nav from "../Components/Nav";
 import AdminForgetSchema from "../Components/AdminForgetSchema";
-
+import see from "../../public/Icons/see.svg";
+import unsee from "../../public/Icons/unsee.svg";
+ 
 const AdminForgetPass = () => {
   const [isSuccess, setIsSuccess] = useState(false);
   const [otpToken, setOtpToken] = useState("");
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
   const apiUrl = import.meta.env.VITE_API_URL;
 
   const initialValues = {
@@ -23,43 +27,38 @@ const AdminForgetPass = () => {
     return false;
   };
 
-  const { values, errors, touched, handleBlur, handleChange, handleSubmit } = useFormik({
-    initialValues,
-    validationSchema: AdminForgetSchema,
-    onSubmit: (values, action) => {
-      fetch(`${apiUrl}/forget_password/`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ email: values.email, password: values.password }),
-      })
-        .then((response) => response.json())
-        .then((data) => {
-          if (checkError(data)) {
-            // toast.error(data.error, {
-            //   position: "top-center",
-            //   theme: "colored",
-            // });
-          } else {
-            // toast.success(data.successful, {
-            //   position: "top-center",
-            //   theme: "colored",
-            // });
-            action.resetForm();
-            setOtpToken(data.verification);
-            setIsSuccess(true);
-          }
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
+    useFormik({
+      initialValues,
+      validationSchema: AdminForgetSchema,
+      onSubmit: (values, action) => {
+        fetch(`${apiUrl}/forget_password/`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: values.email,
+            password: values.password,
+          }),
         })
-        .catch((error) => {
-          // console.log(error);
-          // toast.error("Error resetting password", {
-          //   position: "top-center",
-          //   theme: "colored",
-          // });
-        });
-    },
-  });
+          .then((response) => response.json())
+          .then((data) => {
+            if (checkError(data)) {
+              toast.error(data.error);
+            } else {
+              toast.success(data.successful);
+              action.resetForm();
+              setOtpToken(data.verification);
+              setIsSuccess(true);
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+            toast.error("Error resetting password");
+          });
+      },
+    });
 
   return (
     <>
@@ -75,7 +74,7 @@ const AdminForgetPass = () => {
               </h2>
 
               <form
-                onSubmit={handleSubmit} 
+                onSubmit={handleSubmit}
                 className="flex flex-col items-center justify-center h-fit gap-3"
               >
                 <div className="input-block text-left p-3 font-semibold font-custom-sans flex flex-col justify-center w-full">
@@ -96,16 +95,33 @@ const AdminForgetPass = () => {
                   ) : null}
                 </div>
                 <div className="input-block text-left p-3 font-semibold font-custom-sans flex flex-col justify-center w-full">
-                  <input
-                    type="password"
-                    name="password"
-                    id="password"
-                    value={values.password}
-                    placeholder="Enter new password"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    className="p-2 rounded-md bg-black/50 text-white focus:outline-none tracking-widest w-full"
-                  />
+                  <div className="w-full h-fit flex flex-row rounded-md bg-black/50 pr-3">
+                    <input
+                      type={passwordVisible ? "" : "password"}
+                      name="password"
+                      id="password"
+                      value={values.password}
+                      placeholder="Enter new password"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      className="p-2 rounded-md bg-black/0 text-white focus:outline-none tracking-widest w-full"
+                    />
+                    {!passwordVisible && (
+                      <img
+                        src={see}
+                        alt="button"
+                        onClick={() => setPasswordVisible(true)}
+                      />
+                    )}
+                    {passwordVisible && (
+                      <img
+                        className="invert w-4"
+                        src={unsee}
+                        alt="button"
+                        onClick={() => setPasswordVisible(false)}
+                      />
+                    )}
+                  </div>
                   {errors.password && touched.password ? (
                     <p className="form-error text-red-500 tracking-widest">
                       {errors.password}
@@ -113,17 +129,34 @@ const AdminForgetPass = () => {
                   ) : null}
                 </div>
                 <div className="input-block text-left p-3 font-semibold font-custom-sans flex flex-col justify-center w-full">
-                  <input
-                    type="password"
-                    autoComplete="off"
-                    name="confirmPassword"
-                    id="confirmPassword"
-                    value={values.confirmPassword}
-                    placeholder="Confirm new password"
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    className="p-2 rounded-md bg-black/50 text-white focus:outline-none tracking-widest w-full"
-                  />
+                  <div className="w-full h-fit flex flex-row rounded-md bg-black/50 pr-3">
+                    <input
+                      type={confirmPasswordVisible ? "" : "password"}
+                      autoComplete="off"
+                      name="confirmPassword"
+                      id="confirmPassword"
+                      value={values.confirmPassword}
+                      placeholder="Confirm new password"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      className="p-2 rounded-md bg-black/0 text-white focus:outline-none tracking-widest w-full"
+                    />
+                    {!confirmPasswordVisible && (
+                      <img
+                        src={see}
+                        alt="button"
+                        onClick={() => setConfirmPasswordVisible(true)}
+                      />
+                    )}
+                    {confirmPasswordVisible && (
+                      <img
+                        className="invert w-4"
+                        src={unsee}
+                        alt="button"
+                        onClick={() => setConfirmPasswordVisible(false)}
+                      />
+                    )}
+                  </div>
                   {errors.confirmPassword && touched.confirmPassword ? (
                     <p className="form-error text-red-500 tracking-widest">
                       {errors.confirmPassword}

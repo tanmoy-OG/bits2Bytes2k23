@@ -4,13 +4,16 @@ import Nav from "../Components/Nav";
 import Particle from "../Components/Particle";
 import { Link } from "react-router-dom";
 import { useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 import OTPPage from "./Otp";
+import see from "../../public/Icons/see.svg";
+import unsee from "../../public/Icons/unsee.svg";
 
 const UserSignup = () => {
   const [isRegistered, setIsRegistered] = useState(false);
   const [otpToken, setOtpToken] = useState("");
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
   const apiUrl = import.meta.env.VITE_API_URL;
 
   const initialValues = {
@@ -54,26 +57,16 @@ const UserSignup = () => {
           .then((response) => response.json())
           .then((data) => {
             if (checkError(data)) {
-              // toast.error(data.error, {
-              //   position: "top-center",
-              //   theme: "colored",
-              // });
+              toast.error(data.error);
             } else {
-              // toast.success(data.successful, {
-              //   position: "top-center",
-              //   theme: "colored",
-              // });
+              toast.success(data.successful);
               action.resetForm();
               setOtpToken(data.verification);
               setIsRegistered(true);
             }
           })
           .catch((error) => {
-            // console.log(error);
-            // toast.error("Unsuccessful", {
-            //   position: "top-center",
-            //   theme: "colored",
-            // });
+            toast.error(error);
           });
       },
     });
@@ -104,7 +97,7 @@ const UserSignup = () => {
                       id="fname"
                       placeholder="First Name"
                       className="p-2 rounded-md bg-black/50 text-white focus:outline-none tracking-widest w-full"
-                      values={values.fname}
+                      value={values.fname}
                       onChange={handleChange}
                       onBlur={handleBlur}
                     />
@@ -123,7 +116,7 @@ const UserSignup = () => {
                       id="lname"
                       placeholder="Last Name"
                       className="p-2 rounded-md bg-black/50 text-white focus:outline-none tracking-widest w-full"
-                      values={values.lname}
+                      value={values.lname}
                       onChange={handleChange}
                       onBlur={handleBlur}
                     />
@@ -144,7 +137,7 @@ const UserSignup = () => {
                     id="email"
                     placeholder="Email"
                     className="p-2 rounded-md bg-black/50 text-white focus:outline-none tracking-widest w-full"
-                    values={values.email}
+                    value={values.email}
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -164,7 +157,7 @@ const UserSignup = () => {
                     id="mobile"
                     placeholder="Mobile"
                     className="p-2 rounded-md bg-black/50 text-white focus:outline-none tracking-widest w-full"
-                    values={values.mobile}
+                    value={values.mobile}
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -184,7 +177,7 @@ const UserSignup = () => {
                     id="roll"
                     placeholder="Roll Number"
                     className="p-2 rounded-md bg-black/50 text-white focus:outline-none tracking-widest w-full"
-                    values={values.roll}
+                    value={values.roll}
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -195,19 +188,37 @@ const UserSignup = () => {
                   ) : null}
                 </div>
 
-                <div className="flex justify-between w-full">
+                <div className="flex justify-between w-full flex-col sm:flex-row">
+                  {/* password */}
                   <div className="input-block text-left p-3 font-semibold font-custom-sans w-full">
-                    <input
-                      type="password"
-                      autoComplete="off"
-                      name="password"
-                      id="password"
-                      placeholder="Password"
-                      className="p-2 rounded-md bg-black/50 text-white focus:outline-none tracking-widest w-full"
-                      values={values.password}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                    />
+                    <div className="w-full h-fit flex flex-row rounded-md bg-black/50 pr-3">
+                      <input
+                        type={passwordVisible ? "" : "password"}
+                        autoComplete="off"
+                        name="password"
+                        id="password"
+                        placeholder="Password"
+                        className="p-2 rounded-md bg-black/0 text-white outline-none focus:outline-none border-none tracking-widest w-full"
+                        value={values.password}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                      />
+                      {!passwordVisible && (
+                        <img
+                          src={see}
+                          alt="button"
+                          onClick={() => setPasswordVisible(true)}
+                        />
+                      )}
+                      {passwordVisible && (
+                        <img
+                          src={unsee}
+                          className="invert w-4"
+                          alt="button"
+                          onClick={() => setPasswordVisible(false)}
+                        />
+                      )}
+                    </div>
                     {errors.password && touched.password ? (
                       <p className="form-error text-red-500 tracking-widest">
                         {errors.password}
@@ -215,18 +226,36 @@ const UserSignup = () => {
                     ) : null}
                   </div>
 
+                  {/* confirm password */}
                   <div className="input-block text-left p-3 font-semibold font-custom-sans w-full">
-                    <input
-                      type="password"
-                      autoComplete="off"
-                      name="confirm_password"
-                      id="confirm password"
-                      placeholder="Confirm Password"
-                      className="p-2 rounded-md bg-black/50 text-white focus:outline-none tracking-widest w-full"
-                      values={values.confirm_password}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                    />
+                    <div className="w-full h-fit flex flex-row rounded-md bg-black/50 pr-3">
+                      <input
+                        type={confirmPasswordVisible ? "" : "password"}
+                        autoComplete="off"
+                        name="confirm_password"
+                        id="confirm password"
+                        placeholder="Confirm Password"
+                        className="p-2 rounded-md bg-black/0 text-white outline-none focus:outline-none border-none tracking-widest w-full"
+                        value={values.confirm_password}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                      />
+                      {!confirmPasswordVisible && (
+                        <img
+                          src={see}
+                          alt="button"
+                          onClick={() => setConfirmPasswordVisible(true)}
+                        />
+                      )}
+                      {confirmPasswordVisible && (
+                        <img
+                          src={unsee}
+                          className="invert w-4"
+                          alt="button"
+                          onClick={() => setConfirmPasswordVisible(false)}
+                        />
+                      )}
+                    </div>
                     {errors.confirm_password && touched.confirm_password ? (
                       <p className="form-error text-red-500 tracking-widest">
                         {errors.confirm_password}
@@ -244,7 +273,7 @@ const UserSignup = () => {
                       id="year"
                       placeholder="Year"
                       className="p-2 rounded-md bg-black/50 text-white focus:outline-none tracking-widest w-full"
-                      values={values.year}
+                      value={values.year}
                       onChange={handleChange}
                       onBlur={handleBlur}
                     />
@@ -264,7 +293,7 @@ const UserSignup = () => {
                       id="stream"
                       placeholder="Stream"
                       className="p-2 rounded-md bg-black/50 text-white focus:outline-none tracking-widest w-full"
-                      values={values.stream}
+                      value={values.stream}
                       onChange={handleChange}
                       onBlur={handleBlur}
                     />
@@ -298,7 +327,6 @@ const UserSignup = () => {
               </div>
             </div>
           </div>
-          <ToastContainer />
           <Particle />
         </div>
       )}

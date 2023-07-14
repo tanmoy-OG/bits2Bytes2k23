@@ -7,10 +7,13 @@ import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import OTPPage from "./Otp";
+import see from "../../public/Icons/see.svg";
+import unsee from "../../public/Icons/unsee.svg";
 
 const UserLogin = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [otpToken, setOtpToken] = useState("");
+  const [passwordVisible, setPasswordVisible] = useState(false);
   const apiUrl = import.meta.env.VITE_API_URL;
 
   const initialValues = {
@@ -33,31 +36,24 @@ const UserLogin = () => {
           headers: {
             "Content-Type": "application/json",
           },
-          body: JSON.stringify({ roll: values.roll, password: values.password }),
+          body: JSON.stringify({
+            roll: values.roll,
+            password: values.password,
+          }),
         })
           .then((response) => response.json())
           .then((data) => {
             if (checkError(data)) {
-              // toast.error(data.error, {
-              //   position: "top-center",
-              //   theme: "colored",
-              // });
+              toast.error(data.error);
             } else {
-              // toast.success(data.successful, {
-              //   position: "top-center",
-              //   theme: "colored",
-              // });
+              toast.success(data.successful);
               action.resetForm();
               setOtpToken(data.verification);
               setIsLoggedIn(true);
             }
           })
           .catch((error) => {
-            // console.log(error);
-            // toast.error("Unsuccessful", {
-            //   position: "top-center",
-            //   theme: "colored",
-            // });
+            toast.error("Unsuccessful");
           });
       },
     });
@@ -100,15 +96,32 @@ const UserLogin = () => {
 
                 {/* password */}
                 <div className="input-block text-left p-3 font-semibold font-custom-sans flex flex-col justify-center w-full">
-                  <input
-                    type="password"
-                    name="password"
-                    placeholder="Password"
-                    className="p-2 rounded-md bg-black/50 text-white focus:outline-none tracking-widest w-fulle"
-                    value={values.password}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                  />
+                  <div className="w-full h-fit flex flex-row rounded-md bg-black/50 pr-3">
+                    <input
+                      type={passwordVisible ? "" : "password"}
+                      name="password"
+                      placeholder="Password"
+                      className="p-2 rounded-md bg-black/0 text-white outline-none focus:outline-none border-none tracking-widest w-full"
+                      value={values.password}
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                    />
+                    {!passwordVisible && (
+                      <img
+                        src={see}
+                        alt="button"
+                        onClick={() => setPasswordVisible(true)}
+                      />
+                    )}
+                    {passwordVisible && (
+                      <img
+                        className="invert w-4"
+                        src={unsee}
+                        alt="button"
+                        onClick={() => setPasswordVisible(false)}
+                      />
+                    )}
+                  </div>
                   {errors.password && touched.password ? (
                     <p className="form-error text-red-500 tracking-widest">
                       {errors.password}

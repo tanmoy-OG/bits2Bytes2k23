@@ -1,5 +1,4 @@
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useCookies } from "react-cookie";
@@ -15,37 +14,34 @@ const Nav = ({ page }) => {
   };
 
   const fetchType = (token) => {
+    if(token === "" || token === null || token === undefined)
+    {
+      setType("logged-out");
+      return;
+    }
     fetch("http://127.0.0.1:5000/user_type/", {
       method: "POST",
       mode: "cors",
       headers: {
         "Content-Type": "application/json",
-        authorization: token,
+        "authorization": token,
       },
     })
       .then((response) => {
         if (response.ok) {
           return response.json();
-        } else {
-          // toast.error("Error receiving type", {
-          //   position: toast.POSITION.TOP_RIGHT,
-          //   autoClose: 3000,
-          // });
         }
+        //  else {
+        //   toast.error("Error receiving type");
+        // }
       })
       .then((data) => {
-        // toast.success("Data fetched successfully", {
-        //   position: toast.POSITION.TOP_RIGHT,
-        //   autoClose: 3000,
-        // });
+        // toast.success("Data fetched successfully");
         if ("error" in data) setType("logged-out");
         else setType(data.user);
       })
       .catch((error) => {
-        // toast.error(error, {
-        //   position: toast.POSITION.TOP_RIGHT,
-        //   autoClose: 3000,
-        // });
+        // toast.error(error);
       });
   };
 

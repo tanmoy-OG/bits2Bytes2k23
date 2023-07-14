@@ -38,6 +38,8 @@ const App = () => {
         <Route path="/gallery" Component={Gallery} />
         <Route path="/crew" Component={Crew} />
         <Route path="*" Component={ErrorPage} />
+
+        {/* logged out can visit logged in cannot visit */}
         <Route path="/registration" Component={ChooseForm} />
         <Route path="/signup/admin" Component={AdminSignup} />
         <Route path="/signup/user" Component={UserSignup} />
@@ -46,13 +48,15 @@ const App = () => {
         <Route path="/admin/resetpassword" Component={AdminForgetPass} />
         <Route path="/user/resetpassword" Component={UserForgetPass} />
 
-        {/* authorized routes */}
-        {/* <Route path="/events" Component={Events} /> */}
-        {/* <Route path="/events/details" Component={EachEvents} /> */}
+        {/* logged out cannot visit logged in can visit*/}
         <Route path="/adminprofile/details" Component={AdminDetails} />
         <Route path="/adminprofile/userlist" Component={UserList} />
         <Route path="/userprofile/details" Component={UserDetails} />
-        {/* <Route path="/userprofile/myevents" Component={UserEvents} /> */}
+        <Route path="/userprofile/myevents" Component={UserEvents} />
+
+        {/* depends */}
+        <Route path="/events" Component={Events} />
+        <Route path="/events/details" Component={EachEvents} />
       </Routes>
       <ToastContainer
         position="top-right"
