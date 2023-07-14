@@ -2,66 +2,68 @@ import { useState } from "react";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import { useFormik } from "formik";
-import Otp from "../Pages/Otp";
+import Otp from "./Otp";
 import Particle from "../Components/Particle";
 import Nav from "../Components/Nav";
-
-const initialValues = {
-  roll: "",
-  password: "",
-  confirmPassword: "",
-};
+import UserForgetSchema from "../Components/UserForgetSchema";
+import see from "../../public/Icons/see.svg";
+import unsee from "../../public/Icons/unsee.svg";
 
 const UserForgetPass = () => {
-  const [error, setError] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
+  const [otpToken, setOtpToken] = useState("");
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
+  const apiUrl = import.meta.env.VITE_API_URL;
 
-  const { values, handleChange } = useFormik({
-    initialValues: initialValues,
-  });
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    try {
-      if (values.password !== values.confirmPassword) {
-        toast.error("Passwords do not match");
-        return;
-      }
-
-      const response = await fetch("http://127.0.0.1:5000/forget_password/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          roll: values.roll,
-          password: values.password,
-        }),
-      });
-
-      const data = await response.json();
-      console.log(data);
-
-      if (response.ok) {
-        toast.success(data.successful);
-        setError("");
-        setIsSuccess(true);
-      } else {
-        toast.error(data.error);
-        setError("Error resetting password");
-      }
-    } catch (error) {
-      console.log(error);
-      toast.error("Error resetting password");
-      setError("Error resetting password");
-    }
+  const initialValues = {
+    roll: "",
+    password: "",
+    confirmPassword: "",
   };
+
+  const checkError = (data) => {
+    if ("error" in data) return true;
+    return false;
+  };
+
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
+    useFormik({
+      initialValues,
+      validationSchema: UserForgetSchema,
+
+      onSubmit: (values, action) => {
+        fetch(`${apiUrl}/forget_password/`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            roll: values.roll,
+            password: values.password,
+          }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (checkError(data)) {
+              toast.error(data.error);
+            } else {
+              toast.success(data.successful);
+              action.resetForm();
+              setOtpToken(data.verification);
+              setIsSuccess(true);
+            }
+          })
+          .catch((error) => {
+            toast.error("Error resetting password");
+          });
+      },
+    });
 
   return (
     <>
       {isSuccess ? (
-        <Otp />
+        <Otp otpToken={otpToken} otpPageType="user-forget-pass" />
       ) : (
         <div className="absolute top-0 left-0 w-full h-full">
           <Nav />
@@ -83,32 +85,84 @@ const UserForgetPass = () => {
                     value={values.roll}
                     placeholder="Enter your roll number"
                     onChange={handleChange}
+                    onBlur={handleBlur}
                     className="p-2 rounded-md bg-black/50 text-white focus:outline-none tracking-widest w-full"
                   />
+                  {errors.roll && touched.roll ? (
+                    <p className="form-error text-red-500 tracking-widest">
+                      {errors.roll}
+                    </p>
+                  ) : null}
                 </div>
 
                 <div className="input-block text-left p-3 font-semibold font-custom-sans flex flex-col justify-center w-full">
-                  <input
-                    type="password"
-                    name="password"
-                    id="password"
-                    value={values.password}
-                    placeholder="Enter new password"
-                    onChange={handleChange}
-                    className="p-2 rounded-md bg-black/50 text-white focus:outline-none tracking-widest w-full"
-                  />
+                  <div className="w-full h-fit flex flex-row rounded-md bg-black/50 pr-3">
+                    <input
+                      type={passwordVisible ? "" : "password"}
+                      name="password"
+                      id="password"
+                      value={values.password}
+                      placeholder="Enter new password"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      className="p-2 rounded-md bg-black/0 text-white focus:outline-none tracking-widest w-full"
+                    />
+                    {!passwordVisible && (
+                      <img
+                        src={see}
+                        alt="button"
+                        onClick={() => setPasswordVisible(true)}
+                      />
+                    )}
+                    {passwordVisible && (
+                      <img
+                        className="invert w-4"
+                        src={unsee}
+                        alt="button"
+                        onClick={() => setPasswordVisible(false)}
+                      />
+                    )}
+                  </div>
+                  {errors.password && touched.password ? (
+                    <p className="form-error text-red-500 tracking-widest">
+                      {errors.password}
+                    </p>
+                  ) : null}
                 </div>
 
                 <div className="input-block text-left p-3 font-semibold font-custom-sans flex flex-col justify-center w-full">
-                  <input
-                    type="password"
-                    name="confirmPassword"
-                    id="confirmPassword"
-                    value={values.confirmPassword}
-                    placeholder="Confirm new password"
-                    onChange={handleChange}
-                    className="p-2 rounded-md bg-black/50 text-white focus:outline-none tracking-widest w-full"
-                  />
+                  <div className="w-full h-fit flex flex-row rounded-md bg-black/50 pr-3">
+                    <input
+                      type={confirmPasswordVisible ? "" : "password"}
+                      name="confirmPassword"
+                      id="confirmPassword"
+                      value={values.confirmPassword}
+                      placeholder="Confirm new password"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      className="p-2 rounded-md bg-black/0 text-white focus:outline-none tracking-widest w-full"
+                    />
+                    {!confirmPasswordVisible && (
+                      <img
+                        src={see}
+                        alt="button"
+                        onClick={() => setConfirmPasswordVisible(true)}
+                      />
+                    )}
+                    {confirmPasswordVisible && (
+                      <img
+                        className="invert w-4"
+                        src={unsee}
+                        alt="button"
+                        onClick={() => setConfirmPasswordVisible(false)}
+                      />
+                    )}
+                  </div>
+                  {errors.confirmPassword && touched.confirmPassword ? (
+                    <p className="form-error text-red-500 tracking-widest">
+                      {errors.confirmPassword}
+                    </p>
+                  ) : null}
                 </div>
 
                 <button type="submit" className="button-green uppercase">

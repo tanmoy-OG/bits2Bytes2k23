@@ -5,12 +5,16 @@ import { useFormik } from "formik";
 import Otp from "./Otp";
 import Particle from "../Components/Particle";
 import Nav from "../Components/Nav";
-
-
-const AdminForgotPass = () => {
-  const [error, setError] = useState("");
+import AdminForgetSchema from "../Components/AdminForgetSchema";
+import see from "../../public/Icons/see.svg";
+import unsee from "../../public/Icons/unsee.svg";
+ 
+const AdminForgetPass = () => {
   const [isSuccess, setIsSuccess] = useState(false);
-  const [otp, setOtp] = useState("");
+  const [otpToken, setOtpToken] = useState("");
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   const initialValues = {
     email: "",
@@ -18,53 +22,48 @@ const AdminForgotPass = () => {
     confirmPassword: "",
   };
 
-  const { values, handleChange } = useFormik({
-    initialValues: initialValues,
-  });
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    try {
-      if (values.password !== values.confirmPassword) {
-        toast.error("Passwords do not match");
-        return;
-      }
-
-      const response = await fetch("http://127.0.0.1:5000/forget_password/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          email: values.email,
-          password: values.password,
-        }),
-      });
-
-      const data = await response.json();
-      console.log(data);
-
-      if (response.ok) {
-        toast.success(data.successful);
-        setError("");
-        setOtp(data.verification);
-        setIsSuccess(true);
-      } else {
-        toast.error(data.error);
-        setError("Error resetting password");
-      }
-    } catch (error) {
-      console.log(error);
-      toast.error("Error resetting password");
-      setError("Error resetting password");
-    }
+  const checkError = (data) => {
+    if ("error" in data) return true;
+    return false;
   };
+
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
+    useFormik({
+      initialValues,
+      validationSchema: AdminForgetSchema,
+      onSubmit: (values, action) => {
+        fetch(`${apiUrl}/forget_password/`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            email: values.email,
+            password: values.password,
+          }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (checkError(data)) {
+              toast.error(data.error);
+            } else {
+              toast.success(data.successful);
+              action.resetForm();
+              setOtpToken(data.verification);
+              setIsSuccess(true);
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+            toast.error("Error resetting password");
+          });
+      },
+    });
 
   return (
     <>
       {isSuccess ? (
-        <Otp otp={otp}/>
+        <Otp otpToken={otpToken} otpPageType="admin-forget-pass" />
       ) : (
         <div className="absolute top-0 left-0 w-full h-full">
           <Nav />
@@ -86,30 +85,83 @@ const AdminForgotPass = () => {
                     value={values.email}
                     placeholder="Enter your email"
                     onChange={handleChange}
+                    onBlur={handleBlur}
                     className="p-2 rounded-md bg-black/50 text-white focus:outline-none tracking-widest w-full"
                   />
+                  {errors.email && touched.email ? (
+                    <p className="form-error text-red-500 tracking-widest">
+                      {errors.email}
+                    </p>
+                  ) : null}
                 </div>
                 <div className="input-block text-left p-3 font-semibold font-custom-sans flex flex-col justify-center w-full">
-                  <input
-                    type="password"
-                    name="password"
-                    id="password"
-                    value={values.password}
-                    placeholder="Enter new password"
-                    onChange={handleChange}
-                    className="p-2 rounded-md bg-black/50 text-white focus:outline-none tracking-widest w-full"
-                  />
+                  <div className="w-full h-fit flex flex-row rounded-md bg-black/50 pr-3">
+                    <input
+                      type={passwordVisible ? "" : "password"}
+                      name="password"
+                      id="password"
+                      value={values.password}
+                      placeholder="Enter new password"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      className="p-2 rounded-md bg-black/0 text-white focus:outline-none tracking-widest w-full"
+                    />
+                    {!passwordVisible && (
+                      <img
+                        src={see}
+                        alt="button"
+                        onClick={() => setPasswordVisible(true)}
+                      />
+                    )}
+                    {passwordVisible && (
+                      <img
+                        className="invert w-4"
+                        src={unsee}
+                        alt="button"
+                        onClick={() => setPasswordVisible(false)}
+                      />
+                    )}
+                  </div>
+                  {errors.password && touched.password ? (
+                    <p className="form-error text-red-500 tracking-widest">
+                      {errors.password}
+                    </p>
+                  ) : null}
                 </div>
                 <div className="input-block text-left p-3 font-semibold font-custom-sans flex flex-col justify-center w-full">
-                  <input
-                    type="password"
-                    name="confirmPassword"
-                    id="confirmPassword"
-                    value={values.confirmPassword}
-                    placeholder="Confirm new password"
-                    onChange={handleChange}
-                    className="p-2 rounded-md bg-black/50 text-white focus:outline-none tracking-widest w-full"
-                  />
+                  <div className="w-full h-fit flex flex-row rounded-md bg-black/50 pr-3">
+                    <input
+                      type={confirmPasswordVisible ? "" : "password"}
+                      autoComplete="off"
+                      name="confirmPassword"
+                      id="confirmPassword"
+                      value={values.confirmPassword}
+                      placeholder="Confirm new password"
+                      onChange={handleChange}
+                      onBlur={handleBlur}
+                      className="p-2 rounded-md bg-black/0 text-white focus:outline-none tracking-widest w-full"
+                    />
+                    {!confirmPasswordVisible && (
+                      <img
+                        src={see}
+                        alt="button"
+                        onClick={() => setConfirmPasswordVisible(true)}
+                      />
+                    )}
+                    {confirmPasswordVisible && (
+                      <img
+                        className="invert w-4"
+                        src={unsee}
+                        alt="button"
+                        onClick={() => setConfirmPasswordVisible(false)}
+                      />
+                    )}
+                  </div>
+                  {errors.confirmPassword && touched.confirmPassword ? (
+                    <p className="form-error text-red-500 tracking-widest">
+                      {errors.confirmPassword}
+                    </p>
+                  ) : null}
                 </div>
 
                 <button type="submit" className="button-green uppercase">
@@ -126,4 +178,4 @@ const AdminForgotPass = () => {
   );
 };
 
-export default AdminForgotPass;
+export default AdminForgetPass;

@@ -1,117 +1,83 @@
 import { useFormik } from "formik";
-import FormSchema from "./FormSchema";
+import UserSignupSchema from "../Components/UserSignupSchema";
 import Nav from "../Components/Nav";
 import Particle from "../Components/Particle";
 import { Link } from "react-router-dom";
-import React, { useState } from "react";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { useState } from "react";
+import { toast } from "react-toastify";
 import OTPPage from "./Otp";
-
-const initialValues = {
-  fname: "Tanmoy",
-  lname: "Choudhury",
-  email: "arthurfleck1620@gmail.com",
-  mobile: "8240106882",
-  roll: "12100120038",
-  password: "12191219",
-  confirm_password: "12191219",
-  year: "4",
-  stream: "CSE",
-};
+import see from "../../public/Icons/see.svg";
+import unsee from "../../public/Icons/unsee.svg";
 
 const UserSignup = () => {
-  const [signupError, setSignupError] = useState("");
   const [isRegistered, setIsRegistered] = useState(false);
+  const [otpToken, setOtpToken] = useState("");
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
+  const apiUrl = import.meta.env.VITE_API_URL;
 
-  const [otp, setOtp] = useState("");
+  const initialValues = {
+    fname: "",
+    lname: "",
+    email: "",
+    mobile: "",
+    roll: "",
+    password: "",
+    confirm_password: "",
+    year: "",
+    stream: "",
+  };
 
-  const { values, errors, touched, handleBlur, handleChange } = useFormik({
-    initialValues: initialValues,
-    validationSchema: FormSchema,
-  });
-
-  const check = (data) => {
-    if ("error" in data) {
-      toast.error(data.error, {
-        position: "top-center",
-        theme: "colored",
-      });
-      return true;
-    }
+  const checkError = (data) => {
+    if ("error" in data) return true;
     return false;
   };
 
-  const Submit = async (e) => {
-    e.preventDefault();
-    const { fname, lname, email, mobile, roll, password, year, stream } =
-      values;
-    const data_values = {
-      fname,
-      lname,
-      email,
-      mobile,
-      roll,
-      password,
-      year,
-      stream,
-    };
-    console.log(data_values);
-
-    try {
-      const response = await fetch("http://127.0.0.1:5000/user_signup/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data_values),
-      });
-      if (response.ok) {
-        // Registration successful, handle the response here
-
-        const data = await response.json();
-
-        // console.log(data);
-        const headers = await data.headers;
-
-        if (check(data)) {
-          setSignupError("");
-        } else {
-          toast.success(data.successful, {
-            position: "top-center",
-            theme: "colored",
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
+    useFormik({
+      initialValues: initialValues,
+      validationSchema: UserSignupSchema,
+      onSubmit: (values, action) => {
+        fetch(`${apiUrl}/user_signup/`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            fname: values.fname,
+            lname: values.lname,
+            email: values.email,
+            mobile: values.mobile,
+            roll: values.roll,
+            password: values.password,
+            year: values.year,
+            stream: values.stream,
+          }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (checkError(data)) {
+              toast.error(data.error);
+            } else {
+              toast.success(data.successful);
+              action.resetForm();
+              setOtpToken(data.verification);
+              setIsRegistered(true);
+            }
+          })
+          .catch((error) => {
+            toast.error(error);
           });
-
-          // console.log(data.verification);
-          setOtp(data.verification);
-          setIsRegistered(true);
-        }
-      } else {
-        // Registration failed, handle the error
-        const errorData = await response.json();
-        setSignupError(errorData.message);
-        toast.error("Unsuccessfull", {
-          position: "top-center",
-          theme: "colored",
-        });
-      }
-    } catch (error) {
-      toast.error("Something went wrong", {
-        position: "top-center",
-        theme: "colored",
-      });
-      setSignupError("An error occurred during registration.");
-    }
-  };
+      },
+    });
 
   return (
     <>
       {isRegistered ? (
-        // Render the OTP page component
-        <OTPPage otp={otp} />
+        <OTPPage otpToken={otpToken} otpPageType="user-signup" />
       ) : (
         <div className="absolute top-0 left-0 w-full h-fit">
-          <Nav page="registration" />
+          <Nav />
           <div className="bg-transparent h-full w-full flex justify-center py-10 px-6">
             <div className="w-full sm:w-2/3 md:w-1/2 rounded-lg bg-sky-500/10 p-6 backdrop-blur-sm relative">
               <h1 className="w-full text-2xl md:text-3xl lg:text-4xl font-bold tracking-widest text-neutral-200 font-custom-sans uppercase mb-5">
@@ -119,7 +85,7 @@ const UserSignup = () => {
               </h1>
 
               <form
-                onSubmit={Submit}
+                onSubmit={handleSubmit}
                 className="flex flex-col items-center justify-center h-fit gap-3"
               >
                 <div className="flex justify-between w-full">
@@ -131,7 +97,7 @@ const UserSignup = () => {
                       id="fname"
                       placeholder="First Name"
                       className="p-2 rounded-md bg-black/50 text-white focus:outline-none tracking-widest w-full"
-                      values={values.fname}
+                      value={values.fname}
                       onChange={handleChange}
                       onBlur={handleBlur}
                     />
@@ -150,7 +116,7 @@ const UserSignup = () => {
                       id="lname"
                       placeholder="Last Name"
                       className="p-2 rounded-md bg-black/50 text-white focus:outline-none tracking-widest w-full"
-                      values={values.lname}
+                      value={values.lname}
                       onChange={handleChange}
                       onBlur={handleBlur}
                     />
@@ -162,6 +128,7 @@ const UserSignup = () => {
                   </div>
                 </div>
 
+                {/* email */}
                 <div className="input-block text-left p-3 font-semibold font-custom-sans flex flex-col justify-center w-full">
                   <input
                     type="email"
@@ -170,7 +137,7 @@ const UserSignup = () => {
                     id="email"
                     placeholder="Email"
                     className="p-2 rounded-md bg-black/50 text-white focus:outline-none tracking-widest w-full"
-                    values={values.email}
+                    value={values.email}
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -181,6 +148,7 @@ const UserSignup = () => {
                   ) : null}
                 </div>
 
+                {/* phone number */}
                 <div className="input-block text-left p-3 font-semibold font-custom-sans flex flex-col justify-center w-full">
                   <input
                     type="tel"
@@ -189,7 +157,7 @@ const UserSignup = () => {
                     id="mobile"
                     placeholder="Mobile"
                     className="p-2 rounded-md bg-black/50 text-white focus:outline-none tracking-widest w-full"
-                    values={values.mobile}
+                    value={values.mobile}
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -200,6 +168,7 @@ const UserSignup = () => {
                   ) : null}
                 </div>
 
+                {/* roll */}
                 <div className="input-block text-left p-3 font-semibold font-custom-sans flex flex-col justify-center w-full">
                   <input
                     type="text"
@@ -208,7 +177,7 @@ const UserSignup = () => {
                     id="roll"
                     placeholder="Roll Number"
                     className="p-2 rounded-md bg-black/50 text-white focus:outline-none tracking-widest w-full"
-                    values={values.roll}
+                    value={values.roll}
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -219,19 +188,37 @@ const UserSignup = () => {
                   ) : null}
                 </div>
 
-                <div className="flex justify-between w-full">
+                <div className="flex justify-between w-full flex-col sm:flex-row">
+                  {/* password */}
                   <div className="input-block text-left p-3 font-semibold font-custom-sans w-full">
-                    <input
-                      type="password"
-                      autoComplete="off"
-                      name="password"
-                      id="password"
-                      placeholder="Password"
-                      className="p-2 rounded-md bg-black/50 text-white focus:outline-none tracking-widest w-full"
-                      values={values.password}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                    />
+                    <div className="w-full h-fit flex flex-row rounded-md bg-black/50 pr-3">
+                      <input
+                        type={passwordVisible ? "" : "password"}
+                        autoComplete="off"
+                        name="password"
+                        id="password"
+                        placeholder="Password"
+                        className="p-2 rounded-md bg-black/0 text-white outline-none focus:outline-none border-none tracking-widest w-full"
+                        value={values.password}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                      />
+                      {!passwordVisible && (
+                        <img
+                          src={see}
+                          alt="button"
+                          onClick={() => setPasswordVisible(true)}
+                        />
+                      )}
+                      {passwordVisible && (
+                        <img
+                          src={unsee}
+                          className="invert w-4"
+                          alt="button"
+                          onClick={() => setPasswordVisible(false)}
+                        />
+                      )}
+                    </div>
                     {errors.password && touched.password ? (
                       <p className="form-error text-red-500 tracking-widest">
                         {errors.password}
@@ -239,18 +226,36 @@ const UserSignup = () => {
                     ) : null}
                   </div>
 
+                  {/* confirm password */}
                   <div className="input-block text-left p-3 font-semibold font-custom-sans w-full">
-                    <input
-                      type="password"
-                      autoComplete="off"
-                      name="confirm_password"
-                      id="confirm password"
-                      placeholder="Confirm Password"
-                      className="p-2 rounded-md bg-black/50 text-white focus:outline-none tracking-widest w-full"
-                      values={values.confirm_password}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                    />
+                    <div className="w-full h-fit flex flex-row rounded-md bg-black/50 pr-3">
+                      <input
+                        type={confirmPasswordVisible ? "" : "password"}
+                        autoComplete="off"
+                        name="confirm_password"
+                        id="confirm password"
+                        placeholder="Confirm Password"
+                        className="p-2 rounded-md bg-black/0 text-white outline-none focus:outline-none border-none tracking-widest w-full"
+                        value={values.confirm_password}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                      />
+                      {!confirmPasswordVisible && (
+                        <img
+                          src={see}
+                          alt="button"
+                          onClick={() => setConfirmPasswordVisible(true)}
+                        />
+                      )}
+                      {confirmPasswordVisible && (
+                        <img
+                          src={unsee}
+                          className="invert w-4"
+                          alt="button"
+                          onClick={() => setConfirmPasswordVisible(false)}
+                        />
+                      )}
+                    </div>
                     {errors.confirm_password && touched.confirm_password ? (
                       <p className="form-error text-red-500 tracking-widest">
                         {errors.confirm_password}
@@ -260,15 +265,15 @@ const UserSignup = () => {
                 </div>
 
                 <div className="flex justify-between w-full">
+                  {/* year */}
                   <div className="input-block text-left p-3 font-semibold font-custom-sans w-full">
                     <input
-                      type="text"
                       autoComplete="off"
                       name="year"
                       id="year"
                       placeholder="Year"
                       className="p-2 rounded-md bg-black/50 text-white focus:outline-none tracking-widest w-full"
-                      values={values.year}
+                      value={values.year}
                       onChange={handleChange}
                       onBlur={handleBlur}
                     />
@@ -279,6 +284,7 @@ const UserSignup = () => {
                     ) : null}
                   </div>
 
+                  {/* stream  */}
                   <div className="input-block text-left p-3 font-semibold font-custom-sans w-full">
                     <input
                       type="text"
@@ -287,7 +293,7 @@ const UserSignup = () => {
                       id="stream"
                       placeholder="Stream"
                       className="p-2 rounded-md bg-black/50 text-white focus:outline-none tracking-widest w-full"
-                      values={values.stream}
+                      value={values.stream}
                       onChange={handleChange}
                       onBlur={handleBlur}
                     />
@@ -303,10 +309,6 @@ const UserSignup = () => {
                   Submit
                 </button>
               </form>
-
-              {signupError && (
-                <p className="text-red-500 tracking-widest">{signupError}</p>
-              )}
 
               {/* or */}
               <div className="m-3 grid grid-cols-3 items-center text-white/20 my-10">
@@ -325,7 +327,6 @@ const UserSignup = () => {
               </div>
             </div>
           </div>
-          <ToastContainer />
           <Particle />
         </div>
       )}

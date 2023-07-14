@@ -1,27 +1,58 @@
-import React, { useState, useEffect } from "react";
+import { toast } from "react-toastify";
+import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-
+import { useCookies } from "react-cookie";
 
 const Nav = ({ page }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isScrolled, setIsScrolled] = useState(false);
+  const [type, setType] = useState("");
+  const [token, setToken] = useState("");
+  const [cookies, setCookie] = useCookies(["token"]);
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
 
+  const fetchType = (token) => {
+    if(token === "" || token === null || token === undefined)
+    {
+      setType("logged-out");
+      return;
+    }
+    fetch("http://127.0.0.1:5000/user_type/", {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+        "authorization": token,
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        }
+        //  else {
+        //   toast.error("Error receiving type");
+        // }
+      })
+      .then((data) => {
+        // toast.success("Data fetched successfully");
+        if ("error" in data) setType("logged-out");
+        else setType(data.user);
+      })
+      .catch((error) => {
+        // toast.error(error);
+      });
+  };
+
   useEffect(() => {
-    const handleScroll = () => {
-      const scrollTop = window.pageYOffset;
-      setIsScrolled(scrollTop > 0);
-    };
+    setToken(cookies.token);
+  });
 
-    window.addEventListener("scroll", handleScroll);
-
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, []);
+  useEffect(() => {
+    if (token === "") return;
+    fetchType(token);
+  }, [token]);
 
   return (
     <nav className="sticky top-0 w-full z-50 mb-0 bg-sky-900 text-neutral-200 shadow-lg">
@@ -115,25 +146,24 @@ const Nav = ({ page }) => {
             >
               CREW
             </Link>
+
             <Link
-              to="/registration"
+              to={
+                type === "logged-out"
+                  ? "/registration"
+                  : type === "admin"
+                  ? "/adminprofile/details"
+                  : "/userprofile/details"
+              }
               className={
-                page === "registration"
+                page === "registration" || page === "profile"
                   ? "active-page px-3 py-2 tracking-widest uppercase"
                   : "hover:text-orange-400 px-3 py-2 transition-all duration-300 tracking-widest uppercase hover-underline"
               }
             >
-              LOGIN/SIGNUP
-            </Link>
-            <Link
-              to="/adminprofile/details"
-              className={
-                page === "profile"
-                  ? "active-page px-3 py-2 tracking-widest uppercase"
-                  : "hover:text-orange-400 px-3 py-2 transition-all duration-300 tracking-widest uppercase hover-underline"
-              }
-            >
-              PROFILE
+              {type === "admin" || type === "participant"
+                ? "PROFILE"
+                : "LOGIN/SIGNUP"}
             </Link>
           </div>
         </div>
@@ -182,26 +212,42 @@ const Nav = ({ page }) => {
             >
               CREW
             </Link>
-            <Link
-              to="/registration"
-              className={
-                page === "registration"
-                  ? "bg-orange-400/60 font-bold shadow-sm block px-3 py-2 rounded-md text-base transition-all duration-200 tracking-widest uppercase"
-                  : " hover:bg-orange-400/60 hover:font-bold hover:shadow-sm block px-3 py-2 rounded-md text-base transition-all duration-200 tracking-widest uppercase"
-              }
-            >
-              LOGIN/SIGNUP
-            </Link>
-            <Link
-              to="/adminprofile/details"
-              className={
-                page === "profile"
-                  ? "bg-orange-400/60 font-bold shadow-sm block px-3 py-2 rounded-md text-base transition-all duration-200 tracking-widest uppercase"
-                  : " hover:bg-orange-400/60 hover:font-bold hover:shadow-sm block px-3 py-2 rounded-md text-base transition-all duration-200 tracking-widest uppercase"
-              }
-            >
-              PROFILE
-            </Link>
+            {type === "logged-out" && (
+              <Link
+                to="/registration"
+                className={
+                  page === "registration"
+                    ? "bg-orange-400/60 font-bold shadow-sm block px-3 py-2 rounded-md text-base transition-all duration-200 tracking-widest uppercase"
+                    : " hover:bg-orange-400/60 hover:font-bold hover:shadow-sm block px-3 py-2 rounded-md text-base transition-all duration-200 tracking-widest uppercase"
+                }
+              >
+                LOGIN/SIGNUP
+              </Link>
+            )}
+            {type === "admin" && (
+              <Link
+                to="/adminprofile/details"
+                className={
+                  page === "profile"
+                    ? "bg-orange-400/60 font-bold shadow-sm block px-3 py-2 rounded-md text-base transition-all duration-200 tracking-widest uppercase"
+                    : " hover:bg-orange-400/60 hover:font-bold hover:shadow-sm block px-3 py-2 rounded-md text-base transition-all duration-200 tracking-widest uppercase"
+                }
+              >
+                PROFILE
+              </Link>
+            )}
+            {type === "participant" && (
+              <Link
+                to="/userprofile/details"
+                className={
+                  page === "profile"
+                    ? "bg-orange-400/60 font-bold shadow-sm block px-3 py-2 rounded-md text-base transition-all duration-200 tracking-widest uppercase"
+                    : " hover:bg-orange-400/60 hover:font-bold hover:shadow-sm block px-3 py-2 rounded-md text-base transition-all duration-200 tracking-widest uppercase"
+                }
+              >
+                PROFILE
+              </Link>
+            )}
           </div>
         </div>
       )}
