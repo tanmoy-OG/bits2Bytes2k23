@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import FormSchema from "./FormSchema";
+import UserSignupSchema from "../Components/UserSignupSchema";
 import Nav from "../Components/Nav";
 import Particle from "../Components/Particle";
 import { Link } from "react-router-dom";
@@ -8,110 +8,83 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import OTPPage from "./Otp";
 
-const initialValues = {
-  fname: "Tanmoy",
-  lname: "Choudhury",
-  email: "arthurfleck1620@gmail.com",
-  mobile: "8240106882",
-  roll: "12100120038",
-  password: "12191219",
-  confirm_password: "12191219",
-  year: "4",
-  stream: "CSE",
-};
-
 const UserSignup = () => {
-  const [signupError, setSignupError] = useState("");
   const [isRegistered, setIsRegistered] = useState(false);
+  const [otpToken, setOtpToken] = useState("");
 
-  const [otp, setOtp] = useState("");
+  const initialValues = {
+    fname: "Tanmoy",
+    lname: "Choudhury",
+    email: "arthurfleck1620@gmail.com",
+    mobile: "8240106882",
+    roll: "12100120038",
+    password: "12191219",
+    confirm_password: "12191219",
+    year: "4",
+    stream: "CSE",
+  };
 
-  const { values, errors, touched, handleBlur, handleChange } = useFormik({
-    initialValues: initialValues,
-    validationSchema: FormSchema,
-  });
-
-  const check = (data) => {
-    if ("error" in data) {
-      toast.error(data.error, {
-        position: "top-center",
-        theme: "colored",
-      });
-      return true;
-    }
+  const checkError = (data) => {
+    if ("error" in data) return true;
     return false;
   };
 
-  const Submit = async (e) => {
-    e.preventDefault();
-    const { fname, lname, email, mobile, roll, password, year, stream } =
-      values;
-    const data_values = {
-      fname,
-      lname,
-      email,
-      mobile,
-      roll,
-      password,
-      year,
-      stream,
-    };
-    console.log(data_values);
-
-    try {
-      const response = await fetch("http://127.0.0.1:5000/user_signup/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data_values),
-      });
-      if (response.ok) {
-        // Registration successful, handle the response here
-
-        const data = await response.json();
-
-        // console.log(data);
-        const headers = await data.headers;
-
-        if (check(data)) {
-          setSignupError("");
-        } else {
-          toast.success(data.successful, {
-            position: "top-center",
-            theme: "colored",
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
+    useFormik({
+      initialValues: initialValues,
+      validationSchema: UserSignupSchema,
+      onSubmit: (values, action) => {
+        fetch("http://127.0.0.1:5000/user_signup/", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            fname: values.fname,
+            lname: values.lname,
+            email: values.email,
+            mobile: values.mobile,
+            roll: values.roll,
+            password: values.password,
+            year: values.year,
+            stream: values.stream,
+          }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (checkError(data)) {
+              toast.error(data.error, {
+                position: "top-center",
+                theme: "colored",
+              });
+            } else {
+              toast.success(data.successful, {
+                position: "top-center",
+                theme: "colored",
+              });
+              action.resetForm();
+              setOtpToken(data.verification);
+              setIsRegistered(true);
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+            toast.error("Unsuccessful", {
+              position: "top-center",
+              theme: "colored",
+            });
           });
-
-          // console.log(data.verification);
-          setOtp(data.verification);
-          setIsRegistered(true);
-        }
-      } else {
-        // Registration failed, handle the error
-        const errorData = await response.json();
-        setSignupError(errorData.message);
-        toast.error("Unsuccessfull", {
-          position: "top-center",
-          theme: "colored",
-        });
-      }
-    } catch (error) {
-      toast.error("Something went wrong", {
-        position: "top-center",
-        theme: "colored",
-      });
-      setSignupError("An error occurred during registration.");
-    }
-  };
+      },
+    });
 
   return (
     <>
       {isRegistered ? (
         // Render the OTP page component
-        <OTPPage otp={otp} />
+        <OTPPage otpToken={otpToken} otpPageType="user-signup" />
       ) : (
         <div className="absolute top-0 left-0 w-full h-fit">
-          <Nav page="registration" />
+          <Nav />
           <div className="bg-transparent h-full w-full flex justify-center py-10 px-6">
             <div className="w-full sm:w-2/3 md:w-1/2 rounded-lg bg-sky-500/10 p-6 backdrop-blur-sm relative">
               <h1 className="w-full text-2xl md:text-3xl lg:text-4xl font-bold tracking-widest text-neutral-200 font-custom-sans uppercase mb-5">
@@ -119,7 +92,7 @@ const UserSignup = () => {
               </h1>
 
               <form
-                onSubmit={Submit}
+                onSubmit={handleSubmit}
                 className="flex flex-col items-center justify-center h-fit gap-3"
               >
                 <div className="flex justify-between w-full">
@@ -162,6 +135,7 @@ const UserSignup = () => {
                   </div>
                 </div>
 
+                {/* email */}
                 <div className="input-block text-left p-3 font-semibold font-custom-sans flex flex-col justify-center w-full">
                   <input
                     type="email"
@@ -181,6 +155,7 @@ const UserSignup = () => {
                   ) : null}
                 </div>
 
+                {/* phone number */}
                 <div className="input-block text-left p-3 font-semibold font-custom-sans flex flex-col justify-center w-full">
                   <input
                     type="tel"
@@ -200,6 +175,7 @@ const UserSignup = () => {
                   ) : null}
                 </div>
 
+                {/* roll */}
                 <div className="input-block text-left p-3 font-semibold font-custom-sans flex flex-col justify-center w-full">
                   <input
                     type="text"
@@ -260,9 +236,9 @@ const UserSignup = () => {
                 </div>
 
                 <div className="flex justify-between w-full">
+                  {/* year */}
                   <div className="input-block text-left p-3 font-semibold font-custom-sans w-full">
                     <input
-                      type="text"
                       autoComplete="off"
                       name="year"
                       id="year"
@@ -279,6 +255,7 @@ const UserSignup = () => {
                     ) : null}
                   </div>
 
+                  {/* stream  */}
                   <div className="input-block text-left p-3 font-semibold font-custom-sans w-full">
                     <input
                       type="text"
@@ -303,10 +280,6 @@ const UserSignup = () => {
                   Submit
                 </button>
               </form>
-
-              {signupError && (
-                <p className="text-red-500 tracking-widest">{signupError}</p>
-              )}
 
               {/* or */}
               <div className="m-3 grid grid-cols-3 items-center text-white/20 my-10">

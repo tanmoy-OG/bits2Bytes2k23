@@ -1,5 +1,5 @@
 import { useFormik } from "formik";
-import LoginSchema from "./LoginSchema";
+import UserLoginSchema from "../Components/UserLoginSchema";
 import Nav from "../Components/Nav";
 import Particle from "../Components/Particle";
 import { Link } from "react-router-dom";
@@ -8,96 +8,69 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import OTPPage from "./Otp";
 
-
 const UserLogin = () => {
-  const [loginError, setLoginError] = useState("");
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [otp, setOtp] = useState("");
-  
+
   const initialValues = {
     roll: "",
     password: "",
   };
 
-  const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
-    useFormik({
-      initialValues: initialValues,
-      validationSchema: LoginSchema,
-    });
-
-  const check = (data) => {
-    if ("error" in data) {
-      toast.error(data.error, {
-        position: "top-center",
-        theme: "colored",
-      });
-      return true;
-    }
+  const checkError = (data) => {
+    if ("error" in data) return true;
     return false;
   };
 
-  //to fetch
-  const submit = async (e) => {
-    e.preventDefault();
-    try {
-      // console.log("hello");
-      console.log(values);
-      const response = await fetch(`http://127.0.0.1:5000/login/`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          roll: values.roll,
-          password: values.password,
-        }),
-      });
-
-      if (response.ok) {
-        // Successfull Login
-        const data = await response.json();
-        // console.log(data
-        if (check(data)) {
-          // console.log(data);
-          toast.error(data.error, {
-            position: "top-center",
-            theme: "colored",
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
+    useFormik({
+      initialValues: initialValues,
+      validationSchema: UserLoginSchema,
+      onSubmit: (values, action) => {
+        fetch(`http://127.0.0.1:5000/login/`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            roll: values.roll,
+            password: values.password,
+          }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (checkError(data)) {
+              toast.error(data.error, {
+                position: "top-center",
+                theme: "colored",
+              });
+            } else {
+              toast.success(data.successful, {
+                position: "top-center",
+                theme: "colored",
+              });
+              action.resetForm();
+              setOtp(data.verification);
+              setIsLoggedIn(true);
+            }
+          })
+          .catch((error) => {
+            console.log(error);
+            toast.error("Unsuccessful", {
+              position: "top-center",
+              theme: "colored",
+            });
           });
-        } else {
-          toast.success(data.successfull, {
-            position: "top-center",
-            theme: "colored",
-          });
-          setOtp(data.verification);
-          setIsLoggedIn(true);
-        }
-        // console.log("Successfull");
-      } else {
-        // Login failed.
-        const errorData = await response.json();
-        setLoginError(errorData.message);
-        console.log("failed");
-        toast.error(data.error, {
-          position: "top-center",
-          theme: "colored",
-        });
-      }
-    } catch (error) {
-      toast.error("Something Went wrong", {
-        position: "top-center",
-        theme: "colored",
-      });
-      setLoginError("An error occurred during login.");
-    }
-  };
+      },
+    });
 
   return (
     <>
       {isLoggedIn ? (
-        <OTPPage otp={otp}/>
+        <OTPPage otp={otp} otpPageType="user-login" />
       ) : (
         <div className="absolute top-0 left-0 w-full h-fit">
-          <Nav page="registration" />
+          <Nav />
           <div className="bg-transparent h-full w-full flex justify-center py-10 px-6">
             <div className="w-full sm:w-2/3 md:w-1/2 rounded-lg bg-sky-500/10 p-6 backdrop-blur-sm relative">
               <h1 className="w-full text-2xl md:text-3xl lg:text-4xl font-bold tracking-widest text-neutral-200 font-custom-sans uppercase mb-5">
@@ -105,9 +78,10 @@ const UserLogin = () => {
               </h1>
 
               <form
-                onSubmit={submit}
+                onSubmit={handleSubmit}
                 className="flex flex-col items-center justify-center h-fit gap-3"
               >
+                {/* roll number */}
                 <div className="input-block text-left p-3 font-semibold font-custom-sans flex flex-col justify-center w-full">
                   <input
                     type="number"
@@ -125,13 +99,15 @@ const UserLogin = () => {
                     </p>
                   ) : null}
                 </div>
+
+                {/* password */}
                 <div className="input-block text-left p-3 font-semibold font-custom-sans flex flex-col justify-center w-full">
                   <input
                     type="password"
                     name="password"
                     placeholder="Password"
                     className="p-2 rounded-md bg-black/50 text-white focus:outline-none tracking-widest w-fulle"
-                    values={values.password}
+                    value={values.password}
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -153,10 +129,6 @@ const UserLogin = () => {
                   Login
                 </button>
               </form>
-
-              {loginError && (
-                <p className="text-red-500 tracking-widest">{loginError}</p>
-              )}
 
               {/* or */}
               <div className="m-3 grid grid-cols-3 items-center text-white/20 my-10">

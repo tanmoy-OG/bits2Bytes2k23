@@ -8,7 +8,7 @@ const EachEvents = () => {
   // console.log(state.pic);
   return (
     <div className="absolute top-0 left-0 w-full h-fit">
-      <Nav page="events" />
+      <Nav/>
       <div className=" p-6 text-white bg-sky-500/10 backdrop-blur-sm m-10 ml-6 mr-6 px-16 rounded-2xl">
         <h1>{state.name}</h1>
         <div className="flex justify-center">

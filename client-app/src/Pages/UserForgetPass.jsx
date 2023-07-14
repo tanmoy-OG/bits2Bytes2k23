@@ -5,6 +5,7 @@ import { useFormik } from "formik";
 import Otp from "../Pages/Otp";
 import Particle from "../Components/Particle";
 import Nav from "../Components/Nav";
+import UserForgetSchema from "../Components/UserForgetSchema";
 
 const initialValues = {
   roll: "",
@@ -13,23 +14,19 @@ const initialValues = {
 };
 
 const UserForgetPass = () => {
-  const [error, setError] = useState("");
   const [isSuccess, setIsSuccess] = useState(false);
+  const [otp, setOtp] = useState("");
 
-  const { values, handleChange } = useFormik({
+  const checkError = (data) => {
+    if ("error" in data) return true;
+    return false;
+  };
+
+  const { values, handleChange, handleSubmit } = useFormik({
     initialValues: initialValues,
-  });
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    try {
-      if (values.password !== values.confirmPassword) {
-        toast.error("Passwords do not match");
-        return;
-      }
-
-      const response = await fetch("http://127.0.0.1:5000/forget_password/", {
+    validationSchema: UserForgetSchema,
+    onSubmit: (values, action) => {
+      fetch("http://127.0.0.1:5000/forget_password/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -38,30 +35,38 @@ const UserForgetPass = () => {
           roll: values.roll,
           password: values.password,
         }),
-      });
-
-      const data = await response.json();
-      console.log(data);
-
-      if (response.ok) {
-        toast.success(data.successful);
-        setError("");
-        setIsSuccess(true);
-      } else {
-        toast.error(data.error);
-        setError("Error resetting password");
-      }
-    } catch (error) {
-      console.log(error);
-      toast.error("Error resetting password");
-      setError("Error resetting password");
-    }
-  };
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (checkError(data)) {
+            toast.error(data.error, {
+              position: "top-center",
+              theme: "colored",
+            });
+          } else {
+            toast.success(data.successful, {
+              position: "top-center",
+              theme: "colored",
+            });
+            action.resetForm();
+            setOtp(data.verification);
+            setIsSuccess(true);
+          }
+        })
+        .catch((error) => {
+          console.log(error);
+          toast.error("Error resetting password", {
+            position: "top-center",
+            theme: "colored",
+          });
+        });
+    },
+  });
 
   return (
     <>
       {isSuccess ? (
-        <Otp />
+        <Otp otp={otp} otpPageType="user-forget-pass" />
       ) : (
         <div className="absolute top-0 left-0 w-full h-full">
           <Nav />
