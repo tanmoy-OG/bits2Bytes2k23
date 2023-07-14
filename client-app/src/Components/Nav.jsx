@@ -6,7 +6,7 @@ import { useCookies } from "react-cookie"; // importing use cookie hook
 
 const Nav = ({ page }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [type, setType] = useState("logged-out");
+  const [type, setType] = useState("");
   const [token, setToken] = useState("");
   const [cookies, setCookie] = useCookies(["token"]);
 
