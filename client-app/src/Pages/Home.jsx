@@ -9,6 +9,7 @@ import Particle from "../Components/Particle";
 import Vanta from "../Components/Vanta";
 import NET from "vanta/src/vanta.net";
 import { useEffect, useState } from "react";
+import {toast} from "react-toastify";
 
 const Home = () => {
   useEffect(() => {
@@ -27,6 +28,7 @@ const Home = () => {
       spacing: 12.0,
     });
   }, []);
+
   return (
     <div className=" absolute top-0 left-0 w-full h-fit overflow-clip">
       <Vanta />

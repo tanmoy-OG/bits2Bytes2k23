@@ -1,107 +1,80 @@
-import { useFormik } from "formik";
-import formSchema from "./FormSchema";
-import React, { useState } from "react";
+import { useState } from "react";
 import Nav from "../Components/Nav";
 import Particle from "../Components/Particle";
 import { Link } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import AdminOTPPage from "./AdminOtp";
-
-import Otp from "./Otp";
 import OTPPage from "./Otp";
+import AdminSignupSchema from "../Components/AdminSignupSchema";
+import { useFormik } from "formik";
+import see from "../../public/Icons/see.svg";
+import unsee from "../../public/Icons/unsee.svg";
 
-const initialValues = {
-  fname: "",
-  lname: "",
-  email: "",
-  mobile: "",
-  secret_key: "",
-  password: "",
-  confirm_password: "",
-};
 const AdminSignup = () => {
-  // const [signupError, setSignupError] = useState("");
   const [isRegistered, setIsRegistered] = useState(false);
-  const [otp, setOtp] = useState("");
+  const [otpToken, setOtpToken] = useState("");
+  const [passwordVisible, setPasswordVisible] = useState(false);
+  const [confirmPasswordVisible, setConfirmPasswordVisible] = useState(false);
+  const apiUrl = import.meta.env.VITE_API_URL;
 
-  const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
-    useFormik({
-      initialValues: initialValues,
-      validationSchema: formSchema,
-      // onSubmit: (values) => {
-      //   console.log(values);
-      // },
-    });
+  const initialValues = {
+    fname: "",
+    lname: "",
+    email: "",
+    mobile: "",
+    secret_key: "",
+    password: "",
+    confirm_password: "",
+  };
 
-  const check = (data) => {
-    if ("error" in data) {
-      toast.error(data.error, {
-        position: "top-center",
-        theme: "colored",
-      });
-      return true;
-    }
+  const checkError = (data) => {
+    if ("error" in data) return true;
     return false;
   };
 
-  
-  const Submit = async (e) => {
-    e.preventDefault();
-    // console.log(values);
-    const { fname, lname, email, mobile, secret_key, password } = values;
-    const data_values = { fname, lname, email, mobile, secret_key, password };
-    console.log(data_values)
-    try {
-      const response = await fetch("http://127.0.0.1:5000/user_signup/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(data_values),
-      });
-
-      if (response.ok) {
-        // Registration successful, handle the response here
-        const data = await response.json();
-        console.log(data_values);
-        if (check(data)) {
-          // setSignupError("");
-          console.log('Errorrr!!!!!');
-        } else {
-          toast.success(data.successfull, {
-            position: "top-center",
-            theme: "colored",
+  const { values, errors, touched, handleBlur, handleChange, handleSubmit } =
+    useFormik({
+      initialValues,
+      validationSchema: AdminSignupSchema,
+      onSubmit: (values, action) => {
+        fetch(`${apiUrl}/user_signup/`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            fname: values.fname,
+            lname: values.lname,
+            email: values.email,
+            mobile: values.mobile,
+            secret_key: values.secret_key,
+            password: values.password,
+          }),
+        })
+          .then((response) => response.json())
+          .then((data) => {
+            if (checkError(data)) {
+              toast.error(data.error);
+            } else {
+              toast.success(data.successful);
+              action.resetForm();
+              setOtpToken(data.verification);
+              setIsRegistered(true);
+            }
+          })
+          .catch((error) => {
+            toast.error("Unsuccessful");
           });
-          setOtp(data.verification);
-          setIsRegistered(true);
-        }
-      } else {
-        // Registration failed, handle the error
-        const errorData = await response.json();
-        setSignupError(errorData.message);
-        toast.error("Unsuccessfull", {
-          position: "top-center",
-          theme: "colored",
-        });
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      toast.error("Something went wrong", {
-        position: "top-center",
-        theme: "colored",
-      });
-      setSignupError("An error occurred during registration.");
-    }
-  };
+      },
+    });
+
   return (
     <>
       {isRegistered ? (
-        // <AdminOTPPage otp={otp} /> // Render the OTP page component
-        <OTPPage otp={otp}/> // Render the OTP page component
+        <OTPPage otpToken={otpToken} otpPageType="admin-signup" />
       ) : (
         <div className="absolute top-0 left-0 w-full h-fit">
-          <Nav page="registration" />
+          <Nav />
           <div className="bg-transparent h-full w-full flex justify-center py-10 px-6">
             <div className="w-full sm:w-2/3 md:w-1/2 rounded-lg bg-sky-500/10 p-6 backdrop-blur-sm relative">
               <h1 className="w-full text-2xl md:text-3xl lg:text-4xl font-bold tracking-widest text-neutral-200 font-custom-sans uppercase mb-5">
@@ -109,7 +82,7 @@ const AdminSignup = () => {
               </h1>
 
               <form
-                onSubmit={Submit}
+                onSubmit={handleSubmit}
                 className="flex flex-col items-center justify-center h-fit gap-3"
               >
                 {/* name */}
@@ -123,7 +96,7 @@ const AdminSignup = () => {
                       id="fname"
                       placeholder="First Name"
                       className="p-2 rounded-md bg-black/50 text-white focus:outline-none tracking-widest w-full"
-                      values={values.fname}
+                      value={values.fname}
                       onChange={handleChange}
                       onBlur={handleBlur}
                     />
@@ -142,7 +115,7 @@ const AdminSignup = () => {
                       id="lname"
                       placeholder="Last Name"
                       className="p-2 rounded-md bg-black/50 text-white focus:outline-none tracking-widest w-full"
-                      values={values.lname}
+                      value={values.lname}
                       onChange={handleChange}
                       onBlur={handleBlur}
                     />
@@ -158,12 +131,11 @@ const AdminSignup = () => {
                 <div className="input-block text-left p-3 font-semibold font-custom-sans flex flex-col justify-center w-full">
                   <input
                     type="email"
-                    autoComplete="off"
                     name="email"
                     id="email"
                     placeholder="Email"
                     className="p-2 rounded-md bg-black/50 text-white focus:outline-none tracking-widest w-full"
-                    values={values.email}
+                    value={values.email}
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -183,7 +155,7 @@ const AdminSignup = () => {
                     id="mobile"
                     placeholder="Mobile"
                     className="p-2 rounded-md bg-black/50 text-white focus:outline-none tracking-widest w-full"
-                    values={values.mobile}
+                    value={values.mobile}
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -203,7 +175,7 @@ const AdminSignup = () => {
                     id="secret_key"
                     placeholder="Secret Key"
                     className="p-2 rounded-md bg-black/50 text-white focus:outline-none tracking-widest w-full"
-                    values={values.mobile}
+                    value={values.secret_key}
                     onChange={handleChange}
                     onBlur={handleBlur}
                   />
@@ -214,21 +186,37 @@ const AdminSignup = () => {
                   ) : null}
                 </div>
 
-                {/* password */}
                 <div className="flex justify-evenly w-full">
                   {/* password */}
                   <div className="input-block text-left p-3 font-semibold font-custom-sans w-full">
-                    <input
-                      type="password"
-                      autoComplete="off"
-                      name="password"
-                      id="password"
-                      placeholder="Password"
-                      className="p-2 rounded-md bg-black/50 text-white focus:outline-none tracking-widest w-full"
-                      values={values.password}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                    />
+                    <div className="w-full h-fit flex flex-row rounded-md bg-black/50 pr-3">
+                      <input
+                        type={passwordVisible ? "" : "password"}
+                        autoComplete="off"
+                        name="password"
+                        id="password"
+                        placeholder="Password"
+                        className="p-2 rounded-md bg-black/0 text-white focus:outline-none tracking-widest w-full"
+                        value={values.password}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                      />
+                      {!passwordVisible && (
+                        <img
+                          src={see}
+                          alt="button"
+                          onClick={() => setPasswordVisible(true)}
+                        />
+                      )}
+                      {passwordVisible && (
+                        <img
+                          className="invert w-4"
+                          src={unsee}
+                          alt="button"
+                          onClick={() => setPasswordVisible(false)}
+                        />
+                      )}
+                    </div>
                     {errors.password && touched.password ? (
                       <p className="form-error text-red-500 tracking-widest">
                         {errors.password}
@@ -238,17 +226,34 @@ const AdminSignup = () => {
 
                   {/* confirm password */}
                   <div className="input-block text-left p-3 font-semibold font-custom-sans w-full">
-                    <input
-                      type="password"
-                      autoComplete="off"
-                      name="confirm_password"
-                      id="confirm password"
-                      placeholder="Confirm Password"
-                      className="p-2 rounded-md bg-black/50 text-white focus:outline-none tracking-widest w-full"
-                      values={values.confirm_password}
-                      onChange={handleChange}
-                      onBlur={handleBlur}
-                    />
+                    <div className="w-full h-fit flex flex-row rounded-md bg-black/50 pr-3">
+                      <input
+                        type={confirmPasswordVisible ? "" : "password"}
+                        autoComplete="off"
+                        name="confirm_password"
+                        id="confirm password"
+                        placeholder="Confirm Password"
+                        className="p-2 rounded-md bg-black/0 text-white focus:outline-none tracking-widest w-full"
+                        value={values.confirm_password}
+                        onChange={handleChange}
+                        onBlur={handleBlur}
+                      />
+                      {!confirmPasswordVisible && (
+                        <img
+                          src={see}
+                          alt="button"
+                          onClick={() => setConfirmPasswordVisible(true)}
+                        />
+                      )}
+                      {confirmPasswordVisible && (
+                        <img
+                          className="invert w-4"
+                          src={unsee}
+                          alt="button"
+                          onClick={() => setConfirmPasswordVisible(false)}
+                        />
+                      )}
+                    </div>
                     {errors.confirm_password && touched.confirm_password ? (
                       <p className="form-error text-red-500 tracking-widest">
                         {errors.confirm_password}

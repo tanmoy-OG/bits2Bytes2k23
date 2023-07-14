@@ -1,134 +1,108 @@
-import React, { useState, useEffect } from 'react';
-import { ToastContainer, toast } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import { useFormik } from 'formik';
-import Home from './Home';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { useFormik } from "formik";
 import Particle from "../Components/Particle";
+import { useNavigate } from "react-router-dom";
+import { useCookies } from "react-cookie";
 
 const initialValues = {
   otp_value: "",
 };
 
-const OTPPage = ({ otp }) => {
-  const [error, setError] = useState('');
-  const [isSuccess, setIsSuccess] = useState(false);
-  const [timer, setTimer] = useState(20);
-  const [isTimerActive, setIsTimerActive] = useState(false);
+const OTPPage = ({ otpToken, otpPageType }) => {
+  const [cookies, setCookie] = useCookies(["token"]);
+  const navigate = useNavigate();
+  const apiUrl = import.meta.env.VITE_API_URL;
 
- 
-  //Resend otp..
-  useEffect(() => {
-    let countdown;
-    if (isTimerActive) {
-      countdown = setInterval(() => {
-        setTimer((prevTimer) => prevTimer - 1);
-      }, 1000);
-    }
-
-    if (timer === 0) {
-      clearInterval(countdown);
-      setIsTimerActive(false);
-    }
-
-    return () => clearInterval(countdown);
-  }, [isTimerActive, timer]);
-
-  const handleResendOTP = async () => {
-    if (!isTimerActive) {
-      setIsTimerActive(true);
-      setTimer(20);
-
-      try {
-        const response = await fetch('http://127.0.0.1:5000/resend_otp/', {
-          method: 'POST',
-          headers: {
-            'Content-Type': 'application/json',
-            'verification' : otp,
-          }
-          
-        });
-
-        const data = await response.json();
-
-        if (data.success) {
-          toast.success(data.successful);
-          setError('');
-        } else {
-          toast.error(data.error);
-          setError('Error resending OTP');
-        }
-      } catch (error) {
-        console.log(error);
-        toast.error('Error resending OTP');
-        setError('Error resending OTP');
-      }
-    }
+  const checkError = (data) => {
+    if ("error" in data) return true;
+    return false;
   };
 
-  //otp fetch and check...
-  const { values, handleChange } = useFormik({
-    initialValues: initialValues,
-  });
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    console.log(otp);
-    console.log(values.otp_value);
-
-    try {
-      const response = await fetch("http://localhost:5000/otp_verify/", {
+  const { values, handleChange, handleSubmit } = useFormik({
+    initialValues,
+    onSubmit: (values) => {
+      fetch(`${apiUrl}/otp_verify/`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          "verification": otp,
+          verification: otpToken,
         },
-        body: JSON.stringify({
-          otp: values.otp_value,
-        }),
+        body: JSON.stringify({ otp: values.otp_value }),
+      })
+        .then((response) => response.json())
+        .then((data) => {
+          if (checkError(data)) {
+            // toast.error(data.error, {
+            //   position: "top-center",
+            //   theme: "colored",
+            // });
+          } else {
+            // toast.success(data.successful, {
+            //   position: "top-center",
+            //   theme: "colored",
+            // });
+
+            // redirects:
+            if (
+              otpPageType === "admin-signup" ||
+              otpPageType === "admin-forget-pass"
+            )
+              navigate("/login/admin");
+            else if (
+              otpPageType === "user-signup" ||
+              otpPageType === "user-forget-pass"
+            )
+              navigate("/login/user");
+            else if (
+              otpPageType === "admin-login" ||
+              otpPageType === "user-login"
+            ) {
+              // set token cookie
+              setCookie("token", data.authorization, { path: "/" });
+              navigate("/");
+            }
+          }
+        })
+        .catch((error) => {
+          // console.log(error);
+          // toast.error("Unsuccessful", {
+          //   position: "top-center",
+          //   theme: "colored",
+          // });
+        });
+    },
+  });
+
+  const handleResendOTP = () => {
+    fetch(`${apiUrl}/resend_otp/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        verification: JSON.stringify(otpToken),
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if (checkError(data)) {
+          // toast.error(data.error, {
+          //   position: "top-center",
+          //   theme: "colored",
+          // });
+        } else {
+          // toast.success(data.successful, {
+          //   position: "top-center",
+          //   theme: "colored",
+          // });
+        }
+      })
+      .catch((error) => {
+        // console.log(error);
+        // toast.error("Error resending OTP");
       });
-
-      const data = await response.json();
-
-      // if (response.ok) {
-
-      //   if (check(data)) {
-      //     // console.log(data);
-      //     toast.error(data.error, {
-      //       position: "top-center",
-      //       theme: "colored",
-      //     });
-      //   } else {
-      //     toast.success(data.successfull, {
-      //       position: "top-center",
-      //       theme: "colored",
-      //     });
-      //     // setOtp(data.verification);
-      //     setIsSuccess(true);
-      //   }
-        
-      if (response.ok) {
-        console.log("OTP is valid");
-        toast.success(data.successful);
-        setError("");
-        setIsSuccess(true);
-      } else {
-        toast.error(data.error);
-        setError("Invalid OTP");
-      }
-    } catch (error) {
-      console.log(error);
-      toast.error("Error verifying OTP");
-      setError("Error verifying OTP");
-    }
-  }
+  };
 
   return (
-    <>
-      {isSuccess ? (
-        <Home />
-      ) : (
-        
     <div className="absolute top-0 left-0 w-full h-full flex justify-center items-center">
       <div className="bg-transparent h-fit w-full flex justify-center py-10 px-6">
         <div className="w-full sm:w-2/3 md:w-1/2 rounded-lg bg-sky-500/10 p-6 backdrop-blur-sm relative">
@@ -154,32 +128,21 @@ const OTPPage = ({ otp }) => {
             <button type="submit" className="button-green uppercase mt-5">
               Submit
             </button>
-            <div className="flex justify-between items-center flex-col gap-6 pt-10">
-            <button
-              type="button"
-              className="button uppercase tracking-widest"
-              onClick={handleResendOTP}
-              disabled={isTimerActive}
-            >
-              {isTimerActive ? `Resend OTP (${timer}s)` : 'Resend OTP'}
-            </button>
-            </div> 
+            <div className="flex justify-between items-center flex-col gap-6 pt-10 w-full">
+              <button
+                type="button"
+                className="button tracking-widest uppercase"
+                onClick={handleResendOTP}
+              >
+                Resend
+              </button>
+            </div>
           </form>
-
-          {error && <p className="text-red-500 mt-2">{error}</p>}
-
-          {/* <div className="flex justify-between items-center flex-col gap-6 pt-10">
-            <button className="button uppercase tracking-widest">
-              RESEND OTP
-            </button>
-          </div> */}
         </div>
       </div>
       <ToastContainer />
       <Particle />
     </div>
-      )}
-      </>
   );
 };
 

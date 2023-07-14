@@ -1,110 +1,115 @@
 // import { Link } from "react-router-dom";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Button from "../Components/Button";
 import Nav from "../Components/Nav";
 import Footer from "../Components/Footer";
 import Particle from "../Components/Particle";
 const Events = () => {
-  const [addEvent, setAddEvent] = useState(false);
-  let list = [
-    {
-      name: "Envision",
-      pic: "/RR1.png",
-      about:
-        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aspernatur suscipit error aliquam fugit dicta nulla, deleniti expedita, iure consequuntur nesciunt, totam saepe sunt beatae commodi quis. Rerum recusandae nemo dolore!",
-      date: "17th July",
-      time: "2 AM",
-      rules: `
-        1. lorem1
-        2. lorem2
-        3. lorem3
-      `,
-    },
-    {
-      name: "Electronovation",
-      pic: "/RR1.png",
-      about:
-        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aspernatur suscipit error aliquam fugit dicta nulla, deleniti expedita, iure consequuntur nesciunt, totam saepe sunt beatae commodi quis. Rerum recusandae nemo dolore!",
-      date: "17th July",
-      time: "2 AM",
-      rules: `
-        1. lorem1
-        2. lorem2
-        3. lorem3
-      `,
-    },
-    {
-      name: "Quad-X",
-      pic: "/RR1.png",
-      about:
-        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aspernatur suscipit error aliquam fugit dicta nulla, deleniti expedita, iure consequuntur nesciunt, totam saepe sunt beatae commodi quis. Rerum recusandae nemo dolore!",
-      date: "17th July",
-      time: "2 AM",
-      rules: `
-        1. lorem1
-        2. lorem2
-        3. lorem3
-      `,
-    },
-    {
-      name: "Code Ardor",
-      pic: "/RR1.png",
-      about:
-        "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aspernatur suscipit error aliquam fugit dicta nulla, deleniti expedita, iure consequuntur nesciunt, totam saepe sunt beatae commodi quis. Rerum recusandae nemo dolore!",
-      date: "17th July",
-      time: "2 AM",
-      rules: `
-        1. lorem1
-        2. lorem2
-        3. lorem3
-      `,
-    },
-  ]; //"Electronovation", "Quad-X", "Code Ardor"];
 
-  return (
-    <div className="absolute top-0 left-0 w-full h-fit">
-      <Nav page="events" />
-      {!addEvent && (
-        <div className="p-6 pt-0 lg:px-12 bg-sky-500/10 backdrop-blur-sm m-10 ml-6 mr-6 rounded-2xl">
-          <h1 className="p-4 md:p-10 md:pb-14 text-4xl md:text-5xl font-bold tracking-wider text-neutral-200 font-custom-sans uppercase">
-            EVENTS
-          </h1>
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-10 lg:gap-16 place-items-center">
-            <Event list={list} />
-          </div>
-          {/* <button
-            className="mt-10 mb-4 md:mt-14 md:mb-10 h-10 w-1/3 lg:w-1/4 mx-auto rounded-md bg-orange-400 uppercase"
-            onClick={() => {
-              setAddEvent(true);
-            }}
-          >
-            Add Event
-          </button> */}
-          <button
-            type="submit"
-            className="button mt-10 mb-4 md:mt-14 md:mb-10 w-3/4 sm:w-1/3 lg:w-1/4 mx-auto tracking-widest uppercase"
-            onClick={() => {
-              setAddEvent(true);
-            }}
-          >
-            Add Event
-          </button>
-        </div>
-      )}
-      {addEvent && (
-        <div className="p-6 pt-0 lg:px-12 lg:w-2/3 bg-sky-500/10 backdrop-blur-sm m-10 ml-6 mr-6 lg:mx-auto rounded-2xl">
-          <h1 className="p-4 md:p-10 md:pb-14 text-4xl md:text-5xl font-bold tracking-wider text-neutral-200 font-custom-sans uppercase">
-            ADD EVENT
-          </h1>
-          <AddEvent setAddEvent={setAddEvent} />
-          {/* <Button function={eventState(false)} buttonType="cancel" /> */}
-        </div>
-      )}
-      <Footer />
-      <Particle />
-    </div>
-  );
+  useEffect(()=>{
+    useNavigate("/404_DATA_NOT_FOUND");
+  })
+
+  // const [addEvent, setAddEvent] = useState(false);
+  // let list = [
+  //   {
+  //     name: "Envision",
+  //     pic: "/RR1.png",
+  //     about:
+  //       "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aspernatur suscipit error aliquam fugit dicta nulla, deleniti expedita, iure consequuntur nesciunt, totam saepe sunt beatae commodi quis. Rerum recusandae nemo dolore!",
+  //     date: "17th July",
+  //     time: "2 AM",
+  //     rules: `
+  //       1. lorem1
+  //       2. lorem2
+  //       3. lorem3
+  //     `,
+  //   },
+  //   {
+  //     name: "Electronovation",
+  //     pic: "/RR1.png",
+  //     about:
+  //       "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aspernatur suscipit error aliquam fugit dicta nulla, deleniti expedita, iure consequuntur nesciunt, totam saepe sunt beatae commodi quis. Rerum recusandae nemo dolore!",
+  //     date: "17th July",
+  //     time: "2 AM",
+  //     rules: `
+  //       1. lorem1
+  //       2. lorem2
+  //       3. lorem3
+  //     `,
+  //   },
+  //   {
+  //     name: "Quad-X",
+  //     pic: "/RR1.png",
+  //     about:
+  //       "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aspernatur suscipit error aliquam fugit dicta nulla, deleniti expedita, iure consequuntur nesciunt, totam saepe sunt beatae commodi quis. Rerum recusandae nemo dolore!",
+  //     date: "17th July",
+  //     time: "2 AM",
+  //     rules: `
+  //       1. lorem1
+  //       2. lorem2
+  //       3. lorem3
+  //     `,
+  //   },
+  //   {
+  //     name: "Code Ardor",
+  //     pic: "/RR1.png",
+  //     about:
+  //       "Lorem ipsum dolor, sit amet consectetur adipisicing elit. Aspernatur suscipit error aliquam fugit dicta nulla, deleniti expedita, iure consequuntur nesciunt, totam saepe sunt beatae commodi quis. Rerum recusandae nemo dolore!",
+  //     date: "17th July",
+  //     time: "2 AM",
+  //     rules: `
+  //       1. lorem1
+  //       2. lorem2
+  //       3. lorem3
+  //     `,
+  //   },
+  // ]; //"Electronovation", "Quad-X", "Code Ardor"];
+
+  // return (
+  //   <div className="absolute top-0 left-0 w-full h-fit">
+  //     <Nav page="events" />
+  //     {!addEvent && (
+  //       <div className="p-6 pt-0 lg:px-12 bg-sky-500/10 backdrop-blur-sm m-10 ml-6 mr-6 rounded-2xl">
+  //         <h1 className="p-4 md:p-10 md:pb-14 text-4xl md:text-5xl font-bold tracking-wider text-neutral-200 font-custom-sans uppercase">
+  //           EVENTS
+  //         </h1>
+  //         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-10 lg:gap-16 place-items-center">
+  //           <Event list={list} />
+  //         </div>
+  //         {/* <button
+  //           className="mt-10 mb-4 md:mt-14 md:mb-10 h-10 w-1/3 lg:w-1/4 mx-auto rounded-md bg-orange-400 uppercase"
+  //           onClick={() => {
+  //             setAddEvent(true);
+  //           }}
+  //         >
+  //           Add Event
+  //         </button> */}
+  //         <button
+  //           type="submit"
+  //           className="button mt-10 mb-4 md:mt-14 md:mb-10 w-3/4 sm:w-1/3 lg:w-1/4 mx-auto tracking-widest uppercase"
+  //           onClick={() => {
+  //             setAddEvent(true);
+  //           }}
+  //         >
+  //           Add Event
+  //         </button>
+  //       </div>
+  //     )}
+  //     {addEvent && (
+  //       <div className="p-6 pt-0 lg:px-12 lg:w-2/3 bg-sky-500/10 backdrop-blur-sm m-10 ml-6 mr-6 lg:mx-auto rounded-2xl">
+  //         <h1 className="p-4 md:p-10 md:pb-14 text-4xl md:text-5xl font-bold tracking-wider text-neutral-200 font-custom-sans uppercase">
+  //           ADD EVENT
+  //         </h1>
+  //         <AddEvent setAddEvent={setAddEvent} />
+  //         {/* <Button function={eventState(false)} buttonType="cancel" /> */}
+  //       </div>
+  //     )}
+  //     <Footer />
+  //     <Particle />
+  //   </div>
+  // );
 };
 
 const Event = (props) => {

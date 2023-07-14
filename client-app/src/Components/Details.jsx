@@ -2,7 +2,17 @@ import { InputTag } from "./InputTag";
 import Button from "./Button";
 import { useState, useEffect } from "react";
 
-const Details = (props) => {
+const Details = ({
+  type,
+  token,
+  initialFname,
+  initialLname,
+  initialRoll,
+  initialYear,
+  initialStream,
+  initialEmail,
+  initialPhone,
+}) => {
   const default_input_class =
     "bg-black/0 focus:outline-none text-white/70 tracking-widest pointer-events-none w-full pb-1 text-left sm:text-right";
   const final_input_class =
@@ -10,19 +20,19 @@ const Details = (props) => {
   const [inputclass, setInputClass] = useState(default_input_class);
   const [visible, setVisible] = useState(true);
 
-  const [fname, setFname] = useState(props.fname);
-  const [lname, setLname] = useState(props.lname);
-  const roll = props.roll;
-  const [year, setYear] = useState(props.year);
-  const [stream, setStream] = useState(props.stream);
-  const email = props.email;
-  const [phone, setPhone] = useState(props.phone);
+  const [fname, setFname] = useState(undefined);
+  const [lname, setLname] = useState(undefined);
+  const roll = initialRoll;
+  const [year, setYear] = useState(undefined);
+  const [stream, setStream] = useState(undefined);
+  const email = initialEmail;
+  const [phone, setPhone] = useState(undefined);
 
-  const [storeFname, setStoreFname] = useState(props.fname);
-  const [storeLname, setStoreLname] = useState(props.lname);
-  const [storeYear, setStoreYear] = useState(props.year);
-  const [storeStream, setStoreStream] = useState(props.stream);
-  const [storePhone, setStorePhone] = useState(props.phone);
+  const [storeFname, setStoreFname] = useState("");
+  const [storeLname, setStoreLname] = useState("");
+  const [storeYear, setStoreYear] = useState("");
+  const [storeStream, setStoreStream] = useState("");
+  const [storePhone, setStorePhone] = useState("");
 
   const [fnameError, setFnameError] = useState(false);
   const [lnameError, setLnameError] = useState(false);
@@ -30,65 +40,121 @@ const Details = (props) => {
   const [streamError, setStreamError] = useState(false);
   const [phoneError, setPhoneError] = useState(false);
 
-  const [effectTrigger, setEffectTrigger] = useState(false);
-  // const sleep = (ms = 0) => new Promise((resolve) => setTimeout(resolve, ms));
+  const [effectTrigger, setEffectTrigger] = useState(1);
 
-  useEffect(() => {
-    const tempVal =
-      fnameError ||
-      lnameError ||
-      yearError ||
-      streamError ||
-      phoneError;
-
-    if (!tempVal) {
-      if (
-        storeFname === fname &&
-        storeLname === lname &&
-        storeYear === year &&
-        storeStream === stream &&
-        storePhone === phone
-      )
-        return;
-      updateProfile({ fname, lname, roll, year, stream, phone });
-      setInputClass(default_input_class);
-      setVisible(true);
-    }
-  }, [effectTrigger]);
-
-  const updateProfile = async(obj) => {
-    try {
-      const response = await fetch("http://127.0.0.1:5000/update_profile/", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(obj),
-      });
-
-      if (response.ok) {
-        // Successfull Login
-        const data = await response.json();
-        console.log(data);
-        console.log("Successfull");
-      } else {
-        // Login failed.
-        const errorData = await response.json();
-        // setLoginError(errorData.message);
-        console.log("failed");
-      }
-    } catch (error) {
-      console.error("Error:", error);
-      // setLoginError("An error occurred during login.");
-    }
+  const checkError = (data) => {
+    if ("error" in data) return true;
+    return false;
   };
 
-  const formInvalid = () => {
-    const tempFname = fname.trim();
-    const tempLname = lname.trim();
+  // update admin data in the database
+  const postAdminData = (data) => {
+    fetch("http://127.0.0.1:5000/update_profile/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "authorization": token,
+      },
+      body: JSON.stringify({
+        fname: data.fname,
+        lname: data.lname,
+        mobile: data.phone,
+      }),
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          // toast.error("An error occurred!", {
+          //   position: toast.POSITION.TOP_RIGHT,
+          //   autoClose: 3000,
+          //   hideProgressBar: true,
+          // });
+        }
+      })
+      .then((data) => {
+        if (checkError(data)) {
+          // toast.error(data.error, {
+          //   position: toast.POSITION.TOP_RIGHT,
+          //   autoClose: 3000,
+          //   hideProgressBar: true,
+          // });
+        } else {
+          // toast.success(data.successful, {
+          //   position: toast.POSITION.TOP_RIGHT,
+          //   autoClose: 3000,
+          //   hideProgressBar: true,
+          // });
+        }
+      })
+      .catch((error) => {
+        // toast.error(error, {
+        //   position: toast.POSITION.TOP_RIGHT,
+        //   autoClose: 3000,
+        //   hideProgressBar: true,
+        // });
+      });
+  };
+
+  // update user data to the database
+  const postUserData = (data) => {
+    fetch("http://127.0.0.1:5000/update_profile/", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "authorization": token,
+      },
+      body: JSON.stringify({
+        fname: data.fname,
+        lname: data.lname,
+        year: data.year,
+        stream: data.stream,
+        mobile: data.phone,
+      }),
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          // toast.error("An error occurred!", {
+          //   position: toast.POSITION.TOP_RIGHT,
+          //   autoClose: 3000,
+          //   hideProgressBar: true,
+          // });
+        }
+      })
+      .then((data) => {
+        if (checkError(data)) {
+          // toast.error(data.error, {
+          //   position: toast.POSITION.TOP_RIGHT,
+          //   autoClose: 3000,
+          //   hideProgressBar: true,
+          // });
+        } else {
+          // toast.success(data.successful, {
+          //   position: toast.POSITION.TOP_RIGHT,
+          //   autoClose: 3000,
+          //   hideProgressBar: true,
+          // });
+        }
+      })
+      .catch((error) => {
+        // console.error(error);
+        // toast.error("An error occurred!", {
+        //   position: toast.POSITION.TOP_RIGHT,
+        //   autoClose: 3000,
+        //   hideProgressBar: true,
+        // });
+      });
+  };
+
+  const formInvalid = (e) => {
+    e.preventDefault();
+    let tempFname = fname.trim();
+    let tempLname = lname.trim();
     let tempYear = "";
     let tempStream = "";
-    const tempPhone = phone.trim();
+    let tempPhone = parseInt(("" + phone).trim());
 
     // fname check
     if (
@@ -108,8 +174,8 @@ const Details = (props) => {
       setLnameError(true);
     else setLnameError(false);
 
-    if (props.type === "participant") {
-      tempYear = year.trim();
+    if (type === "participant") {
+      tempYear = parseInt((""+year).trim());
       tempStream = stream.trim();
 
       // year check
@@ -131,25 +197,26 @@ const Details = (props) => {
     }
 
     // phone check
-    if (tempPhone.length !== 10 || !/^\d+$/.test(tempPhone))
+    if (!("" + tempPhone).length === 10 || !/^\d+$/.test(tempPhone))
       setPhoneError(true);
     else setPhoneError(false);
 
     setFname(tempFname);
     setLname(tempLname);
-    if (props.type === "participant") {
+    if (type === "participant") {
       setYear(tempYear);
       setStream(tempStream);
     }
     setPhone(tempPhone);
-    setEffectTrigger(!effectTrigger);
+    if (effectTrigger === 1) setEffectTrigger(true);
+    else setEffectTrigger(!effectTrigger);
   };
 
   const changeInputClass = (val) => {
     if (val === "edit") {
       setStoreFname(fname);
       setStoreLname(lname);
-      if (props.type === "participant") {
+      if (type === "participant") {
         setStoreYear(year);
         setStoreStream(stream);
       }
@@ -163,7 +230,7 @@ const Details = (props) => {
       setFnameError(false);
       setLnameError(false);
       setPhoneError(false);
-      if (props.type === "participant") {
+      if (type === "participant") {
         setYear(storeYear);
         setStream(storeStream);
         setYearError(false);
@@ -175,16 +242,44 @@ const Details = (props) => {
     }
   };
 
+  useEffect(() => {
+    if (effectTrigger === 1) return;
+    const tempVal =
+      fnameError || lnameError || yearError || streamError || phoneError;
+
+    if (!tempVal) {
+      if (
+        storeFname === fname &&
+        storeLname === lname &&
+        storeYear === year &&
+        storeStream === stream &&
+        storePhone === phone
+      )
+        return;
+      if (type === "admin") postAdminData({ fname, lname, phone });
+      else if (type === "participant") postUserData({ fname, lname, year, stream, phone });
+      setInputClass(default_input_class);
+      setVisible(true);
+    }
+  }, [effectTrigger]);
+
+  useEffect(() => {
+    if (fname == undefined) {
+      setFname(initialFname);
+      setLname(initialLname);
+      setYear(initialYear);
+      setStream(initialStream);
+      setPhone(initialPhone);
+    }
+  });
+
   return (
     <form
       className="p-6 pt-4 m-6 bg-sky-500/10 backdrop-blur-sm w-3/4 md:w-2/4 max-w-2xl rounded-2xl flex flex-col gap-7 sm:gap-12"
-      onSubmit={(e) => {
-        e.preventDefault();
-        formInvalid();
-      }}
+      onSubmit={(e) => formInvalid(e)}
     >
       <h1 className="text-3xl md:text-5xl font-bold tracking-wider text-white font-custom-sans uppercase">
-        {props.type === "admin" ? "admin profile" : "profile"}
+        {type === "admin" ? "admin profile" : "profile"}
       </h1>
 
       <InputTag
@@ -203,7 +298,7 @@ const Details = (props) => {
         errshow={lnameError}
         errmsg="Enter a valid last name."
       />
-      {props.type === "participant" && (
+      {type === "participant" && (
         <>
           <InputTag
             heading="roll number"
@@ -228,11 +323,7 @@ const Details = (props) => {
           />
         </>
       )}
-      <InputTag
-        heading="email"
-        data={email}
-        inputclass={default_input_class}
-      />
+      <InputTag heading="email" data={email} inputclass={default_input_class} />
       <InputTag
         heading="phone number"
         data={phone}
