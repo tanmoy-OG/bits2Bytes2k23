@@ -29,23 +29,14 @@ const AdminDetails = () => {
         if (response.ok) {
           return response.json();
         } else {
-          // toast.error("Error fetching data", {
-          //   position: toast.POSITION.TOP_RIGHT,
-          //   autoClose: 3000,
-          //   hideProgressBar: true,
-          // });
+          toast.error("Error fetching profile data");
         }
       })
       .then((data) => {
-        toast.success("Data fetched successfully");
         setData(data);
       })
       .catch((error) => {
-        // toast.error(error, {
-        //   position: toast.POSITION.TOP_RIGHT,
-        //   autoClose: 3000,
-        //   hideProgressBar: true,
-        // });
+        toast.error(error);
       });
   };
 
@@ -95,7 +86,7 @@ const AdminDetails = () => {
 
   useEffect(() => {
     setToken(cookies.token);
-  });
+  },[]);
 
   useEffect(() => {
     if (token === "") return;
@@ -138,7 +129,6 @@ const AdminDetails = () => {
         </div>
       </div>
       <Particle />
-      <ToastContainer />
     </div>
   );
 };

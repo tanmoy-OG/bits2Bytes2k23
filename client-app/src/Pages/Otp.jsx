@@ -1,5 +1,4 @@
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 import { useFormik } from "formik";
 import Particle from "../Components/Particle";
 import { useNavigate } from "react-router-dom";
@@ -33,15 +32,9 @@ const OTPPage = ({ otpToken, otpPageType }) => {
         .then((response) => response.json())
         .then((data) => {
           if (checkError(data)) {
-            // toast.error(data.error, {
-            //   position: "top-center",
-            //   theme: "colored",
-            // });
+            toast.error(data.error);
           } else {
-            // toast.success(data.successful, {
-            //   position: "top-center",
-            //   theme: "colored",
-            // });
+            toast.success(data.successful);
 
             // redirects:
             if (
@@ -65,11 +58,7 @@ const OTPPage = ({ otpToken, otpPageType }) => {
           }
         })
         .catch((error) => {
-          // console.log(error);
-          // toast.error("Unsuccessful", {
-          //   position: "top-center",
-          //   theme: "colored",
-          // });
+          toast.error("Unsuccessful");
         });
     },
   });
@@ -79,26 +68,19 @@ const OTPPage = ({ otpToken, otpPageType }) => {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        verification: JSON.stringify(otpToken),
+        verification: otpToken,
       },
     })
       .then((response) => response.json())
       .then((data) => {
         if (checkError(data)) {
-          // toast.error(data.error, {
-          //   position: "top-center",
-          //   theme: "colored",
-          // });
+          toast.error(data.error);
         } else {
-          // toast.success(data.successful, {
-          //   position: "top-center",
-          //   theme: "colored",
-          // });
+          toast.success(data.successful);
         }
       })
       .catch((error) => {
-        // console.log(error);
-        // toast.error("Error resending OTP");
+        toast.error("Error resending OTP");
       });
   };
 
@@ -125,10 +107,10 @@ const OTPPage = ({ otpToken, otpPageType }) => {
                 className="p-2 rounded-md bg-black/50 text-white focus:outline-none tracking-widest w-fulle"
               />
             </div>
-            <button type="submit" className="button-green uppercase mt-5">
-              Submit
-            </button>
-            <div className="flex justify-between items-center flex-col gap-6 pt-10 w-full">
+            <div className="flex justify-between items-center flex-col sm:flex-row gap-3 sm:gap-0 w-full py-2 px-10">
+              <button type="submit" className="button-green uppercase">
+                Submit
+              </button>
               <button
                 type="button"
                 className="button tracking-widest uppercase"
@@ -140,7 +122,6 @@ const OTPPage = ({ otpToken, otpPageType }) => {
           </form>
         </div>
       </div>
-      <ToastContainer />
       <Particle />
     </div>
   );
