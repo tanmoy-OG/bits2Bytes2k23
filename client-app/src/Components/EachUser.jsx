@@ -1,18 +1,20 @@
 import { useState } from "react";
 import Button from "./Button";
 import Field from "./Field";
+import { useCookies } from "react-cookie";
 
 const EachUser = (props) => {
   const [visible, setVisible] = useState(true);
   const [showDetails, setShowDetails] = useState(false);
+  const [Cookies] = useCookies(["token"]);
 
   const deleteActivator = (val) => {
     if (val === "delete user") setVisible(false);
     else if (val === "cancel") setVisible(true);
     else if (val === "confirm delete") {
-      props.deleteUser(props.token, props.roll);
+      props.deleteUser(Cookies.token, props.roll);
       setVisible(true);
-      props.fetchCurrentData(props.token, props.setCurrentList);
+      props.fetchCurrentData(Cookies.token, props.setCurrentList);
     }
   };
 
