@@ -2,8 +2,7 @@ import { useState } from "react";
 import Nav from "../Components/Nav";
 import Particle from "../Components/Particle";
 import { Link } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 import OTPPage from "./Otp";
 import AdminSignupSchema from "../Components/AdminSignupSchema";
 import { useFormik } from "formik";
@@ -285,7 +284,6 @@ const AdminSignup = () => {
               </div>
             </div>
           </div>
-          <ToastContainer />
           <Particle />
         </div>
       )}

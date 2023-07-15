@@ -40,8 +40,9 @@ const Details = ({
   const [yearError, setYearError] = useState(false);
   const [streamError, setStreamError] = useState(false);
   const [phoneError, setPhoneError] = useState(false);
-
+  
   const [effectTrigger, setEffectTrigger] = useState(1);
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   const checkError = (data) => {
     if ("error" in data) return true;
@@ -50,11 +51,11 @@ const Details = ({
 
   // update admin data in the database
   const postAdminData = (data) => {
-    fetch("http://127.0.0.1:5000/update_profile/", {
+    fetch(`${apiUrl}/update_profile/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        authorization: token,
+        "authorization": token,
       },
       body: JSON.stringify({
         fname: data.fname,
@@ -80,7 +81,7 @@ const Details = ({
 
   // update user data to the database
   const postUserData = (data) => {
-    fetch("http://127.0.0.1:5000/update_profile/", {
+    fetch(`${apiUrl}/update_profile/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
