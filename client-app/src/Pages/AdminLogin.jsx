@@ -4,7 +4,7 @@ import Nav from "../Components/Nav";
 import Particle from "../Components/Particle";
 import { Link } from "react-router-dom";
 import { toast } from "react-toastify";
-import { useState } from "react";
+import { useState,useEffect } from "react";
 import OTPPage from "./Otp";
 import ErrorPage from "./ErrorPage";
 import { useCookies } from "react-cookie";
