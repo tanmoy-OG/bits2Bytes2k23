@@ -1,8 +1,11 @@
 // import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useCookies } from "react-cookie";
+import { Cookies, useCookies } from "react-cookie";
 import { toast } from "react-toastify";
+import Dropdown from "react-dropdown";
+import "react-dropdown/style.css";
+import Select from "react-select";
 import Button from "../Components/Button";
 import Nav from "../Components/Nav";
 import Footer from "../Components/Footer";
@@ -229,9 +232,63 @@ const Event = (props) => {
 };
 
 const AddEvent = (props) => {
+  const [name, setName] = useState("");
+  const [about, setAbout] = useState("");
+  const [image, setImage] = useState("");
+  const [cookies, setCookie, removeCookie] = useCookies(["token"]);
+
+  const options = [
+    { value: 0, label: "Solo" },
+    { value: 1, label: "Team" },
+  ];
+  const [option, setOption] = useState("");
+
+  useEffect(() => {
+    setToken(cookies.token);
+  }, []);
+
+  const push = (e) => {
+    const postAdminData = (e) => {
+      fetch("http://127.0.0.1:5000/update_profile/", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          authorization: token,
+        },
+        body: JSON.stringify({
+          name: e.name,
+          about: e.about,
+          img: e.image,
+        }),
+      })
+        .then((response) => {
+          if (response.ok) {
+            return response.json();
+          } else {
+            toast.error("An error occurred!");
+          }
+        })
+        .then((data) => {
+          if (checkError(data)) toast.error(data.error);
+          else toast.success(data.successful);
+        })
+        .catch((error) => {
+          toast.error(error);
+        });
+    };
+  };
+
   return (
     <form
-      // onSubmit={submit}
+      onSubmit={(e) => {
+        e.preventDefault();
+        const newEventData = {
+          name: e.name,
+          about: e.about,
+          image: e.image,
+        };
+        push(newEventData);
+      }}
       className="flex flex-col items-center justify-center h-fit gap-3 pb-10"
     >
       <div className="input-block text-left p-3 font-semibold font-custom-sans flex flex-col justify-center w-full">
@@ -239,6 +296,10 @@ const AddEvent = (props) => {
           type="text"
           name="name"
           placeholder="Event Name"
+          value={name}
+          onChange={(e) => {
+            setName(e.target.value);
+          }}
           className="p-2 rounded-md bg-black/50 text-white focus:outline-none tracking-widest w-full"
           // value={values.roll}
           // onChange={handleChange}
@@ -251,20 +312,10 @@ const AddEvent = (props) => {
           placeholder="About Event"
           cols="10"
           rows="10"
-          className="p-2 rounded-md bg-black/50 text-white focus:outline-none tracking-widest w-full"
-        ></textarea>
-      </div>
-      <div className="input-block text-left p-3 font-semibold font-custom-sans flex flex-col justify-center w-full">
-        <textarea
-          name="rules"
-          placeholder={`Enter Rules in this format:
-1. Rule 1
-2. Rule 2
-3. Rule 3
-4. Rule 4
-etc.`}
-          cols="30"
-          rows="10"
+          value={about}
+          onChange={(e) => {
+            setAbout(e.target.value);
+          }}
           className="p-2 rounded-md bg-black/50 text-white focus:outline-none tracking-widest w-full"
         ></textarea>
       </div>
@@ -273,22 +324,32 @@ etc.`}
           type="file"
           name="image"
           placeholder="Upload Poster"
-          className="mb-2 p-2 rounded-md bg-black/50 text-white focus:outline-none self-center w-full sm:w-fit tracking-widest"
+          value={image}
+          onChange={(e) => {
+            setImage(e.target.value);
+          }}
+          className="mb-8 p-2 rounded-md bg-black/50 text-white focus:outline-none self-center w-full sm:w-fit tracking-widest"
           // value={values.roll}
           // onChange={handleChange}
           // onBlur={handleBlur}
         />
+        <Dropdown
+          defaultValue={option}
+          onChange={setOption}
+          options={options}
+          className="mb-2 p-2 rounded-md bg-black/50 text-white focus:outline-none self-center w-full sm:w-1/2 tracking-widest"
+        />
       </div>
 
       {/* submit */}
-      <button type="submit" className="mb-2 button-green uppercase">
+      <button type="submit" className="mb-2 button-green uppercase -z-10">
         Submit
       </button>
       <button
         onClick={() => {
           props.setAddEvent(false);
         }}
-        type="submit"
+        type="button"
         className="button-red uppercase"
       >
         Cancel
