@@ -2,10 +2,9 @@ import { InputTag } from "./InputTag";
 import Button from "./Button";
 import { useState, useEffect } from "react";
 import { toast } from "react-toastify";
-
+import { useCookies } from "react-cookie";
+ 
 const Details = ({
-  type,
-  token,
   initialFname,
   initialLname,
   initialRoll,
@@ -22,12 +21,12 @@ const Details = ({
   const [visible, setVisible] = useState(true);
 
   const [fname, setFname] = useState(undefined);
-  const [lname, setLname] = useState(undefined);
+  const [lname, setLname] = useState("");
   const roll = initialRoll;
-  const [year, setYear] = useState(undefined);
-  const [stream, setStream] = useState(undefined);
+  const [year, setYear] = useState("");
+  const [stream, setStream] = useState("");
   const email = initialEmail;
-  const [phone, setPhone] = useState(undefined);
+  const [phone, setPhone] = useState("");
 
   const [storeFname, setStoreFname] = useState("");
   const [storeLname, setStoreLname] = useState("");
@@ -42,6 +41,7 @@ const Details = ({
   const [phoneError, setPhoneError] = useState(false);
   
   const [effectTrigger, setEffectTrigger] = useState(1);
+  const [Cookies] = useCookies(["token", "type"]);
   const apiUrl = import.meta.env.VITE_API_URL;
 
   const checkError = (data) => {
@@ -55,7 +55,7 @@ const Details = ({
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "authorization": token,
+        "authorization": Cookies.token,
       },
       body: JSON.stringify({
         fname: data.fname,
@@ -85,7 +85,7 @@ const Details = ({
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        authorization: token,
+        "authorization": Cookies.token,
       },
       body: JSON.stringify({
         fname: data.fname,
@@ -140,7 +140,7 @@ const Details = ({
       setLnameError(true);
     else setLnameError(false);
 
-    if (type === "participant") {
+    if (Cookies.type === "participant") {
       tempYear = parseInt(("" + year).trim());
       tempStream = stream.trim();
 
@@ -163,13 +163,13 @@ const Details = ({
     }
 
     // phone check
-    if (!("" + tempPhone).length === 10 || !/^\d+$/.test(tempPhone))
+    if (!(("" + tempPhone).length == 10) || /^\d+$A-Za-z/.test(tempPhone))
       setPhoneError(true);
     else setPhoneError(false);
 
     setFname(tempFname);
     setLname(tempLname);
-    if (type === "participant") {
+    if (Cookies.type === "participant") {
       setYear(tempYear);
       setStream(tempStream);
     }
@@ -182,7 +182,7 @@ const Details = ({
     if (val === "edit") {
       setStoreFname(fname);
       setStoreLname(lname);
-      if (type === "participant") {
+      if (Cookies.type === "participant") {
         setStoreYear(year);
         setStoreStream(stream);
       }
@@ -196,7 +196,7 @@ const Details = ({
       setFnameError(false);
       setLnameError(false);
       setPhoneError(false);
-      if (type === "participant") {
+      if (Cookies.type === "participant") {
         setYear(storeYear);
         setStream(storeStream);
         setYearError(false);
@@ -222,16 +222,15 @@ const Details = ({
         storePhone === phone
       )
         return;
-      if (type === "admin") postAdminData({ fname, lname, phone });
-      else if (type === "participant")
-        postUserData({ fname, lname, year, stream, phone });
+      if (Cookies.type === "admin") postAdminData({ fname, lname, phone });
+      else if (Cookies.type === "participant") postUserData({ fname, lname, year, stream, phone });
       setInputClass(default_input_class);
       setVisible(true);
     }
   }, [effectTrigger]);
 
   useEffect(() => {
-    if (fname == undefined) {
+    if(fname === undefined){
       setFname(initialFname);
       setLname(initialLname);
       setYear(initialYear);
@@ -246,7 +245,7 @@ const Details = ({
       onSubmit={(e) => formInvalid(e)}
     >
       <h1 className="text-3xl md:text-5xl font-bold tracking-wider text-white font-custom-sans uppercase">
-        {type === "admin" ? "admin profile" : "profile"}
+        {Cookies.type === "admin" ? "admin profile" : "profile"}
       </h1>
 
       <InputTag
@@ -265,7 +264,7 @@ const Details = ({
         errshow={lnameError}
         errmsg="Enter a valid last name."
       />
-      {type === "participant" && (
+      {Cookies.type === "participant" && (
         <>
           <InputTag
             heading="roll number"

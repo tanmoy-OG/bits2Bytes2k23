@@ -44,20 +44,20 @@ const Footer = () => {
             contact us
           </h1>
           <div className="flex flex-col gap-3 sm:items-end sm:text-right">
-            <p>
+            <div>
               Mrs. Tripti Majumdar (Convenor)
               <MailTo
                 label="tripti.majumdar@bitcollege.in"
                 mailto="mailto:tripti.majumdar@bitcollege.in"
               />
-            </p>
-            <p>
+            </div>
+            <div>
               Mrs. Ajanta Palit (Convenor)
               <MailTo
                 label="palit.ajanta@gmail.com"
                 mailto="mailto:palit.ajanta@gmail.com"
               />
-            </p>
+            </div>
             <p>
               Debanjan Chakraborty (TS) :{" "}
               <a className="text-orange-400 whitespace-nowrap" href="tel:7603047115">
