@@ -6,8 +6,6 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import OTPPage from "./Otp";
-import see from "../../public/Icons/see.svg";
-import unsee from "../../public/Icons/unsee.svg";
 
 const UserLogin = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
@@ -107,7 +105,7 @@ const UserLogin = () => {
                     />
                     {!passwordVisible && (
                       <img
-                        src={see}
+                        src={"/Icons/see.svg"}
                         alt="button"
                         onClick={() => setPasswordVisible(true)}
                       />
@@ -115,7 +113,7 @@ const UserLogin = () => {
                     {passwordVisible && (
                       <img
                         className="invert w-4"
-                        src={unsee}
+                        src={"/Icons/unsee.svg"}
                         alt="button"
                         onClick={() => setPasswordVisible(false)}
                       />

@@ -5,8 +5,6 @@ import Otp from "./Otp";
 import Particle from "../Components/Particle";
 import Nav from "../Components/Nav";
 import UserForgetSchema from "../Components/UserForgetSchema";
-import see from "../../public/Icons/see.svg";
-import unsee from "../../public/Icons/unsee.svg";
 
 const UserForgetPass = () => {
   const [isSuccess, setIsSuccess] = useState(false);
@@ -108,7 +106,7 @@ const UserForgetPass = () => {
                     />
                     {!passwordVisible && (
                       <img
-                        src={see}
+                        src={"/Icons/see.svg"}
                         alt="button"
                         onClick={() => setPasswordVisible(true)}
                       />
@@ -116,7 +114,7 @@ const UserForgetPass = () => {
                     {passwordVisible && (
                       <img
                         className="invert w-4"
-                        src={unsee}
+                        src={"/Icons/unsee.svg"}
                         alt="button"
                         onClick={() => setPasswordVisible(false)}
                       />
@@ -143,7 +141,7 @@ const UserForgetPass = () => {
                     />
                     {!confirmPasswordVisible && (
                       <img
-                        src={see}
+                        src={"/Icons/see.svg"}
                         alt="button"
                         onClick={() => setConfirmPasswordVisible(true)}
                       />
@@ -151,7 +149,7 @@ const UserForgetPass = () => {
                     {confirmPasswordVisible && (
                       <img
                         className="invert w-4"
-                        src={unsee}
+                        src={"/Icons/unsee.svg"}
                         alt="button"
                         onClick={() => setConfirmPasswordVisible(false)}
                       />
