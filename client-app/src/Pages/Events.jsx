@@ -1,7 +1,7 @@
 // import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { Cookies, useCookies } from "react-cookie";
+import { useCookies } from "react-cookie";
 import { toast } from "react-toastify";
 import Dropdown from "react-dropdown";
 import "react-dropdown/style.css";
@@ -9,41 +9,43 @@ import Button from "../Components/Button";
 import Nav from "../Components/Nav";
 import Footer from "../Components/Footer";
 import Particle from "../Components/Particle";
+import { FiCloudLightning } from "react-icons/fi";
+import Select from "react-select";
 const Events = () => {
   // useEffect(()=>{
   //   useNavigate("/404_DATA_NOT_FOUND");
   // })
 
-  const list = [
-    {
-      event_name: "Envision",
-      image: "/RR1.png",
-      event_date: "18th July",
-      about_event:
-        "wasfhaquifhbsaji aw wrwakfcrwa awugfwafwa aowfahia oaw;fhawifaw oawifhwaijwa awifwafiwahj oawifhwaiofh wiafhwaif waipfhwaiof w waifh waiorfwia fawifwyaiof waifwayh fioeafah iwaf iah ahfwafiwa yha owfa fh awfujwa'f awufga",
-    },
-    {
-      event_name: "Electronovation",
-      image: "/RR1.png",
-      event_date: "17th July",
-      about_event:
-        "wasfhaquifhbsaji aw wrwakfcrwa awugfwafwa aowfahia oaw;fhawifaw oawifhwaijwa awifwafiwahj oawifhwaiofh wiafhwaif waipfhwaiof w waifh waiorfwia fawifwyaiof waifwayh fioeafah iwaf iah ahfwafiwa yha owfa fh awfujwa'f awufga",
-    },
-    {
-      event_name: "Drone",
-      image: "/RR1.png",
-      event_date: "17th July",
-      about_event:
-        "wasfhaquifhbsaji aw wrwakfcrwa awugfwafwa aowfahia oaw;fhawifaw oawifhwaijwa awifwafiwahj oawifhwaiofh wiafhwaif waipfhwaiof w waifh waiorfwia fawifwyaiof waifwayh fioeafah iwaf iah ahfwafiwa yha owfa fh awfujwa'f awufga",
-    },
-    {
-      event_name: "Robo Rally",
-      image: "/RR1.png",
-      event_date: "17th July",
-      about_event:
-        "wasfhaquifhbsaji aw wrwakfcrwa awugfwafwa aowfahia oaw;fhawifaw oawifhwaijwa awifwafiwahj oawifhwaiofh wiafhwaif waipfhwaiof w waifh waiorfwia fawifwyaiof waifwayh fioeafah iwaf iah ahfwafiwa yha owfa fh awfujwa'f awufga",
-    },
-  ];
+  // const list = [
+  //   {
+  //     event_name: "Envision",
+  //     image: "/RR1.png",
+  //     event_date: "18th July",
+  //     about_event:
+  //       "wasfhaquifhbsaji aw wrwakfcrwa awugfwafwa aowfahia oaw;fhawifaw oawifhwaijwa awifwafiwahj oawifhwaiofh wiafhwaif waipfhwaiof w waifh waiorfwia fawifwyaiof waifwayh fioeafah iwaf iah ahfwafiwa yha owfa fh awfujwa'f awufga",
+  //   },
+  //   {
+  //     event_name: "Electronovation",
+  //     image: "/RR1.png",
+  //     event_date: "17th July",
+  //     about_event:
+  //       "wasfhaquifhbsaji aw wrwakfcrwa awugfwafwa aowfahia oaw;fhawifaw oawifhwaijwa awifwafiwahj oawifhwaiofh wiafhwaif waipfhwaiof w waifh waiorfwia fawifwyaiof waifwayh fioeafah iwaf iah ahfwafiwa yha owfa fh awfujwa'f awufga",
+  //   },
+  //   {
+  //     event_name: "Drone",
+  //     image: "/RR1.png",
+  //     event_date: "17th July",
+  //     about_event:
+  //       "wasfhaquifhbsaji aw wrwakfcrwa awugfwafwa aowfahia oaw;fhawifaw oawifhwaijwa awifwafiwahj oawifhwaiofh wiafhwaif waipfhwaiof w waifh waiorfwia fawifwyaiof waifwayh fioeafah iwaf iah ahfwafiwa yha owfa fh awfujwa'f awufga",
+  //   },
+  //   {
+  //     event_name: "Robo Rally",
+  //     image: "/RR1.png",
+  //     event_date: "17th July",
+  //     about_event:
+  //       "wasfhaquifhbsaji aw wrwakfcrwa awugfwafwa aowfahia oaw;fhawifaw oawifhwaijwa awifwafiwahj oawifhwaiofh wiafhwaif waipfhwaiof w waifh waiorfwia fawifwyaiof waifwayh fioeafah iwaf iah ahfwafiwa yha owfa fh awfujwa'f awufga",
+  //   },
+  // ];
 
   const [token, setToken] = useState("");
   const [type, setType] = useState("");
@@ -94,6 +96,7 @@ const Events = () => {
       },
     })
       .then((response) => {
+        console.log(response);
         if (response.ok) {
           return response.json();
         }
@@ -103,6 +106,10 @@ const Events = () => {
       })
       .then((data) => {
         // toast.success("Data fetched successfully");
+        // console.log("data: " + data);
+        data.map((e) => {
+          console.log(e);
+        });
         setObject(data);
       })
       .catch((error) => {
@@ -129,10 +136,10 @@ const Events = () => {
           <h1 className="p-4 md:p-10 md:pb-14 text-4xl md:text-5xl font-bold tracking-wider text-neutral-200 font-custom-sans uppercase">
             EVENTS
           </h1>
-          {list.length > 0 ? (
+          {object.length > 0 ? (
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-10 lg:gap-16 place-items-center">
               {/* <Event list={object} /> */}
-              {list.map((e) => (
+              {object.map((e) => (
                 <Event object={e} />
               ))}
             </div>
@@ -214,7 +221,7 @@ const Events = () => {
 // };
 
 const Event = (props) => {
-  console.log(props);
+  // console.log(props);
   const navigate = useNavigate();
 
   const eachEvents = (e) => {
@@ -229,7 +236,11 @@ const Event = (props) => {
         eachEvents(props);
       }}
     >
-      <img className=" rounded-t-xl" src={props.object.image} alt="eventPic" />
+      <img
+        className=" rounded-t-xl"
+        src={props.object.event_pic}
+        alt="eventPic"
+      />
       <div className="bg-black/30 overflow-hidden h-12 group-hover:bg-black/80 transition-all duration-500 rounded-b-xl">
         <h3 className="m-2 text-neutral-200 text-lg font-semibold uppercase">
           {props.object.event_name}
@@ -252,16 +263,16 @@ const AddEvent = (props) => {
   const [formData, setFormData] = useState(new FormData());
 
   const options = [
-    { value: "0", label: "Solo" },
-    { value: "1", label: "Team" },
+    { defaultValue: "0", label: "Solo" },
+    { defaultValue: "1", label: "Team" },
   ];
-  const [option, setOption] = useState({});
+  const [option, setOption] = useState("0");
 
   useEffect(() => {
     setToken(cookies.token);
   }, []);
 
-  const addEvent = async () => {
+  const addEvent = async (requestOptions) => {
     fetch(`${apiUrl}/post_event/`, requestOptions)
       .then((response) => {
         if (response.ok) {
@@ -304,6 +315,7 @@ const AddEvent = (props) => {
   };
 
   const push = (newEventData) => {
+    
     const myHeaders = new Headers();
     // myHeaders.append("Content-Type", "application/json");
     myHeaders.append("authorization", token);
@@ -324,9 +336,9 @@ const AddEvent = (props) => {
       redirect: "follow",
     };
 
-    // for (const [key, value] of formData.entries()) {
-    //   console.log(key, value);
-    // }
+    for (const [key, value] of formData.entries()) {
+      console.log(key, value);
+    }
 
     // .then((response) => response.text())
     //   .then((result) => console.log(result))
@@ -350,7 +362,7 @@ const AddEvent = (props) => {
 
     addEvent(requestOptions);
 
-    props.setAddEvent(false);
+    // props.setAddEvent(false);
   };
 
   return (

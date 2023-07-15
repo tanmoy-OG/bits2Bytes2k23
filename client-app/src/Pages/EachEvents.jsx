@@ -1,12 +1,17 @@
 import { useEffect, useState } from "react";
+import { Cookies, useCookies } from "react-cookie";
+import { toast } from "react-toastify";
 import Nav from "../Components/Nav";
 import Footer from "../Components/Footer";
 import Particle from "../Components/Particle";
 import EachLeaderboard from "../Components/EachLeaderboard";
 import { useLocation } from "react-router-dom";
 const EachEvents = () => {
+  const [token, setToken] = useState("");
+  const [cookies] = useCookies(["token"]);
   const [no, setNo] = useState("0");
   const [participated, setParticipated] = useState("false");
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   // let name = ["Envision", "Electronovation", "Quad-X", "Code Ardor"];
   const state = useLocation().state;
@@ -16,6 +21,40 @@ const EachEvents = () => {
     [2, "Priyankar"],
     [3, "Rishav"],
   ];
+
+  const fetchType = (token) => {
+    if (token === "" || token === null || token === undefined) {
+      setType("logged-out");
+      return;
+    }
+    fetch(`${apiUrl}/user_type/`, {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: token,
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          toast.error("Error fetching data");
+        }
+      })
+      .then((data) => {
+        if ("error" in data) {
+          toast.error(data.error);
+          setType("logged-out");
+        } else {
+          toast.success("Data fetched successfully");
+          setType(data.user);
+        }
+      })
+      .catch((error) => {
+        toast.error(error);
+      });
+  };
 
   const fetchNo = () => {
     fetch(`${apiUrl}/no_of_participants/`, {
@@ -100,6 +139,20 @@ const EachEvents = () => {
       });
   };
 
+  useEffect(() => {
+    setToken(cookies.token);
+  });
+
+  useEffect(() => {
+    if (token === "") return;
+    fetchType(token);
+  }, [token]);
+
+  useEffect(() => {
+    fetchNo();
+    // fetchParti();
+  }, []);
+
   return (
     <div className="absolute top-0 left-0 w-full h-fit">
       <Nav page="events" />
@@ -108,10 +161,10 @@ const EachEvents = () => {
           className="p-4 md:p-10 pb-2 md:pb-2 text-4xl md:text-5xl font-bold tracking-wider text-neutral-200 font-custom-sans uppercase"
           data-aos="fade-up"
         >
-          {state.object.name}
+          {state.object.event_name}
         </h1>
         <div className="pb-5 md:pb-10 flex justify-center gap-4 text-orange-400">
-          <p>{state.object.date}</p>
+          <p>{state.object.event_date}</p>
         </div>
         <div className="flex flex-col md:flex-row flex-shrink gap-10">
           <div className="basis-1/2 flex flex-col gap-10">
@@ -122,7 +175,7 @@ const EachEvents = () => {
                 alt="not found"
               />
             </div>
-            <p className=" text-justify">{state.object.about}</p>
+            <p className=" text-justify">{state.object.about_event}</p>
             {/* <button className=" md:mb-10 h-10 w-1/2 sm:w-1/3 lg:w-1/4 mx-auto rounded-md bg-orange-400 uppercase">
               Register
             </button> */}
@@ -130,7 +183,7 @@ const EachEvents = () => {
               Number of Participants:{" "}
               <span className="text-orange-400">{no}</span>
             </h1>
-            {participated === "true" ? (
+            {participated === "false" ? (
               <button
                 type="submit"
                 className="button-green mb-4 md:mb-10 md:w-1/2 sm:w-1/3 lg:w-1/3 mx-auto tracking-widest uppercase"
