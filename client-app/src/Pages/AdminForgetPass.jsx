@@ -5,8 +5,6 @@ import Otp from "./Otp";
 import Particle from "../Components/Particle";
 import Nav from "../Components/Nav";
 import AdminForgetSchema from "../Components/AdminForgetSchema";
-import see from "../../public/Icons/see.svg";
-import unsee from "../../public/Icons/unsee.svg";
  
 const AdminForgetPass = () => {
   const [isSuccess, setIsSuccess] = useState(false);
@@ -107,7 +105,7 @@ const AdminForgetPass = () => {
                     />
                     {!passwordVisible && (
                       <img
-                        src={see}
+                        src={"/Icons/see.svg"}
                         alt="button"
                         onClick={() => setPasswordVisible(true)}
                       />
@@ -115,7 +113,7 @@ const AdminForgetPass = () => {
                     {passwordVisible && (
                       <img
                         className="invert w-4"
-                        src={unsee}
+                        src={"/Icons/unsee.svg"}
                         alt="button"
                         onClick={() => setPasswordVisible(false)}
                       />
@@ -142,7 +140,7 @@ const AdminForgetPass = () => {
                     />
                     {!confirmPasswordVisible && (
                       <img
-                        src={see}
+                        src={"/Icons/see.svg"}
                         alt="button"
                         onClick={() => setConfirmPasswordVisible(true)}
                       />
@@ -150,7 +148,7 @@ const AdminForgetPass = () => {
                     {confirmPasswordVisible && (
                       <img
                         className="invert w-4"
-                        src={unsee}
+                        src={"/Icons/unsee.svg"}
                         alt="button"
                         onClick={() => setConfirmPasswordVisible(false)}
                       />

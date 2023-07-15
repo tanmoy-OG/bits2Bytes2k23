@@ -6,8 +6,6 @@ import { Link } from "react-router-dom";
 import { useState } from "react";
 import { toast } from "react-toastify";
 import OTPPage from "./Otp";
-import see from "../../public/Icons/see.svg";
-import unsee from "../../public/Icons/unsee.svg";
 
 const UserSignup = () => {
   const [isRegistered, setIsRegistered] = useState(false);
@@ -205,14 +203,14 @@ const UserSignup = () => {
                       />
                       {!passwordVisible && (
                         <img
-                          src={see}
+                          src={"/Icons/see.svg"}
                           alt="button"
                           onClick={() => setPasswordVisible(true)}
                         />
                       )}
                       {passwordVisible && (
                         <img
-                          src={unsee}
+                          src={"/Icons/unsee.svg"}
                           className="invert w-4"
                           alt="button"
                           onClick={() => setPasswordVisible(false)}
@@ -242,14 +240,14 @@ const UserSignup = () => {
                       />
                       {!confirmPasswordVisible && (
                         <img
-                          src={see}
+                          src={"/Icons/see.svg"}
                           alt="button"
                           onClick={() => setConfirmPasswordVisible(true)}
                         />
                       )}
                       {confirmPasswordVisible && (
                         <img
-                          src={unsee}
+                          src={"/Icons/unsee.svg"}
                           className="invert w-4"
                           alt="button"
                           onClick={() => setConfirmPasswordVisible(false)}
