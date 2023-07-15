@@ -21,7 +21,7 @@ const UserDetails = () => {
       mode: "cors",
       headers: {
         "Content-Type": "application/json",
-        "authorization": Cookies.token,
+        authorization: Cookies.token,
       },
     })
       .then((response) => {
@@ -32,13 +32,14 @@ const UserDetails = () => {
         }
       })
       .then((data) => {
+        // console.log(data);
         setData(data);
       })
       .catch((error) => {
         toast.error(error);
       });
   };
-
+ 
   const logout = () => {
     removeCookie("token", { path: "/" });
     removeCookie("type", { path: "/" });

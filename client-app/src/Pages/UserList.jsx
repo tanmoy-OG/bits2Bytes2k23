@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Nav from "../Components/Nav";
 import Particle from "../Components/Particle";
 import SubNavButton from "../Components/SubNavButton";
@@ -81,6 +81,10 @@ const UserList = () => {
       });
   };
 
+  useEffect(()=>{
+    fetchCurrentData(Cookies.token, setCurrentList);
+  },[]);
+
   return (
     <>
       {Cookies.type !== "admin" ? (
@@ -121,7 +125,7 @@ const UserList = () => {
                       className="hover:bg-white/20 cursor-pointer transition-all duration-300 flex justify-center items-center p-2 rounded-md"
                       onClick={() => {
                         setCurrent(false);
-                        fetchDeleteData(token);
+                        fetchDeleteData(Cookies.token);
                         setCurrentList({});
                       }}
                     >
@@ -133,7 +137,7 @@ const UserList = () => {
                       className="hover:bg-white/20 cursor-pointer transition-all duration-300 flex justify-center items-center p-2 rounded-md"
                       onClick={() => {
                         setCurrent(true);
-                        fetchCurrentData(token, setCurrentList);
+                        fetchCurrentData(Cookies.token, setCurrentList);
                         setDeleteList({});
                       }}
                     >

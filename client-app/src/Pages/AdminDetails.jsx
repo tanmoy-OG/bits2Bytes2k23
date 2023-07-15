@@ -46,7 +46,6 @@ const AdminDetails = () => {
   };
 
   useEffect(() => {
-    console.log(Cookies);
     if (Cookies.type !== "admin") return;
     fetchData();
   }, []);

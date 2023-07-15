@@ -3,6 +3,7 @@ import { useFormik } from "formik";
 import Particle from "../Components/Particle";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
+import { useEffect } from "react";
 
 const OTPPage = ({ otpToken, otpPageType }) => {
   const [Cookies, setCookie, removeCookie] = useCookies(["token", "type"]);
@@ -49,38 +50,6 @@ const OTPPage = ({ otpToken, otpPageType }) => {
         toast.error(error);
       });
   };
-
-  // const fetchType = (token) => {
-  //   console.log("cookie token: "+token);
-  //   fetch(`${apiUrl}/user_type/`, {
-  //     method: "POST",
-  //     mode: "cors",
-  //     headers: {
-  //       "Content-Type": "application/json",
-  //       "authorization": token,
-  //     },
-  //   })
-  //     .then((response) => {
-  //       console.log(response.json().user);
-  //       if (response.ok) {
-  //         return response.json();
-  //       } else {
-  //         toast.error("Server Error!");
-  //       }
-  //     })
-  //     .then((data) => {
-  //       console.log("type data: "+data.user);
-  //       if ("error" in data)
-  //       {
-  //         toast.error(data.error);
-  //         setCookie("type", "logged-out", { path: "/" });
-  //       }
-  //       else setCookie("type", data.user, { path: "/" });
-  //     })
-  //     .catch((error) => {
-  //       toast.error(error);
-  //     });
-  // };
 
   const { values, handleChange, handleSubmit } = useFormik({
     initialValues,
