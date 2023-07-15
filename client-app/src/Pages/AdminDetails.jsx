@@ -53,28 +53,15 @@ const AdminDetails = () => {
         if (response.ok) {
           return response.json();
         } else {
-          // toast.error("Error receiving type", {
-          //   position: toast.POSITION.TOP_RIGHT,
-          //   autoClose: 3000,
-          //   hideProgressBar: true,
-          // });
+          toast.error("Error receiving type");
         }
       })
       .then((data) => {
-        // toast.success("Data fetched successfully", {
-        //   position: toast.POSITION.TOP_RIGHT,
-        //   autoClose: 3000,
-        //   hideProgressBar: true,
-        // });
         if ("error" in data) setType("logged-out");
         else setType(data.user);
       })
       .catch((error) => {
-        // toast.error(error, {
-        //   position: toast.POSITION.TOP_RIGHT,
-        //   autoClose: 3000,
-        //   hideProgressBar: true,
-        // });
+        toast.error(error);
       });
   };
 

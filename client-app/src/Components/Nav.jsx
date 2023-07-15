@@ -1,4 +1,3 @@
-import { toast } from "react-toastify";
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { useCookies } from "react-cookie";
@@ -8,6 +7,7 @@ const Nav = ({ page }) => {
   const [type, setType] = useState("");
   const [token, setToken] = useState("");
   const [cookies, setCookie] = useCookies(["token"]);
+  const apiUrl = import.meta.env.VITE_API_URL;
 
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
@@ -19,7 +19,7 @@ const Nav = ({ page }) => {
       setType("logged-out");
       return;
     }
-    fetch("http://127.0.0.1:5000/user_type/", {
+    fetch(`${apiUrl}/user_type/`, {
       method: "POST",
       mode: "cors",
       headers: {

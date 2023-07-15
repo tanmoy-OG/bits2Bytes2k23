@@ -5,8 +5,7 @@ import SubNavButton from "../Components/SubNavButton";
 import { Link } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 import { useCookies } from "react-cookie";
 
 const UserDetails = () => {
@@ -30,27 +29,14 @@ const UserDetails = () => {
         if (response.ok) {
           return response.json();
         } else {
-          // toast.error("Error fetching data", {
-          //   position: toast.POSITION.TOP_RIGHT,
-          //   autoClose: 3000,
-          //   hideProgressBar: true,
-          // });
+          toast.error("Error fetching data");
         }
       })
       .then((data) => {
-        // toast.success("Data fetched successfully", {
-        //   position: toast.POSITION.TOP_RIGHT,
-        //   autoClose: 3000,
-        //   hideProgressBar: true,
-        // });
         setData(data);
       })
       .catch((error) => {
-        // toast.error(error, {
-        //   position: toast.POSITION.TOP_RIGHT,
-        //   autoClose: 3000,
-        //   hideProgressBar: true,
-        // });
+        toast.error(error);
       });
   };
 
@@ -67,28 +53,15 @@ const UserDetails = () => {
         if (response.ok) {
           return response.json();
         } else {
-          // toast.error("Error receiving type", {
-          //   position: toast.POSITION.TOP_RIGHT,
-          //   autoClose: 3000,
-          //   hideProgressBar: true,
-          // });
+          toast.error("Error receiving type");
         }
       })
       .then((data) => {
-        // toast.success("Data fetched successfully", {
-        //   position: toast.POSITION.TOP_RIGHT,
-        //   autoClose: 3000,
-        //   hideProgressBar: true,
-        // });
         if ("error" in data) setType("logged-out");
         else setType(data.user);
       })
       .catch((error) => {
-        // toast.error(error, {
-        //   position: toast.POSITION.TOP_RIGHT,
-        //   autoClose: 3000,
-        //   hideProgressBar: true,
-        // });
+        toast.error(error);
       });
   };
 
@@ -143,7 +116,6 @@ const UserDetails = () => {
         </div>
       </div>
       <Particle />
-      <ToastContainer />
     </div>
   );
 };
