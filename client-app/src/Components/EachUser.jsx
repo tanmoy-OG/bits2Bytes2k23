@@ -9,9 +9,10 @@ const EachUser = (props) => {
   const deleteActivator = (val) => {
     if (val === "delete user") setVisible(false);
     else if (val === "cancel") setVisible(true);
-    else {
-      // api call
+    else if (val === "confirm delete") {
+      props.deleteUser(props.token, props.roll);
       setVisible(true);
+      props.fetchCurrentData(props.token, props.setCurrentList);
     }
   };
 
@@ -46,17 +47,22 @@ const EachUser = (props) => {
           <Field header="email" data={props.email} />
           <Field header="phone number" data={props.phno} />
 
-          {(props.deleted === "false") &&(<div className="flex justify-center p-6 w-2/3">
-            {visible && (
-              <Button function={deleteActivator} buttonType="delete user" />
-            )}
-            {!visible && (
-              <div className="w-full flex flex-wrap justify-center gap-x-20 gap-y-5">
-                <Button function={deleteActivator} buttonType="confirm" />
-                <Button function={deleteActivator} buttonType="cancel" />
-              </div>
-            )}
-          </div>)}
+          {props.deleted === "false" && (
+            <div className="flex justify-center p-6 w-4/5">
+              {visible && (
+                <Button function={deleteActivator} buttonType="delete user" />
+              )}
+              {!visible && (
+                <div className="w-full flex justify-center gap-x-20 gap-y-5 flex-col lg:flex-row lg:gap-y-0 items-center">
+                  <Button
+                    function={deleteActivator}
+                    buttonType="confirm delete"
+                  />
+                  <Button function={deleteActivator} buttonType="cancel" />
+                </div>
+              )}
+            </div>
+          )}
         </div>
       )}
     </div>

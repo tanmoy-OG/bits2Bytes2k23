@@ -18,7 +18,7 @@ const UserList = () => {
   const [cookies] = useCookies(["token"]);
   const apiUrl = import.meta.env.VITE_API_URL;
 
-  const fetchCurrentData = (token) => {
+  const fetchCurrentData = (token, setCurrentList) => {
     fetch(`${apiUrl}/all_user/`, {
       method: "POST",
       mode: "cors",
@@ -43,12 +43,12 @@ const UserList = () => {
   };
 
   const fetchDeleteData = (token) => {
-    fetch("http://127.0.0.1:5000/all_user/", {
+    fetch(`${apiUrl}/view_deleted_user/`, {
       method: "POST",
       mode: "cors",
       headers: {
         "Content-Type": "application/json",
-        authorization: token,
+        "authorization": token,
       },
     })
       .then((response) => {
@@ -59,7 +59,7 @@ const UserList = () => {
         }
       })
       .then((data) => {
-        setCurrentList(data);
+        setDeleteList(data);
       })
       .catch((error) => {
         toast.error(error);
@@ -67,7 +67,7 @@ const UserList = () => {
   };
 
   const fetchType = (token) => {
-    fetch("http://127.0.0.1:5000/user_type/", {
+    fetch(`${apiUrl}/user_type/`, {
       method: "POST",
       mode: "cors",
       headers: {
@@ -91,6 +91,25 @@ const UserList = () => {
       });
   };
 
+  const deleteUser = (token, roll) => {
+    fetch(`${apiUrl}/delete_user/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "authorization": token,
+      },
+      body: JSON.stringify({ roll: roll }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        if ("error" in data) toast.error(data.error);
+        else toast.success(data.successful);
+      })
+      .catch((error) => {
+        toast.error(error);
+      });
+  };
+
   useEffect(() => {
     setToken(cookies.token);
   });
@@ -104,7 +123,7 @@ const UserList = () => {
     if (type === "") return;
     if (type !== "admin") navigate("/404_DATA_NOT_FOUND");
     else {
-      fetchCurrentData(token);
+      fetchCurrentData(token, setCurrentList);
     }
   }, [type]);
 
@@ -156,7 +175,7 @@ const UserList = () => {
                   className="hover:bg-white/20 cursor-pointer transition-all duration-300 flex justify-center items-center p-2 rounded-md"
                   onClick={() => {
                     setCurrent(true);
-                    fetchCurrentData(token);
+                    fetchCurrentData(token, setCurrentList);
                     setDeleteList({});
                   }}
                 >
@@ -185,8 +204,9 @@ const UserList = () => {
               <div className="flex flex-col gap-3 p-4 pt-2">
                 {currentList.length > 0 ? (
                   <>
-                    {currentList.map((item) => (
+                    {currentList.map((item, i) => (
                       <EachUser
+                        key={i}
                         fname={item.fname}
                         lname={item.lname}
                         roll={item.roll}
@@ -195,6 +215,10 @@ const UserList = () => {
                         email={item.email}
                         phno={item.mobile}
                         deleted="false"
+                        deleteUser={deleteUser}
+                        setCurrentList={setCurrentList}
+                        fetchCurrentData={fetchCurrentData}
+                        token={token}
                       />
                     ))}
                   </>
@@ -207,8 +231,9 @@ const UserList = () => {
               <div className="flex flex-col gap-3 p-4 pt-2">
                 {deleteList.length > 0 ? (
                   <>
-                    {deleteList.map((item) => (
+                    {deleteList.map((item, i) => (
                       <EachUser
+                        key={i}
                         fname={item.fname}
                         lname={item.lname}
                         roll={item.roll}
@@ -216,7 +241,7 @@ const UserList = () => {
                         stream={item.stream}
                         email={item.email}
                         phno={item.mobile}
-                        deleted="false"
+                        deleted="true"
                       />
                     ))}
                   </>

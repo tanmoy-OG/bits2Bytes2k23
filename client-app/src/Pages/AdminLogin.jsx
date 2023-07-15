@@ -3,8 +3,7 @@ import AdminLoginSchema from "../Components/AdminLoginSchema";
 import Nav from "../Components/Nav";
 import Particle from "../Components/Particle";
 import { Link } from "react-router-dom";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 import { useState } from "react";
 import OTPPage from "./Otp";
 import see from "../../public/Icons/see.svg";
@@ -161,7 +160,6 @@ const AdminLogin = () => {
           <Particle />
         </div>
       )}
-      <ToastContainer />
     </>
   );
 };
