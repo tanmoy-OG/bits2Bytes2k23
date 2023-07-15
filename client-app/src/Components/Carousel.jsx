@@ -31,11 +31,23 @@ const Carousel = () => {
       className="mb-10 bg-transparent h-screen"
     >
       <SwiperSlide
-        style={{ backgroundImage: `url(tree-736885_1280.jpg)` }}
+        style={{ backgroundImage: `url(/Gallery/1.webp)` }}
         className="bg-no-repeat bg-cover bg-center parallax-bg h-full bg-transparent"
       ></SwiperSlide>
       <SwiperSlide
-        style={{ backgroundImage: `url(tree-736885_1280.jpg)` }}
+        style={{ backgroundImage: `url(/Gallery/2.webp)` }}
+        className="bg-no-repeat bg-cover bg-center parallax-bg h-full bg-transparent"
+      ></SwiperSlide>
+      <SwiperSlide
+        style={{ backgroundImage: `url(/Gallery/3.webp)` }}
+        className="bg-no-repeat bg-cover bg-center parallax-bg h-full bg-transparent"
+      ></SwiperSlide>
+      <SwiperSlide
+        style={{ backgroundImage: `url(/Gallery/11.webp)` }}
+        className="bg-no-repeat bg-cover bg-center parallax-bg h-full bg-transparent"
+      ></SwiperSlide>
+      <SwiperSlide
+        style={{ backgroundImage: `url(/Gallery/13.webp)` }}
         className="bg-no-repeat bg-cover bg-center parallax-bg h-full bg-transparent"
       ></SwiperSlide>
       ...

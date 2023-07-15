@@ -16,7 +16,7 @@ const Secretary = () => {
 
       <div className="flex justify-evenly flex-wrap pl-10 pr-10">
         <Card
-          pic={"Profile/debanjan.jpg"}
+          pic={"/Profile/debanjan.webp"}
           name={"Debanjan Chakroborty"}
           designation={"Technical Secretary"}
           git={"https://github.com/Debanjan-Ironlegion"}
@@ -27,7 +27,7 @@ const Secretary = () => {
           insta={"https://instagram.com/d_c_2204"}
         />
         <Card
-          pic={"Profile/twish.jpeg"}
+          pic={"/Profile/twish.webp"}
           name={"Twishanu Aich Roy"}
           designation={"Assistant Technical Secretary"}
           link={"https://www.linkedin.com/in/twishanu-aich-roy-8b0768"}
@@ -35,14 +35,14 @@ const Secretary = () => {
           insta={"https://www.instagram.com/twishanu_"}
         />
         <Card
-          pic={"Profile/aditya.jpeg"}
+          pic={"/Profile/aditya.webp"}
           name={"Aditya Roy"}
           designation={"Assistant Technical Secretary"}
           link={"https://www.linkedin.com/in/aditya-kr-roy-361868218"}
           insta={"https://www.instagram.com/__aditya_____roy"}
         />
         <Card
-          pic={"Profile/payel.jpg"}
+          pic={"/Profile/payel.webp"}
           name={"Payel Halder"}
           designation={"Assistant Technical Secretary"}
           link={"https://www.linkedin.com/in/payel-halder"}

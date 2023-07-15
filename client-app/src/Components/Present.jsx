@@ -7,7 +7,7 @@ const Present = () => {
       <h1 className="text-4xl text-sky-500 font-custom-cursive">Presents</h1>
       <div className="flex justify-center items-center">
         <img
-          src="logo.png"
+          src={"/logo.webp"}
           alt="bits2Bytes2k23 Logo"
           className="w-72 md:w-80 2xl:w-96 logo-img z-20"
         />

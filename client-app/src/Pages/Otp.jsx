@@ -3,19 +3,52 @@ import { useFormik } from "formik";
 import Particle from "../Components/Particle";
 import { useNavigate } from "react-router-dom";
 import { useCookies } from "react-cookie";
-
-const initialValues = {
-  otp_value: "",
-};
+import { useEffect } from "react";
 
 const OTPPage = ({ otpToken, otpPageType }) => {
-  const [cookies, setCookie] = useCookies(["token"]);
+  const [Cookies, setCookie, removeCookie] = useCookies(["token", "type"]);
   const navigate = useNavigate();
   const apiUrl = import.meta.env.VITE_API_URL;
+  const initialValues = {
+    otp_value: "",
+  };
 
   const checkError = (data) => {
     if ("error" in data) return true;
     return false;
+  };
+
+  const fetchType = (token) => {
+    fetch(`${apiUrl}/user_type/`, {
+      method: "POST",
+      mode: "cors",
+      headers: {
+        "Content-Type": "application/json",
+        authorization: token,
+      },
+    })
+      .then((response) => {
+        if (response.ok) {
+          return response.json();
+        } else {
+          toast.error("Error receiving user type");
+        }
+      })
+      .then((data) => {
+        console.log(data);
+        if ("error" in data) {
+          toast.error(data.error);
+          setCookie("type", "logged-out", { path: "/" });
+          removeCookie("token");
+        } else
+        {
+          setCookie("type", data.user, { path: "/" });
+          navigate("/");
+        }
+      })
+      .catch((error) => {
+        toast.error(error);
+      });
   };
 
   const { values, handleChange, handleSubmit } = useFormik({
@@ -25,7 +58,7 @@ const OTPPage = ({ otpToken, otpPageType }) => {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
-          verification: otpToken,
+          "verification": otpToken,
         },
         body: JSON.stringify({ otp: values.otp_value }),
       })
@@ -52,8 +85,9 @@ const OTPPage = ({ otpToken, otpPageType }) => {
               otpPageType === "user-login"
             ) {
               // set token cookie
+              console.log(data);
               setCookie("token", data.authorization, { path: "/" });
-              navigate("/");
+              fetchType(data.authorization);
             }
           }
         })
