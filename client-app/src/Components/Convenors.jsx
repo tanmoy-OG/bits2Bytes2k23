@@ -10,7 +10,7 @@ const Convenors = () => {
   const convenors = [
     {
       name: "Tripti Majumdar",
-      designation: "Lead Convenor",
+      designation: "Convenor",
       position: "Something",
       contactNo: "123",
       profilePic: "/Profile/tripti.webp",
@@ -21,7 +21,7 @@ const Convenors = () => {
     },
     {
       name: "Ajanta Patil",
-      designation: "Co-Convenor",
+      designation: "Convenor",
       position: "Something",
       contactNo: "123",
       profilePic: "/Profile/ajanta.webp",
@@ -73,9 +73,6 @@ const Convenors = () => {
                       {convenor.designation}
                     </p>
                     <div className="m-2 w-16 h-1 inline-block"></div>
-                    <p className="text-neutral-200 font-bold">
-                      {convenor.contactNo}
-                    </p>
                     <div className="m-6 flex flex-row">
                       <a
                         href={convenor.git}
