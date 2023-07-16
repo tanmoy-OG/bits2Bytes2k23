@@ -50,6 +50,7 @@ const Secretary = () => {
           insta={"https://www.instagram.com/payel_halder7"}
         />
         <Card
+          pic={"/Profile/annu-priya.jpg"}
           name={"Annu Priya"}
           designation={"Assistant Technical Secretary"}
         />

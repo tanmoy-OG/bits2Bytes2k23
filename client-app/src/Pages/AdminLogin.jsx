@@ -33,6 +33,7 @@ const AdminLogin = () => {
       onSubmit: (values, action) => {
         fetch(`${apiUrl}/login/`, {
           method: "POST",
+          mode: "cors",
           headers: {
             "Content-Type": "application/json",
           },
@@ -41,8 +42,13 @@ const AdminLogin = () => {
             password: values.password,
           }),
         })
-          .then((response) => response.json())
+          .then((response) => 
+          {
+            // console.log(response);
+            response.json()
+          })
           .then((data) => {
+            // console.log(data);
             if (checkError(data)) {
               toast.error(data.error);
             } else {
@@ -53,6 +59,7 @@ const AdminLogin = () => {
             }
           })
           .catch((error) => {
+            console.log(error);
             toast.error("Unsuccessful");
           });
       },

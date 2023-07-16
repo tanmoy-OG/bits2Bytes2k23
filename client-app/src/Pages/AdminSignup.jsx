@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Nav from "../Components/Nav";
 import Particle from "../Components/Particle";
 import { Link } from "react-router-dom";
@@ -39,6 +39,7 @@ const AdminSignup = () => {
       onSubmit: (values, action) => {
         fetch(`${apiUrl}/user_signup/`, {
           method: "POST",
+          mode: "cors",
           headers: {
             "Content-Type": "application/json",
           },

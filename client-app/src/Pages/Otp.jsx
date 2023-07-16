@@ -19,15 +19,17 @@ const OTPPage = ({ otpToken, otpPageType }) => {
   };
 
   const fetchType = (token) => {
+    // console.log("token: "+token);
     fetch(`${apiUrl}/user_type/`, {
       method: "POST",
       mode: "cors",
       headers: {
         "Content-Type": "application/json",
-        authorization: token,
+        "authorization": token,
       },
     })
       .then((response) => {
+        // console.log("response: "+response);
         if (response.ok) {
           return response.json();
         } else {
@@ -35,7 +37,7 @@ const OTPPage = ({ otpToken, otpPageType }) => {
         }
       })
       .then((data) => {
-        console.log(data);
+        // console.log("data: "+data);
         if ("error" in data) {
           toast.error(data.error);
           setCookie("type", "logged-out", { path: "/" });
@@ -54,6 +56,7 @@ const OTPPage = ({ otpToken, otpPageType }) => {
   const { values, handleChange, handleSubmit } = useFormik({
     initialValues,
     onSubmit: (values) => {
+      // console.log("hi");
       fetch(`${apiUrl}/otp_verify/`, {
         method: "POST",
         headers: {
@@ -85,7 +88,7 @@ const OTPPage = ({ otpToken, otpPageType }) => {
               otpPageType === "user-login"
             ) {
               // set token cookie
-              console.log(data);
+              // console.log(data);
               setCookie("token", data.authorization, { path: "/" });
               fetchType(data.authorization);
             }
