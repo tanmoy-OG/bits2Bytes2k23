@@ -126,7 +126,13 @@ const Crew = () => {
             face={"https://www.facebook.com/profile.php?id=100023642574219"}
             insta={"https://www.instagram.com/myself_sruti__"}
           />
-          <Card name={"Rishav Ghosh"} designation={"Back End Dev and DevOps"} />
+          <Card
+            pic={"/Profile/rishav.jpg"}
+            name={"Rishav Ghosh"}
+            designation={"Back End Dev and DevOps"}
+            face={"https://www.facebook.com/rishav.ghosh.96930"}
+            insta={"https://instagram.com/rishavghosh82?igshid=ZDc4ODBmNjlmNQ=="}
+          />
         </div>
       </div>
       <Footer />

@@ -125,7 +125,7 @@ const Footer = () => {
           </a>
           ,{" "}
           <a
-            href=""
+            href="https://instagram.com/rishavghosh82?igshid=ZDc4ODBmNjlmNQ=="
             target="_blank"
             className="hover:text-orange-400 transition-all duration-300"
           >
