@@ -1,8 +1,10 @@
 const EachLeaderboard = (props) => {
   let display = [];
-  props.list.forEach((e) => {
+  let key = -1;
+  props.list.forEach((e, i) => {
+    key = key + 1;
     display.push(
-      <div className="w-full bg-blue-600/10 hover:bg-blue-500/20 rounded-md user-overview flex flex-row gap-3 p-1 transition-all duration-200">
+      <div className="w-full bg-blue-600/10 hover:bg-blue-500/20 rounded-md user-overview flex flex-row gap-3 p-1 transition-all duration-200" key={key}>
         <div className="w-1/3 sm:w-1/3 text-left tracking-widest p-1 whitespace-nowrap">
           {e[0]}
         </div>
