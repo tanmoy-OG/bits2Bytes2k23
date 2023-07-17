@@ -16,7 +16,7 @@ import EachEventTemp from "./EachEventTemp";
 const Events = () => {
   const ob = [
     {
-      name: "basic science",
+      name: "cosmic contour (basic science)",
       img: "/Events/basic-science.webp",
       about:
         "Basic science project is the event where you will bring your scientific ideas and innovative projects that you have.",
@@ -43,7 +43,7 @@ const Events = () => {
       time: "",
     },
     {
-      name: "circuit quiz",
+      name: "electrobox (circuit quiz)",
       img: "/Events/circuit-quiz.webp",
       about:
         "We are thrilled to invite you to participate in the event and hope you will make it a memorable one. Thank you!",
@@ -161,7 +161,7 @@ const Events = () => {
     },
     {
       name: "quad x",
-      img: "/Events/quad-x.jpg",
+      img: "/Events/quad-x.webp",
       about:
         "We are thrilled to invite you to participate in the event and hope you will make it a memorable one. Thank you!",
       hc: ["SAPTAK DUTTA", "987534506"],
@@ -179,7 +179,7 @@ const Events = () => {
     },
     {
       name: "robo soccer",
-      img: "/Events/robo-soccer.jpg",
+      img: "/Events/robo-soccer.webp",
       about:
         "We are thrilled to invite you to register for RoboSoccer, an exciting event in our techfest - Bits2Bytes 2k23, where bots take the field to compete in a thrilling game of football. RoboSoccer combines the thrill of football with the excitement of robotics, allowing participants to showcase their engineering skills and strategic thinking in a competitive environment. Whether you have prior experience in robotics or are a beginner, this event is an opportunity to challenge yourself and engage in friendly competition. So, gather your team, fine-tune your bots, and get ready to score goals like never before!",
       hc: ["SOUVAGYA GHOSH", "6291066020"],
