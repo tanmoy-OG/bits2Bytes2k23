@@ -53,6 +53,8 @@ const Secretary = () => {
           pic={"/Profile/annu-priya.jpg"}
           name={"Annu Priya"}
           designation={"Assistant Technical Secretary"}
+          link={"https://www.linkedin.com/in/annu-priya-42a181219"}
+          insta={"https://instagram.com/_annu____priya"}
         />
       </div>
     </div>

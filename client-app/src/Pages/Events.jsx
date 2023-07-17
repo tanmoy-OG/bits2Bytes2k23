@@ -16,7 +16,7 @@ import EachEventTemp from "./EachEventTemp";
 const Events = () => {
   const ob = [
     {
-      name: "basic science",
+      name: "cosmic contour (basic science)",
       img: "/Events/basic-science.webp",
       about:
         "Basic science project is the event where you will bring your scientific ideas and innovative projects that you have.",
@@ -43,7 +43,7 @@ const Events = () => {
       time: "",
     },
     {
-      name: "circuit quiz",
+      name: "electrobox (circuit quiz)",
       img: "/Events/circuit-quiz.webp",
       about:
         "We are thrilled to invite you to participate in the event and hope you will make it a memorable one. Thank you!",
@@ -161,7 +161,7 @@ const Events = () => {
     },
     {
       name: "quad x",
-      img: "/Events/quad-x.jpg",
+      img: "/Events/quad-x.webp",
       about:
         "We are thrilled to invite you to participate in the event and hope you will make it a memorable one. Thank you!",
       hc: ["SAPTAK DUTTA", "987534506"],
@@ -179,7 +179,7 @@ const Events = () => {
     },
     {
       name: "robo soccer",
-      img: "/Events/robo-soccer.jpg",
+      img: "/Events/robo-soccer.webp",
       about:
         "We are thrilled to invite you to register for RoboSoccer, an exciting event in our techfest - Bits2Bytes 2k23, where bots take the field to compete in a thrilling game of football. RoboSoccer combines the thrill of football with the excitement of robotics, allowing participants to showcase their engineering skills and strategic thinking in a competitive environment. Whether you have prior experience in robotics or are a beginner, this event is an opportunity to challenge yourself and engage in friendly competition. So, gather your team, fine-tune your bots, and get ready to score goals like never before!",
       hc: ["SOUVAGYA GHOSH", "6291066020"],
@@ -474,6 +474,11 @@ export default Events;
 //   const apiUrl = import.meta.env.VITE_API_URL;
 //   const [formData, setFormData] = useState(new FormData());
 
+// const [selectedOption, setSelectedOption] = useState("");
+
+// const handleOptionChange = (event) => {
+//   setSelectedOption(event.target.value);
+// };
 //   const options = [
 //     { defaultValue: "0", label: "Solo" },
 //     { defaultValue: "1", label: "Team" },
@@ -526,6 +531,28 @@ export default Events;
 //       });
 //   };
 
+// const push = () => {
+//   const myHeaders = new Headers();
+//   // myHeaders.append("Content-Type", "application/json");
+//   myHeaders.append("authorization", token);
+
+//   const formData = new FormData();
+//   formData.append("event_name", name);
+//   formData.append("about_event", about);
+//   formData.append("event_date", date);
+//   selectedOption === "Solo"
+//     ? formData.append("team", "0")
+//     : formData.append("team", "1");
+//   formData.append("coordinator", coordinator);
+//   formData.append("mobile", phone);
+//   formData.append("event_pic", image);
+
+//   console.log("Type of event_name:", typeof name);
+//   console.log("Type of event_date:", typeof date);
+//   console.log("Type of about_event:", typeof about);
+//   console.log("Type of coordinator:", typeof coordinator);
+//   console.log("Type of mobile:", typeof phone);
+//   console.log("Type of event_pic:", typeof image);
 //   const push = (newEventData) => {
 
 //     const myHeaders = new Headers();
@@ -572,6 +599,117 @@ export default Events;
 //     //     toast.error(error);
 //     //   });
 
+//   props.setAddEvent(false);
+// };
+
+// return (
+//   <form
+//     onSubmit={(e) => {
+//       e.preventDefault();
+//       push();
+//     }}
+//     className="flex flex-col items-center justify-center h-fit gap-3 pb-10"
+//   >
+//     <div className="input-block text-left p-3 font-semibold font-custom-sans flex flex-col justify-center w-full">
+//       <input
+//         type="text"
+//         name="name"
+//         placeholder="Event Name"
+//         value={name}
+//         onChange={(e) => {
+//           setName(e.target.value);
+//         }}
+//         className="p-2 rounded-md bg-black/50 text-white focus:outline-none tracking-widest w-full"
+//       />
+//     </div>
+//     <div className="input-block text-left p-3 font-semibold font-custom-sans flex flex-col justify-center w-full">
+//       <textarea
+//         name="about"
+//         placeholder="About Event"
+//         cols="10"
+//         rows="10"
+//         value={about}
+//         onChange={(e) => {
+//           setAbout(e.target.value);
+//         }}
+//         className="p-2 rounded-md bg-black/50 text-white focus:outline-none tracking-widest w-full"
+//       ></textarea>
+//     </div>
+//     <div className="input-block text-left p-3 font-semibold font-custom-sans flex flex-col justify-center w-full">
+//       <input
+//         type="text"
+//         name="coordinator"
+//         placeholder="Coordinator Name"
+//         value={coordinator}
+//         onChange={(e) => {
+//           setCoordinator(e.target.value);
+//         }}
+//         className="p-2 rounded-md bg-black/50 text-white focus:outline-none tracking-widest w-full"
+//       />
+//     </div>
+//     <div className="input-block text-left p-3 font-semibold font-custom-sans flex flex-col justify-center w-full">
+//       <input
+//         type="tel"
+//         name="phone"
+//         placeholder="Coordinator Phone No."
+//         value={phone}
+//         onChange={(e) => {
+//           setPhone(e.target.value);
+//         }}
+//         className="p-2 rounded-md bg-black/50 text-white focus:outline-none tracking-widest w-full"
+//       />
+//     </div>
+//     <div className="input-block text-left p-3 font-semibold font-custom-sans flex flex-col justify-center w-full">
+//       <input
+//         type="date"
+//         value={date}
+//         onChange={(e) => {
+//           setDate(e.target.value);
+//         }}
+//         className="mb-8 p-3 rounded-md bg-black/50 text-white focus:outline-none self-center w-full sm:w-fit tracking-widest"
+//       />
+//       <input
+//         type="file"
+//         name="image"
+//         placeholder="Upload Poster"
+//         // value={image}
+//         onChange={(e) => {
+//           // console.log(e);
+//           if (e.target.files && e.target.files[0])
+//             setImage(URL.createObjectURL(e.target.files[0]));
+//         }}
+//         className="mb-8 p-2 rounded-md bg-black/50 text-white focus:outline-none self-center w-full sm:w-fit tracking-widest"
+//         // value={values.roll}
+//         // onChange={handleChange}
+//         // onBlur={handleBlur}
+//       />
+//       {/* <img src={image} alt="" /> */}
+//       {/* <img src={image} alt="random" /> */}
+//       <div className="mx-auto mb-4 text-white">
+//         <p className="mb-2">Type of Participation:</p>
+//         <label className="mr-4">
+//           <input
+//             type="radio"
+//             value="Solo"
+//             checked={selectedOption === "Solo"}
+//             onChange={handleOptionChange}
+//             className="mr-2"
+//           />
+//           Solo
+//         </label>
+
+//         <label className="mr-4">
+//           <input
+//             type="radio"
+//             value="Team"
+//             checked={selectedOption === "Team"}
+//             onChange={handleOptionChange}
+//             className="mr-2"
+//           />
+//           Team
+//         </label>
+//       </div>
+//     </div>
 //     addEvent(requestOptions);
 
 //     // props.setAddEvent(false);
