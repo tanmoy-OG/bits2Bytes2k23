@@ -262,11 +262,11 @@ const AddEvent = (props) => {
   const apiUrl = import.meta.env.VITE_API_URL;
   const [formData, setFormData] = useState(new FormData());
 
-  const options = [
-    { defaultValue: "0", label: "Solo" },
-    { defaultValue: "1", label: "Team" },
-  ];
-  const [option, setOption] = useState("0");
+  const [selectedOption, setSelectedOption] = useState("");
+
+  const handleOptionChange = (event) => {
+    setSelectedOption(event.target.value);
+  };
 
   useEffect(() => {
     setToken(cookies.token);
@@ -314,8 +314,7 @@ const AddEvent = (props) => {
       });
   };
 
-  const push = (newEventData) => {
-    
+  const push = () => {
     const myHeaders = new Headers();
     // myHeaders.append("Content-Type", "application/json");
     myHeaders.append("authorization", token);
@@ -324,10 +323,19 @@ const AddEvent = (props) => {
     formData.append("event_name", name);
     formData.append("about_event", about);
     formData.append("event_date", date);
-    formData.append("team", option);
+    selectedOption === "Solo"
+      ? formData.append("team", "0")
+      : formData.append("team", "1");
     formData.append("coordinator", coordinator);
     formData.append("mobile", phone);
-    formData.append("image", image);
+    formData.append("event_pic", image);
+
+    console.log("Type of event_name:", typeof name);
+    console.log("Type of event_date:", typeof date);
+    console.log("Type of about_event:", typeof about);
+    console.log("Type of coordinator:", typeof coordinator);
+    console.log("Type of mobile:", typeof phone);
+    console.log("Type of event_pic:", typeof image);
 
     const requestOptions = {
       method: "POST",
@@ -362,7 +370,7 @@ const AddEvent = (props) => {
 
     addEvent(requestOptions);
 
-    // props.setAddEvent(false);
+    props.setAddEvent(false);
   };
 
   return (
@@ -448,12 +456,30 @@ const AddEvent = (props) => {
         />
         {/* <img src={image} alt="" /> */}
         {/* <img src={image} alt="random" /> */}
-        <Dropdown
-          defaultValue={option}
-          onChange={setOption}
-          options={options}
-          className="mb-2 p-2 rounded-md bg-black/50 text-white focus:outline-none self-center w-full sm:w-1/2 tracking-widest"
-        />
+        <div className="mx-auto mb-4 text-white">
+          <p className="mb-2">Type of Participation:</p>
+          <label className="mr-4">
+            <input
+              type="radio"
+              value="Solo"
+              checked={selectedOption === "Solo"}
+              onChange={handleOptionChange}
+              className="mr-2"
+            />
+            Solo
+          </label>
+
+          <label className="mr-4">
+            <input
+              type="radio"
+              value="Team"
+              checked={selectedOption === "Team"}
+              onChange={handleOptionChange}
+              className="mr-2"
+            />
+            Team
+          </label>
+        </div>
       </div>
 
       {/* submit */}
