@@ -127,11 +127,11 @@ const Crew = () => {
             insta={"https://www.instagram.com/myself_sruti__"}
           />
           <Card
-            pic={"/Profile/rishav.jpg"}
+            pic={"/Profile/rishav.webp"}
             name={"Rishav Ghosh"}
             designation={"Back End Dev and DevOps"}
             face={"https://www.facebook.com/rishav.ghosh.96930"}
-            insta={"https://instagram.com/rishavghosh82?igshid=ZDc4ODBmNjlmNQ=="}
+            insta={"https://instagram.com/rishavghosh82"}
           />
         </div>
       </div>
