@@ -6,7 +6,7 @@ const Crew = () => {
   return (
     <div className="absolute top-0 left-0 w-full h-fit">
       <Nav page="crew" />
-      <div className="p-4 pt-0 row h-fit bg-sky-500/10 backdrop-blur-sm ml-6 mr-6 mb-10 rounded-2xl">
+      <div className="p-4 pt-0 row h-fit bg-sky-500/10 backdrop-blur-sm ml-6 mr-6 mb-10 rounded-2xl mt-10">
         <h1
           className="p-4 md:p-10 pb-5 text-4xl md:text-5xl font-bold tracking-wider text-neutral-200 font-custom-sans uppercase"
           data-aos="fade-up"
@@ -26,7 +26,7 @@ const Crew = () => {
           />
           <Card
             pic={"/Profile/chirantan.webp"}
-            name={"Chorantan Acharyya"}
+            name={"Chirantan Acharyya"}
             designation={"Coordinator"}
             git={"https://github.com/i-am-chirantan"}
             link={"https://www.linkedin.com/in/chirantan-acharyya-5552a71ba"}
@@ -126,7 +126,13 @@ const Crew = () => {
             face={"https://www.facebook.com/profile.php?id=100023642574219"}
             insta={"https://www.instagram.com/myself_sruti__"}
           />
-          <Card name={"Rishav Ghosh"} designation={"Back End Dev and DevOps"} />
+          <Card
+            pic={"/Profile/rishav.jpg"}
+            name={"Rishav Ghosh"}
+            designation={"Back End Dev and DevOps"}
+            face={"https://www.facebook.com/rishav.ghosh.96930"}
+            insta={"https://instagram.com/rishavghosh82?igshid=ZDc4ODBmNjlmNQ=="}
+          />
         </div>
       </div>
       <Footer />

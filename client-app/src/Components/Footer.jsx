@@ -15,7 +15,6 @@ const Footer = () => {
               className="h-36 w-56 md:h-60 md:w-80 rounded-lg"
               src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3685.536417800597!2d88.4583307099992!3d22.52157003475493!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3a0274a1c0115249%3A0x975599390971e184!2sBengal%20Institute%20Of%20Technology!5e0!3m2!1sen!2sin!4v1688506260644!5m2!1sen!2sin"
               allowfullscreen=""
-              loading="lazy"
               referrerpolicy="no-referrer-when-downgrade"
             ></iframe>
             <div className="flex flex-col gap-6">
@@ -126,7 +125,7 @@ const Footer = () => {
           </a>
           ,{" "}
           <a
-            href=""
+            href="https://instagram.com/rishavghosh82?igshid=ZDc4ODBmNjlmNQ=="
             target="_blank"
             className="hover:text-orange-400 transition-all duration-300"
           >

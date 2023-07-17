@@ -18,7 +18,7 @@ const Principal = () => {
         </h1>
         <ReactPlayer
           className="react-player fixed-bottom"
-          url="Videos/PrincipalSpeech.mp4"
+          url="Videos/principal-speech.mp4"
           width="100%"
           height="100%"
           controls={true}
