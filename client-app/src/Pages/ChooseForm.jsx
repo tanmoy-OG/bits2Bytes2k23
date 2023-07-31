@@ -3,15 +3,9 @@ import Nav from "../Components/Nav";
 import Particle from "../Components/Particle";
 import { useCookies } from "react-cookie";
 import ErrorPage from "./ErrorPage";
-import { useEffect } from "react";
 
 const ChooseForm = () => {
   const [Cookies] = useCookies(["token", "type"]);
-
-  // useEffect(()=>{
-  //   console.log(Cookies.token);
-  //   console.log(Cookies.type);
-  // });
 
   return (
     <>

@@ -24,6 +24,8 @@ import ErrorPage from "./Pages/ErrorPage";
 import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import ScrollTop from "./Components/ScrollTop.jsx";
+import { CookiesProvider } from "react-cookie";
 
 const App = () => {
   useEffect(() => {
@@ -32,45 +34,48 @@ const App = () => {
 
   return (
     <>
-      <Routes>
-        {/* un-authorized routes */}
-        <Route path="/" Component={Home} />
-        <Route path="/principal" Component={Principal} />
-        <Route path="/gallery" Component={Gallery} />
-        <Route path="/crew" Component={Crew} />
-        <Route path="*" Component={ErrorPage} />
+      <CookiesProvider>
+        <ScrollTop />
+        <Routes>
+          {/* un-authorized routes */}
+          <Route path="/" Component={Home} />
+          <Route path="/principal" Component={Principal} />
+          <Route path="/gallery" Component={Gallery} />
+          <Route path="/crew" Component={Crew} />
+          <Route path="*" Component={ErrorPage} />
 
-        {/* logged out can visit logged in cannot visit */}
-        {/* <Route path="/registration" Component={ChooseForm} /> */}
-        {/* <Route path="/signup/admin" Component={AdminSignup} /> */}
-        {/* <Route path="/signup/user" Component={UserSignup} /> */}
-        {/* <Route path="/login/admin" Component={AdminLogin} /> */}
-        {/* <Route path="/login/user" Component={UserLogin} /> */}
-        {/* <Route path="/admin/resetpassword" Component={AdminForgetPass} /> */}
-        {/* <Route path="/user/resetpassword" Component={UserForgetPass} /> */}
+          {/* logged out can visit logged in cannot visit */}
+          <Route path="/registration" Component={ChooseForm} />
+          <Route path="/signup/admin" Component={AdminSignup} />
+          <Route path="/signup/user" Component={UserSignup} />
+          <Route path="/login/admin" Component={AdminLogin} />
+          <Route path="/login/user" Component={UserLogin} />
+          <Route path="/admin/resetpassword" Component={AdminForgetPass} />
+          <Route path="/user/resetpassword" Component={UserForgetPass} />
 
-        {/* logged out cannot visit logged in can visit*/}
-        {/* <Route path="/adminprofile/details" Component={AdminDetails} /> */}
-        {/* <Route path="/adminprofile/userlist" Component={UserList} /> */}
-        {/* <Route path="/userprofile/details" Component={UserDetails} /> */}
-        {/* <Route path="/userprofile/myevents" Component={UserEvents} /> */}
+          {/* logged out cannot visit logged in can visit*/}
+          <Route path="/adminprofile/details" Component={AdminDetails} />
+          <Route path="/adminprofile/userlist" Component={UserList} />
+          <Route path="/userprofile/details" Component={UserDetails} />
+          <Route path="/userprofile/myevents" Component={UserEvents} />
 
-        {/* depends */}
-        <Route path="/events" Component={Events} />
-        {/* <Route path="/events/details" Component={EachEvents} /> */}
-      </Routes>
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-      />
+          {/* depends */}
+          <Route path="/events" Component={Events} />
+          {/* <Route path="/events/details" Component={EachEvents} /> */}
+        </Routes>
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="light"
+        />
+      </CookiesProvider>
     </>
   );
 };

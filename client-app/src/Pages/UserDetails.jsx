@@ -32,7 +32,6 @@ const UserDetails = () => {
         }
       })
       .then((data) => {
-        // console.log(data);
         setData(data);
       })
       .catch((error) => {
