@@ -1,9 +1,2 @@
-# bits2Bytes2k23
-The Technical Fest website of Bengal Institute of Technology, for the year 2023.
-
-# Developers
-## Front-End
-Tanmoy Choudhury, 
-Priyankar Sarkar,      
-Sruti Das
-## Back-End
+# Bits2Bytes 2k23
+The official technical fest website of Bengal Institute of Technology(BIT), Kolkata, for the year 2023.
