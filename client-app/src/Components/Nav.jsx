@@ -168,7 +168,7 @@ const Nav = ({ page }) => {
             >
               CREW
             </Link>
-            <Link
+{/*             <Link
               to={
                 Cookies.type === "admin"
                   ? "/adminprofile/details"
@@ -185,7 +185,7 @@ const Nav = ({ page }) => {
               {Cookies.type === "admin" || Cookies.type === "participant"
                 ? "PROFILE"
                 : "LOGIN/SIGNUP"}
-            </Link>
+            </Link> */}
           </div>
         </div>
       )}
